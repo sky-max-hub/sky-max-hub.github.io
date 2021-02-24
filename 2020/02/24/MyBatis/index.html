@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.0"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.0"};
     KEEP.language_ago = undefined;
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -213,7 +213,7 @@
 
         <div class="article-content markdown-body">
             <hr>
-<p><img src="http://img.sky123.top/cover/tree.png"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/cover/tree.png"></p>
 <hr>
 <h3 id="1-MyBatis框架概述"><a href="#1-MyBatis框架概述" class="headerlink" title="1. MyBatis框架概述"></a>1. MyBatis框架概述</h3><p>mybatis 是一个优秀的基于 java 的持久层框架</p>
 <ol>
@@ -222,19 +222,19 @@
 <li>采用 ORM 思想解决了实体和数据库映射的问题，对 jdbc 进行了封装，屏蔽了 jdbc api 底层访问细节，使我<br>们不用与 jdbc api 打交道，就可以完成对数据库的持久化操作。</li>
 </ol>
 <h3 id="2-搭建MyBatis框架环境"><a href="#2-搭建MyBatis框架环境" class="headerlink" title="2. 搭建MyBatis框架环境"></a>2. 搭建MyBatis框架环境</h3><h4 id="2-1-创建maven工程"><a href="#2-1-创建maven工程" class="headerlink" title="2.1. 创建maven工程"></a>2.1. 创建maven工程</h4><hr>
-<img src="http://img.sky123.top/mybatis01/image-20200528100131635.png" alt="image-20200528100131635">
+<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528100131635.png" alt="image-20200528100131635">
 
 <hr>
-<img src="http://img.sky123.top/mybatis01/image-20200528100240919.png" alt="image-20200528100240919">
+<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528100240919.png" alt="image-20200528100240919">
 
 <hr>
-<img src="http://img.sky123.top/mybatis01/image-20200528100320103.png" alt="image-20200528100320103">
+<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528100320103.png" alt="image-20200528100320103">
 
 <hr>
 <h4 id="2-2-导入依赖"><a href="#2-2-导入依赖" class="headerlink" title="2.2. 导入依赖"></a>2.2. 导入依赖</h4><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）"><a href="#2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）" class="headerlink" title="2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）"></a>2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）</h4><h4 id="2-4-编写接口的映射文件"><a href="#2-4-编写接口的映射文件" class="headerlink" title="2.4. 编写接口的映射文件"></a>2.4. 编写接口的映射文件</h4><hr>
-<img src="http://img.sky123.top/mybatis01/image-20200528100817522.png" alt="image-20200528100817522">
+<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528100817522.png" alt="image-20200528100817522">
 
 <hr>
 <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.itheima.dao.IUserDao"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置查询所有操作 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"com.itheima.domain.User"</span>&gt;</span></span><br><span class="line">select * from user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
@@ -246,10 +246,10 @@
 <h3 id="3-MyBatis框架原理"><a href="#3-MyBatis框架原理" class="headerlink" title="3. MyBatis框架原理"></a>3. MyBatis框架原理</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisTest</span> </span>{</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> Exception </span>{</span><br><span class="line"><span class="comment">//1.读取配置文件</span></span><br><span class="line">InputStream in = Resources.getResourceAsStream(<span class="string">"SqlMapConfig.xml"</span>);</span><br><span class="line"><span class="comment">//2.创建 SqlSessionFactory 的构建者对象</span></span><br><span class="line">SqlSessionFactoryBuilder builder = <span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line"><span class="comment">//3.使用构建者创建工厂对象 SqlSessionFactory</span></span><br><span class="line">SqlSessionFactory factory = builder.build(in);</span><br><span class="line"><span class="comment">//4.使用 SqlSessionFactory 生产 SqlSession 对象</span></span><br><span class="line">SqlSession session = factory.openSession();</span><br><span class="line"><span class="comment">//5.使用 SqlSession 创建 dao 接口的代理对象</span></span><br><span class="line">IUserDao userDao = session.getMapper(IUserDao.class);</span><br><span class="line"><span class="comment">//6.使用代理对象执行查询所有方法</span></span><br><span class="line">List&lt;User&gt; users = userDao.findAll();</span><br><span class="line"><span class="keyword">for</span>(User user : users) {</span><br><span class="line">System.out.println(user);</span><br><span class="line">}</span><br><span class="line"><span class="comment">//7.释放资源</span></span><br><span class="line">session.close();</span><br><span class="line">in.close();</span><br><span class="line">}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="3-1-构建者模式"><a href="#3-1-构建者模式" class="headerlink" title="3.1 构建者模式"></a>3.1 构建者模式</h4><hr>
-<p><img src="http://img.sky123.top/mybatis01/image-20200528140047789.png" alt="image-20200528140047789"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528140047789.png" alt="image-20200528140047789"></p>
 <hr>
 <h4 id="3-2-工厂模式"><a href="#3-2-工厂模式" class="headerlink" title="3.2 工厂模式"></a>3.2 工厂模式</h4><hr>
-<img src="http://img.sky123.top/mybatis01/image-20200528143748636.png" alt="image-20200528143748636">
+<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528143748636.png" alt="image-20200528143748636">
 
 <hr>
 <h3 id="4-补充：基于注解的Mybatis"><a href="#4-补充：基于注解的Mybatis" class="headerlink" title="4. 补充：基于注解的Mybatis"></a>4. 补充：基于注解的Mybatis</h3><h4 id="修改Dao-SqlMapConfig-xml-并移除Dao-xml"><a href="#修改Dao-SqlMapConfig-xml-并移除Dao-xml" class="headerlink" title="修改Dao,SqlMapConfig.xml,并移除Dao.xml"></a>修改Dao,SqlMapConfig.xml,并移除Dao.xml</h4><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IUserDao</span> </span>{</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 查询所有用户</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Select("select * from user")</span></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
@@ -333,17 +333,17 @@
 
 <h3 id="11-Mybatis-缓存"><a href="#11-Mybatis-缓存" class="headerlink" title="11. Mybatis 缓存"></a>11. Mybatis 缓存</h3><p>提供了缓存策略，通过缓存策略来减少数据库的查询次数， 从而提高性能。Mybatis 中缓存分为一级缓存，二级缓存。  </p>
 <hr>
-<img src="http://img.sky123.top/mybatis01/image-20200528174434282.png" alt="image-20200528174434282">
+<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528174434282.png" alt="image-20200528174434282">
 
 <hr>
 <h4 id="11-1-一级缓存"><a href="#11-1-一级缓存" class="headerlink" title="11. 1 一级缓存"></a>11. 1 一级缓存</h4><p>一级缓存是 SqlSession 范围的缓存，当调用 SqlSession 的修改，添加，删除， commit()， close()等 方法时，就会清空一级缓存  </p>
 <hr>
-<img src="http://img.sky123.top/mybatis01/image-20200528175000842.png" alt="image-20200528175000842">
+<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528175000842.png" alt="image-20200528175000842">
 
 <hr>
 <h4 id="11-2-二级缓存"><a href="#11-2-二级缓存" class="headerlink" title="11.2 二级缓存"></a>11.2 二级缓存</h4><p>二级缓存是 mapper 映射级别的缓存，多个 SqlSession 去操作同一个 Mapper 映射的 sql 语句，多个SqlSession 可以共用二级缓存，二级缓存是跨 SqlSession 的。  </p>
 <hr>
-<img src="http://img.sky123.top/mybatis01/image-20200528175101555.png" alt="image-20200528175101555">
+<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528175101555.png" alt="image-20200528175101555">
 
 <hr>
 <h5 id="二级缓存的开启与关闭"><a href="#二级缓存的开启与关闭" class="headerlink" title="二级缓存的开启与关闭"></a>二级缓存的开启与关闭</h5><p>在 SqlMapConfig.xml 文件开启二级缓存  </p>
@@ -417,6 +417,63 @@
         
 
         
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script 
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script >
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'c24be1524fb2136162b3',
+                    clientSecret: 'acdf0abd5690e3064928266b5ceadc98fefab7eb',
+                    repo: 'test',
+                    owner: 'sky-max-hub',
+                    admin: ['sky-max-hub'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('false') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
 
@@ -473,6 +530,10 @@
 
         <!-- go comment -->
         
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
     </ul>
 </div>
 
@@ -511,10 +572,6 @@
         
 
         
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
 
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
@@ -525,6 +582,11 @@
         <li class="tools-item tool-toggle-show flex-center">
             <i class="fas fa-cog fa-spin"></i>
         </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
         
     </ul>
 </div>
@@ -591,6 +653,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.0/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.0/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">
