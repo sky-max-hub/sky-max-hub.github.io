@@ -130,7 +130,7 @@
     <title>MyBatis入门04延迟加载和缓存功能</title>
     <url>/2020/02/24/MyBatis%E5%85%A5%E9%97%A804%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E5%92%8C%E7%BC%93%E5%AD%98%E5%8A%9F%E8%83%BD/</url>
     <content><![CDATA[<hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/cover/tree.png"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2013/05/15/09/12/tourist-attraction-111329_1280.jpg"></p>
 <hr>
 <h1 id="MyBatis入门04延迟加载和缓存功能"><a href="#MyBatis入门04延迟加载和缓存功能" class="headerlink" title="MyBatis入门04延迟加载和缓存功能"></a>MyBatis入门04延迟加载和缓存功能</h1><h2 id="1-Mybatis-延迟加载策略"><a href="#1-Mybatis-延迟加载策略" class="headerlink" title="1. Mybatis 延迟加载策略"></a>1. Mybatis 延迟加载策略</h2><p>延迟加载：就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也称懒加载.<br>好处： 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多zhangruwang表速度要快。  </p>
 <p>坏处：因为只有当需要用到数据时，才会进行数据库查询，这样在大批量数据查询时，因为查询工作也要消耗时间，所以可能造成用户等待时间变长，造成用户体验下降。  </p>
