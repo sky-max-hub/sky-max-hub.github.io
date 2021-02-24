@@ -6,11 +6,11 @@
 <li>mybatis 通过 xml 或注解的方式将要执行的各种 statement 配置起来，并通过 java 对象和 statement 中<br>sql 的动态参数进行映射生成最终执行的 sql 语句，最后由 mybatis 框架执行 sql 并将结果映射为 java 对象并<br>返回。</li>
 <li>*采用 ORM 思想解决了实体和数据库映射的问题，对 jdbc 进行了封装，屏蔽了 jdbc api 底层访问细节，使我<br> 们不用与 jdbc api 打交道，就可以完成对数据库的持久化操作。</li>
 </ol>
-<h3 id="2-搭建MyBatis框架环境"><a href="#2-搭建MyBatis框架环境" class="headerlink" title="2. 搭建MyBatis框架环境"></a>2. 搭建MyBatis框架环境</h3><h4 id="2-1-创建maven工程"><a href="#2-1-创建maven工程" class="headerlink" title="2.1. 创建maven工程"></a>2.1. 创建maven工程</h4><img src="http://img.sky123.top/mybatis01/image-20200528100131635.png" alt="image-20200528100131635" style="zoom: 33%;">
+<h3 id="2-搭建MyBatis框架环境"><a href="#2-搭建MyBatis框架环境" class="headerlink" title="2. 搭建MyBatis框架环境"></a>2. 搭建MyBatis框架环境</h3><h4 id="2-1-创建maven工程"><a href="#2-1-创建maven工程" class="headerlink" title="2.1. 创建maven工程"></a>2.1. 创建maven工程</h4><img src="http://img.sky123.top/mybatis01/image-20200528100131635.png" alt="image-20200528100131635">
 
-<img src="http://img.sky123.top/mybatis01/image-20200528100240919.png" alt="image-20200528100240919" style="zoom:33%;">
+<img src="http://img.sky123.top/mybatis01/image-20200528100240919.png" alt="image-20200528100240919">
 
-<img src="http://img.sky123.top/mybatis01/image-20200528100320103.png" alt="image-20200528100320103" style="zoom:33%;">
+<img src="http://img.sky123.top/mybatis01/image-20200528100320103.png" alt="image-20200528100320103">
 
 <h4 id="2-2-导入依赖"><a href="#2-2-导入依赖" class="headerlink" title="2.2. 导入依赖"></a>2.2. 导入依赖</h4><pre><code class="xml">&lt;dependency&gt;
 &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
@@ -25,7 +25,7 @@
 &lt;scope&gt;runtime&lt;/scope&gt;
 &lt;/dependency&gt;
 </code></pre>
-<h4 id="2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）"><a href="#2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）" class="headerlink" title="2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）"></a>2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）</h4><h4 id="2-4-编写接口的映射文件"><a href="#2-4-编写接口的映射文件" class="headerlink" title="2.4. 编写接口的映射文件"></a>2.4. 编写接口的映射文件</h4><img src="http://img.sky123.top/mybatis01/image-20200528100817522.png" alt="image-20200528100817522" style="zoom: 67%;">
+<h4 id="2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）"><a href="#2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）" class="headerlink" title="2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）"></a>2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）</h4><h4 id="2-4-编写接口的映射文件"><a href="#2-4-编写接口的映射文件" class="headerlink" title="2.4. 编写接口的映射文件"></a>2.4. 编写接口的映射文件</h4><img src="http://img.sky123.top/mybatis01/image-20200528100817522.png" alt="image-20200528100817522">
 
 <pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!DOCTYPE mapper
@@ -89,7 +89,7 @@ in.close();
 }
 </code></pre>
 <h4 id="3-1-构建者模式"><a href="#3-1-构建者模式" class="headerlink" title="3.1 构建者模式"></a>3.1 构建者模式</h4><p><img src="http://img.sky123.top/mybatis01/image-20200528140047789.png" alt="image-20200528140047789"></p>
-<h4 id="3-2-工厂模式"><a href="#3-2-工厂模式" class="headerlink" title="3.2 工厂模式"></a>3.2 工厂模式</h4><img src="http://img.sky123.top/mybatis01/image-20200528143748636.png" alt="image-20200528143748636" style="zoom: 50%;">
+<h4 id="3-2-工厂模式"><a href="#3-2-工厂模式" class="headerlink" title="3.2 工厂模式"></a>3.2 工厂模式</h4><img src="http://img.sky123.top/mybatis01/image-20200528143748636.png" alt="image-20200528143748636">
 
 
 
@@ -412,17 +412,17 @@ select * from account where uid = #{uid}
 &lt;/select&gt;
 </code></pre>
 <h3 id="11-Mybatis-缓存"><a href="#11-Mybatis-缓存" class="headerlink" title="11. Mybatis 缓存"></a>11. Mybatis 缓存</h3><p>提供了缓存策略，通过缓存策略来减少数据库的查询次数， 从而提高性能。Mybatis 中缓存分为一级缓存，二级缓存。  </p>
-<img src="http://img.sky123.top/mybatis01/image-20200528174434282.png" alt="image-20200528174434282" style="zoom: 80%;">
+<img src="http://img.sky123.top/mybatis01/image-20200528174434282.png" alt="image-20200528174434282">
 
 
 
 <h4 id="11-1-一级缓存"><a href="#11-1-一级缓存" class="headerlink" title="11. 1 一级缓存"></a>11. 1 一级缓存</h4><p>一级缓存是 SqlSession 范围的缓存，当调用 SqlSession 的修改，添加，删除， commit()， close()等 方法时，就会清空一级缓存  </p>
-<img src="http://img.sky123.top/mybatis01/image-20200528175000842.png" alt="image-20200528175000842" style="zoom:80%;">
+<img src="http://img.sky123.top/mybatis01/image-20200528175000842.png" alt="image-20200528175000842">
 
 
 
 <h4 id="11-2-二级缓存"><a href="#11-2-二级缓存" class="headerlink" title="11.2 二级缓存"></a>11.2 二级缓存</h4><p>二级缓存是 mapper 映射级别的缓存，多个 SqlSession 去操作同一个 Mapper 映射的 sql 语句，多个SqlSession 可以共用二级缓存，二级缓存是跨 SqlSession 的。  </p>
-<img src="http://img.sky123.top/mybatis01/image-20200528175101555.png" alt="image-20200528175101555" style="zoom: 67%;">
+<img src="http://img.sky123.top/mybatis01/image-20200528175101555.png" alt="image-20200528175101555">
 
 
 
