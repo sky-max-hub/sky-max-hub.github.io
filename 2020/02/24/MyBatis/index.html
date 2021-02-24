@@ -11,9 +11,9 @@
 </ol>
 <h3 id="2-搭建MyBatis框架环境"><a href="#2-搭建MyBatis框架环境" class="headerlink" title="2. 搭建MyBatis框架环境"></a>2. 搭建MyBatis框架环境</h3><h4 id="2-1-创建maven工程"><a href="#2-1-创建maven工程" class="headerlink" title="2.1. 创建maven工程"></a>2.1. 创建maven工程</h4><hr>
 <img src="http://img.sky123.top/mybatis01/image-20200528100131635.png" alt="image-20200528100131635">
-***
+- - - 
 <img src="http://img.sky123.top/mybatis01/image-20200528100240919.png" alt="image-20200528100240919">
-***
+- - - 
 <img src="http://img.sky123.top/mybatis01/image-20200528100320103.png" alt="image-20200528100320103">
 ***
 #### 2.2. 导入依赖
@@ -33,19 +33,20 @@
 </code></pre>
 <h4 id="2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）"><a href="#2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）" class="headerlink" title="2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）"></a>2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）</h4><h4 id="2-4-编写接口的映射文件"><a href="#2-4-编写接口的映射文件" class="headerlink" title="2.4. 编写接口的映射文件"></a>2.4. 编写接口的映射文件</h4><hr>
 <img src="http://img.sky123.top/mybatis01/image-20200528100817522.png" alt="image-20200528100817522">
-***
-```xml
-<!--?xml version="1.0" encoding="UTF-8"?-->
 
+<hr>
+<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;
 
-<mapper namespace="com.itheima.dao.IUserDao">
-<!-- 配置查询所有操作 -->
-<select id="findAll" resulttype="com.itheima.domain.User">
+&lt;mapper namespace="com.itheima.dao.IUserDao"&gt;
+&lt;!-- 配置查询所有操作 --&gt;
+&lt;select id="findAll" resultType="com.itheima.domain.User"&gt;
 select * from user
-</select>
-</mapper>
-```
-
+&lt;/select&gt;
+&lt;/mapper&gt;
+</code></pre>
 <h4 id="2-5-编写核心配置文件-SqlMapConfig-xml-resources目录下"><a href="#2-5-编写核心配置文件-SqlMapConfig-xml-resources目录下" class="headerlink" title="2.5. 编写核心配置文件 SqlMapConfig.xml  (resources目录下)"></a>2.5. 编写核心配置文件 SqlMapConfig.xml  (resources目录下)</h4><pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!DOCTYPE configuration
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
@@ -100,10 +101,8 @@ in.close();
 <hr>
 <h4 id="3-2-工厂模式"><a href="#3-2-工厂模式" class="headerlink" title="3.2 工厂模式"></a>3.2 工厂模式</h4><hr>
 <img src="http://img.sky123.top/mybatis01/image-20200528143748636.png" alt="image-20200528143748636">
-***
 
-
-
+<hr>
 <h3 id="4-补充：基于注解的Mybatis"><a href="#4-补充：基于注解的Mybatis" class="headerlink" title="4. 补充：基于注解的Mybatis"></a>4. 补充：基于注解的Mybatis</h3><h4 id="修改Dao-SqlMapConfig-xml-并移除Dao-xml"><a href="#修改Dao-SqlMapConfig-xml-并移除Dao-xml" class="headerlink" title="修改Dao,SqlMapConfig.xml,并移除Dao.xml"></a>修改Dao,SqlMapConfig.xml,并移除Dao.xml</h4><pre><code class="java">public interface IUserDao {
 /**
 * 查询所有用户
@@ -429,13 +428,13 @@ select * from account where uid = #{uid}
 <h4 id="11-1-一级缓存"><a href="#11-1-一级缓存" class="headerlink" title="11. 1 一级缓存"></a>11. 1 一级缓存</h4><p>一级缓存是 SqlSession 范围的缓存，当调用 SqlSession 的修改，添加，删除， commit()， close()等 方法时，就会清空一级缓存  </p>
 <hr>
 <img src="http://img.sky123.top/mybatis01/image-20200528175000842.png" alt="image-20200528175000842">
-***
+- - - 
 
 
 <h4 id="11-2-二级缓存"><a href="#11-2-二级缓存" class="headerlink" title="11.2 二级缓存"></a>11.2 二级缓存</h4><p>二级缓存是 mapper 映射级别的缓存，多个 SqlSession 去操作同一个 Mapper 映射的 sql 语句，多个SqlSession 可以共用二级缓存，二级缓存是跨 SqlSession 的。  </p>
 <hr>
 <img src="http://img.sky123.top/mybatis01/image-20200528175101555.png" alt="image-20200528175101555">
-***
+- - - 
 
 
 <h5 id="二级缓存的开启与关闭"><a href="#二级缓存的开启与关闭" class="headerlink" title="二级缓存的开启与关闭"></a>二级缓存的开启与关闭</h5><p>在 SqlMapConfig.xml 文件开启二级缓存  </p>
