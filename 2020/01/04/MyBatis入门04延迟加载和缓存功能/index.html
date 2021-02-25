@@ -239,17 +239,17 @@
 
 <h2 id="2-Mybatis-缓存"><a href="#2-Mybatis-缓存" class="headerlink" title="2. Mybatis 缓存"></a>2. Mybatis 缓存</h2><p>提供了缓存策略，通过缓存策略来减少数据库的查询次数， 从而提高性能。Mybatis 中缓存分为一级缓存，二级缓存。  </p>
 <hr>
-<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528174434282.png" alt="image-20200528174434282">
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528174434282.png" alt="image-20200528174434282">
 
 <hr>
 <h3 id="2-1-一级缓存"><a href="#2-1-一级缓存" class="headerlink" title="2.1 一级缓存"></a>2.1 一级缓存</h3><p>一级缓存是 SqlSession 范围的缓存，当调用 SqlSession 的修改，添加，删除， commit()， close()等 方法时，就会清空一级缓存  </p>
 <hr>
-<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528175000842.png" alt="image-20200528175000842">
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528175000842.png" alt="image-20200528175000842">
 
 <hr>
 <h3 id="2-2-二级缓存"><a href="#2-2-二级缓存" class="headerlink" title="2.2 二级缓存"></a>2.2 二级缓存</h3><p>二级缓存是 mapper 映射级别的缓存，多个 SqlSession 去操作同一个 Mapper 映射的 sql 语句，多个SqlSession 可以共用二级缓存，二级缓存是跨 SqlSession 的。  </p>
 <hr>
-<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/mybatis01/image-20200528175101555.png" alt="image-20200528175101555">
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528175101555.png" alt="image-20200528175101555">
 
 <hr>
 <h5 id="二级缓存的开启与关闭"><a href="#二级缓存的开启与关闭" class="headerlink" title="二级缓存的开启与关闭"></a>二级缓存的开启与关闭</h5><p>在 SqlMapConfig.xml 文件开启二级缓存  </p>

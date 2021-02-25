@@ -222,7 +222,7 @@
 <hr>
 <h1 id="SpringMVC入门04异常处理和拦截器"><a href="#SpringMVC入门04异常处理和拦截器" class="headerlink" title="SpringMVC入门04异常处理和拦截器"></a>SpringMVC入门04异常处理和拦截器</h1><h2 id="1-SpringMVC-中的异常处理"><a href="#1-SpringMVC-中的异常处理" class="headerlink" title="1. SpringMVC 中的异常处理"></a>1. SpringMVC 中的异常处理</h2><h3 id="1-1-异常处理的思路"><a href="#1-1-异常处理的思路" class="headerlink" title="1.1 异常处理的思路"></a>1.1 异常处理的思路</h3><p>系统中异常包括两类：预期异常和运行时异常 <code>RuntimeException</code>，前者通过捕获异常从而获取异常信息，<br>后者主要通过规范代码开发、测试通过手段减少运行时异常的发生。<br>系统的 <code>dao、 service、 controller</code> 出现都通过 <code>throws Exception</code> 向上抛出，最后由 <code>springmvc 前端</code><br>控制器交由异常处理器进行异常处理，如下图：  </p>
 <hr>
-<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springmvc01/image-20200601213930767.png" alt="image-20200601213930767" style="zoom:50%;">
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springmvc01/image-20200601213930767.png" alt="image-20200601213930767" style="zoom:50%;">
 
 <hr>
 <h3 id="1-2-异常处理实例"><a href="#1-2-异常处理实例" class="headerlink" title="1.2 异常处理实例"></a>1.2 异常处理实例</h3><p>编写异常类和错误页面  </p>

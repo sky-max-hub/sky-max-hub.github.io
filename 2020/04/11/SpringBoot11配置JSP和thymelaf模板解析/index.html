@@ -226,8 +226,8 @@
 
 <h3 id="配置视图解析器"><a href="#配置视图解析器" class="headerlink" title="配置视图解析器"></a>配置视图解析器</h3><figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在配置文件中引入视图解析器</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mvc:</span></span><br><span class="line">    <span class="attr">view:</span></span><br><span class="line">      <span class="attr">prefix:</span> <span class="string">/</span>   	<span class="comment"># /代表访问项目中webapp中页面</span></span><br><span class="line">      <span class="attr">suffix:</span> <span class="string">.jsp</span> </span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="第一种方式使用插件启动"><a href="#第一种方式使用插件启动" class="headerlink" title="第一种方式使用插件启动"></a>第一种方式使用插件启动</h3><p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/image-20191129124602959.png" alt="image-20191129124602959"></p>
-<h3 id="第二种方式使用idea中指定工作目录启动-推荐"><a href="#第二种方式使用idea中指定工作目录启动-推荐" class="headerlink" title="第二种方式使用idea中指定工作目录启动  [推荐]"></a>第二种方式使用idea中指定工作目录启动  [推荐]</h3><p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/image-20191129124727562.png" alt="image-20191129124727562"></p>
+<h3 id="第一种方式使用插件启动"><a href="#第一种方式使用插件启动" class="headerlink" title="第一种方式使用插件启动"></a>第一种方式使用插件启动</h3><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20191129124602959.png" alt="image-20191129124602959"></p>
+<h3 id="第二种方式使用idea中指定工作目录启动-推荐"><a href="#第二种方式使用idea中指定工作目录启动-推荐" class="headerlink" title="第二种方式使用idea中指定工作目录启动  [推荐]"></a>第二种方式使用idea中指定工作目录启动  [推荐]</h3><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20191129124727562.png" alt="image-20191129124727562"></p>
 <h3 id="启动访问jsp页面"><a href="#启动访问jsp页面" class="headerlink" title="启动访问jsp页面"></a>启动访问jsp页面</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8989/cmfz/index.jsp</span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="修改jsp无须重启应用"><a href="#修改jsp无须重启应用" class="headerlink" title="修改jsp无须重启应用"></a>修改jsp无须重启应用</h3><figure class="highlight properties"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">server.servlet.jsp.init-parameters.development</span>=<span class="string">true</span></span><br></pre></td></tr></tbody></table></figure>
@@ -245,12 +245,12 @@
 <h3 id="在templates目录中定义模板"><a href="#在templates目录中定义模板" class="headerlink" title="在templates目录中定义模板"></a>在templates目录中定义模板</h3><p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/image-20200323085834206.png" alt="image-20200323085834206"></p>
 <h3 id="测试访问"><a href="#测试访问" class="headerlink" title="测试访问"></a>测试访问</h3><figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8989/springboot_day3/hello/hello</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h3><p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/image-20200323085948499.png" alt="image-20200323085948499"></p>
+<h3 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h3><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20200323085948499.png" alt="image-20200323085948499"></p>
 <h3 id="开启直接访问html页面"><a href="#开启直接访问html页面" class="headerlink" title="开启直接访问html页面"></a>开启直接访问html页面</h3><figure class="highlight properties"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.resources.static-locations</span>=<span class="string">classpath:/templates/,classpath:/static/</span></span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h3><figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8989/springboot_day3/index.html</span><br></pre></td></tr></tbody></table></figure>
 
-<p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/image-20200323090142705.png" alt="image-20200323090142705"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20200323090142705.png" alt="image-20200323090142705"></p>
 <h2 id="3-Thymeleaf基本使用"><a href="#3-Thymeleaf基本使用" class="headerlink" title="3 Thymeleaf基本使用"></a>3 Thymeleaf基本使用</h2><p><code>使用时必须在页面中加入thymeleaf如下命名空间:</code></p>
 <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 
@@ -259,8 +259,8 @@
 <h4 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h4><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${name}"</span>/&gt;</span>  ---&gt;获取数据</span><br></pre></td></tr></tbody></table></figure>
 
 <p><code>注意:在springboot2.x版本中必须加入国际化配置文件才能正常展示:</code></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/image-20200323100724749.png" alt="image-20200323100724749"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/image-20200323100747881.png" alt="image-20200323100747881"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20200323100724749.png" alt="image-20200323100724749"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20200323100747881.png" alt="image-20200323100747881"></p>
 <h4 id="获取并解析含有html标签数据"><a href="#获取并解析含有html标签数据" class="headerlink" title="获取并解析含有html标签数据"></a>获取并解析含有html标签数据</h4><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model.addAttribute(<span class="string">"name"</span>,<span class="string">"&lt;a href=''&gt;张三&lt;/a&gt;"</span>);</span><br><span class="line">model.addAttribute(<span class="string">"username"</span>,<span class="string">"小陈"</span>);</span><br></pre></td></tr></tbody></table></figure>
 
 <ul>
@@ -268,18 +268,18 @@
 </ul>
 <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${name}"</span>/&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 
-<p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/image-20200323100956740.png" alt="image-20200323100956740"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20200323100956740.png" alt="image-20200323100956740"></p>
 <ul>
 <li>获取并解析</li>
 </ul>
 <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:utext</span>=<span class="string">"${name}"</span>/&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 
-<p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/image-20200323101457134.png" alt="image-20200323101457134"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20200323101457134.png" alt="image-20200323101457134"></p>
 <ul>
 <li><p>将数据赋值给表单元素</p>
 <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">th:value</span>=<span class="string">"${username}"</span>/&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 
-<p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/image-20200323103452620.png" alt="image-20200323103452620"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20200323103452620.png" alt="image-20200323103452620"></p>
 </li>
 </ul>
 <figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 总结</span></span><br><span class="line"><span class="code">	1.使用 th:text="${属性名}"  获取对应数据,获取数据时会将对应标签中数据清空,因此最好是空标签</span></span><br><span class="line"><span class="code">	2.使用 th:utext="${属性名}" 获取对应的数据,可以将数据中html先解析在渲染到页面</span></span><br><span class="line"><span class="code">	3.使用 th:value="${属性名}" 获取数据直接作为表单元素value属性</span></span><br></pre></td></tr></tbody></table></figure>
@@ -307,7 +307,7 @@
 <h3 id="引入静态资源"><a href="#引入静态资源" class="headerlink" title="引入静态资源"></a>引入静态资源</h3><p><code>使用thymeleaf模板项目中静态资源默认放在resources路径小static目录中</code></p>
 <ul>
 <li><p>项目中放入对应静态资源</p>
-<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/image-20200323142307411.png" alt="image-20200323142307411" style="zoom:200%;">
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20200323142307411.png" alt="image-20200323142307411" style="zoom:200%;">
 </li>
 <li><p>页面中引入</p>
 <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">th:href</span>=<span class="string">"@{/css/index.css}"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">"@{/js/jquery-min.js}"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>

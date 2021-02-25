@@ -227,7 +227,7 @@
 </ol>
 <h3 id="1-2-Spring-中事务控制的-API-介绍"><a href="#1-2-Spring-中事务控制的-API-介绍" class="headerlink" title="1.2 Spring 中事务控制的 API 介绍"></a>1.2 Spring 中事务控制的 API 介绍</h3><p><code>PlatformTransactionManager  </code></p>
 <p>此接口是 spring 的事务管理器，它里面提供了我们常用的操作事务的方法  </p>
-<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/spring/image-20200530185415933.png" alt="image-20200530185415933" style="zoom:50%;">
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/spring/image-20200530185415933.png" alt="image-20200530185415933" style="zoom:50%;">
 
 <p>真正使用的事务管理对象：</p>
 <p><code>org.springframework.jdbc.datasource.DataSourceTransactionManager </code></p>
@@ -235,16 +235,16 @@
 <p>使用Hibernate 版本进行持久化数据时使用</p>
 <p><code>TransactionDefinition  </code></p>
 <p>它是事务的定义信息对象，里面有如下方法：  </p>
-<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/spring/image-20200530185642199.png" alt="image-20200530185642199" style="zoom:50%;">
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/spring/image-20200530185642199.png" alt="image-20200530185642199" style="zoom:50%;">
 
 <p>超时时间：默认值是-1，没有超时限制。如果有，以秒为单位进行设置。  </p>
 <p>是否只读：建议查询时设置为只读。  </p>
 <p><code>TransactionStatus  </code></p>
 <p>此接口提供的是事务具体的运行状态  </p>
-<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/spring/image-20200530185822949.png" alt="image-20200530185822949" style="zoom:50%;">
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/spring/image-20200530185822949.png" alt="image-20200530185822949" style="zoom:50%;">
 
 <h3 id="1-2-Spring-中事务控制的相关术语"><a href="#1-2-Spring-中事务控制的相关术语" class="headerlink" title="1.2 Spring 中事务控制的相关术语"></a>1.2 Spring 中事务控制的相关术语</h3><p>事务的隔离级别  ：</p>
-<img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/spring/image-20200530193028495.png" alt="image-20200530193028495" style="zoom:50%;">
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/spring/image-20200530193028495.png" alt="image-20200530193028495" style="zoom:50%;">
 
 <p>事务的传播行为  ：</p>
 <ol>
