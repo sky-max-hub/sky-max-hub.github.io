@@ -235,13 +235,6 @@
 
   
   <url>
-    <loc>http://blog.sky123.top/tags/Hexo%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2021-02-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.sky123.top/tags/Mybatis%E6%A1%86%E6%9E%B6/</loc>
     <lastmod>2021-02-25</lastmod>
     <changefreq>daily</changefreq>
@@ -256,7 +249,7 @@
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/tags/SpringBoot/</loc>
+    <loc>http://blog.sky123.top/tags/Hexo%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2021-02-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -264,6 +257,13 @@
   
   <url>
     <loc>http://blog.sky123.top/tags/Spring%E6%A1%86%E6%9E%B6/</loc>
+    <lastmod>2021-02-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.sky123.top/tags/SpringBoot/</loc>
     <lastmod>2021-02-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
