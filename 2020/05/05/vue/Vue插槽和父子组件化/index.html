@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="大白小怪兽">
+    
+    <title>
+        
+            vue学习笔记02-vue的插槽和组件化开发 |
+        
+        大白小怪兽
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/images/blog.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                大白小怪兽
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">vue学习笔记02-vue的插槽和组件化开发</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">大白小怪兽</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2020-05-05 02:45:01
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/vue/">vue</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>6.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>27 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="vue学习笔记02-vue的插槽和组件化开发"><a href="#vue学习笔记02-vue的插槽和组件化开发" class="headerlink" title="vue学习笔记02-vue的插槽和组件化开发"></a>vue学习笔记02-vue的插槽和组件化开发</h1><hr>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/red-lighthouse-6011477_1280.jpg"></p>
+<hr>
+<h1 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h1><h2 id="组件概述"><a href="#组件概述" class="headerlink" title="组件概述"></a>组件概述</h2><p>人面对复杂问题的处理方式：<br>任何一个人处理信息的逻辑能力都是有限的。所以，当面对一个非常复杂的问题时，我们不太可能一次性搞定一大堆的内容。但是，我们人有一种天生的能力，就是将问题进行拆解。如果将一个复杂的问题，拆分成很多个可以处理的小问题，再将其放在整体当中，你会发现大的问题也会迎刃而解。<br>组件化也是类似的思想：<br>如果我们将一个页面中所有的处理逻辑全部放在一起，处理起来就会变得非常复杂，而且不利于后续的管理以及扩展。<br><code>但如果，我们讲一个页面拆分成一个个小的功能块，每个功能块完成属于自己这部分独立的功能，那么之后整个页面的管理和维护就变得非常容易了。</code></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802191140360.png" alt="image-20200802191140360"></p>
+<h2 id="Vue组件化思想"><a href="#Vue组件化思想" class="headerlink" title="Vue组件化思想"></a>Vue组件化思想</h2><p>组件化是Vue.js中的重要思想。它提供了一种抽象，让我们可以开发出一个个独立可复用的小组件来构造我们的应用。<br><code>任何的应用都会被抽象成一颗组件树。</code></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802191328402.png" alt="image-20200802191328402"></p>
+<p>组件化思想的应用：<br>有了组件化的思想，我们在之后的开发中就要充分的利用它。尽可能的将页面拆分成一个个小的、可复用的组件。这样让我们的代码更加方便组织和管理，并且扩展性也更强。<br><code>所以，组件是Vue开发中，非常重要的一个篇章，要认真学习。</code></p>
+<h2 id="组件的使用步骤"><a href="#组件的使用步骤" class="headerlink" title="组件的使用步骤"></a>组件的使用步骤</h2><ol>
+<li><p>创建组件构造器</p>
+</li>
+<li><p>注册组件</p>
+</li>
+<li><p>使用组件。</p>
+</li>
+</ol>
+<p>我们来看看通过代码如何注册组件</p>
+<p>查看运行结果：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802192040617.png" alt="image-20200802192040617">和直接使用一个div看起来并没有什么区别。但是我们可以设想，如果很多地方都要显示这样的信息，我们是不是就可以直接使用<code>&lt;my-cpn&gt;&lt;/my-cpn&gt; </code>来完成呢？</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--   3.使用组件  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mycpn</span>&gt;</span><span class="tag">&lt;/<span class="name">mycpn</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="comment">//1.创建组件构造器</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">//模板就是在使用到组件的地方，要显示的HTML代码。</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> cpn= Vue.extend({</span></span><br><span class="line">        template:`</span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">            <span class="tag">&lt;<span class="name">h3</span>&gt;</span>阿斯蒂芬<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line">        `</span><br><span class="line">    });</span><br><span class="line"><span class="javascript">    <span class="comment">//2.注册组件</span></span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'mycpn'</span>,cpn);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="comment">//0.首先需要先挂载</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue({</span></span><br><span class="line"><span class="javascript">        el: <span class="string">'#app'</span>,<span class="comment">//用于挂载要管理的元素</span></span></span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这里的步骤都代表什么含义呢？</p>
+<ol>
+<li><p>Vue.extend()：调用Vue.extend()创建的是一个组件构造器。<br>通常在创建组件构造器时，传入template代表我们自定义组件的模板。该模板就是在使用到组件的地方，要显示的HTML代码。<code>事实上，这种写法在Vue2.x的文档中几乎已经看不到了，它会直接使用下面我们会讲到的语法糖，但是在很多资料还是会提到这种方式，而且这种方式是学习后面方式的基础</code></p>
+</li>
+<li><p>Vue.component()：调用Vue.component()是将刚才的组件构造器注册为一个组件，并且给它起一个组件的标签名称。所以需要传递两个参数：<code>1、注册组件的标签名 2、组件构造器</code></p>
+</li>
+<li><p>组件必须挂载在某个Vue实例下，否则它不会生效。我们来看下面我使用了三次<my-cpn></my-cpn><br>而第三次其实并没有生效：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802193836934.png" alt="image-20200802193836934"></p>
+</li>
+</ol>
+<h3 id="注册组件语法糖"><a href="#注册组件语法糖" class="headerlink" title="注册组件语法糖"></a>注册组件语法糖</h3><p>在上面注册组件的方式，可能会有些繁琐。Vue为了简化这个过程，提供了注册的语法糖。主要是省去了调用Vue.extend()的步骤，而是可以直接使用一个对象来代替。语法糖注册全局组件和局部组件：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802221227261.png" alt="image-20200802221227261"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802221236027.png" alt="image-20200802221236027"></p>
+<h2 id="全局组件和局部组件"><a href="#全局组件和局部组件" class="headerlink" title="全局组件和局部组件"></a>全局组件和局部组件</h2><p>当我们通过调用 Vue.component() 注册组件时，组件的注册是全局的。这意味着该组件可以在任意Vue示例下使用。<br>如果我们注册的组件是挂载在某个实例中, 那么就是一个局部组件。</p>
+<p><code>总之，局部组件在父组件中定义，全局组件在任意位置定义。在开发中局部组件会更常用</code></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802220641657.png" alt="image-20200802220641657"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802220705844.png" alt="image-20200802220705844"></p>
+<h2 id="父组件和子组件"><a href="#父组件和子组件" class="headerlink" title="父组件和子组件"></a>父组件和子组件</h2><p>在前面我们看到了组件树：组件和组件之间存在层级关系。<br>而其中一种非常重要的关系就是父子组件的关系。我们来看通过代码如何组成的这种层级关系：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802221031932.png" alt="image-20200802221031932"></p>
+<p>父子组件错误用法：以子标签的形式在Vue实例中使用。因为当子组件注册到父组件的components时，Vue会编译好父组件的模块。该模板的内容已经决定了父组件将要渲染的HTML（相当于父组件中已经有了子组件中的内容了）<br><code>&lt;child-cpn&gt;&lt;/child-cpn&gt;</code>是只能在父组件中被识别的。类似这种用法，<code>&lt;child-cpn&gt;&lt;/child-cpn&gt;</code>是会被浏览器忽略的。</p>
+<h2 id="模板的分离写法"><a href="#模板的分离写法" class="headerlink" title="模板的分离写法"></a>模板的分离写法</h2><p>刚才，我们通过语法糖简化了Vue组件的注册过程，另外还有一个地方的写法比较麻烦，就是template模块写法。<br>如果我们能将其中的HTML分离出来写，然后挂载到对应的组件上，必然结构会变得非常清晰。<br>Vue提供了两种方案来定义HTML模块内容：</p>
+<h3 id="使用-lt-script-gt-标签"><a href="#使用-lt-script-gt-标签" class="headerlink" title="使用< script>标签"></a>使用&lt; script&gt;标签</h3><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802222630560.png" alt="image-20200802222630560"></p>
+<h3 id="使用-lt-template-gt-标签"><a href="#使用-lt-template-gt-标签" class="headerlink" title="使用< template>标签"></a>使用&lt; template&gt;标签</h3><p><code>开发中更常用</code></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802222637474.png" alt="image-20200802222637474"></p>
+<h2 id="组件使用的简化写法"><a href="#组件使用的简化写法" class="headerlink" title="组件使用的简化写法"></a>组件使用的简化写法</h2><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>{{message}}<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">cparent</span>&gt;</span><span class="tag">&lt;/<span class="name">cparent</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"parent"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>父组件内容<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">cchild</span>&gt;</span><span class="tag">&lt;/<span class="name">cchild</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"child"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>子组件内容<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="javascript">    <span class="comment">//子组件</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> cchild=Vue.extend({</span></span><br><span class="line"><span class="javascript">        template:<span class="string">'#child'</span></span></span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="comment">//父组件</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> cparent=Vue.extend({</span></span><br><span class="line"><span class="javascript">        template:<span class="string">'#parent'</span>,</span></span><br><span class="line">        components:{</span><br><span class="line"><span class="javascript">            cchild  <span class="comment">//注册子组件</span></span></span><br><span class="line">        }</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="comment">//根组件</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue({</span></span><br><span class="line"><span class="javascript">        el: <span class="string">'#app'</span>,<span class="comment">//用于挂载要管理的元素</span></span></span><br><span class="line"><span class="javascript">        data: {<span class="comment">//定义一些数据</span></span></span><br><span class="line"><span class="javascript">            message: <span class="string">'Hello Vue!'</span></span></span><br><span class="line">        },</span><br><span class="line">        components:{</span><br><span class="line"><span class="javascript">            cparent<span class="comment">//注册父组件</span></span></span><br><span class="line">        }</span><br><span class="line">    })</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="组件数据存放"><a href="#组件数据存放" class="headerlink" title="组件数据存放"></a>组件数据存放</h2><h3 id="组件可以访问Vue实例数据吗"><a href="#组件可以访问Vue实例数据吗" class="headerlink" title="组件可以访问Vue实例数据吗?"></a>组件可以访问Vue实例数据吗?</h3><p>组件是一个单独功能模块的封装：这个模块有属于自己的HTML模板，也应该有属性自己的数据data。<br>组件中的数据是保存在哪里呢？顶层的Vue实例中吗？我们先来测试一下，组件中能不能直接访问Vue实例中的data</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802222952579.png" alt="image-20200802222952579"></p>
+<p><code>我们发现不能访问，而且即使可以访问，如果将所有的数据都放在Vue实例中，Vue实例就会变的非常臃肿。</code><br><code>结论：Vue组件应该有自己保存数据的地方。</code></p>
+<h3 id="组件数据的存放"><a href="#组件数据的存放" class="headerlink" title="组件数据的存放"></a>组件数据的存放</h3><p>组件自己的数据存放在哪里呢? 组件对象也有一个data属性(也可以有methods等属性，下面我们有用到)<br><code>只是这个data属性必须是一个函数 。而且这个函数返回一个对象，对象内部保存着数据</code></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802223120146.png" alt="image-20200802223120146"></p>
+<h3 id="data为什么是一个函数呢"><a href="#data为什么是一个函数呢" class="headerlink" title="data为什么是一个函数呢?"></a>data为什么是一个函数呢?</h3><p>为什么data在组件中必须是一个函数呢?首先，如果不是一个函数，Vue直接就会报错。<br>其次，原因是在于Vue让每个组件对象都返回一个新的对象，因为如果是同一个对象的，组件在多次使用后会相互影响。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802223409787.png" alt="image-20200802223409787"></p>
+<h2 id="父子组件的通信"><a href="#父子组件的通信" class="headerlink" title="父子组件的通信"></a>父子组件的通信</h2><p>在开发中，往往一些数据确实需要从上层传递到下层：<br>比如在一个页面中，我们从服务器请求到了很多的数据。其中一部分数据，并非是我们整个页面的大组件来展示的，而是需要下面的子组件进行展示。这个时候，并不会让子组件再次发送一个网络请求，而是直接让大组件(父组件)将数据传递给小组件(子组件)。如何进行父子组件间的通信呢？Vue官方提到</p>
+<ul>
+<li><code>通过props向子组件传递数据</code></li>
+<li><code>通过事件向父组件发送消息</code></li>
+</ul>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802223556251.png" alt="image-20200802223556251"></p>
+<h3 id="通过props父组件向子组件传递数据"><a href="#通过props父组件向子组件传递数据" class="headerlink" title="通过props父组件向子组件传递数据"></a>通过props父组件向子组件传递数据</h3><p>props基本用法<br>在组件中，使用选项props来声明需要从父级接收到的数据。<br>props的值有两种方式：</p>
+<ol>
+<li><p>字符串数组，数组中的字符串就是传递时的名称。</p>
+</li>
+<li><p>对象，对象可以设置传递时的类型，也可以设置默认值等。</p>
+</li>
+</ol>
+<h4 id="props数组用法"><a href="#props数组用法" class="headerlink" title="props数组用法"></a>props数组用法</h4><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802223714082.png" alt="image-20200802223714082"></p>
+<h4 id="props对象用法"><a href="#props对象用法" class="headerlink" title="props对象用法"></a>props对象用法</h4><p>当需要对props进行类型等验证时，就需要对象写法了。验证都支持哪些数据类型呢？<br><code>String，Number，Boolean，Array，Object，Date，Function，Symbol</code><br>当我们有自定义构造函数时，验证也支持自定义的类型</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802223933078.png" alt="image-20200802223933078"></p>
+<h3 id="通过事件子组件向父组件发送消息"><a href="#通过事件子组件向父组件发送消息" class="headerlink" title="通过事件子组件向父组件发送消息"></a>通过事件子组件向父组件发送消息</h3><p>当子组件需要向父组件传递数据时，就要用到自定义事件了。<br>我们之前学习的v-on不仅仅可以用于监听DOM事件，也可以用于组件间的自定义事件。<br>自定义事件的流程：<br><code>在子组件中，通过 $emit() 来触发事件。</code><br><code>在父组件中，通过 v-on 来监听子组件事件。</code><br>我们来看一个简单的例子：<br>我们之前做过一个两个按钮+1和-1，点击后修改counter。<br>我们整个操作的过程还是在子组件中完成，但是之后的展示交给父组件。<br>这样，我们就需要将子组件中的counter，传给父组件的某个属性，比如total。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200802224200523.png" alt="image-20200802224200523"></p>
+<h3 id="父子组件通信小案例"><a href="#父子组件通信小案例" class="headerlink" title="父子组件通信小案例"></a>父子组件通信小案例</h3><ol>
+<li>父组件 app 的存有 total，需要通过 props 传给 子组件 child</li>
+<li>子组件点击增加减少按钮 ，通过触发函数中的<code>this.$emit('事件名')</code>触发事件，父组件通过<code>@事件名="函数名"</code>监听事件并触发函数，修改total 的值，从而改变传给 child 的值</li>
+</ol>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>{{message}}<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">cchild</span> <span class="attr">:ctotal</span>=<span class="string">"total"</span> @<span class="attr">decrement</span>=<span class="string">"decrement"</span> @<span class="attr">increment</span>=<span class="string">"increment"</span>&gt;</span><span class="tag">&lt;/<span class="name">cchild</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"child"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>数量：{{ctotal}}<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"cincrement"</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"cdecrement"</span>&gt;</span>-<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> cchild=Vue.extend({</span></span><br><span class="line"><span class="javascript">        template:<span class="string">'#child'</span>,</span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>{</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span>{}</span></span><br><span class="line">        },</span><br><span class="line">        props:{</span><br><span class="line">           ctotal:{</span><br><span class="line"><span class="javascript">               <span class="keyword">default</span>:<span class="number">0</span>,</span></span><br><span class="line"><span class="javascript">               type:<span class="built_in">Number</span></span></span><br><span class="line">           }</span><br><span class="line">        },</span><br><span class="line">        methods:{</span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">cincrement</span>(<span class="params"></span>)</span>{</span></span><br><span class="line"><span class="javascript">                <span class="built_in">this</span>.$emit(<span class="string">'increment'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">"子组件触发增加"</span>);</span></span><br><span class="line">            },</span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">cdecrement</span>(<span class="params"></span>)</span>{</span></span><br><span class="line"><span class="javascript">                <span class="built_in">this</span>.$emit(<span class="string">'decrement'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">"子组件触发减少"</span>);</span></span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue({</span></span><br><span class="line"><span class="javascript">        el: <span class="string">'#app'</span>,<span class="comment">//用于挂载要管理的元素</span></span></span><br><span class="line"><span class="javascript">        data: {<span class="comment">//定义一些数据</span></span></span><br><span class="line"><span class="javascript">            message: <span class="string">'Hello Vue!'</span>,</span></span><br><span class="line">            total: 0</span><br><span class="line">        },</span><br><span class="line">        components:{</span><br><span class="line">            cchild</span><br><span class="line">        },</span><br><span class="line">        methods:{</span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">decrement</span>(<span class="params"></span>)</span>{</span></span><br><span class="line"><span class="javascript">                <span class="built_in">this</span>.total--;</span></span><br><span class="line">            },</span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">increment</span>(<span class="params"></span>)</span>{</span></span><br><span class="line"><span class="javascript">                <span class="built_in">this</span>.total++;</span></span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    })</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h1 id="插槽-2-5版本及之前适用"><a href="#插槽-2-5版本及之前适用" class="headerlink" title="插槽(2.5版本及之前适用)"></a>插槽(2.5版本及之前适用)</h1><h2 id="为什么使用插槽？"><a href="#为什么使用插槽？" class="headerlink" title="为什么使用插槽？"></a>为什么使用插槽？</h2><p>slot翻译为插槽：在生活中很多地方都有插槽，电脑的USB插槽，插板当中的电源插槽。<code>插槽的目的是让我们原来的设备具备更多的扩展性。</code><br>组件的插槽：<code>组件的插槽也是为了让我们封装的组件更加具有扩展性。让使用者可以决定组件内部的一些内容到底展示什么。</code><br>例如：移动网站中的导航栏。移动开发中，几乎每个页面都有导航栏。导航栏我们必然会封装成一个插件，比如nav-bar组件。一旦有了这个组件，我们就可以在多个页面中复用了。但是，每个页面的导航是一样的吗？No，我以京东M站为例。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200807224051986.png" alt="image-20200807224051986"></p>
+<h2 id="如何去封装这类的组件呢？"><a href="#如何去封装这类的组件呢？" class="headerlink" title="如何去封装这类的组件呢？"></a>如何去封装这类的组件呢？</h2><p>它们也很多区别，但是也有很多共性。如果，我们每一个单独去封装一个组件，显然不合适：比如每个页面都返回，这部分内容我们就要重复去封装。<br>但是，如果我们封装成一个，好像也不合理：有些左侧是菜单，有些是返回，有些中间是搜索，有些是文字，等等。<br>如何封装合适呢？抽取共性，保留不同。<br><code>最好的封装方式就是将共性抽取到组件中，将不同暴露为插槽。一旦我们预留了插槽，就可以让使用者根据自己的需求，决定插槽中插入什么内容。是搜索框，还是文字，还是菜单。由调用者自己来决定。</code></p>
+<p>这就是为什么我们要学习组件中的插槽slot的原因。</p>
+<h2 id="slot的基本使用"><a href="#slot的基本使用" class="headerlink" title="slot的基本使用"></a>slot的基本使用</h2><p>在子组件中，使用特殊的元素 <code>&lt;slot&gt;</code> 就可以为子组件开启一个插槽。该插槽插入什么内容取决于父组件如何使用。<br>我们通过一个简单的例子，来给子组件定义一个插槽：<br><code>&lt;slot&gt;</code> 中的内容表示，如果没有在该组件中插入任何其他内容，就默认显示该内容有了这个插槽后，父组件如何使用呢？</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200807224414352.png" alt="image-20200807224414352"></p>
+<h2 id="具名插槽slot"><a href="#具名插槽slot" class="headerlink" title="具名插槽slot"></a>具名插槽slot</h2><p>当子组件的功能复杂时，子组件的插槽可能并非是一个。比如我们封装一个导航栏的子组件，可能就需要三个插槽，分别代表左边、中间、右边。那么，外面在给插槽插入内容时，如何区分插入的是哪一个呢？<br>这个时候，我们就需要给插槽起一个名字。如何使用具名插槽呢？非常简单，只要给slot元素一个name属性即可<br><code>&lt;slot name='myslot'&gt;&lt;/slot&gt;</code></p>
+<p>我们来给出一个案例：这里我们先不对导航组件做非常复杂的封装，先了解具名插槽的用法。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200807224630406.png" alt="image-20200807224630406"></p>
+<h2 id="编译作用域"><a href="#编译作用域" class="headerlink" title="编译作用域"></a>编译作用域</h2><p><code>总结一句话：在父组件中使用父组件的数据，在子组件中使用子组件的数据</code></p>
+<p>在真正学习插槽之前，我们需要先理解一个概念：编译作用域。</p>
+<p>官方对于编译的作用域解析比较简单，我们自己来通过一个例子来理解这个概念：<br>我们来考虑下面的代码是否最终是可以渲染出来的：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200807224729470.png" alt="image-20200807224729470"></p>
+<p><code>&lt;my-cpn v-show="isShow"&gt;&lt;/my-cpn&gt;</code>中，我们使用了isShow属性。isShow属性包含在组件中，也包含在Vue实例中。答案：最终可以渲染出来，也就是使用的是Vue实例的属性。<br>为什么呢？<br>官方给出了一条准则：<code>父组件模板的所有东西都会在父级作用域内编译；子组件模板的所有东西都会在子级作用域内编译。</code><br>而我们在使用<code>&lt;my-cpn v-show="isShow"&gt;&lt;/my-cpn&gt;</code>的时候，整个组件的使用过程是相当于在父组件中出现的。<br>那么他的作用域就是父组件，使用的属性也是属于父组件的属性。因此，isShow使用的是Vue实例中的属性，而不是子组件的属性。</p>
+<h2 id="作用域插槽"><a href="#作用域插槽" class="headerlink" title="作用域插槽"></a>作用域插槽</h2><p><code>一句话总结：父组件替换插槽的标签，但是内容由子组件来提供。</code><br>我们先提一个需求：子组件中包括一组数据，比如：pLanguages: [‘JavaScript’, ‘Python’, ‘Swift’, ‘Go’, ‘C++’]<br>需要在多个界面进行展示：<br>某些界面是以水平方向一一展示的，某些界面是以列表形式展示的，某些界面直接展示一个数组<br>内容在子组件，希望父组件告诉我们如何展示，怎么办呢？<br>利用slot作用域插槽就可以了<br>我们来看看子组件的定义：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200807225026778.png" alt="image-20200807225026778"></p>
+<p><code>在父组件使用我们的子组件时，从子组件中拿到数据：我们通过&lt;template slot-scope="slotProps"&gt;获取到slotProps属性在通过slotProps.data就可以获取到刚才我们传入的data了</code></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200807225106536.png" alt="image-20200807225106536"></p>
+<h2 id="案例总结"><a href="#案例总结" class="headerlink" title="案例总结"></a>案例总结</h2><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">cchild</span>&gt;</span><span class="tag">&lt;/<span class="name">cchild</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">cchild</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">slot</span>=<span class="string">"title"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h2</span>&gt;</span>水平展示<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">"child"</span> <span class="attr">slot</span>=<span class="string">"data"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>{{child.data.join('----')}}<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">cchild</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"cchild"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>默认显示<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">"data"</span> <span class="attr">:data</span>=<span class="string">"info"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-for</span>=<span class="string">"i in info"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span>{{i}}<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue({</span></span><br><span class="line"><span class="javascript">        el: <span class="string">'#app'</span>,<span class="comment">//用于挂载要管理的元素</span></span></span><br><span class="line"><span class="javascript">        data: {<span class="comment">//定义一些数据</span></span></span><br><span class="line"><span class="javascript">            message: <span class="string">'Hello Vue!'</span></span></span><br><span class="line">        },</span><br><span class="line">        components: {</span><br><span class="line">            cchild:{</span><br><span class="line"><span class="javascript">                template:<span class="string">'#cchild'</span>,</span></span><br><span class="line"><span class="javascript">                <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>{</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">return</span>{</span></span><br><span class="line"><span class="javascript">                        info:[<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>]</span></span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    })</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200807230101154.png" alt="image-20200807230101154" style="zoom:50%;">
+
+<h1 id="插槽-2-6版本"><a href="#插槽-2-6版本" class="headerlink" title="插槽 (2.6版本)"></a>插槽 (2.6版本)</h1><blockquote>
+<p>该页面假设你已经阅读过了<a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components.html">组件基础<i class="fas fa-external-link-alt"></i></a>。如果你还对组件不太了解，推荐你先阅读它。</p>
+</blockquote>
+<blockquote>
+<p>在 2.6.0 中，我们为具名插槽和作用域插槽引入了一个新的统一的语法 (即 <code>v-slot</code> 指令)。它取代了 <code>slot</code> 和 <code>slot-scope</code> 这两个目前已被废弃但未被移除且仍在<a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E5%BA%9F%E5%BC%83%E4%BA%86%E7%9A%84%E8%AF%AD%E6%B3%95">文档中<i class="fas fa-external-link-alt"></i></a>的 attribute。新语法的由来可查阅这份 <a class="link" target="_blank" rel="noopener" href="https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md">RFC<i class="fas fa-external-link-alt"></i></a>。</p>
+</blockquote>
+<h2 id="插槽内容"><a href="#插槽内容" class="headerlink" title="插槽内容"></a><a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E6%8F%92%E6%A7%BD%E5%86%85%E5%AE%B9">插槽内容<i class="fas fa-external-link-alt"></i></a></h2><p><code>总结一句话：插槽的内容可以是 字符串，一个或多个标签，一个或多个组件</code></p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cslot</span>&gt;</span>。。。。<span class="tag">&lt;/<span class="name">cslot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">"cslot"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>插槽内容如下：<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue({</span></span><br><span class="line"><span class="javascript">        el: <span class="string">'#app'</span>,<span class="comment">//用于挂载要管理的元素</span></span></span><br><span class="line"><span class="javascript">        data: {<span class="comment">//定义一些数据</span></span></span><br><span class="line"><span class="javascript">            message: <span class="string">'Hello Vue!'</span></span></span><br><span class="line">        },</span><br><span class="line">        components:{</span><br><span class="line">            cslot:{</span><br><span class="line"><span class="javascript">                template:<span class="string">'#cslot'</span></span></span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    })</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="具名插槽"><a href="#具名插槽" class="headerlink" title="具名插槽"></a><a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E5%85%B7%E5%90%8D%E6%8F%92%E6%A7%BD">具名插槽<i class="fas fa-external-link-alt"></i></a></h2><blockquote>
+<p>自 2.6.0 起有所更新。已废弃的使用 <code>slot</code> attribute 的语法在<a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E5%BA%9F%E5%BC%83%E4%BA%86%E7%9A%84%E8%AF%AD%E6%B3%95">这里<i class="fas fa-external-link-alt"></i></a>。</p>
+</blockquote>
+<p>有时我们需要多个插槽。例如对于一个带有如下模板的 <code>&lt;base-layout&gt;</code> 组件：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 我们希望把页头放这里 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 我们希望把主要内容放这里 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 我们希望把页脚放这里 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>对于这样的情况，<code>&lt;slot&gt;</code> 元素有一个特殊的 attribute：<code>name</code>。这个 attribute 可以用来定义额外的插槽：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">"header"</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">"footer"</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>一个不带 <code>name</code> 的 <code>&lt;slot&gt;</code> 出口会带有隐含的名字“default”。</p>
+<p>在向具名插槽提供内容的时候，我们可以在一个 <code>元素上使用</code>v-slot<code>指令，并以</code>v-slot` 的参数的形式提供其名称：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base-layout</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Here might be a page title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>A paragraph for the main content.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>And another one.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Here's some contact info<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">base-layout</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>现在 元素中的所有内容都将会被传入相应的插槽。任何没有被包裹在带有 <code>v-slot</code> 的 <code>&lt;template&gt;&lt;/template&gt;</code>中的内容都会被视为默认插槽的内容。</p>
+<p>然而，如果你希望更明确一些，仍然可以在一个 <code>&lt;template&gt;&lt;/template&gt;</code> 中包裹默认插槽的内容：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base-layout</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Here might be a page title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>A paragraph for the main content.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>And another one.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Here's some contact info<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">base-layout</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>任何一种写法都会渲染出：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Here might be a page title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>A paragraph for the main content.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>And another one.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Here's some contact info<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="作用域插槽-1"><a href="#作用域插槽-1" class="headerlink" title="作用域插槽"></a><a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD">作用域插槽<i class="fas fa-external-link-alt"></i></a></h2><blockquote>
+<p>自 2.6.0 起有所更新。已废弃的使用 <code>slot-scope</code> attribute 的语法在<a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E5%BA%9F%E5%BC%83%E4%BA%86%E7%9A%84%E8%AF%AD%E6%B3%95">这里<i class="fas fa-external-link-alt"></i></a>。</p>
+</blockquote>
+<p>有时让插槽内容能够访问子组件中才有的数据是很有用的。例如，设想一个带有如下模板的 <code>&lt;current-user&gt;</code> 组件：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span>&gt;</span>{{ user.lastName }}<span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>我们可能想换掉备用内容，用名而非姓来显示。如下：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span>&gt;</span></span><br><span class="line">  {{ user.firstName }}</span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>然而上述代码不会正常工作，因为只有 <code>&lt;current-user&gt;</code> 组件可以访问到 <code>user</code> 而我们提供的内容是在父级渲染的。</p>
+<p>为了让 <code>user</code> 在父级的插槽内容中可用，我们可以将 <code>user</code> 作为 <code>&lt;slot&gt;</code> 元素的一个 attribute 绑定上去：</p>
+<p><code>多个用逗号隔开</code></p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span> <span class="attr">v-bind:user</span>=<span class="string">"user,username"</span>&gt;</span></span><br><span class="line">    {{ user.lastName }}</span><br><span class="line">  <span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>绑定在 <code>&lt;slot&gt;</code> 元素上的 attribute 被称为<strong>插槽 prop</strong>。现在在父级作用域中，我们可以使用带值的 <code>v-slot</code> 来定义我们提供的插槽 prop 的名字：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">"slotProps"</span>&gt;</span></span><br><span class="line">    {{ slotProps.user.firstName }}</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在这个例子中，我们选择将包含所有插槽 prop 的对象命名为 <code>slotProps</code>，但你也可以使用任意你喜欢的名字。</p>
+<h3 id="独占默认插槽的缩写语法"><a href="#独占默认插槽的缩写语法" class="headerlink" title="独占默认插槽的缩写语法"></a><a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E7%8B%AC%E5%8D%A0%E9%BB%98%E8%AE%A4%E6%8F%92%E6%A7%BD%E7%9A%84%E7%BC%A9%E5%86%99%E8%AF%AD%E6%B3%95">独占默认插槽的缩写语法<i class="fas fa-external-link-alt"></i></a></h3><p>在上述情况下，当被提供的内容<em>只有</em>默认插槽时，组件的标签才可以被当作插槽的模板来使用。这样我们就可以把 <code>v-slot</code> 直接用在组件上：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span> <span class="attr">v-slot:default</span>=<span class="string">"slotProps"</span>&gt;</span></span><br><span class="line">  {{ slotProps.user.firstName }}</span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这种写法还可以更简单。就像假定未指明的内容对应默认插槽一样，不带参数的 <code>v-slot</code> 被假定对应默认插槽：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span> <span class="attr">v-slot</span>=<span class="string">"slotProps"</span>&gt;</span></span><br><span class="line">  {{ slotProps.user.firstName }}</span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>注意默认插槽的缩写语法<strong>不能</strong>和具名插槽混用，因为它会导致作用域不明确：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 无效，会导致警告 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">current-user</span> <span class="attr">v-slot</span>=<span class="string">"slotProps"</span>&gt;</span></span><br><span class="line">  {{ slotProps.user.firstName }}</span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:other</span>=<span class="string">"otherSlotProps"</span>&gt;</span></span><br><span class="line">    slotProps is NOT available here</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>只要出现多个插槽，请始终为<em>所有的</em>插槽使用完整的基于 <code>&lt;template&gt; </code>的语法：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">"slotProps"</span>&gt;</span></span><br><span class="line">    {{ slotProps.user.firstName }}</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:other</span>=<span class="string">"otherSlotProps"</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="解构插槽-Prop"><a href="#解构插槽-Prop" class="headerlink" title="解构插槽 Prop"></a><a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E8%A7%A3%E6%9E%84%E6%8F%92%E6%A7%BD-Prop">解构插槽 Prop<i class="fas fa-external-link-alt"></i></a></h3><p>作用域插槽的内部工作原理是将你的插槽内容包括在一个传入单个参数的函数里：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function (slotProps) {</span><br><span class="line">  // 插槽内容</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这意味着 <code>v-slot</code> 的值实际上可以是任何能够作为函数定义中的参数的 JavaScript 表达式。所以在支持的环境下 (<a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/single-file-components.html">单文件组件<i class="fas fa-external-link-alt"></i></a>或<a class="link" target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9">现代浏览器<i class="fas fa-external-link-alt"></i></a>)，你也可以使用 <a class="link" target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#%E8%A7%A3%E6%9E%84%E5%AF%B9%E8%B1%A1">ES2015 解构<i class="fas fa-external-link-alt"></i></a>来传入具体的插槽 prop，如下：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span> <span class="attr">v-slot</span>=<span class="string">"{ user }"</span>&gt;</span></span><br><span class="line">  {{ user.firstName }}</span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这样可以使模板更简洁，尤其是在该插槽提供了多个 prop 的时候。它同样开启了 prop 重命名等其它可能，例如将 <code>user</code> 重命名为 <code>person</code>：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span> <span class="attr">v-slot</span>=<span class="string">"{ user: person }"</span>&gt;</span></span><br><span class="line">  {{ person.firstName }}</span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>你甚至可以定义后备内容，用于插槽 prop 是 undefined 的情形：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span> <span class="attr">v-slot</span>=<span class="string">"{ user = { firstName: 'Guest' } }"</span>&gt;</span></span><br><span class="line">  {{ user.firstName }}</span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="动态插槽名"><a href="#动态插槽名" class="headerlink" title="动态插槽名"></a><a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E5%8A%A8%E6%80%81%E6%8F%92%E6%A7%BD%E5%90%8D">动态插槽名<i class="fas fa-external-link-alt"></i></a></h2><blockquote>
+<p>2.6.0 新增</p>
+</blockquote>
+<p><a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/syntax.html#%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0">动态指令参数<i class="fas fa-external-link-alt"></i></a>也可以用在 <code>v-slot</code> 上，来定义动态的插槽名：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base-layout</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:</span>[<span class="attr">dynamicSlotName</span>]&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">base-layout</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="具名插槽的缩写"><a href="#具名插槽的缩写" class="headerlink" title="具名插槽的缩写"></a><a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E5%85%B7%E5%90%8D%E6%8F%92%E6%A7%BD%E7%9A%84%E7%BC%A9%E5%86%99">具名插槽的缩写<i class="fas fa-external-link-alt"></i></a></h2><blockquote>
+<p>2.6.0 新增</p>
+</blockquote>
+<p>跟 <code>v-on</code> 和 <code>v-bind</code> 一样，<code>v-slot</code> 也有缩写，即把参数之前的所有内容 (<code>v-slot:</code>) 替换为字符 <code>#</code>。例如 <code>v-slot:header</code> 可以被重写为 <code>#header</code>：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base-layout</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> #<span class="attr">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Here might be a page title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>A paragraph for the main content.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>And another one.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> #<span class="attr">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Here's some contact info<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">base-layout</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>然而，和其它指令一样，该缩写只在其有参数的时候才可用。这意味着以下语法是无效的：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这样会触发一个警告 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">current-user</span> #=<span class="string">"{ user }"</span>&gt;</span></span><br><span class="line">  {{ user.firstName }}</span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果你希望使用缩写的话，你必须始终以明确插槽名取而代之：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span> #<span class="attr">default</span>=<span class="string">"{ user }"</span>&gt;</span></span><br><span class="line">  {{ user.firstName }}</span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="其它示例"><a href="#其它示例" class="headerlink" title="其它示例"></a><a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E5%85%B6%E5%AE%83%E7%A4%BA%E4%BE%8B">其它示例<i class="fas fa-external-link-alt"></i></a></h2><p><strong>插槽 prop 允许我们将插槽转换为可复用的模板，这些模板可以基于输入的 prop 渲染出不同的内容。</strong>这在设计封装数据逻辑同时允许父级组件自定义部分布局的可复用组件时是最有用的。</p>
+<p>例如，我们要实现一个 <code>&lt;todo-list&gt;</code> 组件，它是一个列表且包含布局和过滤逻辑：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  &lt;li</span><br><span class="line">    v-for="todo in filteredTodos"</span><br><span class="line">    v-bind:key="todo.id"</span><br><span class="line">  &gt;</span><br><span class="line">    {{ todo.text }}</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>我们可以将每个 todo 作为父级组件的插槽，以此通过父级组件对其进行控制，然后将 <code>todo</code> 作为一个插槽 prop 进行绑定：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  &lt;li</span><br><span class="line">    v-for="todo in filteredTodos"</span><br><span class="line">    v-bind:key="todo.id"</span><br><span class="line">  &gt;</span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    我们为每个 todo 准备了一个插槽，</span></span><br><span class="line"><span class="comment">    将 `todo` 对象作为一个插槽的 prop 传入。</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">"todo"</span> <span class="attr">v-bind:todo</span>=<span class="string">"todo"</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 后备内容 --&gt;</span></span><br><span class="line">      {{ todo.text }}</span><br><span class="line">    <span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>现在当我们使用 <code>&lt;todo-list&gt;</code> 组件的时候，我们可以选择为 todo 定义一个不一样的 <code>&lt;template&gt;</code> 作为替代方案，并且可以从子组件获取数据：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">todo-list</span> <span class="attr">v-bind:todos</span>=<span class="string">"todos"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:todo</span>=<span class="string">"{ todo }"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"todo.isComplete"</span>&gt;</span>✓<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    {{ todo.text }}</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">todo-list</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这只是作用域插槽用武之地的冰山一角。想了解更多现实生活中的作用域插槽的用法，我们推荐浏览诸如 <a class="link" target="_blank" rel="noopener" href="https://github.com/Akryum/vue-virtual-scroller">Vue Virtual Scroller<i class="fas fa-external-link-alt"></i></a>、<a class="link" target="_blank" rel="noopener" href="https://github.com/posva/vue-promised">Vue Promised<i class="fas fa-external-link-alt"></i></a> 和 <a class="link" target="_blank" rel="noopener" href="https://github.com/LinusBorg/portal-vue">Portal Vue<i class="fas fa-external-link-alt"></i></a> 等库。</p>
+<h2 id="废弃了的语法"><a href="#废弃了的语法" class="headerlink" title="废弃了的语法"></a><a class="link" target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components-slots.html#%E5%BA%9F%E5%BC%83%E4%BA%86%E7%9A%84%E8%AF%AD%E6%B3%95">废弃了的语法<i class="fas fa-external-link-alt"></i></a></h2><blockquote>
+<p><code>v-slot</code> 指令自 Vue 2.6.0 起被引入，提供更好的支持 <code>slot</code> 和 <code>slot-scope</code> attribute 的 API 替代方案。<code>v-slot</code> 完整的由来参见这份 <a class="link" target="_blank" rel="noopener" href="https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md">RFC<i class="fas fa-external-link-alt"></i></a>。在接下来所有的 2.x 版本中 <code>slot</code> 和 <code>slot-scope</code> attribute 仍会被支持，但已经被官方废弃且不会出现在 Vue 3 中。</p>
+</blockquote>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：vue学习笔记02-vue的插槽和组件化开发</li>
+        <li>本文作者：大白小怪兽</li>
+        <li>创建时间：2020-05-05 02:45:01</li>
+        <li>
+            本文链接：https://blog.sky123.top/2020/05/05/vue/Vue插槽和父子组件化/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/05/01/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5b%E7%AB%99%E8%A7%86%E9%A2%91/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Hexo博客中插入b站视频</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B002-vue%E7%9A%84%E6%8F%92%E6%A7%BD%E5%92%8C%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91"><span class="nav-text">vue学习笔记02-vue的插槽和组件化开发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%8C%96"><span class="nav-text">组件化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E6%A6%82%E8%BF%B0"><span class="nav-text">组件概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue%E7%BB%84%E4%BB%B6%E5%8C%96%E6%80%9D%E6%83%B3"><span class="nav-text">Vue组件化思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="nav-text">组件的使用步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E7%BB%84%E4%BB%B6%E8%AF%AD%E6%B3%95%E7%B3%96"><span class="nav-text">注册组件语法糖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E7%BB%84%E4%BB%B6%E5%92%8C%E5%B1%80%E9%83%A8%E7%BB%84%E4%BB%B6"><span class="nav-text">全局组件和局部组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%B6%E7%BB%84%E4%BB%B6%E5%92%8C%E5%AD%90%E7%BB%84%E4%BB%B6"><span class="nav-text">父组件和子组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%88%86%E7%A6%BB%E5%86%99%E6%B3%95"><span class="nav-text">模板的分离写法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-lt-script-gt-%E6%A0%87%E7%AD%BE"><span class="nav-text">使用&lt; script&gt;标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-lt-template-gt-%E6%A0%87%E7%AD%BE"><span class="nav-text">使用&lt; template&gt;标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E7%9A%84%E7%AE%80%E5%8C%96%E5%86%99%E6%B3%95"><span class="nav-text">组件使用的简化写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E5%AD%98%E6%94%BE"><span class="nav-text">组件数据存放</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AEVue%E5%AE%9E%E4%BE%8B%E6%95%B0%E6%8D%AE%E5%90%97"><span class="nav-text">组件可以访问Vue实例数据吗?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AD%98%E6%94%BE"><span class="nav-text">组件数据的存放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E5%91%A2"><span class="nav-text">data为什么是一个函数呢?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E9%80%9A%E4%BF%A1"><span class="nav-text">父子组件的通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87props%E7%88%B6%E7%BB%84%E4%BB%B6%E5%90%91%E5%AD%90%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE"><span class="nav-text">通过props父组件向子组件传递数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#props%E6%95%B0%E7%BB%84%E7%94%A8%E6%B3%95"><span class="nav-text">props数组用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#props%E5%AF%B9%E8%B1%A1%E7%94%A8%E6%B3%95"><span class="nav-text">props对象用法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E4%BA%8B%E4%BB%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E5%90%91%E7%88%B6%E7%BB%84%E4%BB%B6%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF"><span class="nav-text">通过事件子组件向父组件发送消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E5%B0%8F%E6%A1%88%E4%BE%8B"><span class="nav-text">父子组件通信小案例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%92%E6%A7%BD-2-5%E7%89%88%E6%9C%AC%E5%8F%8A%E4%B9%8B%E5%89%8D%E9%80%82%E7%94%A8"><span class="nav-text">插槽(2.5版本及之前适用)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%8F%92%E6%A7%BD%EF%BC%9F"><span class="nav-text">为什么使用插槽？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%8E%BB%E5%B0%81%E8%A3%85%E8%BF%99%E7%B1%BB%E7%9A%84%E7%BB%84%E4%BB%B6%E5%91%A2%EF%BC%9F"><span class="nav-text">如何去封装这类的组件呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slot%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">slot的基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E5%90%8D%E6%8F%92%E6%A7%BDslot"><span class="nav-text">具名插槽slot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-text">编译作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD"><span class="nav-text">作用域插槽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E6%80%BB%E7%BB%93"><span class="nav-text">案例总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%92%E6%A7%BD-2-6%E7%89%88%E6%9C%AC"><span class="nav-text">插槽 (2.6版本)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E6%A7%BD%E5%86%85%E5%AE%B9"><span class="nav-text">插槽内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E5%90%8D%E6%8F%92%E6%A7%BD"><span class="nav-text">具名插槽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD-1"><span class="nav-text">作用域插槽</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8B%AC%E5%8D%A0%E9%BB%98%E8%AE%A4%E6%8F%92%E6%A7%BD%E7%9A%84%E7%BC%A9%E5%86%99%E8%AF%AD%E6%B3%95"><span class="nav-text">独占默认插槽的缩写语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%84%E6%8F%92%E6%A7%BD-Prop"><span class="nav-text">解构插槽 Prop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%8F%92%E6%A7%BD%E5%90%8D"><span class="nav-text">动态插槽名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E5%90%8D%E6%8F%92%E6%A7%BD%E7%9A%84%E7%BC%A9%E5%86%99"><span class="nav-text">具名插槽的缩写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E7%A4%BA%E4%BE%8B"><span class="nav-text">其它示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%9F%E5%BC%83%E4%BA%86%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="nav-text">废弃了的语法</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
