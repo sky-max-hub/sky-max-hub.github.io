@@ -671,7 +671,7 @@ ES6新特性let块级作用域不再使用 var 定义变量，而使用 let定�
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2020/05/01/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5b%E7%AB%99%E8%A7%86%E9%A2%91/">
+                    <a href="/2020/05/01/hexo%E5%8D%9A%E5%AE%A2/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5b%E7%AB%99%E8%A7%86%E9%A2%91/">
                         Hexo博客中插入b站视频
                     </a>
                 </h3>
@@ -711,7 +711,7 @@ Hexo博客中插入b站视频
         
     </div>
 
-    <a href="/2020/05/01/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5b%E7%AB%99%E8%A7%86%E9%A2%91/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+    <a href="/2020/05/01/hexo%E5%8D%9A%E5%AE%A2/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5b%E7%AB%99%E8%A7%86%E9%A2%91/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -821,9 +821,43 @@ Hexo博客中插入b站视频
 
     
 
-    <div class="image-viewer-container">
-    <img src="">
-</div>
+    .image-viewer-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0);
+  visibility: hidden;
+  z-index: $z-index-8;
+  padding: 6%;
+  box-sizing: border-box;
+  transition-t("visibility, background", "0, 0", "0.3, 0.3", "ease, ease");
+
+  &.active {
+    background: rgba(0, 0, 0, 0.5);
+    visibility: visible;
+
+    img {
+      cursor: zoom-out;
+      transform: scale(1);
+      padding: 2px;
+      background: var(--background-color);
+    }
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    transform: scale(0);
+    transition-t("transform", "0", "0.3", "ease");
+  }
+}
+
+
 
 
     

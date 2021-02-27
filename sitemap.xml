@@ -30,7 +30,7 @@
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/2020/05/01/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5b%E7%AB%99%E8%A7%86%E9%A2%91/</loc>
+    <loc>http://blog.sky123.top/2020/05/01/hexo%E5%8D%9A%E5%AE%A2/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5b%E7%AB%99%E8%A7%86%E9%A2%91/</loc>
     
     <lastmod>2021-02-26</lastmod>
     
@@ -298,13 +298,6 @@
 
   
   <url>
-    <loc>http://blog.sky123.top/tags/Hexo%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2021-02-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.sky123.top/tags/Javascript/</loc>
     <lastmod>2021-02-27</lastmod>
     <changefreq>daily</changefreq>
@@ -334,6 +327,13 @@
   
   <url>
     <loc>http://blog.sky123.top/tags/JavaWeb/</loc>
+    <lastmod>2021-02-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.sky123.top/tags/Hexo%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2021-02-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
