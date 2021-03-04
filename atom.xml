@@ -6,7 +6,7 @@
   <link href="http://blog.sky123.top/atom.xml" rel="self"/>
   
   <link href="http://blog.sky123.top/"/>
-  <updated>2021-03-02T16:27:49.527Z</updated>
+  <updated>2021-03-04T04:21:41.557Z</updated>
   <id>http://blog.sky123.top/</id>
   
   <author>
@@ -17,13 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>考研日记01</title>
-    <link href="http://blog.sky123.top/2021/03/02/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9401%20-%20%E5%89%AF%E6%9C%AC/"/>
-    <id>http://blog.sky123.top/2021/03/02/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9401%20-%20%E5%89%AF%E6%9C%AC/</id>
-    <published>2021-03-02T15:59:59.000Z</published>
-    <updated>2021-03-02T16:27:49.527Z</updated>
+    <title>考研日记03</title>
+    <link href="http://blog.sky123.top/2021/03/03/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9403/"/>
+    <id>http://blog.sky123.top/2021/03/03/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9403/</id>
+    <published>2021-03-03T15:59:59.000Z</published>
+    <updated>2021-03-04T04:21:41.557Z</updated>
     
-    <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/sheep-690198_1280.jpg"></p><hr><h1 id="考研日记02"><a href="#考研日记02" class="headerlink" title="考研日记02"></a>考研日记02</h1><p>今天没有时间复习，更多的处理课程设计相关的事情，早上把软件安装了一下，找到了墨墨记单词的破解版，可以免登录获得单词无上限。有点开心，于是开始记起来单词。</p><p>下午的时候老师还让我负责前端架子的搭建，虽然很想拒绝，但是就是说不出口，唉，胆子真的小，还是太在意别人的看法了。这样的后果是我还得在课程设计期间把做另一件麻烦的事情，熬夜又是不可避免的了。</p><p>晚上和同学们打了会球，之后就立马敲代码到了现在。</p>]]></content>
+    <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/sunset-5990540_1280.jpg"></p><hr><h1 id="考研日记03"><a href="#考研日记03" class="headerlink" title="考研日记03"></a>考研日记03</h1><p>这是我4号现在写的日记，主要是补一下3号的日记。昨天敲了一晚上代码，实在是没有心情写日记了，因此到了现在才不上。</p><p>早上，平常的起床，脸上还是一如既往的平常，吃着和昨天一样的早餐。唯一的不同就是起床的时间晚了一点，错过了人潮，也踩着点才到逸夫楼。之后和同学分组交流了一下课程设计，确定了功能模块和任务后，就把它放到一边，开始敲另一个项目的代码了，发现自己也是学长了，需要教学弟东西，带学弟入门，但是也没有什么学长的架子（应该是好事）。</p><p>下午到晚上，都是一直在发现问题和解决问题，发现自己真的好久没动代码，好久没写<code>vue</code>的界面了，需要一直上网搜索和看自己的博客笔记，要是换成其他人肯定早就完成了，可我真的很挑剔，代码的格式一定要完美，界面一定要没有bug，功能架子一定搭完整。这样的进度浪费了好多时间，可是我安慰自己，再这样写项目的时间和机会可不多，一定认真负责的完成，考研复习的事就被我暂时放到一边了，只是偶尔地记一下单词。</p><p>就这样了，结束。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://img.sky123.top/img/sunset-5990540_1280.jpg&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;考研日记03&quot;&gt;&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="考研" scheme="http://blog.sky123.top/tags/%E8%80%83%E7%A0%94/"/>
+    
+    <category term="日记" scheme="http://blog.sky123.top/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>考研日记02</title>
+    <link href="http://blog.sky123.top/2021/03/02/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9402/"/>
+    <id>http://blog.sky123.top/2021/03/02/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9402/</id>
+    <published>2021-03-02T15:59:59.000Z</published>
+    <updated>2021-03-04T04:05:48.579Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/sheep-690198_1280.jpg"></p><hr><h1 id="考研日记02"><a href="#考研日记02" class="headerlink" title="考研日记02"></a>考研日记02</h1><p>今天没有时间复习，更多的处理课程设计相关的事情，早上把软件安装了一下，找到了墨墨记单词的破解版，可以免登录获得单词无上限。有点开心，于是开始记起来单词。</p><p>下午的时候老师还让我负责前端架子的搭建，虽然很想拒绝，但是就是说不出口，唉，胆子真的小，还是太在意别人的看法了。这样的后果是我还得在课程设计期间把做另一件麻烦的事情，熬夜又是不可避免的了。</p><p>晚上和同学们打了会球，之后就立马敲代码到了现在。累死我了，不想说太多，就这样了。</p>]]></content>
     
     
       
@@ -497,32 +524,6 @@
     <summary type="html">&lt;hr&gt;
 &lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://cdn.pixabay.com/photo/2021/02/07/19/57/gazelle-5992510_1280.jpg&quot;&gt;&lt;/p&gt;
 &lt;</summary>
-      
-    
-    
-    
-    
-    <category term="JavaWeb" scheme="http://blog.sky123.top/tags/JavaWeb/"/>
-    
-    <category term="SpringBoot" scheme="http://blog.sky123.top/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot06整合Redis</title>
-    <link href="http://blog.sky123.top/2020/04/06/springboot/SpringBoot06%E6%95%B4%E5%90%88Redis/"/>
-    <id>http://blog.sky123.top/2020/04/06/springboot/SpringBoot06%E6%95%B4%E5%90%88Redis/</id>
-    <published>2020-04-06T06:53:47.000Z</published>
-    <updated>2021-02-25T08:15:23.404Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2014/09/10/00/59/mountains-440520_1280.jpg"></p><hr><h1 id="SpringBoot06整合Redis"><a href="#SpringBoot06整合Redis" class="headerlink" title="SpringBoot06整合Redis"></a>SpringBoot06整合Redis</h1><h2 id="1-添加redis的起步依赖"><a href="#1-添加redis的起步依赖" class="headerlink" title="1 添加redis的起步依赖"></a>1 添加redis的起步依赖</h2><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置使用redis启动器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure><h2 id="2-配置redis的连接信息"><a href="#2-配置redis的连接信息" class="headerlink" title="2 配置redis的连接信息"></a>2 配置redis的连接信息</h2><figure class="highlight properties"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Redis</span></span><br><span class="line"><span class="meta">spring.redis.host</span>=<span class="string">127.0.0.1</span></span><br><span class="line"><span class="meta">spring.redis.port</span>=<span class="string">6379</span></span><br></pre></td></tr></tbody></table></figure><h2 id="3-注入RedisTemplate测试redis操作"><a href="#3-注入RedisTemplate测试redis操作" class="headerlink" title="3 注入RedisTemplate测试redis操作"></a>3 注入RedisTemplate测试redis操作</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest(classes = SpringbootJpaApplication.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisTest</span> </span>{</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate&lt;String, String&gt; redisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> JsonProcessingException </span>{</span><br><span class="line">        <span class="comment">//从redis缓存中获得指定的数据</span></span><br><span class="line">        String userListData = redisTemplate.boundValueOps(<span class="string">"user.findAll"</span>).get();</span><br><span class="line">        <span class="comment">//如果redis中没有数据的话</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span>==userListData){</span><br><span class="line">            <span class="comment">//查询数据库获得数据</span></span><br><span class="line">            List&lt;User&gt; all = userRepository.findAll();</span><br><span class="line">            <span class="comment">//转换成json格式字符串</span></span><br><span class="line">            ObjectMapper om = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">            userListData = om.writeValueAsString(all);</span><br><span class="line">            <span class="comment">//将数据存储到redis中，下次在查询直接从redis中获得数据，不用在查询数据库</span></span><br><span class="line">            redisTemplate.boundValueOps(<span class="string">"user.findAll"</span>).set(userListData);</span><br><span class="line">            System.out.println(<span class="string">"===============从数据库获得数据==============="</span>);</span><br><span class="line">        }<span class="keyword">else</span>{</span><br><span class="line">            System.out.println(<span class="string">"===============从redis缓存中获得数据==============="</span>);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        System.out.println(userListData);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;hr&gt;
-&lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://cdn.pixabay.com/photo/2014/09/10/00/59/mountains-440520_1280.jpg&quot;&gt;&lt;/p&gt;
-</summary>
       
     
     

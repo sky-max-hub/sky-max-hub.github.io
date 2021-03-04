@@ -9,7 +9,7 @@
     
     <title>
         
-            Spring入门05AOP与事务控制 |
+            考研日记03 |
         
         大白小怪兽
     </title>
@@ -155,7 +155,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Spring入门05AOP与事务控制</span>
+            <span class="title-hover-animation">考研日记03</span>
         </div>
 
         
@@ -173,7 +173,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2020-03-05 14:53:47
+        <i class="fas fa-edit"></i>&nbsp;2021-03-03 23:59:59
     </span>
     
     
@@ -182,11 +182,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
+                        <a href="/tags/%E8%80%83%E7%A0%94/">考研</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/Spring%E6%A1%86%E6%9E%B6/">Spring框架</a>&nbsp;
+                        | <a href="/tags/%E6%97%A5%E8%AE%B0/">日记</a>&nbsp;
                     </li>
                 
             </ul>
@@ -196,12 +196,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>377 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
         </span>
     
     
@@ -218,73 +218,12 @@
 
         <div class="article-content markdown-body">
             <hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2021/01/06/07/34/women-5893419_1280.jpg"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/sunset-5990540_1280.jpg"></p>
 <hr>
-<h1 id="Spring入门05AOP与事务控制"><a href="#Spring入门05AOP与事务控制" class="headerlink" title="Spring入门05AOP与事务控制"></a>Spring入门05AOP与事务控制</h1><h2 id="1-Spring-中的事务控制"><a href="#1-Spring-中的事务控制" class="headerlink" title="1. Spring 中的事务控制"></a>1. Spring 中的事务控制</h2><ol>
-<li>JavaEE 体系进行分层开发，事务处理位于业务层， Spring 提供了分层设计业务层的事务处理解决方案。</li>
-<li>spring 框架为我们提供了一组事务控制的接口。具体在后面的第二小节介绍。这组接口是在spring-tx-5.0.2.RELEASE.jar 中。 </li>
-<li>spring 的事务控制都是基于 AOP 的，它既可以使用编程的方式实现，也可以使用配置的方式实现。我们学习的重点是使用配置的方式实现  </li>
-</ol>
-<h3 id="1-2-Spring-中事务控制的-API-介绍"><a href="#1-2-Spring-中事务控制的-API-介绍" class="headerlink" title="1.2 Spring 中事务控制的 API 介绍"></a>1.2 Spring 中事务控制的 API 介绍</h3><p><code>PlatformTransactionManager  </code></p>
-<p>此接口是 spring 的事务管理器，它里面提供了我们常用的操作事务的方法  </p>
-<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/spring/image-20200530185415933.png" alt="image-20200530185415933" style="zoom:50%;">
-
-<p>真正使用的事务管理对象：</p>
-<p><code>org.springframework.jdbc.datasource.DataSourceTransactionManager </code></p>
-<p>使用 SpringJDBC 或 iBatis 进行持久化数据时使用<br><code>org.springframework.orm.hibernate5.HibernateTransactionManager </code></p>
-<p>使用Hibernate 版本进行持久化数据时使用</p>
-<p><code>TransactionDefinition  </code></p>
-<p>它是事务的定义信息对象，里面有如下方法：  </p>
-<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/spring/image-20200530185642199.png" alt="image-20200530185642199" style="zoom:50%;">
-
-<p>超时时间：默认值是-1，没有超时限制。如果有，以秒为单位进行设置。  </p>
-<p>是否只读：建议查询时设置为只读。  </p>
-<p><code>TransactionStatus  </code></p>
-<p>此接口提供的是事务具体的运行状态  </p>
-<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/spring/image-20200530185822949.png" alt="image-20200530185822949" style="zoom:50%;">
-
-<h3 id="1-2-Spring-中事务控制的相关术语"><a href="#1-2-Spring-中事务控制的相关术语" class="headerlink" title="1.2 Spring 中事务控制的相关术语"></a>1.2 Spring 中事务控制的相关术语</h3><p>事务的隔离级别  ：</p>
-<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/spring/image-20200530193028495.png" alt="image-20200530193028495" style="zoom:50%;">
-
-<p>事务的传播行为  ：</p>
-<ol>
-<li><code>REQUIRED</code>：如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。一般的选<br>择（默认值）</li>
-<li><code>SUPPORTS</code>：支持当前事务，如果当前没有事务，就以非事务方式执行（没有事务）</li>
-<li><code>MANDATORY</code>：使用当前的事务，如果当前没有事务，就抛出异常</li>
-<li><code>REQUERS_NEW</code>：新建事务，如果当前在事务中，把当前事务挂起。</li>
-<li><code>NOT_SUPPORTED</code>：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起</li>
-<li><code>NEVER</code>：以非事务方式运行，如果当前存在事务，抛出异常</li>
-<li><code>NESTED</code>：如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行 REQUIRED 类似的操作。  </li>
-</ol>
-<h2 id="2-Spring中的AOP：让业务层来控制事务的提交和回滚。"><a href="#2-Spring中的AOP：让业务层来控制事务的提交和回滚。" class="headerlink" title="2. Spring中的AOP：让业务层来控制事务的提交和回滚。"></a>2. Spring中的AOP：让业务层来控制事务的提交和回滚。</h2><p>在 spring 中，框架会根据目标类是否实现了接口来决定采用哪种动态代理的方式。  </p>
-<h3 id="2-1-AOP的相关术语"><a href="#2-1-AOP的相关术语" class="headerlink" title="2.1 AOP的相关术语"></a>2.1 AOP的相关术语</h3><p>1.<code> Joinpoint(连接点)</code>：所谓连接点是指那些被拦截到的点。在 spring 中,这些点指的是方法,因为 spring 只支持方法类型的连接点。</p>
-<p>2.<code> Pointcut(切入点)</code>：所谓切入点是指我们要对哪些 Joinpoint 进行拦截的定义。  </p>
-<ol start="3">
-<li><p><code>Advice(通知/增强)</code>：所谓通知是指拦截到 Joinpoint 之后所要做的事情就是通知。</p>
-<p>通知的类型： 前置通知,后置通知,异常通知,最终通知,环绕通知。</p>
-</li>
-<li><p><code>Introduction(引介)</code>：引介是一种特殊的通知在不修改类代码的前提下, Introduction 可以在运行期为类动态地添加一些方法或 Field。</p>
-</li>
-<li><p><code>Target(目标对象)</code>：代理的目标对象。</p>
-</li>
-<li><p><code>Weaving(织入)</code>：是指把增强应用到目标对象来创建新的代理对象的过程。spring 采用动态代理织入，而 AspectJ 采用编译期织入和类装载期织入。</p>
-</li>
-<li><p><code>Proxy（代理）</code>：一个类被 AOP 织入增强后，就产生一个结果代理类。</p>
-</li>
-<li><p><code>Aspect(切面)</code>：是切入点和通知（引介）的结合。  </p>
-</li>
-</ol>
-<h3 id="2-2-学习-spring-中的-AOP-要明确的事"><a href="#2-2-学习-spring-中的-AOP-要明确的事" class="headerlink" title="2.2 学习 spring 中的 AOP 要明确的事"></a>2.2 学习 spring 中的 AOP 要明确的事</h3><p>开发阶段（我们做的）</p>
-<ol>
-<li><p>编写核心业务代码（开发主线）：大部分程序员来做，要求熟悉业务需求。</p>
-</li>
-<li><p>把公用代码抽取出来，制作成通知。（开发阶段最后再做）： AOP 编程人员来做。</p>
-</li>
-<li><p>在配置文件中，声明切入点与通知间的关系，即切面。： AOP 编程人员来做。</p>
-</li>
-</ol>
-<p>运行阶段（ Spring 框架完成的）</p>
-<p>Spring 框架监控切入点方法的执行。一旦监控到切入点方法被运行，使用代理机制，动态创建目标对象的代理对象，根据通知类别，在代理对象的对应位置，将通知对应的功能织入，完成完整的代码逻辑运行  </p>
+<h1 id="考研日记03"><a href="#考研日记03" class="headerlink" title="考研日记03"></a>考研日记03</h1><p>这是我4号现在写的日记，主要是补一下3号的日记。昨天敲了一晚上代码，实在是没有心情写日记了，因此到了现在才不上。</p>
+<p>早上，平常的起床，脸上还是一如既往的平常，吃着和昨天一样的早餐。唯一的不同就是起床的时间晚了一点，错过了人潮，也踩着点才到逸夫楼。之后和同学分组交流了一下课程设计，确定了功能模块和任务后，就把它放到一边，开始敲另一个项目的代码了，发现自己也是学长了，需要教学弟东西，带学弟入门，但是也没有什么学长的架子（应该是好事）。</p>
+<p>下午到晚上，都是一直在发现问题和解决问题，发现自己真的好久没动代码，好久没写<code>vue</code>的界面了，需要一直上网搜索和看自己的博客笔记，要是换成其他人肯定早就完成了，可我真的很挑剔，代码的格式一定要完美，界面一定要没有bug，功能架子一定搭完整。这样的进度浪费了好多时间，可是我安慰自己，再这样写项目的时间和机会可不多，一定认真负责的完成，考研复习的事就被我暂时放到一边了，只是偶尔地记一下单词。</p>
+<p>就这样了，结束。</p>
 
         </div>
 
@@ -292,11 +231,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：Spring入门05AOP与事务控制</li>
+        <li>本文标题：考研日记03</li>
         <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-03-05 14:53:47</li>
+        <li>创建时间：2021-03-03 23:59:59</li>
         <li>
-            本文链接：https://blog.sky123.top/2020/03/05/spring/Spring入门05AOP与事务控制/
+            本文链接：https://blog.sky123.top/2021/03/03/考研/考研03/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -310,29 +249,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2020/03/06/spring/Spring%E5%85%A5%E9%97%A806%E5%9F%BA%E4%BA%8EXML%E7%9A%84AOP%E9%85%8D%E7%BD%AE/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Spring入门06基于XML的AOP配置</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2020/03/04/spring/Spring%E5%85%A5%E9%97%A804Spring%E6%95%B4%E5%90%88JUnit/"
+                           href="/2021/03/02/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9402/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Spring入门04Spring整合JUnit</span>
+                                <span class="post-nav-title-item">考研日记02</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -456,7 +380,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E5%85%A5%E9%97%A805AOP%E4%B8%8E%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6"><span class="nav-text">Spring入门05AOP与事务控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Spring-%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6"><span class="nav-text">1. Spring 中的事务控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Spring-%E4%B8%AD%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6%E7%9A%84-API-%E4%BB%8B%E7%BB%8D"><span class="nav-text">1.2 Spring 中事务控制的 API 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Spring-%E4%B8%AD%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6%E7%9A%84%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD"><span class="nav-text">1.2 Spring 中事务控制的相关术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Spring%E4%B8%AD%E7%9A%84AOP%EF%BC%9A%E8%AE%A9%E4%B8%9A%E5%8A%A1%E5%B1%82%E6%9D%A5%E6%8E%A7%E5%88%B6%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%8F%90%E4%BA%A4%E5%92%8C%E5%9B%9E%E6%BB%9A%E3%80%82"><span class="nav-text">2. Spring中的AOP：让业务层来控制事务的提交和回滚。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-AOP%E7%9A%84%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD"><span class="nav-text">2.1 AOP的相关术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%AD%A6%E4%B9%A0-spring-%E4%B8%AD%E7%9A%84-AOP-%E8%A6%81%E6%98%8E%E7%A1%AE%E7%9A%84%E4%BA%8B"><span class="nav-text">2.2 学习 spring 中的 AOP 要明确的事</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E7%A0%94%E6%97%A5%E8%AE%B003"><span class="nav-text">考研日记03</span></a></li></ol>
     </div>
 </div>
         </aside>
