@@ -6,7 +6,7 @@
   <link href="http://blog.sky123.top/atom.xml" rel="self"/>
   
   <link href="http://blog.sky123.top/"/>
-  <updated>2021-03-04T04:21:41.557Z</updated>
+  <updated>2021-03-04T14:53:38.431Z</updated>
   <id>http://blog.sky123.top/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>考研日记04</title>
+    <link href="http://blog.sky123.top/2021/03/04/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%944/"/>
+    <id>http://blog.sky123.top/2021/03/04/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%944/</id>
+    <published>2021-03-04T15:59:59.000Z</published>
+    <updated>2021-03-04T14:53:38.431Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/yachts-5971866_1280.jpg"></p><hr><h1 id="考研日记04"><a href="#考研日记04" class="headerlink" title="考研日记04"></a>考研日记04</h1><p>今天终于把老师交代的任务完成了，心情很是高兴，程序员最开心的时候莫过于任务完成之后的成就感了。完成之后和学弟和老师交流了一下，决定明天讨论一下，之后就算到此为止，没我什么事了。<br>突然想看一部电影，《左耳》，因为想起里面的一句话，但是忘记怎么说了，虽然知道了剧情，但是还是想要慢慢地看下去。等下就把它看完。<br>下午和小伙伴们一起去领快递和吃饭。晚上和他们一起去图书馆自习。突然觉得有几个朋友结伴真的很不错，不会让你感到孤单，也会理解你的性格，懂得分寸。当然一个人有一个人的好处，一个人的世界不用在意他人的感受，只为了自己快乐，我都是渴望被理解的，但是现实不总是如我所愿，我会试着说出心中所想，但是理智总说这样可能会害怕伤害到别人。<br>就这样了，我是一边和别人聊天，一边写这篇日记的，所以有点马虎，望见谅。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://img.sky123.top/img/yachts-5971866_1280.jpg&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;考研日记04&quot;&gt;&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="考研" scheme="http://blog.sky123.top/tags/%E8%80%83%E7%A0%94/"/>
+    
+    <category term="日记" scheme="http://blog.sky123.top/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>考研日记03</title>
@@ -498,32 +525,6 @@
       
     <summary type="html">&lt;hr&gt;
 &lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://cdn.pixabay.com/photo/2015/05/15/14/49/rhinoceros-768714_1280.jpg&quot;&gt;&lt;/p&gt;</summary>
-      
-    
-    
-    
-    
-    <category term="JavaWeb" scheme="http://blog.sky123.top/tags/JavaWeb/"/>
-    
-    <category term="SpringBoot" scheme="http://blog.sky123.top/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot07热部署和war包部署</title>
-    <link href="http://blog.sky123.top/2020/04/07/springboot/SpringBoot07%E7%83%AD%E9%83%A8%E7%BD%B2%E5%92%8Cwar%E9%83%A8%E7%BD%B2/"/>
-    <id>http://blog.sky123.top/2020/04/07/springboot/SpringBoot07%E7%83%AD%E9%83%A8%E7%BD%B2%E5%92%8Cwar%E9%83%A8%E7%BD%B2/</id>
-    <published>2020-04-07T06:53:47.000Z</published>
-    <updated>2021-02-25T11:31:24.977Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2021/02/07/19/57/gazelle-5992510_1280.jpg"></p><hr><h1 id="SpringBoot07热部署和war部署"><a href="#SpringBoot07热部署和war部署" class="headerlink" title="SpringBoot07热部署和war部署"></a>SpringBoot07热部署和war部署</h1><h2 id="springboot热部署"><a href="#springboot热部署" class="headerlink" title="springboot热部署"></a>springboot热部署</h2><p>热部署：在不重启服务器的情况下，就可以将代码的修改立即生效的过程</p><p>三种方式实现热部署：</p><ol><li>springboot-devtools：</li><li>spring-loaded：有时不能生效</li><li>jrebel：jvm占用内存少，修改之后立即生效，要钱</li></ol><h3 id="springboot-devtools"><a href="#springboot-devtools" class="headerlink" title="springboot-devtools"></a>springboot-devtools</h3><ol><li><p>引入依赖：</p><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--热部署依赖--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure></li><li><p>开启idea的自动编译功能</p></li></ol><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20200706194837105.png" alt="image-20200706194837105" style="zoom: 50%;"><ol start="3"><li>开启idea在程序运行过程中交换类加载器</li></ol><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl+alt+shift+/,选择registry,勾选complier.sutomake.allow.when.app.running</span><br></pre></td></tr></tbody></table></figure><ol start="4"><li>运行时出现如下提示，说明成功开启：</li></ol><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/image-20200706195421788.png" alt="image-20200706195421788"></p><h2 id="war包部署"><a href="#war包部署" class="headerlink" title="war包部署"></a>war包部署</h2><h3 id="设置打包方式为war"><a href="#设置打包方式为war" class="headerlink" title="设置打包方式为war"></a>设置打包方式为war</h3><p><code>&lt;packaging&gt;war&lt;/packaging&gt;</code></p><h3 id="在插件中指定入口类"><a href="#在插件中指定入口类" class="headerlink" title="在插件中指定入口类"></a>在插件中指定入口类</h3><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--使用热部署出现中文乱码解决方案--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">fork</span>&gt;</span>true<span class="tag">&lt;/<span class="name">fork</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!--增加jvm参数--&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">jvmArguments</span>&gt;</span>-Dfile.encoding=UTF-8<span class="tag">&lt;/<span class="name">jvmArguments</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!--指定入口类--&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.baizhi.Application<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure><h3 id="排除内嵌的tomcat"><a href="#排除内嵌的tomcat" class="headerlink" title="排除内嵌的tomcat"></a>排除内嵌的tomcat</h3><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>   <span class="comment">&lt;!--去掉内嵌tomcat--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.embed<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat-embed-jasper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>  <span class="comment">&lt;!--去掉使用内嵌tomcat解析jsp--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure><h3 id="配置入口类"><a href="#配置入口类" class="headerlink" title="配置入口类"></a>配置入口类</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.继承SpringBootServletInitializer</span></span><br><span class="line"><span class="comment">//2.覆盖configure方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span></span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">        SpringApplication.run(Application.class,args);</span><br><span class="line">    }</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder builder)</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> builder.sources(Application.class);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><h3 id="打包测试"><a href="#打包测试" class="headerlink" title="打包测试"></a>打包测试</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一旦使用war包部署注意:</span></span><br><span class="line"><span class="comment">1. application.yml 中配置port context-path 失效</span></span><br><span class="line"><span class="comment">2. 访问时使用打成war包的名字和外部tomcat端口号进行访问项目</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;hr&gt;
-&lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://cdn.pixabay.com/photo/2021/02/07/19/57/gazelle-5992510_1280.jpg&quot;&gt;&lt;/p&gt;
-&lt;</summary>
       
     
     
