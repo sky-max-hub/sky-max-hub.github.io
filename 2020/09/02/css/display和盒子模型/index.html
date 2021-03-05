@@ -9,7 +9,7 @@
     
     <title>
         
-            考研日记01 |
+            display属性和盒子模型 |
         
         大白小怪兽
     </title>
@@ -155,7 +155,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">考研日记01</span>
+            <span class="title-hover-animation">display属性和盒子模型</span>
         </div>
 
         
@@ -173,7 +173,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-03-01 19:46:48
+        <i class="fas fa-edit"></i>&nbsp;2020-09-02 14:53:47
     </span>
     
     
@@ -182,11 +182,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E8%80%83%E7%A0%94/">考研</a>&nbsp;
+                        <a href="/tags/css/">css</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E6%97%A5%E8%AE%B0/">日记</a>&nbsp;
+                        | <a href="/tags/html/">html</a>&nbsp;
                     </li>
                 
             </ul>
@@ -196,12 +196,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>310 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
         </span>
     
     
@@ -218,12 +218,69 @@
 
         <div class="article-content markdown-body">
             <hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/sheep-690198_1280.jpg"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/mountains-190055_1280.jpg"></p>
 <hr>
-<h1 id="考研日记01"><a href="#考研日记01" class="headerlink" title="考研日记01"></a>考研日记01</h1><p>今天把刘晓艳的《不就是语法和长难句》视频刷到了定语从句的部分。但是总感觉有点吃力，因为单词积累的比较少，也没有看她的单词视频。不过她的长难句视频确实很好，看着看着还能吸取点正能量。争取这学期把六级过了。</p>
-<p>看了刘老师的视频后，学到了点道理：</p>
-<p>人生大部分的烦恼来自对别人过高的期待。因为比起要求自己，怪罪他人好像要轻松很多。那么快乐的道理就很简单了，对他人抱着最低的期待，不要奢望别人给得太多并且严格要求自己。</p>
-<p>今天考研第一天，算是吧，最大的感触就是要做的事情太多了，但是又感觉做不了或做不好。心里还时不时地冒出想放弃直接找工作的念头。不过都被我压了下来。对我而言，这可能是最后一次我提升学历，抚平高考遗憾的机会了。所以坚持吧，第一天就把我整的怀疑人生了，还是想太多了，干就完了！</p>
+<h2 id="display属性"><a href="#display属性" class="headerlink" title="display属性"></a>display属性</h2><p>​    根据CSS规范的规定，每一个网页元素都有一个display属性，用于确定该元素的类型，每一个元素都有默认的display属性值，比如div元素，它的默认display属性值为“block”，称为块元素，而span元素的默认display属性值为“inline”，称为“行内”元素。</p>
+<p>​       块元素与行元素是可以转换的，也就是说display的属性值可以由我们来改变 。</p>
+<h3 id="display常见属性值"><a href="#display常见属性值" class="headerlink" title="display常见属性值"></a>display常见属性值</h3><ol>
+<li>none：隐藏对象</li>
+<li>inline：指定对象为内联元素</li>
+<li>block：指定对象为块元素</li>
+<li>inline-block：指定对象为内联块元素</li>
+<li>table-cell：指定对象作为表格单元格</li>
+<li>flex：弹性盒</li>
+</ol>
+<h3 id="visibility-hidden和display-none和opacity-0的区别："><a href="#visibility-hidden和display-none和opacity-0的区别：" class="headerlink" title="visibility:hidden和display:none和opacity:0的区别："></a>visibility:hidden和display:none和opacity:0的区别：</h3><ol>
+<li><p><code>visibility:hidden</code>和<code>opacity:0</code>会将元素隐藏，但是物理位置实际存在。</p>
+</li>
+<li><p><code>display:none</code> 隐藏元素，不保留物理位置。</p>
+</li>
+</ol>
+<p>​    网页中大部分对象<code>默认是占用文档流</code>，也有一些对象是不占文档流的，比如表单中隐藏域。当然我们也可以让占用文档流的元素转换成不占文档流，这就要用到CSS中属性position、float、display来控制。默认情况下，所有元素都处在文档流中。</p>
+<p>四种情况将<code>使得元素离开文档流：浮动float、绝对定位absolute、固定定位fixed、元素不显示display:none</code>，这种情况不占文档流的空间，而普通元素的位置基于文档流。</p>
+<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><h3 id="W3C盒模型"><a href="#W3C盒模型" class="headerlink" title="W3C盒模型"></a>W3C盒模型</h3><p>盒模型由内容(content)、填充(padding)、边框(border)、边界(margin)组成</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="upload%5Cimage-20210305211024837.png" alt="image-20210305211024837"></p>
+<h3 id="margin（外边距）"><a href="#margin（外边距）" class="headerlink" title="margin（外边距）"></a>margin（外边距）</h3><p>围绕在元素边框周围的空白区域，会在元素外创建额外的空白区域，外边距是透明的。<br>语法：<code>margin:value;</code><br><code>margin-top/right/bottom/left: value;</code><br>value可取值为<code>像素，%，auto，负值</code></p>
+<p>外边距简写</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">margin</span>:<span class="built_in">value</span>(四个方向相同) ;</span><br><span class="line"><span class="attribute">margin</span>: <span class="built_in">value</span>(上下) <span class="built_in">value</span>(左右);</span><br><span class="line"><span class="attribute">margin</span>: <span class="built_in">value</span>(上) <span class="built_in">value</span>(左右) <span class="built_in">value</span>(下);</span><br><span class="line"><span class="attribute">margin</span>: <span class="built_in">value</span>(上) <span class="built_in">value</span>(右) <span class="built_in">value</span>(下) <span class="built_in">value</span>(左);</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<img lazyload="" src="/images/loading.svg" data-src="upload\image-20210305211118212.png" alt="image-20210305211118212" style="zoom:80%;">
+
+
+
+<p>margin设置元素外边距的宽度，它有这么几个特点：</p>
+<ol>
+<li>块级元素的垂直相邻外边距会合并</li>
+<li>行内元素实际上不占上下外边距。行内元素的的左右外边距不合并</li>
+<li>浮动元素的外边距也不会合并</li>
+<li>允许指定负的外边距值，不过使用时要小心</li>
+</ol>
+<h3 id="border（边框）"><a href="#border（边框）" class="headerlink" title="border（边框）"></a>border（边框）</h3><p>border属性设置一个元素的边框，它有三个要素：<code>宽、样式、颜色</code>，统称“边框三要素”。三要素书写的时候一般如下顺序：</p>
+<p>​    <code>border：宽度 样式 颜色        border: 1px solid red;</code></p>
+<p>​    不过不按此顺序来写依然能正常显示。<code>div{ border: red solid 2px; }</code></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="upload%5Cimage-20210305211414164.png" alt="image-20210305211414164"></p>
+<p><code>border-style</code>设置边框的样式，有五种常用样式可选：</p>
+<ul>
+<li>点状dotted</li>
+<li>实线solid</li>
+<li>双线double   （ 需要最起码设置为3像素，不然显示不下）</li>
+<li>虚线dashed</li>
+<li>无边框none</li>
+</ul>
+<p>border的三要素可以统一写在”border”属性中，也可以单独设置。</p>
+<p>​    统一的写法：<code>border: 1px solid  red;</code><br>​    单独设置的写法：</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">border-width</span>: ; </span><br><span class="line"><span class="attribute">border-style</span>: ;</span><br><span class="line"><span class="attribute">border-color</span>: ;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="padding（内边距）"><a href="#padding（内边距）" class="headerlink" title="padding（内边距）"></a>padding（内边距）</h3><p>内容区域和边框之间的空间。会扩大元素边框所占用的区域<br>语法：<code>padding:value;</code><br>单边设置<br><code>padding-top/right/bottom/left:value;</code>value可取值为像素，百分比，但不能为负数</p>
+<p> 内边距的简写</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">padding</span>:<span class="built_in">value</span>(四个方向相同) ;</span><br><span class="line"><span class="attribute">padding</span>: <span class="built_in">value</span>(上下) <span class="built_in">value</span>(左右);</span><br><span class="line"><span class="attribute">padding</span>: <span class="built_in">value</span>(上) <span class="built_in">value</span>(左右) <span class="built_in">value</span>(下);</span><br><span class="line"><span class="attribute">padding</span>: <span class="built_in">value</span>(上) <span class="built_in">value</span>(右) <span class="built_in">value</span>(下) <span class="built_in">value</span>(左);</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="怪异盒模型"><a href="#怪异盒模型" class="headerlink" title="怪异盒模型"></a>怪异盒模型</h3><p>​    盒子模型分两种，一种是符合W3C规范的标准例子模型，另一种是IE的盒子模型，IE的盒子模型也被叫怪异盒子。<br>​    可以看到 IE 盒子模型也包括 margin、border、padding、content，不过，和标准 盒子模型不同的是：IE 盒子模型的宽，包含了 border 和 pading。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="upload%5Cimage-20210305211844651.png" alt="image-20210305211844651"></p>
+<h3 id="Box-sizing"><a href="#Box-sizing" class="headerlink" title="Box-sizing"></a>Box-sizing</h3><p>​    <code>box-sizing</code> 属性允许你以“W3C的盒模型”或“IE盒模型”来定义元素，以适应区域。换句话说，当前元素使用哪种盒模型，<code>可以由box-sizing属性来指定</code><br>​    它有两个值<br>​    <code>content-box（标准）</code><br>​    padding和border不被包含在width和height内，<code>元素的实际大小为宽高+border+padding</code>，此为标准模式下的盒模型。</p>
+<p>​    <code>border-box（怪异）</code><br>​    padding和border被包含在定义的width和height中，<code>元素实际的大小为你定义了多宽就是多宽</code>。此属性为怪异模式下的盒模型。</p>
 
         </div>
 
@@ -231,11 +288,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：考研日记01</li>
+        <li>本文标题：display属性和盒子模型</li>
         <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2021-03-01 19:46:48</li>
+        <li>创建时间：2020-09-02 14:53:47</li>
         <li>
-            本文链接：https://blog.sky123.top/2021/03/01/考研/考研01/
+            本文链接：https://blog.sky123.top/2020/09/02/css/display和盒子模型/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -252,13 +309,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/03/02/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9402/"
+                           href="/2021/03/01/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9401/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">考研日记02</span>
+                                <span class="post-nav-title-item">考研日记01</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -268,10 +325,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2020/09/02/css/display%E5%92%8C%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/"
+                           href="/2020/09/01/css/position%E5%92%8Cz-index/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">display属性和盒子模型</span>
+                                <span class="post-nav-title-item">Position定位和z-index</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -395,7 +452,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E7%A0%94%E6%97%A5%E8%AE%B001"><span class="nav-text">考研日记01</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#display%E5%B1%9E%E6%80%A7"><span class="nav-text">display属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#display%E5%B8%B8%E8%A7%81%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="nav-text">display常见属性值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visibility-hidden%E5%92%8Cdisplay-none%E5%92%8Copacity-0%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-text">visibility:hidden和display:none和opacity:0的区别：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B"><span class="nav-text">盒子模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#W3C%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="nav-text">W3C盒模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#margin%EF%BC%88%E5%A4%96%E8%BE%B9%E8%B7%9D%EF%BC%89"><span class="nav-text">margin（外边距）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#border%EF%BC%88%E8%BE%B9%E6%A1%86%EF%BC%89"><span class="nav-text">border（边框）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#padding%EF%BC%88%E5%86%85%E8%BE%B9%E8%B7%9D%EF%BC%89"><span class="nav-text">padding（内边距）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%AA%E5%BC%82%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="nav-text">怪异盒模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Box-sizing"><span class="nav-text">Box-sizing</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
