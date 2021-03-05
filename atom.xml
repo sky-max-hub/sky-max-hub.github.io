@@ -6,7 +6,7 @@
   <link href="http://blog.sky123.top/atom.xml" rel="self"/>
   
   <link href="http://blog.sky123.top/"/>
-  <updated>2021-03-04T14:53:38.431Z</updated>
+  <updated>2021-03-05T13:59:37.790Z</updated>
   <id>http://blog.sky123.top/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>考研日记05</title>
+    <link href="http://blog.sky123.top/2021/03/05/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9405/"/>
+    <id>http://blog.sky123.top/2021/03/05/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9405/</id>
+    <published>2021-03-05T15:59:59.000Z</published>
+    <updated>2021-03-05T13:59:37.790Z</updated>
+    
+    <content type="html"><![CDATA[<hr><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="430" height="86" src="//music.163.com/outchain/player?type=2&amp;id=1814040682&amp;auto=1&amp;height=66"></iframe><hr><h1 id="考研日记05"><a href="#考研日记05" class="headerlink" title="考研日记05"></a>考研日记05</h1><p>呼，难得的星期五！最近的几天都没有太认真的复习，主要是课设太繁琐和其他项目的原因，导致没有太多精力学习，只是断断续续的记了点单词，教材陆陆续续到了，但是高数复习书在快递那里出了点意外，不知道我还能不能拿到，唉，下午放学的时候又去了趟快递结果没拿到自己的，反倒帮同学带了一个大包裹，真的是累死我了。</p><p>今晚没有复习考研，因为实在不想去图书馆，在寝室里把博客笔记整理了一下，顺便找一下在网上找一下免费的原型组件库，找到了几个，课程设计的界面设计的质量就有保障了，争取这两天把课程设计搞定，之后就可以专心复习了。</p><p>就这样了，明天见！（对了，发现了markdown中插入音乐的方法，开心！）</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;430&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=</summary>
+      
+    
+    
+    
+    
+    <category term="考研" scheme="http://blog.sky123.top/tags/%E8%80%83%E7%A0%94/"/>
+    
+    <category term="日记" scheme="http://blog.sky123.top/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>考研日记04</title>
-    <link href="http://blog.sky123.top/2021/03/04/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%944/"/>
-    <id>http://blog.sky123.top/2021/03/04/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%944/</id>
+    <link href="http://blog.sky123.top/2021/03/04/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9404/"/>
+    <id>http://blog.sky123.top/2021/03/04/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9404/</id>
     <published>2021-03-04T15:59:59.000Z</published>
-    <updated>2021-03-04T14:53:38.431Z</updated>
+    <updated>2021-03-05T13:50:51.054Z</updated>
     
     <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/yachts-5971866_1280.jpg"></p><hr><h1 id="考研日记04"><a href="#考研日记04" class="headerlink" title="考研日记04"></a>考研日记04</h1><p>今天终于把老师交代的任务完成了，心情很是高兴，程序员最开心的时候莫过于任务完成之后的成就感了。完成之后和学弟和老师交流了一下，决定明天讨论一下，之后就算到此为止，没我什么事了。<br>突然想看一部电影，《左耳》，因为想起里面的一句话，但是忘记怎么说了，虽然知道了剧情，但是还是想要慢慢地看下去。等下就把它看完。<br>下午和小伙伴们一起去领快递和吃饭。晚上和他们一起去图书馆自习。突然觉得有几个朋友结伴真的很不错，不会让你感到孤单，也会理解你的性格，懂得分寸。当然一个人有一个人的好处，一个人的世界不用在意他人的感受，只为了自己快乐，我都是渴望被理解的，但是现实不总是如我所愿，我会试着说出心中所想，但是理智总说这样可能会害怕伤害到别人。<br>就这样了，我是一边和别人聊天，一边写这篇日记的，所以有点马虎，望见谅。</p>]]></content>
     
@@ -501,32 +526,6 @@
     <summary type="html">&lt;hr&gt;
 &lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://cdn.pixabay.com/photo/2014/10/07/13/48/mountain-477832_1280.jpg&quot;&gt;&lt;/p&gt;
 &lt;</summary>
-      
-    
-    
-    
-    
-    <category term="JavaWeb" scheme="http://blog.sky123.top/tags/JavaWeb/"/>
-    
-    <category term="SpringBoot" scheme="http://blog.sky123.top/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot10拦截器使用</title>
-    <link href="http://blog.sky123.top/2020/04/10/springboot/SpringBoot10%E6%8B%A6%E6%88%AA%E5%99%A8%E4%BD%BF%E7%94%A8/"/>
-    <id>http://blog.sky123.top/2020/04/10/springboot/SpringBoot10%E6%8B%A6%E6%88%AA%E5%99%A8%E4%BD%BF%E7%94%A8/</id>
-    <published>2020-04-10T06:53:47.000Z</published>
-    <updated>2021-02-25T08:16:08.020Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2016/11/02/17/38/japan-1792369_1280.jpg"></p><hr><h1 id="SpringBoot10拦截器使用"><a href="#SpringBoot10拦截器使用" class="headerlink" title="SpringBoot10拦截器使用"></a>SpringBoot10拦截器使用</h1><h2 id="开发拦截器"><a href="#开发拦截器" class="headerlink" title="开发拦截器"></a>开发拦截器</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object o)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        System.out.println(<span class="string">"======1====="</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;<span class="comment">//返回true 放行  返回false阻止</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        System.out.println(<span class="string">"=====2====="</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object o, Exception e)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        System.out.println(<span class="string">"=====3====="</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><h2 id="配置拦截器"><a href="#配置拦截器" class="headerlink" title="配置拦截器"></a>配置拦截器</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.x中拦截器配置</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterceptorConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurerAdapter</span> </span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>{</span><br><span class="line">        <span class="comment">//添加拦截器</span></span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> MyInterceptor())</span><br><span class="line">            .addPathPatterns(<span class="string">"/**"</span>)<span class="comment">//定义拦截路径</span></span><br><span class="line">            .excludePathPatterns(<span class="string">"/hello/**"</span>); <span class="comment">//排除拦截路径</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.x中拦截器配置</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterceptorConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurationSupport</span> </span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>{</span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> MyInterceptor())<span class="comment">//添加拦截器</span></span><br><span class="line">                .addPathPatterns(<span class="string">"/hello/**"</span>)<span class="comment">//添加拦截的请求路径</span></span><br><span class="line">                .excludePathPatterns(<span class="string">"/hello/world"</span>);<span class="comment">//添加排除那些请求路径不经过拦截器</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p><code>注意:在springboot2.x版本中自定义拦截器之后出现项目中静态资源 404情况,需要在自定义拦截器的配置中加入如下配置即可:</code></p><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterceptorConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurationSupport</span> </span>{</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>{</span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> LoginInterceptor())</span><br><span class="line">                .addPathPatterns(<span class="string">"/file/**"</span>)</span><br><span class="line">                .excludePathPatterns(<span class="string">"/js/**"</span>, <span class="string">"/css/**"</span>, <span class="string">"/files/**"</span>);<span class="comment">//放行静态资源 静态资源被认为是一个控制器请求</span></span><br><span class="line">    }</span><br><span class="line"><span class="comment">//springboot2.x 静态资源在自定义拦截器之后无法访问的解决方案</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span> </span>{</span><br><span class="line">        registry.addResourceHandler(<span class="string">"/**"</span>) <span class="comment">//代表以什么样的请求路径访问静态资源</span></span><br><span class="line">                .addResourceLocations(<span class="string">"classpath:/static/"</span>)</span><br><span class="line">                .addResourceLocations(<span class="string">"classpath:/templates/"</span>);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;hr&gt;
-&lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://cdn.pixabay.com/photo/2016/11/02/17/38/japan-1792369_1280.jpg&quot;&gt;&lt;/p&gt;
-&lt;hr</summary>
       
     
     
