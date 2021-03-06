@@ -3714,4 +3714,238 @@ v-pre用于跳过这个元素和它子元素的编译过程，用于显示原本
         <tag>vue</tag>
       </tags>
   </entry>
+  <entry>
+    <title>media媒体查询</title>
+    <url>/2020/09/04/css/css%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/</url>
+    <content><![CDATA[<hr>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/mountains-615428_1280.jpg"></p>
+<hr>
+<h2 id="Media-Query响应式布局—媒体查询"><a href="#Media-Query响应式布局—媒体查询" class="headerlink" title="Media Query响应式布局—媒体查询"></a>Media Query响应式布局—媒体查询</h2><p>​    响应式布局是在2010年5月份提出的一个概念，简而言之，就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这个概念是为解决移动互联网浏览而诞生的。<br>​    响应式布局可以为不同终端的用户提供更加舒适的界面和更好的用户体验，而且随着目前大屏幕移动设备的普及，越来越多的网站采用这个技术。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306113916951.png" alt="image-20210306113916951"></p>
+<h3 id="响应式设计一定是最佳选择吗？"><a href="#响应式设计一定是最佳选择吗？" class="headerlink" title="响应式设计一定是最佳选择吗？"></a>响应式设计一定是最佳选择吗？</h3><p>​    如果预算充足且形势需要，做一个真正的“手机版”网站是首选。因为响应式设计没有专门设计一个手机版网站的功能多，比如获取当前用户的<code>GPS定位</code>，只是用响应式设计会很难实现。但如果只是根据视口大小为用户提供匹配的视觉效果还是优先选择响应式设计。</p>
+<p>优点：</p>
+<ol>
+<li>面对不同分辨率设备灵活性强</li>
+<li>能够快捷解决多设备显示适应问题</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>兼容各种设备工作量大，效率略慢</li>
+<li>代码累赘，会出现隐藏无用的元素，加载时间加长</li>
+<li>其实这是一种折中性质的设计解决方案，多方面因素影响而达不到最佳效果</li>
+<li>一定程度上改变了网站原有的布局结构，会出现用户混淆的情况</li>
+</ol>
+<h3 id="CSS中的Media-Query（媒介查询）是什么？"><a href="#CSS中的Media-Query（媒介查询）是什么？" class="headerlink" title="CSS中的Media Query（媒介查询）是什么？"></a>CSS中的Media Query（媒介查询）是什么？</h3><p>​    作为<code>CSS3</code>规范的一部分，媒体查询可以针对不同的屏幕尺寸设置不同的样式，它为每种类型的用户提供了最佳的体验，网站在任何尺寸设置下都能有最佳的显示效果。通过不同的媒体类型和条件定义样式表规则。<br>​<br>​    媒体查询让<code>CSS</code>可以更精确作用于不同的媒体类型和同一媒体的不同条件。媒体查询的大部分媒体特性都接受min和max用于表达“大于或等于”和“小与或等于”。如：<code>width会有min-width和max-width</code><br>​<br>​    <code>Media Queries</code>功能是非常强大的，他可以让你定制不同的分辨率和设备，并在不改变内容的情况下，让你制作的web页面在不同的分辨率和设备下都能显示正常，并且不会因此而丢失样式</p>
+<h4 id="媒体查询实例"><a href="#媒体查询实例" class="headerlink" title="媒体查询实例"></a>媒体查询实例</h4><p>​    通过此实例观察媒体查询的功能后，再来分析语法</p>
+<figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"></span><br><span class="line"> 	</span><br><span class="line"><span class="selector-tag">body</span>{<span class="attribute">background-color</span>:grey; }   //正常情况是灰色</span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">992px</span>) {//宽度大于 <span class="number">992px</span> 的时候被应用 pc端</span><br><span class="line"> 	 	<span class="selector-class">.class</span> {<span class="attribute">background</span>: <span class="number">#666</span>;}  }  </span><br><span class="line">   			  			      </span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) { //宽度小于<span class="number">768px</span>的时候被应用  移动端</span><br><span class="line">  		<span class="selector-class">.class</span> { <span class="attribute">background</span>: <span class="number">#ccc</span>; }  }</span><br><span class="line">			 </span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">768</span>x) <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">992px</span>) {  //宽度在 <span class="number">768px</span> 和 <span class="number">992px</span> 之间的时候被应用</span><br><span class="line">  		<span class="selector-class">.class</span> {  <span class="attribute">background</span>: <span class="number">#333</span>;  }   }</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="使用Media-Query的基本语法"><a href="#使用Media-Query的基本语法" class="headerlink" title="使用Media Query的基本语法"></a>使用Media Query的基本语法</h4><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> mediatype <span class="keyword">and</span>|<span class="keyword">not</span>|<span class="keyword">only</span> (media feature) {</span><br><span class="line">       CSS-<span class="selector-tag">Code</span>;</span><br><span class="line"> }</span><br></pre></td></tr></tbody></table></figure>
+
+<p>​    以上通过<code>@media</code>定义媒体查询，<code>mediatype</code>代表了设备类型，目前只有<code>screen</code>最常用，<code>and|not|only</code>为条件，<code>media feature</code>为媒体特点，通常是写设备的宽度。</p>
+<p>​    <code>@media screen and (max-width:960px)</code> 的意思为：当前设备为screen（电脑、平板、手机）时，并且最大宽度为960时，显示的样式。</p>
+<p>媒体类型有：</p>
+<ul>
+<li>all   所有设备</li>
+<li>print    用于打印机和打印预览</li>
+<li>screen    用于电脑屏幕，平板电脑，智能手机等</li>
+<li>speech    应用于屏幕阅读器等发声设备</li>
+</ul>
+<h3 id="用媒体查询改造我们的设计"><a href="#用媒体查询改造我们的设计" class="headerlink" title="用媒体查询改造我们的设计"></a>用媒体查询改造我们的设计</h3><p>​    我们都知道，样式表里面，后面的样式会覆盖前面的样式。因此，我们可以在设置好网站基本样式后，使用媒体查询来进一步重写相应的部分。例如，在PC端将导航显示成简单的链接，然后再针对小视口，使用媒体查询重写这一部分。理论上讲最好是从小屏幕设备开始设计，然后渐进增强。但实际上我们使用媒体查询要解决的问题，都是已经存在PC端站点了，<code>更多的是要将现有的桌面版网页改造成响应式的</code>。</p>
+<p>加载媒体查询的最佳方法：</p>
+<p>​    使用<code>多个独立的CSS文件会增加HTTP请求的数量</code>，使页面加载变慢。所以我们的媒体查询样式的文件尽量放在一个里面，以注释加以区分。</p>
+<p>阻止移动浏览器自动调整页面大小</p>
+<p>​    <code>ios和android浏览器都基于webkit内核</code>，这两种浏览器和许多其它浏览器都支持用<code>viewport，meta元素覆盖默认的画布缩放设置</code>。只需要在HTML的<code>&lt;head&gt;</code>标签中插入一个<code>&lt;meta&gt;</code>标签，<code>meta</code>标签中可以设置具体的宽度或缩放比。下面为示例</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span>  <span class="attr">content</span>=<span class="string">"initial-scale=1.0,width=device-width"</span> /&gt;</span> </span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>name=”viewport”</code>  说明此meta标签定义视口的属性<br><code>​initial-scale=2.0</code>   意思是将页面放大两倍<br><code>​width=device-width</code>   告诉浏览器页面的宽度等于设备宽度</p>
+<p>允许用户将页面最大放大至设备宽度3倍，最小压缩至设备宽度的一半</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">”viewport”</span> <span class="attr">content</span>=<span class="string">”width</span>=<span class="string">device-width,</span> <span class="attr">maximum-scale</span>=<span class="string">3,</span> <span class="attr">minimum-scale</span>=<span class="string">0.5”</span> /&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>禁止用户缩放，可以在混合<code>APP</code>时，为了使<code>html</code>页面更逼真，使页面无法缩放</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">”viewport”</span> <span class="attr">content</span>=<span class="string">”initial-scale</span>=<span class="string">1.0,</span> <span class="attr">user-scalable</span>=<span class="string">no”</span> /&gt;</span>   //user-scalable=no是禁止缩放</span><br></pre></td></tr></tbody></table></figure>
+
+]]></content>
+      <tags>
+        <tag>css</tag>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>css3动画常用属性和阴影圆角</title>
+    <url>/2020/08/30/css/css3%E5%8A%A8%E7%94%BB/</url>
+    <content><![CDATA[<hr>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/bled-1899264_1280.jpg"></p>
+<hr>
+<h2 id="CSS3的含义"><a href="#CSS3的含义" class="headerlink" title="CSS3的含义"></a>CSS3的含义</h2><p>​    <code>CSS3</code>是<code>CSS</code>（层叠样式表）技术的升级版本。<code>CSS3</code>完全向后兼容，不必改变现有的设计，浏览器将永远支持<code>CSS2</code>。<code>W3C</code>的<code>CSS3</code>规范仍在开发。但是，许多新的<code>CSS3</code>属性已在现代浏览器使用。</p>
+<h2 id="浏览器内核以及其前缀"><a href="#浏览器内核以及其前缀" class="headerlink" title="浏览器内核以及其前缀"></a>浏览器内核以及其前缀</h2><p>​    <code>CSS</code>标准中各个属性都要经历从草案到推荐的过程，<code>css3</code>中的属性进展都不一样，浏览器厂商在标准尚未明确情况下提前支持会有风险，浏览器厂商对新属性的支持情况也不同，所以会加厂商前缀加以区分。如果某个属性已经从草案变为了或接近推荐方案，并且厂商已经完全实现了推荐属性，那就不用加厂商前缀。如<code>border-radius</code>已经很成熟，不用加前缀。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103253008.png" alt="image-20210306103253008"></p>
+<p>​    <code>根据不同的浏览器内核，css前缀会有不同</code>。最基本的浏览器内核有如下四种，其它的内核都是基于此四种进行再研发的。</p>
+<ol>
+<li><p><code>Gecko内核</code>      前缀为<code>-moz-</code>   火狐浏览器</p>
+</li>
+<li><p><code>Webkit内核</code>    前缀为<code>-webkit-</code>   也叫谷歌内核，chrome浏览器最先开发使用，safari浏览器也使用 该内核。国内很多浏览器也使用了<code>webkit内核</code>，如360极速、世界之窗、猎豹等。</p>
+</li>
+<li><p><code>Trident内核</code>    前缀为<code>-ms-</code>  也称IE内核</p>
+</li>
+<li><p><code>Presto内核</code>      前缀<code>-o-</code>   目前只有opera采用</p>
+</li>
+</ol>
+<h3 id="圆角border-radius"><a href="#圆角border-radius" class="headerlink" title="圆角border-radius"></a>圆角border-radius</h3><p>语法</p>
+<figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attribute">border-radius</span>：value；四个角</span><br><span class="line"><span class="attribute">border-radius</span>：value value；左上右下、右上左下</span><br><span class="line"><span class="attribute">border-radius</span>：value value value value；		</span><br><span class="line">		代表设置对象左上角、右上角、右下角、左下角</span><br></pre></td></tr></tbody></table></figure>
+
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103337192.png" alt="image-20210306103337192" style="zoom:50%;">
+
+<h3 id="盒阴影box-shadow"><a href="#盒阴影box-shadow" class="headerlink" title="盒阴影box-shadow"></a>盒阴影box-shadow</h3><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line">语法：<span class="attribute">box-shadow</span>: h-shadow v-shadow blur spread color inset;</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103327261.png" alt="image-20210306103327261"></p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    .shadow{</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="css">            <span class="attribute">box-shadow</span>: <span class="number">10px</span> <span class="number">10px</span> <span class="number">5px</span> <span class="number">3px</span> darkred;</span></span><br><span class="line">        }</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shadow"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103724901.png" alt="image-20210306103724901"></p>
+<h3 id="文字阴影text-shadow"><a href="#文字阴影text-shadow" class="headerlink" title="文字阴影text-shadow"></a>文字阴影text-shadow</h3><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line">语法：<span class="attribute">text-shadow</span>: h-shadow v-shadow blur color;</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103735569.png" alt="image-20210306103735569"></p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    .text1{</span><br><span class="line"><span class="css">            <span class="attribute">font-size</span>: <span class="number">50px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">font-weight</span>: bold;</span></span><br><span class="line"><span class="css">            <span class="attribute">color</span>: palegreen;</span></span><br><span class="line"><span class="css">            <span class="attribute">text-shadow</span>: <span class="number">10px</span> -<span class="number">5px</span> <span class="number">5px</span> <span class="number">#ccc</span> ;</span></span><br><span class="line">       }</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"text1"</span>&gt;</span>学习猿地<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103747132.png" alt="image-20210306103747132"></p>
+<h2 id="CSS3-渐变"><a href="#CSS3-渐变" class="headerlink" title="CSS3 渐变"></a>CSS3 渐变</h2><p><a class="link" href="https://www.runoob.com/css3/css3-gradients.html">菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
+<p>​    <code>CSS3 渐变（gradients）</code>可以让你在两个或多个指定的颜色之间显示平稳的过渡。以前，你必须使用图像来实现这些效果。现在，使用 <code>CSS3 渐变（gradients）</code>，通过代码来实现渐变可以减少请求和节约带宽。</p>
+<p><code>CSS3</code> 定义了两种类型的渐变（gradients）:</p>
+<ul>
+<li>线性渐变（Linear Gradients）: 向下/向上/向左/向右/对角方向<br><code>background: linear-gradient(direction, color-stop1, color-stop2, ...);</code></li>
+<li>径向渐变（Radial Gradients）: 由它们的中心定义<br><code>background: radial-gradient(center, shape， size, start-color, ..., last-color);</code><br>默认情况下，渐变的中心是 center（表示在中心点），渐变的形状是 ellipse（表示椭圆形），它可以是值 <code>circle</code> 或 <code>ellipse</code>。其中，circle 表示圆形，ellipse 表示椭圆形</li>
+</ul>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103803293.png" alt="image-20210306103803293"></p>
+<h2 id="CSS3-转换Transform（2D转换）"><a href="#CSS3-转换Transform（2D转换）" class="headerlink" title="CSS3 转换Transform（2D转换）"></a>CSS3 转换Transform（2D转换）</h2><p><a class="link" href="https://www.cnblogs.com/aspnetjia/p/5139020.html">transform详解<i class="fas fa-external-link-alt"></i></a></p>
+<p>​    <code>CSS3</code>中的转换允许我们对元素进行旋转、缩放、移动或倾斜。它为分<code>2D转换 或 3D 转换。</code>在css2时代，如果要做一些图片转换角度，都依赖于<code>图片、Flash或JavaScript才能完成</code>。但是现在借助<code>CSS3</code>就可以轻松倾斜、缩放、移动以及翻转元素。通过<code>CSS</code>变形，可以让元素生成静态视觉效果，但也可以很容易结合<code>CSS3的transition和动画的keyframe</code>产生一些动画效果。</p>
+<h3 id="转换Transform-2D的属性"><a href="#转换Transform-2D的属性" class="headerlink" title="转换Transform 2D的属性"></a>转换Transform 2D的属性</h3><p>​    通常的属性包含了属性名和属性值，而CSS3的transform属性是用函数来定义的。Transform 2D函数包括了<code>translate()、scale()、rotate()和skew()。</code></p>
+<p>书写格式:<br>    <code>transform:函数名(x轴值，y轴值);</code></p>
+<p>转换的效果：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306104641628.png" alt="image-20210306104641628"></p>
+<ol>
+<li><p><code>translate()</code></p>
+<pre><code>translate()方法，根据左(X轴)和顶部(Y轴)位置给定的参数，从当前元素位置移动。接受CSS的标准度量单位（px），translate(x,y)：转换，沿着X和Y轴移动元素。
+</code></pre>
+</li>
+<li><p><code>rotate()</code></p>
+<pre><code>通过 rotate() 方法，元素顺时针旋转给定的角度。允许负值，元素将逆时针旋转。它以deg为单位，代表了旋转的角度。
+</code></pre>
+</li>
+<li><p><code>scale()</code></p>
+<pre><code>通过值把宽和高转换为原始尺寸的n倍，接受两个参数，前面的为宽，后面的为高。可取值：默认值为1，缩小：0-1 之间的数，放大：大于1的数
+</code></pre>
+</li>
+<li><p><code>skew()</code></p>
+<pre><code>根据水平轴和垂直轴翻转，接受两个或一个值，两个值时前面为水平，后面为垂直的角度 ，一个值只是水平轴的角度。此函数是指元素的倾斜角度。
+</code></pre>
+</li>
+</ol>
+<h3 id="转换Transform-3D的属性"><a href="#转换Transform-3D的属性" class="headerlink" title="转换Transform 3D的属性"></a>转换Transform 3D的属性</h3><p>Transform 3D常用函数有：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306104709948.png" alt="image-20210306104709948"></p>
+<h2 id="CSS3-过渡Transition"><a href="#CSS3-过渡Transition" class="headerlink" title="CSS3 过渡Transition"></a>CSS3 过渡Transition</h2><p><a class="link" href="https://www.cnblogs.com/afighter/p/5731293.html">transition演示<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="什么是过渡"><a href="#什么是过渡" class="headerlink" title="什么是过渡"></a>什么是过渡</h3><p>使用<code>css</code>的属性值在一段时间内平滑的过渡，比如，鼠标悬停后，背景色在<code>1s</code>内，由白色平滑的过渡到红色<br>指定四个要素：</p>
+<ul>
+<li><p>过渡属性，如background、color等</p>
+</li>
+<li><p>过渡所需时间</p>
+</li>
+<li><p>过渡函数，即过渡的速度、方式等</p>
+</li>
+<li><p>过渡延迟时间，表示开始执行的时间</p>
+</li>
+</ul>
+<p>触发过渡：通过用户的行为触发，如点击、悬浮等</p>
+<h3 id="过渡属性"><a href="#过渡属性" class="headerlink" title="过渡属性"></a>过渡属性</h3><p><code>transition-property: none|all|property;</code><br>多个属性用逗号隔开，可设置过渡的属性，颜色属性。取值为数值的属性：转换属性，渐变属性，阴影属性</p>
+<h3 id="过渡时间"><a href="#过渡时间" class="headerlink" title="过渡时间"></a>过渡时间</h3><p><code>transition-duration: s|ms;</code><br>默认值为0，意味着不会有效果，所以必须设置transition-duration属性</p>
+<h3 id="过渡函数"><a href="#过渡函数" class="headerlink" title="过渡函数"></a>过渡函数</h3><p><code>transition-timing-function: ;</code><br>取值：<br>ease：默认值，规定慢速开始，然后变快，然后慢速结束的过渡效果<br>linear：匀速<br>ease-in：规定以慢速开始，加速效果<br>ease-out：规定以慢速结束，减速效果<br>ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
+<h3 id="过渡延迟"><a href="#过渡延迟" class="headerlink" title="过渡延迟"></a>过渡延迟</h3><p><code>transition-delay: s|ms;</code><br>改变元素属性值后多长时间开始执行过渡效果</p>
+<h3 id="简写属性transition"><a href="#简写属性transition" class="headerlink" title="简写属性transition"></a>简写属性transition</h3><p>transition属性是一个简写属性，用于设置四个过渡属性<br><code>语法：transition:property duration timing-function delay;</code></p>
+<figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="selector-id">#box</span>{</span><br><span class="line">     <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">     <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">     <span class="attribute">background-color</span>: <span class="number">#1fb57b</span>;</span><br><span class="line">     <span class="attribute">transition</span>: background <span class="number">4s</span> linear <span class="number">1s</span>;</span><br><span class="line"> }</span><br><span class="line"> <span class="selector-id">#box</span><span class="selector-pseudo">:hover</span>{</span><br><span class="line">     <span class="attribute">background-color</span>: red;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="CSS3-animation动画"><a href="#CSS3-animation动画" class="headerlink" title="CSS3 animation动画"></a>CSS3 animation动画</h2><p><a class="link" href="https://www.runoob.com/css3/css3-animations.html">菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
+<p>过渡属性只能模拟动画效果，animation属性可以制作类似Flash动画，通过关键帧控制动画的每一步，使元素从一种样式逐渐变化为另一种样式，实现复杂的动画效果。</p>
+<h3 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h3><p>作用：用于声明动画，指定关键帧<br>帧：用于分解动画动作，每个帧代表某个时间点。定义每个帧上的动作</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306105920430.png" alt="image-20210306105920430"></p>
+<h3 id="keyframes的语法"><a href="#keyframes的语法" class="headerlink" title="@keyframes的语法"></a>@keyframes的语法</h3><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> name  {</span><br><span class="line">    from|0%{</span><br><span class="line">        css样式</span><br><span class="line">    }</span><br><span class="line">    percent{</span><br><span class="line">        css样式</span><br><span class="line">    }</span><br><span class="line">    to|100%{</span><br><span class="line">        css样式</span><br><span class="line">    }</span><br><span class="line"> }</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="animation属性"><a href="#animation属性" class="headerlink" title="animation属性"></a>animation属性</h3><p><code>animation</code>属性用于控制动画，调用由<code>@keyframes</code>定义的动画，设置动画属性，如时间、次数等。animation属性是一个简写属性。<br>语法为：<code>animation:name  duration timing-function delay iteration-count direction;</code></p>
+<h3 id="动画子属性"><a href="#动画子属性" class="headerlink" title="动画子属性"></a>动画子属性</h3><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attribute">animation-name</span>: ;	调用动画，规定需要和keyframes的名字一致</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-duration</span>: s|ms;	动画完成一个周期所需要的时间</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-timing-function</span>: ;	规定动画的速度变化类型</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-delay</span>:s|ms ;	播放之前的延迟时间</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-iteration-count</span>: 数值|infinite;	播放次数 infinite表示无限次播放</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-direction</span>: normal|alternate;	动画播放方向,<span class="attribute">normal</span>为默认值，表示正常播放,alternate表示轮流播放，即动画会在奇数次正常播放，而在偶数次向后播放</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-fill-mode</span>: forwards;	动画停在最后一帧，默认值为<span class="attribute">none</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-play-state</span>:paused|running; 属性规定动画正在运行还是暂停，默认值为running</span><br></pre></td></tr></tbody></table></figure>
+
+]]></content>
+      <tags>
+        <tag>css</tag>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>flex布局</title>
+    <url>/2020/09/03/css/flex%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<hr>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/beach-1236581_1280.jpg"></p>
+<hr>
+<h2 id="伸缩盒模型flexbox"><a href="#伸缩盒模型flexbox" class="headerlink" title="伸缩盒模型flexbox"></a>伸缩盒模型flexbox</h2><p>伸缩盒模型也叫弹性盒模型，或<code>flexBox</code>。它决定一个盒子在其它盒子中的分布，以及如何处理可用的空间。使用该模型，可以轻松的创建“自适应”浏览器窗口的流动布局。</p>
+<blockquote>
+<p><code>flexbox</code>是一个很新的东西，在<code>w3c</code>希望可以使用<code>flexbox</code>实现一些更复杂的布局和应用。传统盒模型基于HTML文档流排列，使用弹性盒模型可以规定特定的顺序。要开启弹性盒模型，只需要设置display的属性值 flex，因为它是<code>CSS3</code>中为display新添加的值类型。</p>
+</blockquote>
+<p>目的：在浏览器窗口变化时，盒子相应改变大小。<br><code>设置了弹性盒模型后，float，clear和vertical-align在flex中不起作用。</code></p>
+<h3 id="旧的伸缩盒"><a href="#旧的伸缩盒" class="headerlink" title="旧的伸缩盒"></a>旧的伸缩盒</h3><p>​       伸缩盒从被提出到如今一直在修改，所以这里涉及到了新老写法。伸缩盒最老版本<br>​    <code>display:box;</code>  将对象作为弹性伸缩盒显示（火狐和<code>webkit</code>内核都支持<code>display:-webkit-box;</code>或<code>display:-moz-box;</code>）。子元素   <code>box-flex:;</code><br>伸缩盒过渡版本：<code>display:flexbox;</code>  将对象作为弹性伸缩盒显示<br>伸缩盒最新版本：<code>display:flex;</code>  将对象作为弹性伸缩盒显示</p>
+<h3 id="flexbox的基础知识"><a href="#flexbox的基础知识" class="headerlink" title="flexbox的基础知识"></a>flexbox的基础知识</h3><p>​    由于 <code>flexbox</code>是一个整体的模块，它们之中一些属性是在父容器上设置，而一些是在子容器上设置。一个<code>flexbox</code>的基本结构：</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">         <span class="selector-class">.box</span>{ <span class="attribute">display</span>: flex;}    //最外层的为父容器，定义此容器为弹性布局</span></span><br><span class="line"><span class="css">        <span class="selector-class">.item1</span>{ <span class="attribute">flex-grow</span>: <span class="number">1</span>; <span class="attribute">background</span>:pink}       <span class="attribute">flex-grow</span>占<span class="number">1</span>比例</span></span><br><span class="line"><span class="css">        <span class="selector-class">.item2</span>{ <span class="attribute">flex-grow</span>: <span class="number">2</span>; <span class="attribute">background</span>:orange}     占<span class="number">2</span>比例</span></span><br><span class="line"><span class="css">        <span class="selector-class">.item3</span>{ <span class="attribute">flex-grow</span>: <span class="number">3</span>; <span class="attribute">background</span>:red}        占<span class="number">3</span>比例</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>1.首先规定哪个是父容器，父容器中包含多个“项目”（每个子div），项目是可以在父容器中弹性布局的。<br>2.其次还可以规定父容器中要怎么来显示它里面的项目，如是否换行、项目排列方向等</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306112154902.png" alt="image-20210306112154902"></p>
+<h3 id="父容器常用属性"><a href="#父容器常用属性" class="headerlink" title="父容器常用属性"></a>父容器常用属性</h3><p><code>display: flex;</code>   定义一个flex容器。新弹性盒  设置父元素是一个弹性盒，子元素会自动水平排列</p>
+<p><code>justify-content: flex-end;</code>   设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306112215032.png" alt="image-20210306112215032"></p>
+<p> <code>align-items</code> 属性定义flex子项在flex容器的当前行的侧轴（纵轴）方向上的对齐方式</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306112226193.png" alt="image-20210306112226193"></p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">   .container{</span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span></span><br><span class="line"><span class="css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="css">        <span class="attribute">justify-content</span>: center;</span></span><br><span class="line"><span class="css">        <span class="attribute">align-items</span>: center;</span></span><br><span class="line">    }</span><br><span class="line"><span class="css">    <span class="selector-class">.container</span> <span class="selector-tag">div</span>{</span></span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">     <span class="attribute">border</span>: <span class="number">1px</span> solid blueviolet;</span></span><br><span class="line">     }   </span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306112238867.png" alt="image-20210306112238867"></p>
+<p><code>flex-wrap</code>  让弹性盒元素在必要的时候拆行</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306112251352.png" alt="image-20210306112251352"></p>
+<h3 id="子元素常用属性"><a href="#子元素常用属性" class="headerlink" title="子元素常用属性"></a>子元素常用属性</h3><p>伸缩盒中的每一个元素称为一个项目。<br><code>flex-grow: number;</code>   一个数字，规定项目将相对于其他灵活的项目进行扩展的量。默认值是 0。</p>
+<figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="selector-class">.item1</span>{ <span class="attribute">flex-grow</span>: <span class="number">1</span>; <span class="attribute">background</span>:pink}                </span><br><span class="line"><span class="selector-class">.item2</span>{ <span class="attribute">flex-grow</span>: <span class="number">1</span>; <span class="attribute">background</span>:orange}             </span><br><span class="line"><span class="selector-class">.item3</span>{ <span class="attribute">flex-grow</span>: <span class="number">1</span>; <span class="attribute">background</span>:red}    </span><br></pre></td></tr></tbody></table></figure>
+
+]]></content>
+      <tags>
+        <tag>css</tag>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>栅格布局基本概念</title>
+    <url>/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<hr>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/mountain-547363_1280.jpg"></p>
+<hr>
+<h2 id="栅格化布局"><a href="#栅格化布局" class="headerlink" title="栅格化布局"></a>栅格化布局</h2><p>网格布局<code>（Grid）</code>是最强大的 CSS 布局方案。</p>
+<p>它将网页划分成一个个网格，可以任意组合不同的网格，做出各种各样的布局。以前，只能通过复杂的 <code>CSS 框架</code>达到的效果，现在浏览器内置了。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123208640.png" alt="image-20210306123208640"></p>
+<p>Grid 布局与 Flex 布局有一定的相似性，都可以指定容器内部多个项目的位置。但是，它们也存在重大区别。</p>
+<p>Flex 布局是轴线布局，只能指定”项目”针对轴线的位置，可以看作是一维布局。</p>
+<p>Grid 布局则是将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是二维布局。Grid 布局远比 Flex 布局强大。</p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>容器和项目<br>    采用网格布局的区域，称为<code>"容器"（container）</code>。容器内部采用网格定位的子元素，称为<code>"项目"（item）</code>。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123226964.png" alt="image-20210306123226964"></p>
+<p>上面代码中，最外层的<code>&lt;div&gt;</code>元素就是容器，内层的三个<code>&lt;div&gt;</code>元素就是项目。</p>
+<p>注意：项目只能是容器的顶层子元素，不包含项目的子元素，比如上面代码的<code>&lt;p&gt;</code>元素就不是项目。Grid 布局只对项目生效。</p>
+<p>行和列<br>       容器里面的水平区域称为”行”（row），垂直区域称为”列”（column）。水平的深色区域就是”行”，垂直的深色区域就是”列”</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123236954.png" alt="image-20210306123236954"></p>
+<h3 id="容器中的属性"><a href="#容器中的属性" class="headerlink" title="容器中的属性"></a>容器中的属性</h3><p><code>display：grid</code>  指定一个容器采用网格布局，默认情况下，容器元素都是块元素。inline-grid  设置为行内元素网格布局</p>
+<p><code>grid-template-columns</code> 属性定义每一列的列宽。<br><code>grid-template-rows</code> 属性定义每一行的行高</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123247282.png" alt="image-20210306123247282"></p>
+<p>注意，设为网格布局以后，<code>容器子元素（项目）的float、display: inline-block、display: table-cell、vertical-align和column-*等设置都将失效。</code></p>
+<p>科普视频：</p>
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+    <iframe src="//player.bilibili.com/player.html?aid=801652859&amp;bvid=BV18y4y1E7jG&amp;cid=296179537&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;">
+    </iframe>
+</div>
+
+]]></content>
+      <tags>
+        <tag>css</tag>
+        <tag>html</tag>
+      </tags>
+  </entry>
 </search>

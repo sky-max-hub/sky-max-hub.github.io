@@ -9,7 +9,7 @@
     
     <title>
         
-            考研日记01 |
+            flex布局 |
         
         大白小怪兽
     </title>
@@ -155,7 +155,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">考研日记01</span>
+            <span class="title-hover-animation">flex布局</span>
         </div>
 
         
@@ -173,7 +173,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-03-01 19:46:48
+        <i class="fas fa-edit"></i>&nbsp;2020-09-03 14:53:47
     </span>
     
     
@@ -182,11 +182,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E8%80%83%E7%A0%94/">考研</a>&nbsp;
+                        <a href="/tags/css/">css</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E6%97%A5%E8%AE%B0/">日记</a>&nbsp;
+                        | <a href="/tags/html/">html</a>&nbsp;
                     </li>
                 
             </ul>
@@ -196,12 +196,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>310 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>776 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
         </span>
     
     
@@ -218,12 +218,32 @@
 
         <div class="article-content markdown-body">
             <hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/sheep-690198_1280.jpg"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/beach-1236581_1280.jpg"></p>
 <hr>
-<h1 id="考研日记01"><a href="#考研日记01" class="headerlink" title="考研日记01"></a>考研日记01</h1><p>今天把刘晓艳的《不就是语法和长难句》视频刷到了定语从句的部分。但是总感觉有点吃力，因为单词积累的比较少，也没有看她的单词视频。不过她的长难句视频确实很好，看着看着还能吸取点正能量。争取这学期把六级过了。</p>
-<p>看了刘老师的视频后，学到了点道理：</p>
-<p>人生大部分的烦恼来自对别人过高的期待。因为比起要求自己，怪罪他人好像要轻松很多。那么快乐的道理就很简单了，对他人抱着最低的期待，不要奢望别人给得太多并且严格要求自己。</p>
-<p>今天考研第一天，算是吧，最大的感触就是要做的事情太多了，但是又感觉做不了或做不好。心里还时不时地冒出想放弃直接找工作的念头。不过都被我压了下来。对我而言，这可能是最后一次我提升学历，抚平高考遗憾的机会了。所以坚持吧，第一天就把我整的怀疑人生了，还是想太多了，干就完了！</p>
+<h2 id="伸缩盒模型flexbox"><a href="#伸缩盒模型flexbox" class="headerlink" title="伸缩盒模型flexbox"></a>伸缩盒模型flexbox</h2><p>伸缩盒模型也叫弹性盒模型，或<code>flexBox</code>。它决定一个盒子在其它盒子中的分布，以及如何处理可用的空间。使用该模型，可以轻松的创建“自适应”浏览器窗口的流动布局。</p>
+<blockquote>
+<p><code>flexbox</code>是一个很新的东西，在<code>w3c</code>希望可以使用<code>flexbox</code>实现一些更复杂的布局和应用。传统盒模型基于HTML文档流排列，使用弹性盒模型可以规定特定的顺序。要开启弹性盒模型，只需要设置display的属性值 flex，因为它是<code>CSS3</code>中为display新添加的值类型。</p>
+</blockquote>
+<p>目的：在浏览器窗口变化时，盒子相应改变大小。<br><code>设置了弹性盒模型后，float，clear和vertical-align在flex中不起作用。</code></p>
+<h3 id="旧的伸缩盒"><a href="#旧的伸缩盒" class="headerlink" title="旧的伸缩盒"></a>旧的伸缩盒</h3><p>​       伸缩盒从被提出到如今一直在修改，所以这里涉及到了新老写法。伸缩盒最老版本<br>​    <code>display:box;</code>  将对象作为弹性伸缩盒显示（火狐和<code>webkit</code>内核都支持<code>display:-webkit-box;</code>或<code>display:-moz-box;</code>）。子元素   <code>box-flex:;</code><br>伸缩盒过渡版本：<code>display:flexbox;</code>  将对象作为弹性伸缩盒显示<br>伸缩盒最新版本：<code>display:flex;</code>  将对象作为弹性伸缩盒显示</p>
+<h3 id="flexbox的基础知识"><a href="#flexbox的基础知识" class="headerlink" title="flexbox的基础知识"></a>flexbox的基础知识</h3><p>​    由于 <code>flexbox</code>是一个整体的模块，它们之中一些属性是在父容器上设置，而一些是在子容器上设置。一个<code>flexbox</code>的基本结构：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">         <span class="selector-class">.box</span>{ <span class="attribute">display</span>: flex;}    //最外层的为父容器，定义此容器为弹性布局</span></span><br><span class="line"><span class="css">        <span class="selector-class">.item1</span>{ <span class="attribute">flex-grow</span>: <span class="number">1</span>; <span class="attribute">background</span>:pink}       <span class="attribute">flex-grow</span>占<span class="number">1</span>比例</span></span><br><span class="line"><span class="css">        <span class="selector-class">.item2</span>{ <span class="attribute">flex-grow</span>: <span class="number">2</span>; <span class="attribute">background</span>:orange}     占<span class="number">2</span>比例</span></span><br><span class="line"><span class="css">        <span class="selector-class">.item3</span>{ <span class="attribute">flex-grow</span>: <span class="number">3</span>; <span class="attribute">background</span>:red}        占<span class="number">3</span>比例</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>1.首先规定哪个是父容器，父容器中包含多个“项目”（每个子div），项目是可以在父容器中弹性布局的。<br>2.其次还可以规定父容器中要怎么来显示它里面的项目，如是否换行、项目排列方向等</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306112154902.png" alt="image-20210306112154902"></p>
+<h3 id="父容器常用属性"><a href="#父容器常用属性" class="headerlink" title="父容器常用属性"></a>父容器常用属性</h3><p><code>display: flex;</code>   定义一个flex容器。新弹性盒  设置父元素是一个弹性盒，子元素会自动水平排列</p>
+<p><code>justify-content: flex-end;</code>   设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306112215032.png" alt="image-20210306112215032"></p>
+<p> <code>align-items</code> 属性定义flex子项在flex容器的当前行的侧轴（纵轴）方向上的对齐方式</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306112226193.png" alt="image-20210306112226193"></p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">   .container{</span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span></span><br><span class="line"><span class="css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="css">        <span class="attribute">justify-content</span>: center;</span></span><br><span class="line"><span class="css">        <span class="attribute">align-items</span>: center;</span></span><br><span class="line">    }</span><br><span class="line"><span class="css">    <span class="selector-class">.container</span> <span class="selector-tag">div</span>{</span></span><br><span class="line"><span class="css">        <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">        <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">     <span class="attribute">border</span>: <span class="number">1px</span> solid blueviolet;</span></span><br><span class="line">     }   </span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306112238867.png" alt="image-20210306112238867"></p>
+<p><code>flex-wrap</code>  让弹性盒元素在必要的时候拆行</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306112251352.png" alt="image-20210306112251352"></p>
+<h3 id="子元素常用属性"><a href="#子元素常用属性" class="headerlink" title="子元素常用属性"></a>子元素常用属性</h3><p>伸缩盒中的每一个元素称为一个项目。<br><code>flex-grow: number;</code>   一个数字，规定项目将相对于其他灵活的项目进行扩展的量。默认值是 0。</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item1</span>{ <span class="attribute">flex-grow</span>: <span class="number">1</span>; <span class="attribute">background</span>:pink}                </span><br><span class="line"><span class="selector-class">.item2</span>{ <span class="attribute">flex-grow</span>: <span class="number">1</span>; <span class="attribute">background</span>:orange}             </span><br><span class="line"><span class="selector-class">.item3</span>{ <span class="attribute">flex-grow</span>: <span class="number">1</span>; <span class="attribute">background</span>:red}    </span><br></pre></td></tr></tbody></table></figure>
+
 
         </div>
 
@@ -231,11 +251,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：考研日记01</li>
+        <li>本文标题：flex布局</li>
         <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2021-03-01 19:46:48</li>
+        <li>创建时间：2020-09-03 14:53:47</li>
         <li>
-            本文链接：https://blog.sky123.top/2021/03/01/考研/考研01/
+            本文链接：https://blog.sky123.top/2020/09/03/css/flex布局/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -252,13 +272,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/03/02/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9402/"
+                           href="/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">考研日记02</span>
+                                <span class="post-nav-title-item">栅格布局基本概念</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -268,10 +288,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2020/09/04/css/css%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/"
+                           href="/2020/09/02/css/display%E5%92%8C%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">media媒体查询</span>
+                                <span class="post-nav-title-item">display属性和盒子模型</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -395,7 +415,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%83%E7%A0%94%E6%97%A5%E8%AE%B001"><span class="nav-text">考研日记01</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%B8%E7%BC%A9%E7%9B%92%E6%A8%A1%E5%9E%8Bflexbox"><span class="nav-text">伸缩盒模型flexbox</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A7%E7%9A%84%E4%BC%B8%E7%BC%A9%E7%9B%92"><span class="nav-text">旧的伸缩盒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flexbox%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-text">flexbox的基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%B6%E5%AE%B9%E5%99%A8%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7"><span class="nav-text">父容器常用属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7"><span class="nav-text">子元素常用属性</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
