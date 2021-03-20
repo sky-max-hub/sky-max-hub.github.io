@@ -6,7 +6,7 @@
   <link href="http://blog.sky123.top/atom.xml" rel="self"/>
   
   <link href="http://blog.sky123.top/"/>
-  <updated>2021-03-13T14:24:21.734Z</updated>
+  <updated>2021-03-20T08:31:49.849Z</updated>
   <id>http://blog.sky123.top/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>考研日记</title>
+    <link href="http://blog.sky123.top/2021/03/20/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9412/"/>
+    <id>http://blog.sky123.top/2021/03/20/%E8%80%83%E7%A0%94/%E8%80%83%E7%A0%9412/</id>
+    <published>2021-03-19T16:00:00.000Z</published>
+    <updated>2021-03-20T08:31:49.849Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/sunrise-1014712_1280.jpg"></p><hr><p>想来已经大概有一周的时间没有写日记了，日记逐渐变为了周记，我说的再多也没用，我确实没有坚持下来，一个习惯逐渐被我淡忘和觉得无所谓。</p><p>不知道该从何说起，那就先说一下我现在的感受吧。现在是周六下午 16:00 左右，我本想午觉醒来复习考研，发现自己完全没有心思做题，只是一心想着玩！想着该打羽毛球还是篮球，想着是该约哪个同学，看哪个同学有空？全然没有心思学习。我承认这问题出现不仅仅只出现在今天，前几天我就该防微杜渐，什么时候做什么一定要坚持，这样才有状态。不能贪一时的愉悦，这样会磨掉我的信心和耐心的。不过现在既然已经如此了，我也只能慢慢来，逐渐再让自己进入状态了。不要因为一天的浪费而心情低落，但也不能觉得完全不所谓！首先态度一定要认真。</p><p>既然说到了羽毛球，不得不说这项运动是真的上头！当然主要还是室友和洋洋都喜欢打，导致我也开始忘乎所以了。看来我真的很容易得意忘形，也很容易心态爆炸。就说到这吧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://img.sky123.top/img/sunrise-1014712_1280.jpg&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;想来已经大概有一周的时间没</summary>
+      
+    
+    
+    
+    
+    <category term="考研" scheme="http://blog.sky123.top/tags/%E8%80%83%E7%A0%94/"/>
+    
+    <category term="日记" scheme="http://blog.sky123.top/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>考研日记11</title>
@@ -521,33 +548,6 @@
     <category term="Swagger" scheme="http://blog.sky123.top/tags/Swagger/"/>
     
     <category term="Java" scheme="http://blog.sky123.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot多环境切换</title>
-    <link href="http://blog.sky123.top/2020/08/01/springboot/Springboot%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/"/>
-    <id>http://blog.sky123.top/2020/08/01/springboot/Springboot%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/</id>
-    <published>2020-07-31T16:00:00.000Z</published>
-    <updated>2021-03-01T11:36:36.476Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/dunes-5568253_1280.jpg"></p><hr><h1 id="SpringBoot多环境切换"><a href="#SpringBoot多环境切换" class="headerlink" title="SpringBoot多环境切换"></a>SpringBoot多环境切换</h1><h2 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h2><ol><li><p>不同环境配置可以配置不同的参数,不用来回改参数</p></li><li><p>便于部署，提高效率，减少出错</p></li></ol><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>在默认文件中 <code>application.yml</code>  中 配置切换属性：</p><figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br></pre></td></tr></tbody></table></figure><p>新建 <code>application-dev.yml</code> 文件：</p><figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">这是开发环境</span></span><br></pre></td></tr></tbody></table></figure><p>启动后看到：</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301185125610.png" alt="image-20210301185125610"></p><p>说明环境切换成功。</p><p>同理可以新建多个配置文件，<code>yml 配置方式</code>会自动识别。只需在默认的 <code>application.yml</code> 切换即可。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;hr&gt;
-&lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://img.sky123.top/img/dunes-5568253_1280.jpg&quot;&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;SpringBoot</summary>
-      
-    
-    
-    
-    
-    <category term="JavaWeb" scheme="http://blog.sky123.top/tags/JavaWeb/"/>
-    
-    <category term="SpringBoot" scheme="http://blog.sky123.top/tags/SpringBoot/"/>
     
   </entry>
   
