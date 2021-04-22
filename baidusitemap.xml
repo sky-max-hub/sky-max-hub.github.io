@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.sky123.top/2021/04/22/javascript/mock/</loc>
+    <lastmod>2021-04-22</lastmod>
+  </url>
+  <url>
     <loc>http://blog.sky123.top/2020/04/04/springboot/SpringBoot04%E6%95%B4%E5%90%88Junit/</loc>
     <lastmod>2021-03-11</lastmod>
   </url>
