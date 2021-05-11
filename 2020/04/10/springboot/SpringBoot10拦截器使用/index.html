@@ -196,7 +196,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>333 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>334 字</span>
         </span>
     
     
@@ -220,14 +220,67 @@
             <hr>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2016/11/02/17/38/japan-1792369_1280.jpg"></p>
 <hr>
-<h1 id="SpringBoot10拦截器使用"><a href="#SpringBoot10拦截器使用" class="headerlink" title="SpringBoot10拦截器使用"></a>SpringBoot10拦截器使用</h1><h2 id="开发拦截器"><a href="#开发拦截器" class="headerlink" title="开发拦截器"></a>开发拦截器</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object o)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        System.out.println(<span class="string">"======1====="</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;<span class="comment">//返回true 放行  返回false阻止</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        System.out.println(<span class="string">"=====2====="</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object o, Exception e)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        System.out.println(<span class="string">"=====3====="</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="SpringBoot10拦截器使用"><a href="#SpringBoot10拦截器使用" class="headerlink" title="SpringBoot10拦截器使用"></a>SpringBoot10拦截器使用</h1><h2 id="开发拦截器"><a href="#开发拦截器" class="headerlink" title="开发拦截器"></a>开发拦截器</h2><pre><code class="java">public class MyInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
+        System.out.println("======1=====");
+        return true;//返回true 放行  返回false阻止
+    }
 
-<h2 id="配置拦截器"><a href="#配置拦截器" class="headerlink" title="配置拦截器"></a>配置拦截器</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.x中拦截器配置</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterceptorConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurerAdapter</span> </span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>{</span><br><span class="line">        <span class="comment">//添加拦截器</span></span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> MyInterceptor())</span><br><span class="line">            .addPathPatterns(<span class="string">"/**"</span>)<span class="comment">//定义拦截路径</span></span><br><span class="line">            .excludePathPatterns(<span class="string">"/hello/**"</span>); <span class="comment">//排除拦截路径</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.x中拦截器配置</span></span><br><span class="line">	<span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterceptorConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurationSupport</span> </span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>{</span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> MyInterceptor())<span class="comment">//添加拦截器</span></span><br><span class="line">                .addPathPatterns(<span class="string">"/hello/**"</span>)<span class="comment">//添加拦截的请求路径</span></span><br><span class="line">                .excludePathPatterns(<span class="string">"/hello/world"</span>);<span class="comment">//添加排除那些请求路径不经过拦截器</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView modelAndView) throws Exception {
+        System.out.println("=====2=====");
+    }
 
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object o, Exception e) throws Exception {
+        System.out.println("=====3=====");
+    }
+}
+</code></pre>
+<h2 id="配置拦截器"><a href="#配置拦截器" class="headerlink" title="配置拦截器"></a>配置拦截器</h2><pre><code class="java">//1.x中拦截器配置
+@Component
+public class InterceptorConfig extends WebMvcConfigurerAdapter {
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        //添加拦截器
+        registry.addInterceptor(new MyInterceptor())
+            .addPathPatterns("/**")//定义拦截路径
+            .excludePathPatterns("/hello/**"); //排除拦截路径
+    }
+}
+
+//2.x中拦截器配置
+    @Configuration
+public class InterceptorConfig extends WebMvcConfigurationSupport {
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new MyInterceptor())//添加拦截器
+                .addPathPatterns("/hello/**")//添加拦截的请求路径
+                .excludePathPatterns("/hello/world");//添加排除那些请求路径不经过拦截器
+    }
+}
+</code></pre>
 <p><code>注意:在springboot2.x版本中自定义拦截器之后出现项目中静态资源 404情况,需要在自定义拦截器的配置中加入如下配置即可:</code></p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterceptorConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurationSupport</span> </span>{</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>{</span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> LoginInterceptor())</span><br><span class="line">                .addPathPatterns(<span class="string">"/file/**"</span>)</span><br><span class="line">                .excludePathPatterns(<span class="string">"/js/**"</span>, <span class="string">"/css/**"</span>, <span class="string">"/files/**"</span>);<span class="comment">//放行静态资源 静态资源被认为是一个控制器请求</span></span><br><span class="line">    }</span><br><span class="line">		<span class="comment">//springboot2.x 静态资源在自定义拦截器之后无法访问的解决方案</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span> </span>{</span><br><span class="line">        registry.addResourceHandler(<span class="string">"/**"</span>) <span class="comment">//代表以什么样的请求路径访问静态资源</span></span><br><span class="line">                .addResourceLocations(<span class="string">"classpath:/static/"</span>)</span><br><span class="line">                .addResourceLocations(<span class="string">"classpath:/templates/"</span>);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre><code class="java">@Configuration
+public class InterceptorConfig extends WebMvcConfigurationSupport {
 
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginInterceptor())
+                .addPathPatterns("/file/**")
+                .excludePathPatterns("/js/**", "/css/**", "/files/**");//放行静态资源 静态资源被认为是一个控制器请求
+    }
+        //springboot2.x 静态资源在自定义拦截器之后无法访问的解决方案
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**") //代表以什么样的请求路径访问静态资源
+                .addResourceLocations("classpath:/static/")
+                .addResourceLocations("classpath:/templates/");
 
+    }
+}
+</code></pre>
 
         </div>
 

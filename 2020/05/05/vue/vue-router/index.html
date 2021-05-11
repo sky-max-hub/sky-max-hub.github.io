@@ -321,16 +321,16 @@
 <h4 id="懒加载的实现"><a href="#懒加载的实现" class="headerlink" title="懒加载的实现"></a>懒加载的实现</h4><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923222609010.png" alt="image-20200923222609010"></p>
 <h4 id="懒加载的方式"><a href="#懒加载的方式" class="headerlink" title="懒加载的方式"></a>懒加载的方式</h4><ol>
 <li><p>结合Vue的异步组件和Webpack的代码分析.</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Home = <span class="function"><span class="params">resolve</span> =&gt;</span> { <span class="built_in">require</span>.ensure([<span class="string">'../components/Home.vue'</span>], <span class="function">() =&gt;</span> { resolve(<span class="built_in">require</span>(<span class="string">'../components/Home.vue'</span>)) })};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre><code class="js">const Home = resolve =&gt; { require.ensure(['../components/Home.vue'], () =&gt; { resolve(require('../components/Home.vue')) })};
+</code></pre>
 </li>
 <li><p>AMD写法</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> About = <span class="function"><span class="params">resolve</span> =&gt;</span> <span class="built_in">require</span>([<span class="string">'../components/About.vue'</span>], resolve);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre><code class="js">const About = resolve =&gt; require(['../components/About.vue'], resolve);
+</code></pre>
 </li>
 <li><p>在ES6中, 我们可以有更加简单的写法来组织Vue异步组件和Webpack的代码分割.</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Home = <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">'../components/Home.vue'</span>)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-
-
+<pre><code class="js">const Home = () =&gt; import('../components/Home.vue')
+</code></pre>
 </li>
 </ol>
 <h3 id="路由嵌套"><a href="#路由嵌套" class="headerlink" title="路由嵌套"></a>路由嵌套</h3><h4 id="认识嵌套路由"><a href="#认识嵌套路由" class="headerlink" title="认识嵌套路由"></a>认识嵌套路由</h4><p>嵌套路由是一个很常见的功能。比如在home页面中, 我们希望通过/home/news和/home/message访问一些内容.</p>

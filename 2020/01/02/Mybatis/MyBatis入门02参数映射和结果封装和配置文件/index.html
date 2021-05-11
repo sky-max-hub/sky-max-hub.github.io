@@ -196,7 +196,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>568 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>566 字</span>
         </span>
     
     
@@ -225,18 +225,51 @@
 <h2 id="2-Mybatis-的输出结果封装"><a href="#2-Mybatis-的输出结果封装" class="headerlink" title="2. Mybatis 的输出结果封装"></a>2. Mybatis 的输出结果封装</h2><h3 id="2-1-resultType"><a href="#2-1-resultType" class="headerlink" title="2.1 resultType"></a>2.1 resultType</h3><p>实体类型：全类名，<strong>实体类中的属性名称必须和查询语句中的列名保持一致，否则无法实现封装</strong>  </p>
 <p>基本类型和String ：直接写类名称（首字母大写），也可以使用别名（首字母小写）</p>
 <h3 id="2-2-resultMap"><a href="#2-2-resultMap" class="headerlink" title="2.2 resultMap"></a>2.2 resultMap</h3><p>resultMap 标签可以建立查询的列名和实体类的属性名称不一致时建立对应关系。从而实现封装。  </p>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 建立 User 实体和数据库表的对应关系</span></span><br><span class="line"><span class="comment">type 属性：指定实体类的全限定类名</span></span><br><span class="line"><span class="comment">id 属性：给定一个唯一标识，是给查询 select 标签引用用的。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"com.itheima.domain.User"</span> <span class="attr">id</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"userId"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"username"</span> <span class="attr">property</span>=<span class="string">"userName"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"sex"</span> <span class="attr">property</span>=<span class="string">"userSex"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"address"</span> <span class="attr">property</span>=<span class="string">"userAddress"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"birthday"</span> <span class="attr">property</span>=<span class="string">"userBirthday"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">id 标签：用于指定主键字段</span><br><span class="line">result 标签：用于指定非主键字段</span><br><span class="line">column 属性：用于指定数据库列名</span><br><span class="line">property 属性：用于指定实体类属性名称</span><br></pre></td></tr></tbody></table></figure>
-
-
-
-<h2 id="3-SqlMapConfig-xml配置文件"><a href="#3-SqlMapConfig-xml配置文件" class="headerlink" title="3. SqlMapConfig.xml配置文件"></a>3. SqlMapConfig.xml配置文件</h2><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code class="xml">&lt;!-- 建立 User 实体和数据库表的对应关系
+type 属性：指定实体类的全限定类名
+id 属性：给定一个唯一标识，是给查询 select 标签引用用的。
+--&gt;
+&lt;resultMap type="com.itheima.domain.User" id="userMap"&gt;
+&lt;id column="id" property="userId"/&gt;
+&lt;result column="username" property="userName"/&gt;
+&lt;result column="sex" property="userSex"/&gt;
+&lt;result column="address" property="userAddress"/&gt;
+&lt;result column="birthday" property="userBirthday"/&gt;
+&lt;/resultMap&gt;
+id 标签：用于指定主键字段
+result 标签：用于指定非主键字段
+column 属性：用于指定数据库列名
+property 属性：用于指定实体类属性名称
+</code></pre>
+<h2 id="3-SqlMapConfig-xml配置文件"><a href="#3-SqlMapConfig-xml配置文件" class="headerlink" title="3. SqlMapConfig.xml配置文件"></a>3. SqlMapConfig.xml配置文件</h2><pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;
+&lt;configuration&gt;
+&lt;/configuration&gt;
+</code></pre>
 <h3 id="3-1-typeAliases（类型别名）"><a href="#3-1-typeAliases（类型别名）" class="headerlink" title="3.1 typeAliases（类型别名）"></a>3.1 typeAliases（类型别名）</h3><p>在 <code>&lt;configuration&gt;&lt;/configuration&gt;</code>中配置</p>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 单个别名定义 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">"user"</span> <span class="attr">type</span>=<span class="string">"com.itheima.domain.User"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 批量别名定义，扫描整个包下的类，别名为类名（首字母大写或小写都可以） --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.itheima.domain"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"其它包"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="3-2-mappers（映射器）"><a href="#3-2-mappers（映射器）" class="headerlink" title="3.2 mappers（映射器）"></a>3.2 mappers（映射器）</h3><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 注册指定包下的所有 mapper 接口,直接写包名，注意目录结构要相同，接口名和配置文件名相同--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.hnust.dao"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 映射某个配置文件，注意目录结构要相同，接口名和配置文件名相同--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com.hnust/dao/UserDao.xml"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!--用于注解 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">"cn.hnust.UserDAO"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
-
+<pre><code class="xml">&lt;typeAliases&gt;
+&lt;!-- 单个别名定义 --&gt;
+&lt;typeAlias alias="user" type="com.itheima.domain.User"/&gt;
+&lt;!-- 批量别名定义，扫描整个包下的类，别名为类名（首字母大写或小写都可以） --&gt;
+&lt;package name="com.itheima.domain"/&gt;
+&lt;package name="其它包"/&gt;
+&lt;/typeAliases&gt;
+</code></pre>
+<h3 id="3-2-mappers（映射器）"><a href="#3-2-mappers（映射器）" class="headerlink" title="3.2 mappers（映射器）"></a>3.2 mappers（映射器）</h3><pre><code class="xml">&lt;mappers&gt;
+    
+&lt;!-- 注册指定包下的所有 mapper 接口,直接写包名，注意目录结构要相同，接口名和配置文件名相同--&gt;
+&lt;package name="com.hnust.dao"/&gt;
+    
+&lt;!-- 映射某个配置文件，注意目录结构要相同，接口名和配置文件名相同--&gt;
+&lt;mapper resource="com.hnust/dao/UserDao.xml"/&gt;
+    
+&lt;!--用于注解 --&gt;
+&lt;mapper class="cn.hnust.UserDAO"/&gt;
+    
+&lt;/mappers&gt;
+</code></pre>
 
         </div>
 

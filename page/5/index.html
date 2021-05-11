@@ -168,7 +168,10 @@
 
 
 Spring入门04Spring整合JUnit使用@RunWith 注解替换原有运行器  
-123@RunWith(SpringJUnit4ClassRunner.class)public class AccountServiceTest {}...
+@RunWith(SpringJUnit4ClassRunner.class)
+public class AccountServiceTest {
+}
+...
                     
                 </div>
 
@@ -217,7 +220,10 @@ Spring入门04Spring整合JUnit使用@RunWith 注解替换原有运行器
 
 
 Spring入门03基于注解方式的IOC1 配置环境在 bean.xml 中导入约束
-12345678910111213141516&lt;!--注意：基于注解整合时，导入约束时需要多导入一个 context 名称空间下的约束。--&gt;&l...
+&lt;!--
+注意：基于注解整合时，导入约束时需要多导入一个 context 名称空间下的约束。
+--&gt;
+&lt;?xml version="1.0"...
                     
                 </div>
 
@@ -562,7 +568,12 @@ SpringMVC入门01环境配置和原理1. SpringMVC概述SpringMVC 是一种基�
 
 
 MyBatis入门05基于注解的Mybatis1.配置方式 修改Dao,SqlMapConfig.xml,并移除Dao.xml
-12345678public interface IUserDao {/*** 查询所有用户* @return*/S...
+public interface IUserDao {
+/**
+* 查询所有用户
+* @return
+*/
+Sele...
                     
                 </div>
 

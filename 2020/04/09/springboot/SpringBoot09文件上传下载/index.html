@@ -196,7 +196,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>386 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>383 字</span>
         </span>
     
     
@@ -221,18 +221,52 @@
 <p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2012/06/19/10/32/owl-50267_1280.jpg"></p>
 <hr>
 <h1 id="SpringBoot09文件上传下载"><a href="#SpringBoot09文件上传下载" class="headerlink" title="SpringBoot09文件上传下载"></a>SpringBoot09文件上传下载</h1><h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>定义:<code>用户访问当前系统,将自己本地计算机中文件通过浏览器上传到当前系统所在的服务器过程中称之为文件的上传</code></p>
-<h3 id="准备上传页面"><a href="#准备上传页面" class="headerlink" title="准备上传页面"></a>准备上传页面</h3><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"路径...."</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"aa"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"上传"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	1. 表单提交方式必须是post</span></span><br><span class="line"><span class="comment">	2. 表单的enctype属性必须为multipart/form-data</span></span><br><span class="line"><span class="comment">	3. 后台接受变量名字要与文件选择name属性一致</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="准备上传页面"><a href="#准备上传页面" class="headerlink" title="准备上传页面"></a>准备上传页面</h3><pre><code class="html">&lt;form action="路径...." method="post" enctype="multipart/form-data"&gt;
+        &lt;input type="file" name="aa"&gt;
+        &lt;input type="submit" value="上传"&gt;
+&lt;/form&gt;
+&lt;!--
+    1. 表单提交方式必须是post
+    2. 表单的enctype属性必须为multipart/form-data
+    3. 后台接受变量名字要与文件选择name属性一致
+--&gt;
+</code></pre>
+<h3 id="编写控制器"><a href="#编写控制器" class="headerlink" title="编写控制器"></a>编写控制器</h3><pre><code class="java">@Controller
+@RequestMapping("/file")
+public class FileController {
+  @RequestMapping("/upload")
+  public String upload(MultipartFile aa, HttpServletRequest request) throws IOException {
+        String realPath = request.getRealPath("/upload");
+        aa.transferTo(new File(realPath,aa.getOriginalFilename()));//文件上传
+        return "index";
+  }
+}
+</code></pre>
+<h3 id="修改文件上传大小"><a href="#修改文件上传大小" class="headerlink" title="修改文件上传大小"></a>修改文件上传大小</h3><pre><code class="yml">#上传时出现如下异常:  上传文件的大小超出默认配置  默认10M
+nested exception is java.lang.IllegalStateException: org.apache.tomcat.util.http.fileupload.FileUploadBase$SizeLimitExceededException: the request was rejected because its size (38443713) exceeds the configured maximum (10485760)
+#修改上传文件大小:
+spring:
+  http:
+    multipart:
+       max-request-size: 209715200  #用来控制文件上传大小的限制
+       max-file-size: 209715200 #用来指定服务端最大文件大小   
 
-<h3 id="编写控制器"><a href="#编写控制器" class="headerlink" title="编写控制器"></a>编写控制器</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping("/file")</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileController</span> </span>{</span><br><span class="line">  <span class="meta">@RequestMapping("/upload")</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">upload</span><span class="params">(MultipartFile aa, HttpServletRequest request)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">        String realPath = request.getRealPath(<span class="string">"/upload"</span>);</span><br><span class="line">        aa.transferTo(<span class="keyword">new</span> File(realPath,aa.getOriginalFilename()));<span class="comment">//文件上传</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="修改文件上传大小"><a href="#修改文件上传大小" class="headerlink" title="修改文件上传大小"></a>修改文件上传大小</h3><figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#上传时出现如下异常:  上传文件的大小超出默认配置  默认10M</span></span><br><span class="line"><span class="attr">nested exception is java.lang.IllegalStateException:</span> <span class="string">org.apache.tomcat.util.http.fileupload.FileUploadBase$SizeLimitExceededException:</span> <span class="string">the</span> <span class="string">request</span> <span class="string">was</span> <span class="string">rejected</span> <span class="string">because</span> <span class="string">its</span> <span class="string">size</span> <span class="string">(38443713)</span> <span class="string">exceeds</span> <span class="string">the</span> <span class="string">configured</span> <span class="string">maximum</span> <span class="string">(10485760)</span></span><br><span class="line"><span class="comment">#修改上传文件大小:</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">http:</span></span><br><span class="line">    <span class="attr">multipart:</span></span><br><span class="line">       <span class="attr">max-request-size:</span> <span class="number">209715200</span>  <span class="comment">#用来控制文件上传大小的限制</span></span><br><span class="line">       <span class="attr">max-file-size:</span> <span class="number">209715200</span> <span class="comment">#用来指定服务端最大文件大小   </span></span><br><span class="line"></span><br><span class="line"><span class="string">spring.servlet.multipart.max-file-size=500MB</span></span><br><span class="line"><span class="string">spring.servlet.multipart.max-request-size=500MB</span></span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h2><h3 id="提供下载文件链接"><a href="#提供下载文件链接" class="headerlink" title="提供下载文件链接"></a>提供下载文件链接</h3><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"../file/download?fileName=corejava.txt"</span>&gt;</span>corejava.txt<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="开发控制器"><a href="#开发控制器" class="headerlink" title="开发控制器"></a>开发控制器</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping("/download")</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">(String fileName, HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        String realPath = request.getRealPath(<span class="string">"/upload"</span>);</span><br><span class="line">        FileInputStream is = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(realPath, fileName));</span><br><span class="line">        ServletOutputStream os = response.getOutputStream();</span><br><span class="line">        response.setHeader(<span class="string">"content-disposition"</span>,<span class="string">"attachment;fileName="</span>+ URLEncoder.encode(fileName,<span class="string">"UTF-8"</span>));</span><br><span class="line">        IOUtils.copy(is,os);</span><br><span class="line">        IOUtils.closeQuietly(is);</span><br><span class="line">        IOUtils.closeQuietly(os);</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
-
-
-
+spring.servlet.multipart.max-file-size=500MB
+spring.servlet.multipart.max-request-size=500MB
+</code></pre>
+<h2 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h2><h3 id="提供下载文件链接"><a href="#提供下载文件链接" class="headerlink" title="提供下载文件链接"></a>提供下载文件链接</h3><pre><code class="html">&lt;a href="../file/download?fileName=corejava.txt"&gt;corejava.txt&lt;/a&gt;
+</code></pre>
+<h3 id="开发控制器"><a href="#开发控制器" class="headerlink" title="开发控制器"></a>开发控制器</h3><pre><code class="java">@RequestMapping("/download")
+public void download(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String realPath = request.getRealPath("/upload");
+        FileInputStream is = new FileInputStream(new File(realPath, fileName));
+        ServletOutputStream os = response.getOutputStream();
+        response.setHeader("content-disposition","attachment;fileName="+ URLEncoder.encode(fileName,"UTF-8"));
+        IOUtils.copy(is,os);
+        IOUtils.closeQuietly(is);
+        IOUtils.closeQuietly(os);
+    }
+</code></pre>
 
         </div>
 

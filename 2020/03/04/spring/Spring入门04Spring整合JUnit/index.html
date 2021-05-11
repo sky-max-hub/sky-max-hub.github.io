@@ -196,7 +196,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>112 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>110 字</span>
         </span>
     
     
@@ -221,12 +221,22 @@
 <p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2015/07/31/06/50/forest-868715_1280.jpg"></p>
 <hr>
 <h1 id="Spring入门04Spring整合JUnit"><a href="#Spring入门04Spring整合JUnit" class="headerlink" title="Spring入门04Spring整合JUnit"></a>Spring入门04Spring整合JUnit</h1><p>使用@RunWith 注解替换原有运行器  </p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceTest</span> </span>{</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code class="java">@RunWith(SpringJUnit4ClassRunner.class)
+public class AccountServiceTest {
+}
+</code></pre>
 <p>使用@ContextConfiguration 指定 spring 配置文件的位置  </p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="meta">@ContextConfiguration(locations= {"classpath:bean.xml"})</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceTest</span> </span>{</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">@ContextConfiguration 注解：</span></span><br><span class="line"><span class="comment">locations 属性： 用于指定配置文件的位置。如果是类路径下，需要用 classpath:表明</span></span><br><span class="line"><span class="comment">classes 属性： 用于指定注解的类。当不使用 xml 配置时，需要用此属性指定注解类的位置</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code class="java">@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations= {"classpath:bean.xml"})
+public class AccountServiceTest {
+}
 
-
+/*
+@ContextConfiguration 注解：
+locations 属性： 用于指定配置文件的位置。如果是类路径下，需要用 classpath:表明
+classes 属性： 用于指定注解的类。当不使用 xml 配置时，需要用此属性指定注解类的位置
+*/
+</code></pre>
 
         </div>
 

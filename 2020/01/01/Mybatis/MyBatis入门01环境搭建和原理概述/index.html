@@ -236,20 +236,84 @@
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528100320103.png" alt="image-20200528100320103">
 
 <hr>
-<h3 id="2-2-导入依赖"><a href="#2-2-导入依赖" class="headerlink" title="2.2. 导入依赖"></a>2.2. 导入依赖</h3><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="2-2-导入依赖"><a href="#2-2-导入依赖" class="headerlink" title="2.2. 导入依赖"></a>2.2. 导入依赖</h3><pre><code class="xml">&lt;dependency&gt;
+&lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+&lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+&lt;version&gt;3.4.5&lt;/version&gt;
+&lt;/dependency&gt;
 
+&lt;dependency&gt;
+&lt;groupId&gt;mysql&lt;/groupId&gt;
+&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+&lt;version&gt;5.1.6&lt;/version&gt;
+&lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
 <h3 id="2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）"><a href="#2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）" class="headerlink" title="2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）"></a>2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）</h3><h3 id="2-4-编写接口的映射文件"><a href="#2-4-编写接口的映射文件" class="headerlink" title="2.4. 编写接口的映射文件"></a>2.4. 编写接口的映射文件</h3><hr>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528100817522.png" alt="image-20200528100817522">
 
 <hr>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.itheima.dao.IUserDao"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置查询所有操作 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"com.itheima.domain.User"</span>&gt;</span></span><br><span class="line">select * from user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;
 
-<h3 id="2-5-编写核心配置文件-SqlMapConfig-xml-resources目录下"><a href="#2-5-编写核心配置文件-SqlMapConfig-xml-resources目录下" class="headerlink" title="2.5. 编写核心配置文件 SqlMapConfig.xml  (resources目录下)"></a>2.5. 编写核心配置文件 SqlMapConfig.xml  (resources目录下)</h3><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置 mybatis 的环境 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置 mysql 的环境 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置事务的类型 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置连接数据库的信息：用的是数据源(连接池) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/ee50"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"1234"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 告知 mybatis 映射配置的位置 resource表明其在resources文件上 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/itheima/dao/IUserDao.xml"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
-
-
-<h2 id="3-MyBatis框架原理"><a href="#3-MyBatis框架原理" class="headerlink" title="3. MyBatis框架原理"></a>3. MyBatis框架原理</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisTest</span> </span>{</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> Exception </span>{</span><br><span class="line"><span class="comment">//1.读取配置文件</span></span><br><span class="line">InputStream in = Resources.getResourceAsStream(<span class="string">"SqlMapConfig.xml"</span>);</span><br><span class="line"><span class="comment">//2.创建 SqlSessionFactory 的构建者对象</span></span><br><span class="line">SqlSessionFactoryBuilder builder = <span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line"><span class="comment">//3.使用构建者创建工厂对象 SqlSessionFactory</span></span><br><span class="line">SqlSessionFactory factory = builder.build(in);</span><br><span class="line"><span class="comment">//4.使用 SqlSessionFactory 生产 SqlSession 对象</span></span><br><span class="line">SqlSession session = factory.openSession();</span><br><span class="line"><span class="comment">//5.使用 SqlSession 创建 dao 接口的代理对象</span></span><br><span class="line">IUserDao userDao = session.getMapper(IUserDao.class);</span><br><span class="line"><span class="comment">//6.使用代理对象执行查询所有方法</span></span><br><span class="line">List&lt;User&gt; users = userDao.findAll();</span><br><span class="line"><span class="keyword">for</span>(User user : users) {</span><br><span class="line">System.out.println(user);</span><br><span class="line">}</span><br><span class="line"><span class="comment">//7.释放资源</span></span><br><span class="line">session.close();</span><br><span class="line">in.close();</span><br><span class="line">}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+&lt;mapper namespace="com.itheima.dao.IUserDao"&gt;
+&lt;!-- 配置查询所有操作 --&gt;
+&lt;select id="findAll" resultType="com.itheima.domain.User"&gt;
+select * from user
+&lt;/select&gt;
+&lt;/mapper&gt;
+</code></pre>
+<h3 id="2-5-编写核心配置文件-SqlMapConfig-xml-resources目录下"><a href="#2-5-编写核心配置文件-SqlMapConfig-xml-resources目录下" class="headerlink" title="2.5. 编写核心配置文件 SqlMapConfig.xml  (resources目录下)"></a>2.5. 编写核心配置文件 SqlMapConfig.xml  (resources目录下)</h3><pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;
+&lt;configuration&gt;
+&lt;!-- 配置 mybatis 的环境 --&gt;
+&lt;environments default="mysql"&gt;
+&lt;!-- 配置 mysql 的环境 --&gt;
+&lt;environment id="mysql"&gt;
+&lt;!-- 配置事务的类型 --&gt;
+&lt;transactionManager type="JDBC"&gt;&lt;/transactionManager&gt;
+&lt;!-- 配置连接数据库的信息：用的是数据源(连接池) --&gt;
+&lt;dataSource type="POOLED"&gt;
+&lt;property name="driver" value="com.mysql.jdbc.Driver"/&gt;
+&lt;property name="url" value="jdbc:mysql://localhost:3306/ee50"/&gt;
+&lt;property name="username" value="root"/&gt;
+&lt;property name="password" value="1234"/&gt;
+&lt;/dataSource&gt;
+&lt;/environment&gt;
+&lt;/environments&gt;
+&lt;!-- 告知 mybatis 映射配置的位置 resource表明其在resources文件上 --&gt;
+&lt;mappers&gt;
+&lt;mapper resource="com/itheima/dao/IUserDao.xml"/&gt;
+&lt;/mappers&gt;
+&lt;/configuration&gt;
+</code></pre>
+<h2 id="3-MyBatis框架原理"><a href="#3-MyBatis框架原理" class="headerlink" title="3. MyBatis框架原理"></a>3. MyBatis框架原理</h2><pre><code class="java">public class MybatisTest {
+public static void main(String[] args)throws Exception {
+//1.读取配置文件
+InputStream in = Resources.getResourceAsStream("SqlMapConfig.xml");
+//2.创建 SqlSessionFactory 的构建者对象
+SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+//3.使用构建者创建工厂对象 SqlSessionFactory
+SqlSessionFactory factory = builder.build(in);
+//4.使用 SqlSessionFactory 生产 SqlSession 对象
+SqlSession session = factory.openSession();
+//5.使用 SqlSession 创建 dao 接口的代理对象
+IUserDao userDao = session.getMapper(IUserDao.class);
+//6.使用代理对象执行查询所有方法
+List&lt;User&gt; users = userDao.findAll();
+for(User user : users) {
+System.out.println(user);
+}
+//7.释放资源
+session.close();
+in.close();
+}
+}
+</code></pre>
 <h3 id="3-1-构建者模式"><a href="#3-1-构建者模式" class="headerlink" title="3.1 构建者模式"></a>3.1 构建者模式</h3><hr>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528140047789.png" alt="image-20200528140047789"></p>
 <hr>
