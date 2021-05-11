@@ -6,7 +6,7 @@
   <link href="http://blog.sky123.top/atom.xml" rel="self"/>
   
   <link href="http://blog.sky123.top/"/>
-  <updated>2021-05-04T03:17:27.697Z</updated>
+  <updated>2021-05-11T05:06:27.456Z</updated>
   <id>http://blog.sky123.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker部署练习</title>
+    <link href="http://blog.sky123.top/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/"/>
+    <id>http://blog.sky123.top/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/</id>
+    <published>2021-05-03T16:00:00.000Z</published>
+    <updated>2021-05-11T05:06:27.456Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="部署nginx"><a href="#部署nginx" class="headerlink" title="部署nginx"></a>部署nginx</h2><ol><li>搜索镜像，建议去 docker hub 搜索，可以看到帮助文档</li><li>下载镜像</li><li>运行测试</li><li>配置容器内的ngnix的配置文件</li></ol><p><a class="link" href="https://hub.docker.com/">https://hub.docker.com/<i class="fas fa-external-link-alt"></i></a></p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504094603067.png" alt="image-20210504094603067"></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker pull nginxUsing default tag: latestlatest: Pulling from library/nginxf7ec5a41d630: Pull complete aa1efa14b3bf: Pull complete b78b95af9b17: Pull complete c7d6bca2b8dc: Pull complete cf16cd8e71e0: Pull complete 0241c68333ef: Pull complete Digest: sha256:75a55d33ecc73c2a242450a9f1cc858499d468f077ea942867e662c247b5e412Status: Downloaded newer image for nginx:latestdocker.io/library/nginx:latest[root@izwz91mv6i3x6k12jjqh60z ~]# docker imagesREPOSITORY   TAG       IMAGE ID       CREATED        SIZEnginx        latest    62d49f9bab67   2 weeks ago    133MBcentos       latest    300e315adb2f   4 months ago   209MB#参考运行容器的命令[root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d --name nginx01 -p 3304:80 nginxdccb2ad300dbbb4598dbb2017805fba5364379326d4a6296dac9b88bc61d8970[root@izwz91mv6i3x6k12jjqh60z ~]# docker psCONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMESdccb2ad300db   nginx     "/docker-entrypoint.…"   21 seconds ago   Up 20 seconds   0.0.0.0:3304-&gt;80/tcp, :::3304-&gt;80/tcp   nginx01#测试是否运行成功，发送一个请求[root@izwz91mv6i3x6k12jjqh60z ~]# curl localhost:3304&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Welcome to nginx!&lt;/title&gt;&lt;style&gt;    body {        width: 35em;        margin: 0 auto;        font-family: Tahoma, Verdana, Arial, sans-serif;    }&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;&lt;p&gt;If you see this page, the nginx web server is successfully installed andworking. Further configuration is required.&lt;/p&gt;&lt;p&gt;For online documentation and support please refer to&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;Commercial support is available at&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>开放对应端口后，公网访问看到效果如下图：</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504102706906.png" alt="image-20210504102706906"></p><p>查看容器内的ngnix的配置文件：</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker exec -it nginx01 /bin/bashroot@dccb2ad300db:/# whereis nginx nginx: /usr/sbin/nginx /usr/lib/nginx /etc/nginx /usr/share/nginxroot@dccb2ad300db:/# cd /etc/nginxroot@dccb2ad300db:/etc/nginx# lsconf.dfastcgi_paramskoi-utf  koi-win  mime.types  modules  nginx.conf  scgi_paramsuwsgi_params  win-utf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>端口暴露原理示意图：</p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504100014282.png" alt="image-20210504100014282" style="zoom: 67%;"><p>问题：每次改动 <code>nginx</code> 配置文件，都需要进入容器内部？十分的麻烦，要是可以在容器外部提供一个映射路径，达到在外部文件修改的同时，同步修改内部就好了！</p><p>解决技术：<code>数据卷技术！！</code></p><h2 id="部署Tomcat"><a href="#部署Tomcat" class="headerlink" title="部署Tomcat"></a>部署Tomcat</h2><ol><li>搜索和下载 tomcat</li><li>启动运行</li><li>测试效果</li></ol><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#运行时提示错误[root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d -p 8080:8080 --name tomcat02 tomcat9cdceb4daa857dbd5c4e03dfd7eeded50ae027d8484137889d605871520dee97docker: Error response from daemon: driver failed programming external connectivity on endpoint tomcat02 (56f474809e2ca18c3e9ce63318aa6918600e004621743625e4be5754f74b6493):  (iptables failed: iptables --wait -t nat -A DOCKER -p tcp -d 0/0 --dport 8080 -j DNAT --to-destination 172.18.0.2:8080 ! -i docker0: iptables: No chain/target/match by that name. (exit status 1)).#重启后再次运行[root@izwz91mv6i3x6k12jjqh60z ~]#  systemctl restart docker#提示容器名已经有的[root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d -p 8080:8080 --name tomcat02 tomcatdocker: Error response from daemon: Conflict. The container name "/tomcat02" is already in use by container "9cdceb4daa857dbd5c4e03dfd7eeded50ae027d8484137889d605871520dee97". You have to remove (or rename) that container to be able to reuse that name.See 'docker run --help'.#没有正在运行的容器[root@izwz91mv6i3x6k12jjqh60z ~]# docker psCONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES#查看历史记录[root@izwz91mv6i3x6k12jjqh60z ~]# docker ps -aCONTAINER ID   IMAGE          COMMAND                  CREATED             STATUS                        PORTS     NAMES9cdceb4daa85   tomcat         "catalina.sh run"        5 minutes ago       Created                                 tomcat02#开启容器[root@izwz91mv6i3x6k12jjqh60z ~]# docker start 9cdceb4daa859cdceb4daa85#运行成功[root@izwz91mv6i3x6k12jjqh60z ~]# docker psCONTAINER ID   IMAGE     COMMAND             CREATED         STATUS         PORTS                                       NAMES9cdceb4daa85   tomcat    "catalina.sh run"   5 minutes ago   Up 4 seconds   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>查看效果：测试访问没有问题</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504105656898.png" alt="image-20210504105656898"></p><p>发现问题：</p><ol><li>容器内部的 <code>Linux</code> 命令变少了（镜像只保证了最小的可运行环境）</li><li>webapps中没有内容（需要把 <code>webapps.dist</code> 文件夹的内容复制到 <code>webapps</code>）</li></ol><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker psCONTAINER ID   IMAGE     COMMAND             CREATED          STATUS          PORTS                                       NAMES9cdceb4daa85   tomcat    "catalina.sh run"   19 minutes ago   Up 14 minutes   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02[root@izwz91mv6i3x6k12jjqh60z ~]# docker exec -it tomcat02 /bin/bashroot@9cdceb4daa85:/usr/local/tomcat# llbash: ll: command not foundroot@9cdceb4daa85:/usr/local/tomcat# lsBUILDING.txt LICENSE  README.md RUNNING.txt  conf  logs    temp     webapps.distCONTRIBUTING.md  NOTICE   RELEASE-NOTES  bin      lib   native-jni-lib  webapps  work#将 `webapps.dist` 文件夹的内容复制到 `webapps`cp -r webapps.dist/* webapps<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>查看效果：</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504112530764.png" alt="image-20210504112530764"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;部署nginx&quot;&gt;&lt;a href=&quot;#部署nginx&quot; class=&quot;headerlink&quot; title=&quot;部署nginx&quot;&gt;&lt;/a&gt;部署nginx&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;搜索镜像，建议去 docker hub 搜索，可以看到帮助文档&lt;/li&gt;
+&lt;li&gt;下载镜</summary>
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="http://blog.sky123.top/tags/Linux/"/>
+    
+    <category term="Docker" scheme="http://blog.sky123.top/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker概述和安装</title>
@@ -34,7 +60,31 @@
     
     
     
+    <category term="Linux" scheme="http://blog.sky123.top/tags/Linux/"/>
+    
     <category term="Docker" scheme="http://blog.sky123.top/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux服务器防火墙端口配置</title>
+    <link href="http://blog.sky123.top/2021/05/04/linux/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/"/>
+    <id>http://blog.sky123.top/2021/05/04/linux/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/</id>
+    <published>2021-05-03T16:00:00.000Z</published>
+    <updated>2021-05-04T02:24:52.111Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="查看防火墙状态"><a href="#查看防火墙状态" class="headerlink" title="查看防火墙状态"></a>查看防火墙状态</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# systemctl status firewalld● firewalld.service - firewalld - dynamic firewall daemon   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)   Active: inactive (dead)     Docs: man:firewalld(1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="开启、关闭防火墙"><a href="#开启、关闭防火墙" class="headerlink" title="开启、关闭防火墙"></a>开启、关闭防火墙</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 开启systemctl start firewalld# 关闭systemctl start firewalld<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="开放指定端口"><a href="#开放指定端口" class="headerlink" title="开放指定端口"></a>开放指定端口</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">firewall-cmd --zone=public --add-port=1935/tcp --permanent命令含义：--zone #作用域--add-port=1935/tcp #添加端口，格式为：端口/通讯协议--permanent #永久生效，没有此参数重启后失效[root@izwz91mv6i3x6k12jjqh60z ~]# firewall-cmd --zone=public --add-port=3304/tcp --permanentsuccess<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="重启防火墙"><a href="#重启防火墙" class="headerlink" title="重启防火墙"></a>重启防火墙</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">firewall-cmd --reload[root@izwz91mv6i3x6k12jjqh60z ~]# firewall-cmd --reloadsuccess<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h3 id="查看端口号"><a href="#查看端口号" class="headerlink" title="查看端口号"></a>查看端口号</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#netstat -ntlp //查看当前所有tcp端口·[root@izwz91mv6i3x6k12jjqh60z ~]# netstat -ntlp Active Internet connections (only servers)Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    tcp        0      0 0.0.0.0:3304            0.0.0.0:*               LISTEN      29109/docker-proxy  tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2185/sshd           tcp6       0      0 :::3304                 :::*                    LISTEN      29113/docker-proxy  #netstat -ntulp |grep 3304 //查看所有3304端口使用情况[root@izwz91mv6i3x6k12jjqh60z ~]# netstat -ntulp |grep 3304tcp        0      0 0.0.0.0:3304            0.0.0.0:*               LISTEN      29109/docker-proxy  tcp6       0      0 :::3304                 :::*                    LISTEN      29113/docker-proxy  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="开放阿里云安全组"><a href="#开放阿里云安全组" class="headerlink" title="开放阿里云安全组"></a>开放阿里云安全组</h3><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504102358335.png" alt="image-20210504102358335"></p><p>设置要开放的对应的端口</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504102424090.png" alt="image-20210504102424090"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;查看防火墙状态&quot;&gt;&lt;a href=&quot;#查看防火墙状态&quot; class=&quot;headerlink&quot; title=&quot;查看防火墙状态&quot;&gt;&lt;/a&gt;查看防火墙状态&lt;/h3&gt;&lt;pre class=&quot;line-numbers language-shell&quot; data-languag</summary>
+      
+    
+    
+    
+    
+    <category term="服务器" scheme="http://blog.sky123.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     <category term="Linux" scheme="http://blog.sky123.top/tags/Linux/"/>
     
@@ -58,59 +108,9 @@
     
     
     
-    <category term="Docker" scheme="http://blog.sky123.top/tags/Docker/"/>
-    
     <category term="Linux" scheme="http://blog.sky123.top/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux服务器防火墙端口配置</title>
-    <link href="http://blog.sky123.top/2021/05/04/linux/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/"/>
-    <id>http://blog.sky123.top/2021/05/04/linux/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/</id>
-    <published>2021-05-03T16:00:00.000Z</published>
-    <updated>2021-05-04T02:24:52.111Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="查看防火墙状态"><a href="#查看防火墙状态" class="headerlink" title="查看防火墙状态"></a>查看防火墙状态</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# systemctl status firewalld● firewalld.service - firewalld - dynamic firewall daemon   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)   Active: inactive (dead)     Docs: man:firewalld(1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="开启、关闭防火墙"><a href="#开启、关闭防火墙" class="headerlink" title="开启、关闭防火墙"></a>开启、关闭防火墙</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 开启systemctl start firewalld# 关闭systemctl start firewalld<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="开放指定端口"><a href="#开放指定端口" class="headerlink" title="开放指定端口"></a>开放指定端口</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">firewall-cmd --zone=public --add-port=1935/tcp --permanent命令含义：--zone #作用域--add-port=1935/tcp #添加端口，格式为：端口/通讯协议--permanent #永久生效，没有此参数重启后失效[root@izwz91mv6i3x6k12jjqh60z ~]# firewall-cmd --zone=public --add-port=3304/tcp --permanentsuccess<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="重启防火墙"><a href="#重启防火墙" class="headerlink" title="重启防火墙"></a>重启防火墙</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">firewall-cmd --reload[root@izwz91mv6i3x6k12jjqh60z ~]# firewall-cmd --reloadsuccess<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h3 id="查看端口号"><a href="#查看端口号" class="headerlink" title="查看端口号"></a>查看端口号</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#netstat -ntlp //查看当前所有tcp端口·[root@izwz91mv6i3x6k12jjqh60z ~]# netstat -ntlp Active Internet connections (only servers)Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    tcp        0      0 0.0.0.0:3304            0.0.0.0:*               LISTEN      29109/docker-proxy  tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2185/sshd           tcp6       0      0 :::3304                 :::*                    LISTEN      29113/docker-proxy  #netstat -ntulp |grep 3304 //查看所有3304端口使用情况[root@izwz91mv6i3x6k12jjqh60z ~]# netstat -ntulp |grep 3304tcp        0      0 0.0.0.0:3304            0.0.0.0:*               LISTEN      29109/docker-proxy  tcp6       0      0 :::3304                 :::*                    LISTEN      29113/docker-proxy  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="开放阿里云安全组"><a href="#开放阿里云安全组" class="headerlink" title="开放阿里云安全组"></a>开放阿里云安全组</h3><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504102358335.png" alt="image-20210504102358335"></p><p>设置要开放的对应的端口</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504102424090.png" alt="image-20210504102424090"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;查看防火墙状态&quot;&gt;&lt;a href=&quot;#查看防火墙状态&quot; class=&quot;headerlink&quot; title=&quot;查看防火墙状态&quot;&gt;&lt;/a&gt;查看防火墙状态&lt;/h3&gt;&lt;pre class=&quot;line-numbers language-shell&quot; data-languag</summary>
-      
-    
-    
-    
-    
-    <category term="Linux" scheme="http://blog.sky123.top/tags/Linux/"/>
-    
-    <category term="服务器" scheme="http://blog.sky123.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker部署练习</title>
-    <link href="http://blog.sky123.top/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/"/>
-    <id>http://blog.sky123.top/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/</id>
-    <published>2021-05-03T16:00:00.000Z</published>
-    <updated>2021-05-11T05:06:27.456Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="部署nginx"><a href="#部署nginx" class="headerlink" title="部署nginx"></a>部署nginx</h2><ol><li>搜索镜像，建议去 docker hub 搜索，可以看到帮助文档</li><li>下载镜像</li><li>运行测试</li><li>配置容器内的ngnix的配置文件</li></ol><p><a class="link" href="https://hub.docker.com/">https://hub.docker.com/<i class="fas fa-external-link-alt"></i></a></p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504094603067.png" alt="image-20210504094603067"></p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker pull nginxUsing default tag: latestlatest: Pulling from library/nginxf7ec5a41d630: Pull complete aa1efa14b3bf: Pull complete b78b95af9b17: Pull complete c7d6bca2b8dc: Pull complete cf16cd8e71e0: Pull complete 0241c68333ef: Pull complete Digest: sha256:75a55d33ecc73c2a242450a9f1cc858499d468f077ea942867e662c247b5e412Status: Downloaded newer image for nginx:latestdocker.io/library/nginx:latest[root@izwz91mv6i3x6k12jjqh60z ~]# docker imagesREPOSITORY   TAG       IMAGE ID       CREATED        SIZEnginx        latest    62d49f9bab67   2 weeks ago    133MBcentos       latest    300e315adb2f   4 months ago   209MB#参考运行容器的命令[root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d --name nginx01 -p 3304:80 nginxdccb2ad300dbbb4598dbb2017805fba5364379326d4a6296dac9b88bc61d8970[root@izwz91mv6i3x6k12jjqh60z ~]# docker psCONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMESdccb2ad300db   nginx     "/docker-entrypoint.…"   21 seconds ago   Up 20 seconds   0.0.0.0:3304-&gt;80/tcp, :::3304-&gt;80/tcp   nginx01#测试是否运行成功，发送一个请求[root@izwz91mv6i3x6k12jjqh60z ~]# curl localhost:3304&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Welcome to nginx!&lt;/title&gt;&lt;style&gt;    body {        width: 35em;        margin: 0 auto;        font-family: Tahoma, Verdana, Arial, sans-serif;    }&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;&lt;p&gt;If you see this page, the nginx web server is successfully installed andworking. Further configuration is required.&lt;/p&gt;&lt;p&gt;For online documentation and support please refer to&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;Commercial support is available at&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>开放对应端口后，公网访问看到效果如下图：</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504102706906.png" alt="image-20210504102706906"></p><p>查看容器内的ngnix的配置文件：</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker exec -it nginx01 /bin/bashroot@dccb2ad300db:/# whereis nginx nginx: /usr/sbin/nginx /usr/lib/nginx /etc/nginx /usr/share/nginxroot@dccb2ad300db:/# cd /etc/nginxroot@dccb2ad300db:/etc/nginx# lsconf.dfastcgi_paramskoi-utf  koi-win  mime.types  modules  nginx.conf  scgi_paramsuwsgi_params  win-utf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>端口暴露原理示意图：</p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504100014282.png" alt="image-20210504100014282" style="zoom: 67%;"><p>问题：每次改动 <code>nginx</code> 配置文件，都需要进入容器内部？十分的麻烦，要是可以在容器外部提供一个映射路径，达到在外部文件修改的同时，同步修改内部就好了！</p><p>解决技术：<code>数据卷技术！！</code></p><h2 id="部署Tomcat"><a href="#部署Tomcat" class="headerlink" title="部署Tomcat"></a>部署Tomcat</h2><ol><li>搜索和下载 tomcat</li><li>启动运行</li><li>测试效果</li></ol><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#运行时提示错误[root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d -p 8080:8080 --name tomcat02 tomcat9cdceb4daa857dbd5c4e03dfd7eeded50ae027d8484137889d605871520dee97docker: Error response from daemon: driver failed programming external connectivity on endpoint tomcat02 (56f474809e2ca18c3e9ce63318aa6918600e004621743625e4be5754f74b6493):  (iptables failed: iptables --wait -t nat -A DOCKER -p tcp -d 0/0 --dport 8080 -j DNAT --to-destination 172.18.0.2:8080 ! -i docker0: iptables: No chain/target/match by that name. (exit status 1)).#重启后再次运行[root@izwz91mv6i3x6k12jjqh60z ~]#  systemctl restart docker#提示容器名已经有的[root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d -p 8080:8080 --name tomcat02 tomcatdocker: Error response from daemon: Conflict. The container name "/tomcat02" is already in use by container "9cdceb4daa857dbd5c4e03dfd7eeded50ae027d8484137889d605871520dee97". You have to remove (or rename) that container to be able to reuse that name.See 'docker run --help'.#没有正在运行的容器[root@izwz91mv6i3x6k12jjqh60z ~]# docker psCONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES#查看历史记录[root@izwz91mv6i3x6k12jjqh60z ~]# docker ps -aCONTAINER ID   IMAGE          COMMAND                  CREATED             STATUS                        PORTS     NAMES9cdceb4daa85   tomcat         "catalina.sh run"        5 minutes ago       Created                                 tomcat02#开启容器[root@izwz91mv6i3x6k12jjqh60z ~]# docker start 9cdceb4daa859cdceb4daa85#运行成功[root@izwz91mv6i3x6k12jjqh60z ~]# docker psCONTAINER ID   IMAGE     COMMAND             CREATED         STATUS         PORTS                                       NAMES9cdceb4daa85   tomcat    "catalina.sh run"   5 minutes ago   Up 4 seconds   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>查看效果：测试访问没有问题</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504105656898.png" alt="image-20210504105656898"></p><p>发现问题：</p><ol><li>容器内部的 <code>Linux</code> 命令变少了（镜像只保证了最小的可运行环境）</li><li>webapps中没有内容（需要把 <code>webapps.dist</code> 文件夹的内容复制到 <code>webapps</code>）</li></ol><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker psCONTAINER ID   IMAGE     COMMAND             CREATED          STATUS          PORTS                                       NAMES9cdceb4daa85   tomcat    "catalina.sh run"   19 minutes ago   Up 14 minutes   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02[root@izwz91mv6i3x6k12jjqh60z ~]# docker exec -it tomcat02 /bin/bashroot@9cdceb4daa85:/usr/local/tomcat# llbash: ll: command not foundroot@9cdceb4daa85:/usr/local/tomcat# lsBUILDING.txt LICENSE  README.md RUNNING.txt  conf  logs    temp     webapps.distCONTRIBUTING.md  NOTICE   RELEASE-NOTES  bin      lib   native-jni-lib  webapps  work#将 `webapps.dist` 文件夹的内容复制到 `webapps`cp -r webapps.dist/* webapps<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>查看效果：</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504112530764.png" alt="image-20210504112530764"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;部署nginx&quot;&gt;&lt;a href=&quot;#部署nginx&quot; class=&quot;headerlink&quot; title=&quot;部署nginx&quot;&gt;&lt;/a&gt;部署nginx&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;搜索镜像，建议去 docker hub 搜索，可以看到帮助文档&lt;/li&gt;
-&lt;li&gt;下载镜</summary>
-      
-    
-    
-    
     
     <category term="Docker" scheme="http://blog.sky123.top/tags/Docker/"/>
-    
-    <category term="Linux" scheme="http://blog.sky123.top/tags/Linux/"/>
     
   </entry>
   
@@ -163,33 +163,6 @@
   </entry>
   
   <entry>
-    <title>栅格布局基本概念</title>
-    <link href="http://blog.sky123.top/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/"/>
-    <id>http://blog.sky123.top/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/</id>
-    <published>2020-09-04T06:53:47.000Z</published>
-    <updated>2021-03-06T05:00:30.948Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/mountain-547363_1280.jpg"></p><hr><h2 id="栅格化布局"><a href="#栅格化布局" class="headerlink" title="栅格化布局"></a>栅格化布局</h2><p>网格布局<code>（Grid）</code>是最强大的 CSS 布局方案。</p><p>它将网页划分成一个个网格，可以任意组合不同的网格，做出各种各样的布局。以前，只能通过复杂的 <code>CSS 框架</code>达到的效果，现在浏览器内置了。</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123208640.png" alt="image-20210306123208640"></p><p>Grid 布局与 Flex 布局有一定的相似性，都可以指定容器内部多个项目的位置。但是，它们也存在重大区别。</p><p>Flex 布局是轴线布局，只能指定”项目”针对轴线的位置，可以看作是一维布局。</p><p>Grid 布局则是将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是二维布局。Grid 布局远比 Flex 布局强大。</p><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>容器和项目<br>    采用网格布局的区域，称为<code>"容器"（container）</code>。容器内部采用网格定位的子元素，称为<code>"项目"（item）</code>。</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123226964.png" alt="image-20210306123226964"></p><p>上面代码中，最外层的<code>&lt;div&gt;</code>元素就是容器，内层的三个<code>&lt;div&gt;</code>元素就是项目。</p><p>注意：项目只能是容器的顶层子元素，不包含项目的子元素，比如上面代码的<code>&lt;p&gt;</code>元素就不是项目。Grid 布局只对项目生效。</p><p>行和列<br>       容器里面的水平区域称为”行”（row），垂直区域称为”列”（column）。水平的深色区域就是”行”，垂直的深色区域就是”列”</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123236954.png" alt="image-20210306123236954"></p><h3 id="容器中的属性"><a href="#容器中的属性" class="headerlink" title="容器中的属性"></a>容器中的属性</h3><p><code>display：grid</code>  指定一个容器采用网格布局，默认情况下，容器元素都是块元素。inline-grid  设置为行内元素网格布局</p><p><code>grid-template-columns</code> 属性定义每一列的列宽。<br><code>grid-template-rows</code> 属性定义每一行的行高</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123247282.png" alt="image-20210306123247282"></p><p>注意，设为网格布局以后，<code>容器子元素（项目）的float、display: inline-block、display: table-cell、vertical-align和column-*等设置都将失效。</code></p><p>科普视频：</p><div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">    <iframe src="//player.bilibili.com/player.html?aid=629123551&amp;bvid=BV1Gt4y1z7NQ&amp;cid=293320928&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;">    </iframe></div>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;hr&gt;
-&lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://img.sky123.top/img/mountain-547363_1280.jpg&quot;&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;栅格化布局&quot;&gt;&lt;</summary>
-      
-    
-    
-    
-    
-    <category term="css" scheme="http://blog.sky123.top/tags/css/"/>
-    
-    <category term="html" scheme="http://blog.sky123.top/tags/html/"/>
-    
-  </entry>
-  
-  <entry>
     <title>media媒体查询</title>
     <link href="http://blog.sky123.top/2020/09/04/css/css%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/"/>
     <id>http://blog.sky123.top/2020/09/04/css/css%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/</id>
@@ -205,6 +178,33 @@
 &lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://img.sky123.top/img/mountains-615428_1280.jpg&quot;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;Media-Q</summary>
+      
+    
+    
+    
+    
+    <category term="css" scheme="http://blog.sky123.top/tags/css/"/>
+    
+    <category term="html" scheme="http://blog.sky123.top/tags/html/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>栅格布局基本概念</title>
+    <link href="http://blog.sky123.top/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/"/>
+    <id>http://blog.sky123.top/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/</id>
+    <published>2020-09-04T06:53:47.000Z</published>
+    <updated>2021-03-06T05:00:30.948Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/mountain-547363_1280.jpg"></p><hr><h2 id="栅格化布局"><a href="#栅格化布局" class="headerlink" title="栅格化布局"></a>栅格化布局</h2><p>网格布局<code>（Grid）</code>是最强大的 CSS 布局方案。</p><p>它将网页划分成一个个网格，可以任意组合不同的网格，做出各种各样的布局。以前，只能通过复杂的 <code>CSS 框架</code>达到的效果，现在浏览器内置了。</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123208640.png" alt="image-20210306123208640"></p><p>Grid 布局与 Flex 布局有一定的相似性，都可以指定容器内部多个项目的位置。但是，它们也存在重大区别。</p><p>Flex 布局是轴线布局，只能指定”项目”针对轴线的位置，可以看作是一维布局。</p><p>Grid 布局则是将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是二维布局。Grid 布局远比 Flex 布局强大。</p><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>容器和项目<br>    采用网格布局的区域，称为<code>"容器"（container）</code>。容器内部采用网格定位的子元素，称为<code>"项目"（item）</code>。</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123226964.png" alt="image-20210306123226964"></p><p>上面代码中，最外层的<code>&lt;div&gt;</code>元素就是容器，内层的三个<code>&lt;div&gt;</code>元素就是项目。</p><p>注意：项目只能是容器的顶层子元素，不包含项目的子元素，比如上面代码的<code>&lt;p&gt;</code>元素就不是项目。Grid 布局只对项目生效。</p><p>行和列<br>       容器里面的水平区域称为”行”（row），垂直区域称为”列”（column）。水平的深色区域就是”行”，垂直的深色区域就是”列”</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123236954.png" alt="image-20210306123236954"></p><h3 id="容器中的属性"><a href="#容器中的属性" class="headerlink" title="容器中的属性"></a>容器中的属性</h3><p><code>display：grid</code>  指定一个容器采用网格布局，默认情况下，容器元素都是块元素。inline-grid  设置为行内元素网格布局</p><p><code>grid-template-columns</code> 属性定义每一列的列宽。<br><code>grid-template-rows</code> 属性定义每一行的行高</p><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306123247282.png" alt="image-20210306123247282"></p><p>注意，设为网格布局以后，<code>容器子元素（项目）的float、display: inline-block、display: table-cell、vertical-align和column-*等设置都将失效。</code></p><p>科普视频：</p><div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">    <iframe src="//player.bilibili.com/player.html?aid=629123551&amp;bvid=BV1Gt4y1z7NQ&amp;cid=293320928&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;">    </iframe></div>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;&lt;img lazyload=&quot;&quot; src=&quot;/images/loading.svg&quot; data-src=&quot;https://img.sky123.top/img/mountain-547363_1280.jpg&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;栅格化布局&quot;&gt;&lt;</summary>
       
     
     
@@ -401,9 +401,9 @@
     
     
     
-    <category term="Javascript" scheme="http://blog.sky123.top/tags/Javascript/"/>
-    
     <category term="前端" scheme="http://blog.sky123.top/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="Javascript" scheme="http://blog.sky123.top/tags/Javascript/"/>
     
     <category term="字符串" scheme="http://blog.sky123.top/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
@@ -430,9 +430,9 @@
     
     
     
-    <category term="Javascript" scheme="http://blog.sky123.top/tags/Javascript/"/>
-    
     <category term="前端" scheme="http://blog.sky123.top/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="Javascript" scheme="http://blog.sky123.top/tags/Javascript/"/>
     
     <category term="数组" scheme="http://blog.sky123.top/tags/%E6%95%B0%E7%BB%84/"/>
     
