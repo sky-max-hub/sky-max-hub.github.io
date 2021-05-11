@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -237,21 +237,9 @@
 </ol>
 <h3 id="CSS中的Media-Query（媒介查询）是什么？"><a href="#CSS中的Media-Query（媒介查询）是什么？" class="headerlink" title="CSS中的Media Query（媒介查询）是什么？"></a>CSS中的Media Query（媒介查询）是什么？</h3><p>​    作为<code>CSS3</code>规范的一部分，媒体查询可以针对不同的屏幕尺寸设置不同的样式，它为每种类型的用户提供了最佳的体验，网站在任何尺寸设置下都能有最佳的显示效果。通过不同的媒体类型和条件定义样式表规则。<br>​<br>​    媒体查询让<code>CSS</code>可以更精确作用于不同的媒体类型和同一媒体的不同条件。媒体查询的大部分媒体特性都接受min和max用于表达“大于或等于”和“小与或等于”。如：<code>width会有min-width和max-width</code><br>​<br>​    <code>Media Queries</code>功能是非常强大的，他可以让你定制不同的分辨率和设备，并在不改变内容的情况下，让你制作的web页面在不同的分辨率和设备下都能显示正常，并且不会因此而丢失样式</p>
 <h4 id="媒体查询实例"><a href="#媒体查询实例" class="headerlink" title="媒体查询实例"></a>媒体查询实例</h4><p>​    通过此实例观察媒体查询的功能后，再来分析语法</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css">
- 	
-<span class="token selector">body</span><span class="token punctuation">{</span><span class="token property">background-color</span><span class="token punctuation">:</span>grey<span class="token punctuation">;</span> <span class="token punctuation">}</span>   //正常情况是灰色
-<span class="token atrule"><span class="token rule">@media</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 992px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><span class="token selector">//宽度大于 992px 的时候被应用 pc端
- 	 	.class</span> <span class="token punctuation">{</span><span class="token property">background</span><span class="token punctuation">:</span> #666<span class="token punctuation">;</span><span class="token punctuation">}</span>  <span class="token punctuation">}</span>  
-   			  			      
-<span class="token atrule"><span class="token rule">@media</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 768px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span> <span class="token selector">//宽度小于768px的时候被应用  移动端
-  		.class</span> <span class="token punctuation">{</span> <span class="token property">background</span><span class="token punctuation">:</span> #ccc<span class="token punctuation">;</span> <span class="token punctuation">}</span>  <span class="token punctuation">}</span>
-			 
-<span class="token atrule"><span class="token rule">@media</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 768x<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 992px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>  <span class="token selector">//宽度在 768px 和 992px 之间的时候被应用
-  		.class</span> <span class="token punctuation">{</span>  <span class="token property">background</span><span class="token punctuation">:</span> #333<span class="token punctuation">;</span>  <span class="token punctuation">}</span>   <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> 	</span><br><span class="line"><span class="selector-tag">body</span>{<span class="attribute">background-color</span>:grey; }   //正常情况是灰色</span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">992px</span>) {//宽度大于 <span class="number">992px</span> 的时候被应用 pc端</span><br><span class="line"> 	 	<span class="selector-class">.class</span> {<span class="attribute">background</span>: <span class="number">#666</span>;}  }  </span><br><span class="line">   			  			      </span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) { //宽度小于<span class="number">768px</span>的时候被应用  移动端</span><br><span class="line">  		<span class="selector-class">.class</span> { <span class="attribute">background</span>: <span class="number">#ccc</span>; }  }</span><br><span class="line">			 </span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">768</span>x) <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">992px</span>) {  //宽度在 <span class="number">768px</span> 和 <span class="number">992px</span> 之间的时候被应用</span><br><span class="line">  		<span class="selector-class">.class</span> {  <span class="attribute">background</span>: <span class="number">#333</span>;  }   }</span><br></pre></td></tr></tbody></table></figure>
 
-<h4 id="使用Media-Query的基本语法"><a href="#使用Media-Query的基本语法" class="headerlink" title="使用Media Query的基本语法"></a>使用Media Query的基本语法</h4><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> mediatype <span class="token keyword">and</span>|<span class="token keyword">not</span>|<span class="token keyword">only</span> <span class="token punctuation">(</span>media feature<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
-       CSS-Code<span class="token punctuation">;</span>
- <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="使用Media-Query的基本语法"><a href="#使用Media-Query的基本语法" class="headerlink" title="使用Media Query的基本语法"></a>使用Media Query的基本语法</h4><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> mediatype <span class="keyword">and</span>|<span class="keyword">not</span>|<span class="keyword">only</span> (media feature) {</span><br><span class="line">       CSS-<span class="selector-tag">Code</span>;</span><br><span class="line"> }</span><br></pre></td></tr></tbody></table></figure>
 
 <p>​    以上通过<code>@media</code>定义媒体查询，<code>mediatype</code>代表了设备类型，目前只有<code>screen</code>最常用，<code>and|not|only</code>为条件，<code>media feature</code>为媒体特点，通常是写设备的宽度。</p>
 <p>​    <code>@media screen and (max-width:960px)</code> 的意思为：当前设备为screen（电脑、平板、手机）时，并且最大宽度为960时，显示的样式。</p>
@@ -267,16 +255,16 @@
 <p>​    使用<code>多个独立的CSS文件会增加HTTP请求的数量</code>，使页面加载变慢。所以我们的媒体查询样式的文件尽量放在一个里面，以注释加以区分。</p>
 <p>阻止移动浏览器自动调整页面大小</p>
 <p>​    <code>ios和android浏览器都基于webkit内核</code>，这两种浏览器和许多其它浏览器都支持用<code>viewport，meta元素覆盖默认的画布缩放设置</code>。只需要在HTML的<code>&lt;head&gt;</code>标签中插入一个<code>&lt;meta&gt;</code>标签，<code>meta</code>标签中可以设置具体的宽度或缩放比。下面为示例</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span>  <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>initial-scale=1.0,width=device-width<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span>  <span class="attr">content</span>=<span class="string">"initial-scale=1.0,width=device-width"</span> /&gt;</span> </span><br></pre></td></tr></tbody></table></figure>
 
 <p><code>name=”viewport”</code>  说明此meta标签定义视口的属性<br><code>​initial-scale=2.0</code>   意思是将页面放大两倍<br><code>​width=device-width</code>   告诉浏览器页面的宽度等于设备宽度</p>
 <p>允许用户将页面最大放大至设备宽度3倍，最小压缩至设备宽度的一半</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;meta name=”viewport” content=”width=device-width, maximum-scale=3, minimum-scale=0.5” /&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">”viewport”</span> <span class="attr">content</span>=<span class="string">”width</span>=<span class="string">device-width,</span> <span class="attr">maximum-scale</span>=<span class="string">3,</span> <span class="attr">minimum-scale</span>=<span class="string">0.5”</span> /&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 
 
 
 <p>禁止用户缩放，可以在混合<code>APP</code>时，为了使<code>html</code>页面更逼真，使页面无法缩放</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;meta name=”viewport” content=”initial-scale=1.0, user-scalable=no” /&gt;   //user-scalable=no是禁止缩放<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">”viewport”</span> <span class="attr">content</span>=<span class="string">”initial-scale</span>=<span class="string">1.0,</span> <span class="attr">user-scalable</span>=<span class="string">no”</span> /&gt;</span>   //user-scalable=no是禁止缩放</span><br></pre></td></tr></tbody></table></figure>
 
 
         </div>
@@ -306,13 +294,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/"
+                           href="/2021/03/10/%E8%BD%AF%E4%BB%B6/powerDesigner/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">栅格布局基本概念</span>
+                                <span class="post-nav-title-item">PowerDesigner安装教程（含下载+汉化+破解）</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -322,10 +310,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2020/09/03/css/flex%E5%B8%83%E5%B1%80/"
+                           href="/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">flex布局</span>
+                                <span class="post-nav-title-item">栅格布局基本概念</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
