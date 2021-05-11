@@ -201,7 +201,7 @@
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>13 分钟</span>
         </span>
     
     
@@ -348,13 +348,81 @@
 <h4 id="常用的模块化开发结构"><a href="#常用的模块化开发结构" class="headerlink" title="常用的模块化开发结构"></a>常用的模块化开发结构</h4><p>目录结构：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001105136797.png" alt="image-20201001105136797"></p>
 <p>在 index.js中做如下定义：</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store的index.js文件</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> modulesFiles = <span class="built_in">require</span>.context(<span class="string">'./modules'</span>, <span class="literal">true</span>, <span class="regexp">/\.js$/</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> modules = modulesFiles.keys().reduce(<span class="function">(<span class="params">modules, modulePath</span>) =&gt;</span> {</span><br><span class="line">    <span class="comment">// set './app.js' =&gt; 'app'</span></span><br><span class="line">    <span class="keyword">const</span> moduleName = modulePath.replace(<span class="regexp">/^\.\/(.*)\.\w+$/</span>, <span class="string">'$1'</span>)</span><br><span class="line">    <span class="keyword">const</span> value = modulesFiles(modulePath)</span><br><span class="line">    modules[moduleName] = value.default</span><br><span class="line">    <span class="keyword">return</span> modules</span><br><span class="line">}, {})</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store({</span><br><span class="line">    modules</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// store的index.js文件</span>
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> Vuex <span class="token keyword">from</span> <span class="token string">'vuex'</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Vuex<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> modulesFiles <span class="token operator">=</span> require<span class="token punctuation">.</span><span class="token function">context</span><span class="token punctuation">(</span><span class="token string">'./modules'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> modules <span class="token operator">=</span> modulesFiles<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">modules<span class="token punctuation">,</span> modulePath</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// set './app.js' =&gt; 'app'</span>
+    <span class="token keyword">const</span> moduleName <span class="token operator">=</span> modulePath<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\.\/(.*)\.\w+$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token string">'$1'</span><span class="token punctuation">)</span>
+    <span class="token keyword">const</span> value <span class="token operator">=</span> <span class="token function">modulesFiles</span><span class="token punctuation">(</span>modulePath<span class="token punctuation">)</span>
+    modules<span class="token punctuation">[</span>moduleName<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">.</span>default
+    <span class="token keyword">return</span> modules
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    modules
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> store
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在每个store文件中可以这样定义：</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = <span class="function">() =&gt;</span> ({</span><br><span class="line">  .......</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getters = {</span><br><span class="line">    ......</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mutations = { <span class="comment">// mutations改变state中的数据</span></span><br><span class="line">  ......</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> actions = { <span class="comment">// 发送请求</span></span><br><span class="line">  ........</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> {</span><br><span class="line">    namespaced: <span class="literal">true</span>,<span class="comment">//注意要开启这个</span></span><br><span class="line">    state,</span><br><span class="line">    mutations,</span><br><span class="line">    actions,</span><br><span class="line">    getters</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">state</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token operator">...</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> getters <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span><span class="token operator">...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> mutations <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token comment">// mutations改变state中的数据</span>
+  <span class="token operator">...</span><span class="token operator">...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> actions <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token comment">// 发送请求</span>
+  <span class="token operator">...</span><span class="token operator">...</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    namespaced<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">//注意要开启这个</span>
+    state<span class="token punctuation">,</span>
+    mutations<span class="token punctuation">,</span>
+    actions<span class="token punctuation">,</span>
+    getters
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>这样在组件中使用的时候可以这样：</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  .......</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">import { mapState } from 'vuex' //</span><br><span class="line"></span><br><span class="line">export default {</span><br><span class="line">  name: "login",</span><br><span class="line">  methods: {</span><br><span class="line">  },</span><br><span class="line">  computed: </span><br><span class="line">    ...mapState({ // 这个是提取store中access.js的state的数据</span><br><span class="line">      'loginState': 'login'</span><br><span class="line">    })</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">   ....</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
+  .......
+&lt;/template&gt;
+
+&lt;script&gt;
+
+import { mapState } from 'vuex' //
+
+export default {
+  name: "login",
+  methods: {
+  },
+  computed: 
+    ...mapState({ // 这个是提取store中access.js的state的数据
+      'loginState': 'login'
+    })
+  }
+};
+&lt;/script&gt;
+&lt;style scoped&gt;
+   ....
+&lt;/style&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
         </div>
 
         
