@@ -283,42 +283,42 @@
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200916165316533.png" alt="image-20200916165316533"></p>
 <p>Vue CLI3初始化项目<br><code>vue create my-project</code></p>
 <h2 id="VueCLI4的使用和配置"><a href="#VueCLI4的使用和配置" class="headerlink" title="VueCLI4的使用和配置"></a>VueCLI4的使用和配置</h2><p>一般喜欢用 test、preview、production分别表示测试，预览，生产三种环境。修改 package.json 文件如下</p>
-<pre><code class="javascript">"scripts": {
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token string">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
 
-    "serve": "vue-cli-service serve",
+    <span class="token string">"serve"</span><span class="token operator">:</span> <span class="token string">"vue-cli-service serve"</span><span class="token punctuation">,</span>
 
-    "test": "vue-cli-service build --mode test",           //测试
+    <span class="token string">"test"</span><span class="token operator">:</span> <span class="token string">"vue-cli-service build --mode test"</span><span class="token punctuation">,</span>           <span class="token comment">//测试</span>
 
-    "preview": "vue-cli-service build --mode preview",     //预览
+    <span class="token string">"preview"</span><span class="token operator">:</span> <span class="token string">"vue-cli-service build --mode preview"</span><span class="token punctuation">,</span>     <span class="token comment">//预览</span>
 
-    "build": "vue-cli-service build --mode production",    //生产
+    <span class="token string">"build"</span><span class="token operator">:</span> <span class="token string">"vue-cli-service build --mode production"</span><span class="token punctuation">,</span>    <span class="token comment">//生产</span>
 
-    "lint": "vue-cli-service lint"
+    <span class="token string">"lint"</span><span class="token operator">:</span> <span class="token string">"vue-cli-service lint"</span>
 
-},
-</code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><code>在项目根目录下新建 .env.test、.env.preview、 .env.production 文件，分别对应三个环境的配置文件，注意，名字要与 --mode 后面的名字分别对应</code></p>
 <p>.env.test 代码如下</p>
-<pre><code class="javascript">NODE_ENV="test"
-VUE_APP_BASE_URL="测试环境域名"
-</code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token constant">NODE_ENV</span><span class="token operator">=</span><span class="token string">"test"</span>
+<span class="token constant">VUE_APP_BASE_URL</span><span class="token operator">=</span><span class="token string">"测试环境域名"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>.env.pre 代码如下</p>
-<pre><code class="javascript">NODE_ENV="preview"
-VUE_APP_BASE_URL="预览环境域名"
-</code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token constant">NODE_ENV</span><span class="token operator">=</span><span class="token string">"preview"</span>
+<span class="token constant">VUE_APP_BASE_URL</span><span class="token operator">=</span><span class="token string">"预览环境域名"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>.env.prod 代码如下</p>
-<pre><code class="javascript">NODE_ENV="production"
-VUE_APP_BASE_URL="生产环境域名"
-</code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token constant">NODE_ENV</span><span class="token operator">=</span><span class="token string">"production"</span>
+<span class="token constant">VUE_APP_BASE_URL</span><span class="token operator">=</span><span class="token string">"生产环境域名"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>ok，这样环境就配置好了，分别用以下命令来打包不同环境的包就可以了</p>
-<pre><code class="javascript">npm run test    //测试
-npm run pre     //预发布
-npm run prod    //生产
-</code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">npm run test    <span class="token comment">//测试</span>
+npm run pre     <span class="token comment">//预发布</span>
+npm run prod    <span class="token comment">//生产</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p>另外需要说明一点的是，本地环境会默认从 .env.development 文件中读取配置。所以记得有需要记得新建一个然后存放配置。我的 .env.development 代码如下</p>
-<pre><code class="javascript">NODE_ENV="development"
-VUE_APP_BASE_URL="本地环境域名"
-</code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token constant">NODE_ENV</span><span class="token operator">=</span><span class="token string">"development"</span>
+<span class="token constant">VUE_APP_BASE_URL</span><span class="token operator">=</span><span class="token string">"本地环境域名"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>从 vue-cli3.0 开始 build 和 config 目录就取消了，如果需要修改配置，可以在项目的根目录新建一个 vue.config.js 文件来覆盖项目的配置，因为项目的配置比较多，这里就不分别介绍了，可以 <a class="link" target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/config/#vue-config-js">访问官方文档<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>

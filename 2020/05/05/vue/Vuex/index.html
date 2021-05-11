@@ -348,57 +348,59 @@
 <h4 id="常用的模块化开发结构"><a href="#常用的模块化开发结构" class="headerlink" title="常用的模块化开发结构"></a>常用的模块化开发结构</h4><p>目录结构：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001105136797.png" alt="image-20201001105136797"></p>
 <p>在 index.js中做如下定义：</p>
-<pre><code class="js">// store的index.js文件
-import Vue from 'vue'
-import Vuex from 'vuex'
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// store的index.js文件</span>
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> Vuex <span class="token keyword">from</span> <span class="token string">'vuex'</span>
 
-Vue.use(Vuex)
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Vuex<span class="token punctuation">)</span>
 
-const modulesFiles = require.context('./modules', true, /\.js$/)
+<span class="token keyword">const</span> modulesFiles <span class="token operator">=</span> require<span class="token punctuation">.</span><span class="token function">context</span><span class="token punctuation">(</span><span class="token string">'./modules'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span>
 
-const modules = modulesFiles.keys().reduce((modules, modulePath) =&gt; {
-    // set './app.js' =&gt; 'app'
-    const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
-    const value = modulesFiles(modulePath)
-    modules[moduleName] = value.default
-    return modules
-}, {})
+<span class="token keyword">const</span> modules <span class="token operator">=</span> modulesFiles<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">modules<span class="token punctuation">,</span> modulePath</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// set './app.js' =&gt; 'app'</span>
+    <span class="token keyword">const</span> moduleName <span class="token operator">=</span> modulePath<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\.\/(.*)\.\w+$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token string">'$1'</span><span class="token punctuation">)</span>
+    <span class="token keyword">const</span> value <span class="token operator">=</span> <span class="token function">modulesFiles</span><span class="token punctuation">(</span>modulePath<span class="token punctuation">)</span>
+    modules<span class="token punctuation">[</span>moduleName<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">.</span>default
+    <span class="token keyword">return</span> modules
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
 
 
-const store = new Vuex.Store({
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
     modules
-})
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
 
-export default store
-</code></pre>
+<span class="token keyword">export</span> <span class="token keyword">default</span> store
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在每个store文件中可以这样定义：</p>
-<pre><code class="js">const state = () =&gt; ({
-  .......
-})
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">state</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token operator">...</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
 
-const getters = {
-    ......
-}
+<span class="token keyword">const</span> getters <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span><span class="token operator">...</span>
+<span class="token punctuation">}</span>
 
-const mutations = { // mutations改变state中的数据
-  ......
-}
+<span class="token keyword">const</span> mutations <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token comment">// mutations改变state中的数据</span>
+  <span class="token operator">...</span><span class="token operator">...</span>
+<span class="token punctuation">}</span>
 
-const actions = { // 发送请求
-  ........
-}
+<span class="token keyword">const</span> actions <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token comment">// 发送请求</span>
+  <span class="token operator">...</span><span class="token operator">...</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
 
 
-export default {
-    namespaced: true,//注意要开启这个
-    state,
-    mutations,
-    actions,
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    namespaced<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">//注意要开启这个</span>
+    state<span class="token punctuation">,</span>
+    mutations<span class="token punctuation">,</span>
+    actions<span class="token punctuation">,</span>
     getters
-}
-</code></pre>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>这样在组件中使用的时候可以这样：</p>
-<pre><code class="vue">&lt;template&gt;
+<pre class="line-numbers language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;
   .......
 &lt;/template&gt;
 
@@ -420,8 +422,7 @@ export default {
 &lt;style scoped&gt;
    ....
 &lt;/style&gt;
-</code></pre>
-
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
         </div>
 
         

@@ -225,51 +225,54 @@
 <h2 id="2-Mybatis-的输出结果封装"><a href="#2-Mybatis-的输出结果封装" class="headerlink" title="2. Mybatis 的输出结果封装"></a>2. Mybatis 的输出结果封装</h2><h3 id="2-1-resultType"><a href="#2-1-resultType" class="headerlink" title="2.1 resultType"></a>2.1 resultType</h3><p>实体类型：全类名，<strong>实体类中的属性名称必须和查询语句中的列名保持一致，否则无法实现封装</strong>  </p>
 <p>基本类型和String ：直接写类名称（首字母大写），也可以使用别名（首字母小写）</p>
 <h3 id="2-2-resultMap"><a href="#2-2-resultMap" class="headerlink" title="2.2 resultMap"></a>2.2 resultMap</h3><p>resultMap 标签可以建立查询的列名和实体类的属性名称不一致时建立对应关系。从而实现封装。  </p>
-<pre><code class="xml">&lt;!-- 建立 User 实体和数据库表的对应关系
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- 建立 User 实体和数据库表的对应关系
 type 属性：指定实体类的全限定类名
 id 属性：给定一个唯一标识，是给查询 select 标签引用用的。
---&gt;
-&lt;resultMap type="com.itheima.domain.User" id="userMap"&gt;
-&lt;id column="id" property="userId"/&gt;
-&lt;result column="username" property="userName"/&gt;
-&lt;result column="sex" property="userSex"/&gt;
-&lt;result column="address" property="userAddress"/&gt;
-&lt;result column="birthday" property="userBirthday"/&gt;
-&lt;/resultMap&gt;
+--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.itheima.domain.User<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userMap<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userId<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userName<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userSex<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>address<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userAddress<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>birthday<span class="token punctuation">"</span></span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>userBirthday<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">&gt;</span></span>
 id 标签：用于指定主键字段
 result 标签：用于指定非主键字段
 column 属性：用于指定数据库列名
-property 属性：用于指定实体类属性名称
-</code></pre>
-<h2 id="3-SqlMapConfig-xml配置文件"><a href="#3-SqlMapConfig-xml配置文件" class="headerlink" title="3. SqlMapConfig.xml配置文件"></a>3. SqlMapConfig.xml配置文件</h2><pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE configuration
-PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;
-&lt;configuration&gt;
-&lt;/configuration&gt;
-</code></pre>
+property 属性：用于指定实体类属性名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="3-SqlMapConfig-xml配置文件"><a href="#3-SqlMapConfig-xml配置文件" class="headerlink" title="3. SqlMapConfig.xml配置文件"></a>3. SqlMapConfig.xml配置文件</h2><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">configuration</span>
+<span class="token name">PUBLIC</span> <span class="token string">"-//mybatis.org//DTD Config 3.0//EN"</span>
+<span class="token string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="3-1-typeAliases（类型别名）"><a href="#3-1-typeAliases（类型别名）" class="headerlink" title="3.1 typeAliases（类型别名）"></a>3.1 typeAliases（类型别名）</h3><p>在 <code>&lt;configuration&gt;&lt;/configuration&gt;</code>中配置</p>
-<pre><code class="xml">&lt;typeAliases&gt;
-&lt;!-- 单个别名定义 --&gt;
-&lt;typeAlias alias="user" type="com.itheima.domain.User"/&gt;
-&lt;!-- 批量别名定义，扫描整个包下的类，别名为类名（首字母大写或小写都可以） --&gt;
-&lt;package name="com.itheima.domain"/&gt;
-&lt;package name="其它包"/&gt;
-&lt;/typeAliases&gt;
-</code></pre>
-<h3 id="3-2-mappers（映射器）"><a href="#3-2-mappers（映射器）" class="headerlink" title="3.2 mappers（映射器）"></a>3.2 mappers（映射器）</h3><pre><code class="xml">&lt;mappers&gt;
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>typeAliases</span><span class="token punctuation">&gt;</span></span>
+<span class="token comment">&lt;!-- 单个别名定义 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>typeAlias</span> <span class="token attr-name">alias</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.itheima.domain.User<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token comment">&lt;!-- 批量别名定义，扫描整个包下的类，别名为类名（首字母大写或小写都可以） --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>package</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.itheima.domain<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>package</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>其它包<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>typeAliases</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-2-mappers（映射器）"><a href="#3-2-mappers（映射器）" class="headerlink" title="3.2 mappers（映射器）"></a>3.2 mappers（映射器）</h3><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mappers</span><span class="token punctuation">&gt;</span></span>
     
-&lt;!-- 注册指定包下的所有 mapper 接口,直接写包名，注意目录结构要相同，接口名和配置文件名相同--&gt;
-&lt;package name="com.hnust.dao"/&gt;
+<span class="token comment">&lt;!-- 注册指定包下的所有 mapper 接口,直接写包名，注意目录结构要相同，接口名和配置文件名相同--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>package</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.hnust.dao<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
     
-&lt;!-- 映射某个配置文件，注意目录结构要相同，接口名和配置文件名相同--&gt;
-&lt;mapper resource="com.hnust/dao/UserDao.xml"/&gt;
+<span class="token comment">&lt;!-- 映射某个配置文件，注意目录结构要相同，接口名和配置文件名相同--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">resource</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.hnust/dao/UserDao.xml<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
     
-&lt;!--用于注解 --&gt;
-&lt;mapper class="cn.hnust.UserDAO"/&gt;
+<span class="token comment">&lt;!--用于注解 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>cn.hnust.UserDAO<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
     
-&lt;/mappers&gt;
-</code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mappers</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
 
         </div>
 

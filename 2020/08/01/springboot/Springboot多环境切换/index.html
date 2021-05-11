@@ -227,15 +227,15 @@
 </li>
 </ol>
 <h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>在默认文件中 <code>application.yml</code>  中 配置切换属性：</p>
-<pre><code class="yml">spring:
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">spring:
   profiles:
-    active: dev
-</code></pre>
+    active: dev<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p>新建 <code>application-dev.yml</code> 文件：</p>
-<pre><code class="yml">spring:
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">spring:
   application:
-    name: 这是开发环境
-</code></pre>
+    name: 这是开发环境<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p>启动后看到：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301185125610.png" alt="image-20210301185125610"></p>
 <p>说明环境切换成功。</p>

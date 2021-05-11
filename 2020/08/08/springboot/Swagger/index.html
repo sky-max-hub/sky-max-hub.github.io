@@ -271,36 +271,36 @@
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228102317842.png" alt="image-20210228102317842"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228103855243.png" alt="image-20210228103855243"></p>
 <p>导入相关依赖</p>
-<pre><code class="xml">&lt;!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 --&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-            &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
-            &lt;version&gt;3.0.0&lt;/version&gt;
-        &lt;/dependency&gt;
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.springfox<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>springfox-swagger2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
 
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-            &lt;artifactId&gt;springfox-boot-starter&lt;/artifactId&gt;
-            &lt;version&gt;3.0.0&lt;/version&gt;
-        &lt;/dependency&gt;
-</code></pre>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.springfox<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>springfox-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>编写测试代码</p>
-<pre><code class="java">@RestController
-public class HelloController {
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloController</span> <span class="token punctuation">{</span>
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "hello";
-    }
-}
-</code></pre>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>配置Swagger</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228104926484.png" alt="image-20210228104926484"></p>
-<pre><code class="java">@Configuration
-public class SwaggerConfig {
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SwaggerConfig</span> <span class="token punctuation">{</span>
     
-}
-</code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>测试访问：<a class="link" target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui/index.html">http://localhost:8080/swagger-ui/index.html<i class="fas fa-external-link-alt"></i></a> </p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228110125566.png" alt="image-20210228110125566"></p>
 <h2 id="配置Swagger"><a href="#配置Swagger" class="headerlink" title="配置Swagger"></a>配置Swagger</h2><h3 id="修改Swagger信息"><a href="#修改Swagger信息" class="headerlink" title="修改Swagger信息"></a>修改Swagger信息</h3><p>配置的关键是配置一个关键类 <code>Docket</code></p>
@@ -308,71 +308,72 @@ public class SwaggerConfig {
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301172604042.png" alt="image-20210301172604042"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301172619931.png" alt="image-20210301172619931"></p>
 <p>因此配置代码为：</p>
-<pre><code class="java">@Configuration
-public class SwaggerConfiguration implements WebMvcConfigurer {
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SwaggerConfiguration</span> <span class="token keyword">implements</span> <span class="token class-name">WebMvcConfigurer</span> <span class="token punctuation">{</span>
 
-    //从配置文件中注入值
-    @Value("${swagger.application-name}")
-    private String title;
-    @Value("${swagger.enable}")
-    private Boolean swaggerEnabled;
-    @Value("${swagger.application-description}")
-    private String description;
-    @Value("${swagger.name}")
-    private String name;
-    @Value("${swagger.url}")
-    private String url;
-    @Value("${swagger.email}")
-    private String email;
-    @Value("${swagger.version}")
-    private String version;
-    @Value("${swagger.try-host}")
-    private String host;
+    <span class="token comment">//从配置文件中注入值</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${swagger.application-name}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${swagger.enable}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">Boolean</span> swaggerEnabled<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${swagger.application-description}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> description<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${swagger.name}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${swagger.url}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> url<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${swagger.email}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> email<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${swagger.version}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> version<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${swagger.try-host}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> host<span class="token punctuation">;</span>
 
 
-    @Bean
-    public Docket createRestApi() {
-        /**
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">Docket</span> <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">/**
          * DocumentationType.OAS_30  "openApi", "3.0"
          * .host(host)  默认主机
-         */
-        return new Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-                .host(host)
-                // 是否开启
-                .enable(swaggerEnabled).select()
-                .build();
-    }
+         */</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span><span class="token class-name">DocumentationType</span><span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">host</span><span class="token punctuation">(</span>host<span class="token punctuation">)</span>
+                <span class="token comment">// 是否开启</span>
+                <span class="token punctuation">.</span><span class="token function">enable</span><span class="token punctuation">(</span>swaggerEnabled<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title(title)
-                .description(description)
-                // 作者信息
-                .contact(new Contact(name, url, email))
-                .version(version)
-                .build();
-    }
-}
-</code></pre>
+    <span class="token keyword">private</span> <span class="token class-name">ApiInfo</span> <span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ApiInfoBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">title</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">description</span><span class="token punctuation">(</span>description<span class="token punctuation">)</span>
+                <span class="token comment">// 作者信息</span>
+                <span class="token punctuation">.</span><span class="token function">contact</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Contact</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> url<span class="token punctuation">,</span> email<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">version</span><span class="token punctuation">(</span>version<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>这里是从 <code>application.yml</code> 配置文件中读取事先定义的值：</p>
-<pre><code class="java">spring:
-  application:
-    name: 这是Swagger应用的名字
-server:
-  port: 8080
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">spring<span class="token operator">:</span>
+  application<span class="token operator">:</span>
+    name<span class="token operator">:</span> 这是<span class="token class-name">Swagger</span>应用的名字
+server<span class="token operator">:</span>
+  port<span class="token operator">:</span> <span class="token number">8080</span>
 
-# ===== 自定义swagger配置 ===== #
-swagger:
-  enable: true
-  application-name: ${spring.application.name}
-  application-version: 1.0
-  application-description: springfox swagger 3.0整合Demo（这里配置项目的描述）
-  try-host: http://localhost:${server.port}
-  name: 项目负责人
-  email: 142342423@qq.com
-  url: http://www.baidu.com
-  version: 2.3.4
-</code></pre>
+# <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span> 自定义swagger配置 <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span> #
+swagger<span class="token operator">:</span>
+  enable<span class="token operator">:</span> <span class="token boolean">true</span>
+  application<span class="token operator">-</span>name<span class="token operator">:</span> $<span class="token punctuation">{</span>spring<span class="token punctuation">.</span>application<span class="token punctuation">.</span>name<span class="token punctuation">}</span>
+  application<span class="token operator">-</span>version<span class="token operator">:</span> <span class="token number">1.0</span>
+  application<span class="token operator">-</span>description<span class="token operator">:</span> springfox swagger <span class="token number">3.0</span>整合<span class="token class-name">Demo</span>（这里配置项目的描述）
+  <span class="token keyword">try</span><span class="token operator">-</span>host<span class="token operator">:</span> http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>localhost<span class="token operator">:</span>$<span class="token punctuation">{</span>server<span class="token punctuation">.</span>port<span class="token punctuation">}</span>
+  name<span class="token operator">:</span> 项目负责人
+  email<span class="token operator">:</span> <span class="token number">142342423</span><span class="token annotation punctuation">@qq.com</span>
+  url<span class="token operator">:</span> http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>baidu<span class="token punctuation">.</span>com
+  version<span class="token operator">:</span> <span class="token number">2.3</span><span class="token number">.4</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>查看  <code>ApiInfoBuilder</code> 可以查看更多的配置信息</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301180154288.png" alt="image-20210301180154288"></p>
 <p>效果：</p>
@@ -380,98 +381,101 @@ swagger:
 <h3 id="配置扫描路径"><a href="#配置扫描路径" class="headerlink" title="配置扫描路径"></a>配置扫描路径</h3><p><code>any()：</code>扫描全部</p>
 <p><code>none()：</code>都不扫描</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301181141539.png" alt="image-20210301181141539"></p>
-<h4 id="包扫描"><a href="#包扫描" class="headerlink" title="包扫描"></a>包扫描</h4><pre><code class="java">return new Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-                .host(host)
-                // 是否开启
-                .enable(swaggerEnabled).select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.swaggerdemo.controller"))
-                .build();
-</code></pre>
-<h4 id="类注解扫描"><a href="#类注解扫描" class="headerlink" title="类注解扫描"></a>类注解扫描</h4><pre><code class="java">return new Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-                .host(host)
-                // 是否开启
-                .enable(swaggerEnabled).select()
-                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-                .build();
-</code></pre>
-<h4 id="方法注解扫描"><a href="#方法注解扫描" class="headerlink" title="方法注解扫描"></a>方法注解扫描</h4><pre><code class="java">return new Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-                .host(host)
-                // 是否开启
-                .enable(swaggerEnabled).select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(GetMapping.class))
-                .build();
-</code></pre>
+<h4 id="包扫描"><a href="#包扫描" class="headerlink" title="包扫描"></a>包扫描</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span><span class="token class-name">DocumentationType</span><span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">host</span><span class="token punctuation">(</span>host<span class="token punctuation">)</span>
+                <span class="token comment">// 是否开启</span>
+                <span class="token punctuation">.</span><span class="token function">enable</span><span class="token punctuation">(</span>swaggerEnabled<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">apis</span><span class="token punctuation">(</span><span class="token class-name">RequestHandlerSelectors</span><span class="token punctuation">.</span><span class="token function">basePackage</span><span class="token punctuation">(</span><span class="token string">"com.example.swaggerdemo.controller"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="类注解扫描"><a href="#类注解扫描" class="headerlink" title="类注解扫描"></a>类注解扫描</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span><span class="token class-name">DocumentationType</span><span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">host</span><span class="token punctuation">(</span>host<span class="token punctuation">)</span>
+                <span class="token comment">// 是否开启</span>
+                <span class="token punctuation">.</span><span class="token function">enable</span><span class="token punctuation">(</span>swaggerEnabled<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">apis</span><span class="token punctuation">(</span><span class="token class-name">RequestHandlerSelectors</span><span class="token punctuation">.</span><span class="token function">withClassAnnotation</span><span class="token punctuation">(</span><span class="token class-name">RestController</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="方法注解扫描"><a href="#方法注解扫描" class="headerlink" title="方法注解扫描"></a>方法注解扫描</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span><span class="token class-name">DocumentationType</span><span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">host</span><span class="token punctuation">(</span>host<span class="token punctuation">)</span>
+                <span class="token comment">// 是否开启</span>
+                <span class="token punctuation">.</span><span class="token function">enable</span><span class="token punctuation">(</span>swaggerEnabled<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">apis</span><span class="token punctuation">(</span><span class="token class-name">RequestHandlerSelectors</span><span class="token punctuation">.</span><span class="token function">withMethodAnnotation</span><span class="token punctuation">(</span><span class="token class-name">GetMapping</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><p>没有了 <code>error</code>  的默认接口，只显示自己写的接口：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301181946804.png" alt="image-20210301181946804"></p>
-<h3 id="配置过滤路径"><a href="#配置过滤路径" class="headerlink" title="配置过滤路径"></a>配置过滤路径</h3><pre><code class="java"> return new Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-                .host(host)
-                // 是否开启
-                .enable(swaggerEnabled).select()
-                .paths(PathSelectors.ant("/hello/**"))
-                .build();
-</code></pre>
+<h3 id="配置过滤路径"><a href="#配置过滤路径" class="headerlink" title="配置过滤路径"></a>配置过滤路径</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span><span class="token class-name">DocumentationType</span><span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+               <span class="token punctuation">.</span><span class="token function">host</span><span class="token punctuation">(</span>host<span class="token punctuation">)</span>
+               <span class="token comment">// 是否开启</span>
+               <span class="token punctuation">.</span><span class="token function">enable</span><span class="token punctuation">(</span>swaggerEnabled<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+               <span class="token punctuation">.</span><span class="token function">paths</span><span class="token punctuation">(</span><span class="token class-name">PathSelectors</span><span class="token punctuation">.</span><span class="token function">ant</span><span class="token punctuation">(</span><span class="token string">"/hello/**"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+               <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301182510169.png" alt="image-20210301182510169"></p>
 <h3 id="配置Swagger的API分组"><a href="#配置Swagger的API分组" class="headerlink" title="配置Swagger的API分组"></a>配置Swagger的API分组</h3><p>关键：Docket有个分组方法，但是只能配置一个分组</p>
-<pre><code class="java">.groupName("A")
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token punctuation">.</span><span class="token function">groupName</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>因此要配置多个分组，只需要注入多个 Docket 实例：</p>
-<pre><code class="java">
-    @Bean
-    public Docket docket1(){
-        return new Docket(DocumentationType.OAS_30).groupName("B");
-    }
-    @Bean
-    public Docket docket2(){
-        return new Docket(DocumentationType.OAS_30).groupName("C");
-    }
-    @Bean
-    public Docket createRestApi() {
-        /**
-         * DocumentationType.OAS_30  "openApi", "3.0"
-         * .host(host)  默认主机
-         */
-        return new Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-                .host(host)
-                .groupName("A")
-                // 是否开启
-                .enable(swaggerEnabled).select()
-                .paths(PathSelectors.ant("/hello/**"))
-                .build();
-    }
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">Docket</span> <span class="token function">docket1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span><span class="token class-name">DocumentationType</span><span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">groupName</span><span class="token punctuation">(</span><span class="token string">"B"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">Docket</span> <span class="token function">docket2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span><span class="token class-name">DocumentationType</span><span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">groupName</span><span class="token punctuation">(</span><span class="token string">"C"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">Docket</span> <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * DocumentationType.OAS_30  "openApi", "3.0"
+     * .host(host)  默认主机
+     */</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span><span class="token class-name">DocumentationType</span><span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">host</span><span class="token punctuation">(</span>host<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">groupName</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">)</span>
+            <span class="token comment">// 是否开启</span>
+            <span class="token punctuation">.</span><span class="token function">enable</span><span class="token punctuation">(</span>swaggerEnabled<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">paths</span><span class="token punctuation">(</span><span class="token class-name">PathSelectors</span><span class="token punctuation">.</span><span class="token function">ant</span><span class="token punctuation">(</span><span class="token string">"/hello/**"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301190020294.png" alt="image-20210301190020294"></p>
 <h3 id="配置接口注释"><a href="#配置接口注释" class="headerlink" title="配置接口注释"></a>配置接口注释</h3><p><code>@Api：</code>用在controller类，描述API接口<br><code>@ApiOperation：</code>描述接口方法<br><code>@ApiModel：</code>描述对象<br><code>@ApiModelProperty：</code>描述对象属性<br><code>@ApiImplicitParams：</code>描述接口参数<br><code>@ApiResponses：</code>描述接口响应</p>
 <p>新建实体类 <code>User</code> </p>
-<pre><code class="java">@ApiModel("关于实体类的描述")
-public class User {
-    @ApiModelProperty("关于实体类属性的描述")
-    private String username;
-    @ApiModelProperty("关于实体类属性的描述")
-    private String password;
-//    public User(String username,String password){
-//        this.username = username;
-//        this.password = password;
-//    }
-//    public User(){
-//
-//    }
-}
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@ApiModel</span><span class="token punctuation">(</span><span class="token string">"关于实体类的描述"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span><span class="token string">"关于实体类属性的描述"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> username<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span><span class="token string">"关于实体类属性的描述"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> password<span class="token punctuation">;</span>
+<span class="token comment">//    public User(String username,String password){</span>
+<span class="token comment">//        this.username = username;</span>
+<span class="token comment">//        this.password = password;</span>
+<span class="token comment">//    }</span>
+<span class="token comment">//    public User(){</span>
+<span class="token comment">//</span>
+<span class="token comment">//    }</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>新建接口 </p>
-<pre><code class="java">@GetMapping("/hello")
-    @ApiOperation("描述接口方法")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="name",value="姓名",dataTypeClass = String.class,required = true)
-    })
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "请求成功"),
-            @ApiResponse(code = 400, message = "请求参数没填好"),
-            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
-    })
-    public User hello(@RequestParam String name){
-        return new User();
-    }
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@ApiOperation</span><span class="token punctuation">(</span><span class="token string">"描述接口方法"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@ApiImplicitParams</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@ApiImplicitParam</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"name"</span><span class="token punctuation">,</span>value<span class="token operator">=</span><span class="token string">"姓名"</span><span class="token punctuation">,</span>dataTypeClass <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@ApiResponses</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@ApiResponse</span><span class="token punctuation">(</span>code <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"请求成功"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token annotation punctuation">@ApiResponse</span><span class="token punctuation">(</span>code <span class="token operator">=</span> <span class="token number">400</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"请求参数没填好"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token annotation punctuation">@ApiResponse</span><span class="token punctuation">(</span>code <span class="token operator">=</span> <span class="token number">404</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">"请求路径没有或页面跳转路径不对"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">User</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span> <span class="token class-name">String</span> name<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>效果：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301193506582.png" alt="image-20210301193506582"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301193519108.png" alt="image-20210301193519108"></p>

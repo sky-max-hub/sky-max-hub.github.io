@@ -235,40 +235,41 @@
 </li>
 </ol>
 <h3 id="圆角border-radius"><a href="#圆角border-radius" class="headerlink" title="圆角border-radius"></a>圆角border-radius</h3><p>语法</p>
-<pre><code class="css">border-radius：value；四个角
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">border-radius：value；四个角
 border-radius：value value；左上右下、右上左下
-border-radius：value value value value；        
-        代表设置对象左上角、右上角、右下角、左下角
-</code></pre>
+border-radius：value value value value；		
+		代表设置对象左上角、右上角、右下角、左下角<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103337192.png" alt="image-20210306103337192" style="zoom:50%;">
 
-<h3 id="盒阴影box-shadow"><a href="#盒阴影box-shadow" class="headerlink" title="盒阴影box-shadow"></a>盒阴影box-shadow</h3><pre><code class="css">语法：box-shadow: h-shadow v-shadow blur spread color inset;
-</code></pre>
+<h3 id="盒阴影box-shadow"><a href="#盒阴影box-shadow" class="headerlink" title="盒阴影box-shadow"></a>盒阴影box-shadow</h3><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">语法：box-shadow</span><span class="token punctuation">:</span> h-shadow v-shadow blur spread color inset<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103327261.png" alt="image-20210306103327261"></p>
-<pre><code class="html">&lt;style&gt;
-    .shadow{
-            width: 300px;
-            height: 100px;
-            background-color: red;
-            box-shadow: 10px 10px 5px 3px darkred;
-        }
-&lt;/style&gt;
-&lt;div class="shadow"&gt;&lt;/div&gt;
-</code></pre>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+    <span class="token selector">.shadow</span><span class="token punctuation">{</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+            <span class="token property">background-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+            <span class="token property">box-shadow</span><span class="token punctuation">:</span> 10px 10px 5px 3px darkred<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>shadow<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103724901.png" alt="image-20210306103724901"></p>
-<h3 id="文字阴影text-shadow"><a href="#文字阴影text-shadow" class="headerlink" title="文字阴影text-shadow"></a>文字阴影text-shadow</h3><pre><code class="css">语法：text-shadow: h-shadow v-shadow blur color;
-</code></pre>
+<h3 id="文字阴影text-shadow"><a href="#文字阴影text-shadow" class="headerlink" title="文字阴影text-shadow"></a>文字阴影text-shadow</h3><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">语法：text-shadow</span><span class="token punctuation">:</span> h-shadow v-shadow blur color<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103735569.png" alt="image-20210306103735569"></p>
-<pre><code class="html">&lt;style&gt;
-    .text1{
-            font-size: 50px;
-            font-weight: bold;
-            color: palegreen;
-            text-shadow: 10px -5px 5px #ccc ;
-       }
-&lt;/style&gt;
-&lt;div class="text1"&gt;学习猿地&lt;/div&gt;
-</code></pre>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+    <span class="token selector">.text1</span><span class="token punctuation">{</span>
+            <span class="token property">font-size</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+            <span class="token property">font-weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
+            <span class="token property">color</span><span class="token punctuation">:</span> palegreen<span class="token punctuation">;</span>
+            <span class="token property">text-shadow</span><span class="token punctuation">:</span> 10px -5px 5px #ccc <span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>学习猿地<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103747132.png" alt="image-20210306103747132"></p>
 <h2 id="CSS3-渐变"><a href="#CSS3-渐变" class="headerlink" title="CSS3 渐变"></a>CSS3 渐变</h2><p><a class="link" target="_blank" rel="noopener" href="https://www.runoob.com/css3/css3-gradients.html">菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
 <p>​    <code>CSS3 渐变（gradients）</code>可以让你在两个或多个指定的颜色之间显示平稳的过渡。以前，你必须使用图像来实现这些效果。现在，使用 <code>CSS3 渐变（gradients）</code>，通过代码来实现渐变可以减少请求和节约带宽。</p>
@@ -322,49 +323,49 @@ border-radius：value value value value；
 <h3 id="过渡函数"><a href="#过渡函数" class="headerlink" title="过渡函数"></a>过渡函数</h3><p><code>transition-timing-function: ;</code><br>取值：<br>ease：默认值，规定慢速开始，然后变快，然后慢速结束的过渡效果<br>linear：匀速<br>ease-in：规定以慢速开始，加速效果<br>ease-out：规定以慢速结束，减速效果<br>ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
 <h3 id="过渡延迟"><a href="#过渡延迟" class="headerlink" title="过渡延迟"></a>过渡延迟</h3><p><code>transition-delay: s|ms;</code><br>改变元素属性值后多长时间开始执行过渡效果</p>
 <h3 id="简写属性transition"><a href="#简写属性transition" class="headerlink" title="简写属性transition"></a>简写属性transition</h3><p>transition属性是一个简写属性，用于设置四个过渡属性<br><code>语法：transition:property duration timing-function delay;</code></p>
-<pre><code class="css">       #box{
-            width: 200px;
-            height: 200px;
-            background-color: #1fb57b;
-            transition: background 4s linear 1s;
-        }
-        #box:hover{
-            background-color: red;
-       }
-</code></pre>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">#box</span><span class="token punctuation">{</span>
+     <span class="token property">width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+     <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+     <span class="token property">background-color</span><span class="token punctuation">:</span> #1fb57b<span class="token punctuation">;</span>
+     <span class="token property">transition</span><span class="token punctuation">:</span> background 4s linear 1s<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token selector">#box:hover</span><span class="token punctuation">{</span>
+     <span class="token property">background-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="CSS3-animation动画"><a href="#CSS3-animation动画" class="headerlink" title="CSS3 animation动画"></a>CSS3 animation动画</h2><p><a class="link" target="_blank" rel="noopener" href="https://www.runoob.com/css3/css3-animations.html">菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
 <p>过渡属性只能模拟动画效果，animation属性可以制作类似Flash动画，通过关键帧控制动画的每一步，使元素从一种样式逐渐变化为另一种样式，实现复杂的动画效果。</p>
 <h3 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h3><p>作用：用于声明动画，指定关键帧<br>帧：用于分解动画动作，每个帧代表某个时间点。定义每个帧上的动作</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306105920430.png" alt="image-20210306105920430"></p>
-<h3 id="keyframes的语法"><a href="#keyframes的语法" class="headerlink" title="@keyframes的语法"></a>@keyframes的语法</h3><pre><code class="css">@keyframes name  {
-    from|0%{
+<h3 id="keyframes的语法"><a href="#keyframes的语法" class="headerlink" title="@keyframes的语法"></a>@keyframes的语法</h3><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token atrule"><span class="token rule">@keyframes</span> name</span>  <span class="token punctuation">{</span>
+    <span class="token selector">from|0%</span><span class="token punctuation">{</span>
         css样式
-    }
-    percent{
+    <span class="token punctuation">}</span>
+    <span class="token selector">percent</span><span class="token punctuation">{</span>
         css样式
-    }
-    to|100%{
+    <span class="token punctuation">}</span>
+    <span class="token selector">to|100%</span><span class="token punctuation">{</span>
         css样式
-    }
- }
-</code></pre>
+    <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="animation属性"><a href="#animation属性" class="headerlink" title="animation属性"></a>animation属性</h3><p><code>animation</code>属性用于控制动画，调用由<code>@keyframes</code>定义的动画，设置动画属性，如时间、次数等。animation属性是一个简写属性。<br>语法为：<code>animation:name  duration timing-function delay iteration-count direction;</code></p>
-<h3 id="动画子属性"><a href="#动画子属性" class="headerlink" title="动画子属性"></a>动画子属性</h3><pre><code class="css">animation-name: ;    调用动画，规定需要和keyframes的名字一致
+<h3 id="动画子属性"><a href="#动画子属性" class="headerlink" title="动画子属性"></a>动画子属性</h3><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">animation-name</span><span class="token punctuation">:</span> <span class="token punctuation">;</span>	调用动画，规定需要和keyframes的名字一致
 
-animation-duration: s|ms;    动画完成一个周期所需要的时间
+<span class="token property">animation-duration</span><span class="token punctuation">:</span> s|ms<span class="token punctuation">;</span>	动画完成一个周期所需要的时间
 
-animation-timing-function: ;    规定动画的速度变化类型
+<span class="token property">animation-timing-function</span><span class="token punctuation">:</span> <span class="token punctuation">;</span>	规定动画的速度变化类型
 
-animation-delay:s|ms ;    播放之前的延迟时间
+<span class="token property">animation-delay</span><span class="token punctuation">:</span>s|ms <span class="token punctuation">;</span>	播放之前的延迟时间
 
-animation-iteration-count: 数值|infinite;    播放次数 infinite表示无限次播放
+<span class="token property">animation-iteration-count</span><span class="token punctuation">:</span> 数值|infinite<span class="token punctuation">;</span>	播放次数 infinite表示无限次播放
 
-animation-direction: normal|alternate;    动画播放方向,normal为默认值，表示正常播放,alternate表示轮流播放，即动画会在奇数次正常播放，而在偶数次向后播放
+<span class="token property">animation-direction</span><span class="token punctuation">:</span> normal|alternate<span class="token punctuation">;</span>	动画播放方向<span class="token punctuation">,</span>normal为默认值，表示正常播放<span class="token punctuation">,</span>alternate表示轮流播放，即动画会在奇数次正常播放，而在偶数次向后播放
 
-animation-fill-mode: forwards;    动画停在最后一帧，默认值为none
+<span class="token property">animation-fill-mode</span><span class="token punctuation">:</span> forwards<span class="token punctuation">;</span>	动画停在最后一帧，默认值为none
 
-animation-play-state:paused|running; 属性规定动画正在运行还是暂停，默认值为running
-</code></pre>
+<span class="token property">animation-play-state</span><span class="token punctuation">:</span>paused|running<span class="token punctuation">;</span> 属性规定动画正在运行还是暂停，默认值为running<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
         </div>
 

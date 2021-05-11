@@ -221,33 +221,36 @@
 <p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2020/04/04/16/07/stadttheater-5002861_1280.jpg"></p>
 <hr>
 <h1 id="MyBatis入门05基于注解的Mybatis"><a href="#MyBatis入门05基于注解的Mybatis" class="headerlink" title="MyBatis入门05基于注解的Mybatis"></a>MyBatis入门05基于注解的Mybatis</h1><h2 id="1-配置方式"><a href="#1-配置方式" class="headerlink" title="1.配置方式"></a>1.配置方式</h2><p> 修改Dao,SqlMapConfig.xml,并移除Dao.xml</p>
-<pre><code class="java">public interface IUserDao {
-/**
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IUserDao</span> <span class="token punctuation">{</span>
+<span class="token comment">/**
 * 查询所有用户
 * @return
-*/
-Select("select * from user")
-List&lt;User&gt; findAll();
-}
-</code></pre>
-<pre><code class="xml">&lt;!-- 告知 mybatis 映射配置的位置 --&gt;
-&lt;mappers&gt;
-&lt;mapper class="com.itheima.dao.IUserDao"/&gt;
-&lt;/mappers&gt;
-</code></pre>
-<h2 id="2-使用方法"><a href="#2-使用方法" class="headerlink" title="2. 使用方法"></a>2. 使用方法</h2><pre><code class="java">@Insert:实现新增
-@Update:实现更新
-@Delete:实现删除
-@Select:实现查询
-@Result:实现结果集封装
-@Results:可以与@Result 一起使用，封装多个结果集
-@ResultMap:实现引用@Results 定义的封装
-@One:实现一对一结果集封装
-@Many:实现一对多结果集封装
-@SelectProvider: 实现动态 SQL 映射
-@CacheNamespace:实现注解二级缓存的使用
-</code></pre>
-<pre><code class="Java">//UserDao中
+*/</span>
+<span class="token class-name">Select</span><span class="token punctuation">(</span><span class="token string">"select * from user"</span><span class="token punctuation">)</span>
+<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">&gt;</span></span> <span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- 告知 mybatis 映射配置的位置 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mappers</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.itheima.dao.IUserDao<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mappers</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="2-使用方法"><a href="#2-使用方法" class="headerlink" title="2. 使用方法"></a>2. 使用方法</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Insert</span><span class="token operator">:</span>实现新增
+<span class="token annotation punctuation">@Update</span><span class="token operator">:</span>实现更新
+<span class="token annotation punctuation">@Delete</span><span class="token operator">:</span>实现删除
+<span class="token annotation punctuation">@Select</span><span class="token operator">:</span>实现查询
+<span class="token annotation punctuation">@Result</span><span class="token operator">:</span>实现结果集封装
+<span class="token annotation punctuation">@Results</span><span class="token operator">:</span>可以与<span class="token annotation punctuation">@Result</span> 一起使用，封装多个结果集
+<span class="token annotation punctuation">@ResultMap</span><span class="token operator">:</span>实现引用<span class="token annotation punctuation">@Results</span> 定义的封装
+<span class="token annotation punctuation">@One</span><span class="token operator">:</span>实现一对一结果集封装
+<span class="token annotation punctuation">@Many</span><span class="token operator">:</span>实现一对多结果集封装
+<span class="token annotation punctuation">@SelectProvider</span><span class="token operator">:</span> 实现动态 SQL 映射
+<span class="token annotation punctuation">@CacheNamespace</span><span class="token operator">:</span>实现注解二级缓存的使用<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">//UserDao中
 
 @Select("select * from user")
 @Results(id="userMap",
@@ -271,36 +274,42 @@ user(username,sex,birthday,address)values(#{username},#{sex},#{birthday},#{addre
 )")
 @SelectKey(keyColumn="id",keyProperty="id",resultType=Integer.class,before =
 false, statement = { "select last_insert_id()" })
-int saveUser(User user);
-</code></pre>
+int saveUser(User user);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><code>获取插入数据的 id</code></p>
-<pre><code class="xml">&lt;insert id="saveUser" parameterType="USER"&gt;
-&lt;!-- 配置保存时获取插入的 id --&gt;
-&lt;selectKey keyColumn="id" keyProperty="id" resultType="int"&gt;
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>insert</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>saveUser<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>USER<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token comment">&lt;!-- 配置保存时获取插入的 id --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>selectKey</span> <span class="token attr-name">keyColumn</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">keyProperty</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 select last_insert_id();
-&lt;/selectKey&gt;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>selectKey</span><span class="token punctuation">&gt;</span></span>
 insert into user(username,birthday,sex,address)
 values(#{username},#{birthday},#{sex},#{address})
-&lt;/insert&gt;
-</code></pre>
-<pre><code class="java">/**
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>insert</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
 * 查询所有账户，采用延迟加载的方式查询账户的所属用户
 * @return
-*/
-@Select("select * from account")
-@Results(id="accountMap",
-value= {
-@Result(id=true,column="id",property="id"),
-@Result(column="uid",property="uid"),
-@Result(column="money",property="money"),
-@Result(column="uid",
-property="user",
-one=@One(select="com.itheima.dao.IUserDao.findById",
-fetchType=FetchType.LAZY)
-)
-})
-List&lt;Account&gt; findAll();
-</code></pre>
+*/</span>
+<span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"select * from account"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Results</span><span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token string">"accountMap"</span><span class="token punctuation">,</span>
+value<span class="token operator">=</span> <span class="token punctuation">{</span>
+<span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>id<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">,</span>column<span class="token operator">=</span><span class="token string">"id"</span><span class="token punctuation">,</span>property<span class="token operator">=</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column<span class="token operator">=</span><span class="token string">"uid"</span><span class="token punctuation">,</span>property<span class="token operator">=</span><span class="token string">"uid"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column<span class="token operator">=</span><span class="token string">"money"</span><span class="token punctuation">,</span>property<span class="token operator">=</span><span class="token string">"money"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column<span class="token operator">=</span><span class="token string">"uid"</span><span class="token punctuation">,</span>
+property<span class="token operator">=</span><span class="token string">"user"</span><span class="token punctuation">,</span>
+one<span class="token operator">=</span><span class="token annotation punctuation">@One</span><span class="token punctuation">(</span>select<span class="token operator">=</span><span class="token string">"com.itheima.dao.IUserDao.findById"</span><span class="token punctuation">,</span>
+fetchType<span class="token operator">=</span><span class="token class-name">FetchType</span><span class="token punctuation">.</span>LAZY<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Account</span><span class="token punctuation">&gt;</span></span> <span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+
+
 
         </div>
 

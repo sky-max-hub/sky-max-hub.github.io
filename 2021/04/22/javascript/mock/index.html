@@ -228,61 +228,62 @@
 <p>优点：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330145453711.png" alt="image-20210330145453711"></p>
 <h2 id="这个东西怎么用到项目中去？"><a href="#这个东西怎么用到项目中去？" class="headerlink" title="这个东西怎么用到项目中去？"></a>这个东西怎么用到项目中去？</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入项目根目录</p>
-<pre><code class="markdown"># 安装
-npm install mockjs
-</code></pre>
+<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 安装</span>
+npm install mockjs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>出现如下，说明安装成功</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330151134751.png" alt="image-20210330151134751"></p>
 <h3 id="配置使用"><a href="#配置使用" class="headerlink" title="配置使用"></a>配置使用</h3><p>新建如下目录结构：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330155310609.png" alt="image-20210330155310609"></p>
 <p>解释：<code>decision目录</code>中的文件命名尽量和<code>api文件夹</code>里的文件对应</p>
 <p>在  <code>mock/index.js</code> 中写入：</p>
-<pre><code class="js">import Mock from "mockjs";
-import file from "./decision/file";
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> Mock <span class="token keyword">from</span> <span class="token string">"mockjs"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> file <span class="token keyword">from</span> <span class="token string">"./decision/file"</span><span class="token punctuation">;</span>
 
-//拦截 `/api/testGet` 接口的`get方式`的请求，如果拦截到就调用 `file.testGet` 中的函数。
-Mock.mock(RegExp("/api/testGet" + ".*"), "get", file.testGet);
+<span class="token comment">//拦截 `/api/testGet` 接口的`get方式`的请求，如果拦截到就调用 `file.testGet` 中的函数。</span>
+Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token function">RegExp</span><span class="token punctuation">(</span><span class="token string">"/api/testGet"</span> <span class="token operator">+</span> <span class="token string">".*"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span>testGet<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-//拦截 `/api/testGet` 接口的`post方式`的请求，如果拦截到就返回 `file.testPost` 中的对象。
-Mock.mock("/api/testPost", "post", file.testPost);
+<span class="token comment">//拦截 `/api/testGet` 接口的`post方式`的请求，如果拦截到就返回 `file.testPost` 中的对象。</span>
+Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">"/api/testPost"</span><span class="token punctuation">,</span> <span class="token string">"post"</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span>testPost<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-export default Mock;
-</code></pre>
+<span class="token keyword">export</span> <span class="token keyword">default</span> Mock<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在 <code>mock/decision/file.js</code> 中写入：</p>
-<pre><code class="js">// 管理mock数据
-export default {
-  testGet(options) {
-    console.log(options);
-    return {
-      code: 1,
-      msg: "GET成功",
-      data: {
-        token: "123456",
-        collegeId: "123"
-      }
-    };
-    // 登录接口返回的数据
-  },
-  testPost: {
-    code: 1,
-    msg: "POST成功",
-    data: {
-      token: "123456",
-      collegeId: "123"
-    }
-  }
-};
-</code></pre>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 管理mock数据</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function">testGet</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      code<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      msg<span class="token operator">:</span> <span class="token string">"GET成功"</span><span class="token punctuation">,</span>
+      data<span class="token operator">:</span> <span class="token punctuation">{</span>
+        token<span class="token operator">:</span> <span class="token string">"123456"</span><span class="token punctuation">,</span>
+        collegeId<span class="token operator">:</span> <span class="token string">"123"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token comment">// 登录接口返回的数据</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  testPost<span class="token operator">:</span> <span class="token punctuation">{</span>
+    code<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    msg<span class="token operator">:</span> <span class="token string">"POST成功"</span><span class="token punctuation">,</span>
+    data<span class="token operator">:</span> <span class="token punctuation">{</span>
+      token<span class="token operator">:</span> <span class="token string">"123456"</span><span class="token punctuation">,</span>
+      collegeId<span class="token operator">:</span> <span class="token string">"123"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在项目的 <code>main.js</code> 中引入<code>mockjs</code></p>
-<pre><code class="js">import "./mock/index.js"; // 使用mockjs模拟
-</code></pre>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> <span class="token string">"./mock/index.js"</span><span class="token punctuation">;</span> <span class="token comment">// 使用mockjs模拟</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330155820989.png" alt="image-20210330155820989"></p>
 <h3 id="测试效果"><a href="#测试效果" class="headerlink" title="测试效果"></a>测试效果</h3><p><img lazyload="" src="/images/loading.svg" data-src="upload%5Cimage-20210330155908404.png" alt="image-20210330155908404"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="upload%5Cimage-20210330155919853.png" alt="image-20210330155919853"></p>
 <h2 id="Mock-js-配置的一些注意点"><a href="#Mock-js-配置的一些注意点" class="headerlink" title="Mock.js 配置的一些注意点"></a>Mock.js 配置的一些注意点</h2><ol>
 <li><p>模拟 <code>get</code> 请求的 <code>url</code> 注意一定要正则表达式的风格：例如</p>
-<pre><code class="js">Mock.mock(RegExp("/api/testGet" + ".*"), "get", file.testGet);
-</code></pre>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js">Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token function">RegExp</span><span class="token punctuation">(</span><span class="token string">"/api/testGet"</span> <span class="token operator">+</span> <span class="token string">".*"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"get"</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span>testGet<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>这段代码的含义是，拦截 <code>/api/testGet</code> 接口的<code>get方式</code>的请求，如果拦截到就调用 <code>file.testGet</code> 函数。</p>
 <p>为什么不直接像拦截post请求那样 <code>url</code>  直接是个字符串形式的？因为 <code>get请求的url后面是带参数的！！！</code></p>
 <p>直接使用字符串mock只会拦截 <code>/api/testGet</code>，不会拦截  <code>/api/testGet?XXX=XXX&amp;XXX=XXX</code>这种形式的。</p>
@@ -297,29 +298,29 @@ export default {
 <h4 id="template类型"><a href="#template类型" class="headerlink" title="template类型"></a>template类型</h4><p>看官网的解释：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330162015199.png" alt="image-20210330162015199"></p>
 <p>这里说明：<code>template</code> 它可以直接就是一个对象或字符串，也就是说你在写它的假数据时可以直接定义一个对象或字符串就行。比如前面写的 <code>testPost</code></p>
-<pre><code class="js">testPost: {
-    code: 1,
-    msg: "POST成功",
-    data: {
-      token: "123456",
-      collegeId: "123"
-    }
-  }
-</code></pre>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js">testPost<span class="token operator">:</span> <span class="token punctuation">{</span>
+    code<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    msg<span class="token operator">:</span> <span class="token string">"POST成功"</span><span class="token punctuation">,</span>
+    data<span class="token operator">:</span> <span class="token punctuation">{</span>
+      token<span class="token operator">:</span> <span class="token string">"123456"</span><span class="token punctuation">,</span>
+      collegeId<span class="token operator">:</span> <span class="token string">"123"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>拦截成功后直接就是返回你所写的假数据。而这种方式最好的一点是<code>它可以生成随机数据</code></p>
 <p>看到官网的：<a class="link" target="_blank" rel="noopener" href="http://mockjs.com/examples.html#String%E3%80%82%E5%8F%91%E7%8E%B0%E8%BF%99%E9%87%8C%E8%AE%B2%E4%BA%86%E5%BE%88%E5%A4%9A%E7%9A%84%E8%AF%AD%E6%B3%95%E3%80%82%E6%80%8E%E4%B9%88%E7%94%A8%EF%BC%9F%E5%81%87%E5%A6%82%E6%88%91%E6%83%B3%E6%AF%8F%E6%AC%A1%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3%E6%8B%A6%E6%88%AA%E4%B9%8B%E5%90%8E%E8%BF%94%E5%9B%9E%E7%9A%84">http://mockjs.com/examples.html#String。发现这里讲了很多的语法。怎么用？假如我想每次调用接口拦截之后返回的<i class="fas fa-external-link-alt"></i></a> <code>token 和 collegeId</code> 都是不一样的。那么可以这么写：</p>
 <p>在官网找到数据类型：这里由于两个都是字符串类型的，我选择使用 正则表达式的类型 </p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330163542540.png" alt="image-20210330163542540"></p>
 <p>修改为：</p>
-<pre><code class="js">testPost: {
-    code: 1,
-    msg: "POST成功",
-    data: {
-      token: /[a-z][A-Z][0-9][0-9][0-9]/,
-      collegeId: /[0-9][0-9][0-9][0-9]/
-    }
-  }
-</code></pre>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js">testPost<span class="token operator">:</span> <span class="token punctuation">{</span>
+    code<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    msg<span class="token operator">:</span> <span class="token string">"POST成功"</span><span class="token punctuation">,</span>
+    data<span class="token operator">:</span> <span class="token punctuation">{</span>
+      token<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[a-z][A-Z][0-9][0-9][0-9]</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+      collegeId<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[0-9][0-9][0-9][0-9]</span><span class="token regex-delimiter">/</span></span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>查看效果：发现多次调用返回的都是不同的结果：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330163811844.png" alt="image-20210330163811844"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330163820152.png" alt="image-20210330163820152"></p>
@@ -328,18 +329,18 @@ export default {
 <h4 id="function类型"><a href="#function类型" class="headerlink" title="function类型"></a>function类型</h4><p>看官网：<a class="link" target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Mock.mock()">https://github.com/nuysoft/Mock/wiki/Mock.mock()<i class="fas fa-external-link-alt"></i></a></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330164423839.png" alt="image-20210330164423839"></p>
 <p>这种方式就最大的好处就是可以<code>前端简单的实现增删改数据的效果</code>。就是说当你调用涉及到增删改数据的接口时，仅仅使用上面的 <code>template</code> 类型是看不到增删改的效果的。此时只能使用 <code>function</code> 类型的。返回这种类型时实际上就是调用了你所定义的函数，然后<code>将函数的返回值作为假数据</code>。比如之前写的 <code>testGet</code>:</p>
-<pre><code class="js">testGet(options) {
-    console.log(options);
-    return {
-      code: 1,
-      msg: "GET成功",
-      data: {
-        token: "123456",
-        collegeId: "123"
-      }
-    };
-  },
-</code></pre>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">testGet</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      code<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      msg<span class="token operator">:</span> <span class="token string">"GET成功"</span><span class="token punctuation">,</span>
+      data<span class="token operator">:</span> <span class="token punctuation">{</span>
+        token<span class="token operator">:</span> <span class="token string">"123456"</span><span class="token punctuation">,</span>
+        collegeId<span class="token operator">:</span> <span class="token string">"123"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>可以发现这个函数有一个参数，打印之后发现：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330165256662.png" alt="image-20210330165256662"></p>
 <p>实际上就是你调用的接口的信息！！拿到这个你其实可以做很多事情，比如下面这个，找到之前发的出卷系统的项目的<code>mock/decision/auditJoin.js/auditJoinGet  这个函数</code>：</p>
@@ -375,13 +376,13 @@ export default {
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/"
+                           href="/2021/05/04/docker/Docker02%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Docker部署练习</span>
+                                <span class="post-nav-title-item">Docker常用命令</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>

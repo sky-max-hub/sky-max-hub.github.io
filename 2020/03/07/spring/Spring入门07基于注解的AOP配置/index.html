@@ -221,13 +221,13 @@
 <p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"></p>
 <hr>
 <h1 id="Spring入门07基于注解的AOP配置"><a href="#Spring入门07基于注解的AOP配置" class="headerlink" title="Spring入门07基于注解的AOP配置"></a>Spring入门07基于注解的AOP配置</h1><h2 id="1-使用步骤"><a href="#1-使用步骤" class="headerlink" title="1. 使用步骤"></a>1. 使用步骤</h2><p>导入约束</p>
-<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:aop="http://www.springframework.org/schema/aop"
-xmlns:tx="http://www.springframework.org/schema/tx"
-xmlns:context="http://www.springframework.org/schema/context"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>beans</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans<span class="token punctuation">"</span></span>
+<span class="token attr-name"><span class="token namespace">xmlns:</span>aop</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/aop<span class="token punctuation">"</span></span>
+<span class="token attr-name"><span class="token namespace">xmlns:</span>tx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/tx<span class="token punctuation">"</span></span>
+<span class="token attr-name"><span class="token namespace">xmlns:</span>context</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/context<span class="token punctuation">"</span></span>
+<span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+<span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/aop
@@ -235,219 +235,219 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
 http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context.xsd"&gt;
+http://www.springframework.org/schema/context/spring-context.xsd<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
     
-&lt;!-- 配置 spring 创建容器时要扫描的包 --&gt;
-&lt;context:component-scan base-package="com.itheima"&gt;&lt;/context:component-scan&gt;
-&lt;/beans&gt;
-</code></pre>
+<span class="token comment">&lt;!-- 配置 spring 创建容器时要扫描的包 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>component-scan</span> <span class="token attr-name">base-package</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.itheima<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">context:</span>component-scan</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beans</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在业务层使用@Transactional 注解  </p>
-<pre><code class="java">/**
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
 *该注解的属性和 xml 中的属性含义一致。该注解可以出现在接口上，类上和方法上。
 *出现接口上，表示该接口的所有实现类都有事务支持。
 *出现在类上，表示类中所有方法有事务支持
 *出现在方法上，表示方法有事务支持。
 *以上三个位置的优先级：方法&gt;类&gt;接口
-**/
+**/</span>
 
-@Transactional(readOnly=false,propagation=Propagation.REQUIRED)
-public void transfer(String sourceName, String targeName, Float money) {
-    ..........
-}
-</code></pre>
+<span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>readOnly<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">,</span>propagation<span class="token operator">=</span><span class="token class-name">Propagation</span><span class="token punctuation">.</span>REQUIRED<span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">transfer</span><span class="token punctuation">(</span><span class="token class-name">String</span> sourceName<span class="token punctuation">,</span> <span class="token class-name">String</span> targeName<span class="token punctuation">,</span> <span class="token class-name">Float</span> money<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在配置文件中开启 spring 对注解事务的支持  </p>
-<pre><code class="xml">&lt;!-- 开启 spring 对注解事务的支持 --&gt;
-&lt;tx:annotation-driven transaction-manager="transactionManager"/&gt;
-</code></pre>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- 开启 spring 对注解事务的支持 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">tx:</span>annotation-driven</span> <span class="token attr-name">transaction-manager</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>transactionManager<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>不使用 xml 的配置方式  </p>
-<pre><code class="java">@Configuration
-@EnableTransactionManagement//开启事务支持
-public class SpringTxConfiguration {
-//里面配置数据源，配置 JdbcTemplate,配置事务管理器。在之前的步骤已经写过了。
-}
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@EnableTransactionManagement</span><span class="token comment">//开启事务支持</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringTxConfiguration</span> <span class="token punctuation">{</span>
+<span class="token comment">//里面配置数据源，配置 JdbcTemplate,配置事务管理器。在之前的步骤已经写过了。</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="2-自定义事务控制器和配置AOP"><a href="#2-自定义事务控制器和配置AOP" class="headerlink" title="2. 自定义事务控制器和配置AOP"></a>2. 自定义事务控制器和配置AOP</h2><h3 id="2-1-基于xml"><a href="#2-1-基于xml" class="headerlink" title="2.1 基于xml"></a>2.1 基于xml</h3><p>自己写一个事务控制器，抽取公共代码作为通知</p>
-<pre><code class="java">public class TransactionManager {
-//定义一个 DBAssit
-private DBAssit dbAssit ;
-public void setDbAssit(DBAssit dbAssit) {
-this.dbAssit = dbAssit;
-}
-//开启事务
-public void beginTransaction() {
-try {
-dbAssit.getCurrentConnection().setAutoCommit(false);
-} catch (SQLException e) {
-e.printStackTrace();
-}
-}
-//提交事务
-public void commit() {
-try {
-dbAssit.getCurrentConnection().commit();
-} catch (SQLException e) {
-e.printStackTrace();
-}
-}
-//回滚事务
-public void rollback() {
-try {
-dbAssit.getCurrentConnection().rollback();
-} catch (SQLException e) {
-e.printStackTrace();
-}
-}
-//释放资源
-public void release() {
-try {
-dbAssit.releaseConnection();
-} catch (Exception e) {
-e.printStackTrace();
-}
-}
-}
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TransactionManager</span> <span class="token punctuation">{</span>
+<span class="token comment">//定义一个 DBAssit</span>
+<span class="token keyword">private</span> <span class="token class-name">DBAssit</span> dbAssit <span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setDbAssit</span><span class="token punctuation">(</span><span class="token class-name">DBAssit</span> dbAssit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>dbAssit <span class="token operator">=</span> dbAssit<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//开启事务</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">beginTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+dbAssit<span class="token punctuation">.</span><span class="token function">getCurrentConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setAutoCommit</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//提交事务</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+dbAssit<span class="token punctuation">.</span><span class="token function">getCurrentConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//回滚事务</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">rollback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+dbAssit<span class="token punctuation">.</span><span class="token function">getCurrentConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rollback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//释放资源</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">release</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+dbAssit<span class="token punctuation">.</span><span class="token function">releaseConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>注入容器中</p>
-<pre><code class="xml">&lt;bean id="txManager" class="com.itheima.utils.TransactionManager"&gt;
-&lt;property name="dbAssit" ref="dbAssit"&gt;&lt;/property&gt;
-&lt;/bean&gt;
-</code></pre>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>txManager<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.itheima.utils.TransactionManager<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dbAssit<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dbAssit<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p>通知类型在<code>&lt;aop:aspect&gt;&lt;/aop:aspect&gt;</code>中配置</p>
-<pre><code class="xml">&lt;!--
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--
 aop:before
 作用：用于配置前置通知。 指定增强的方法在切入点方法之前执行
 属性：
-    method:用于指定通知类中的增强方法名称
-    ponitcut-ref：用于指定切入点的表达式的引用
-    poinitcut：用于指定切入点表达式
+	method:用于指定通知类中的增强方法名称
+	ponitcut-ref：用于指定切入点的表达式的引用
+	poinitcut：用于指定切入点表达式
 执行时间点：
-    切入点方法执行之前执行
---&gt;
-&lt;aop:before method="beginTransaction" pointcut-ref="pt1"/&gt;
+	切入点方法执行之前执行
+--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>before</span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>beginTransaction<span class="token punctuation">"</span></span> <span class="token attr-name">pointcut-ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pt1<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
 
-&lt;!--
+<span class="token comment">&lt;!--
 aop:after-returning
 作用：用于配置后置通知
 属性：
-    method： 指定通知中方法的名称。
-    pointct： 定义切入点表达式
-    pointcut-ref： 指定切入点表达式的引用
+	method： 指定通知中方法的名称。
+	pointct： 定义切入点表达式
+	pointcut-ref： 指定切入点表达式的引用
 执行时间点：
-    切入点方法正常执行之后。它和异常通知只能有一个执行
---&gt;
-&lt;aop:after-returning method="commit" pointcut-ref="pt1"/&gt;
+	切入点方法正常执行之后。它和异常通知只能有一个执行
+--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>after-returning</span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>commit<span class="token punctuation">"</span></span> <span class="token attr-name">pointcut-ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pt1<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
 
-&lt;!--
+<span class="token comment">&lt;!--
 aop:after-throwing
 作用：用于配置异常通知
 属性：
-    method： 指定通知中方法的名称。
+	method： 指定通知中方法的名称。
     pointct： 定义切入点表达式
-    pointcut-ref： 指定切入点表达式的引用
+	pointcut-ref： 指定切入点表达式的引用
 执行时间点：
-    切入点方法执行产生异常后执行。它和后置通知只能执行一个
---&gt;
-&lt;aop:after-throwing method="rollback" pointcut-ref="pt1"/&gt;
+	切入点方法执行产生异常后执行。它和后置通知只能执行一个
+--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>after-throwing</span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>rollback<span class="token punctuation">"</span></span> <span class="token attr-name">pointcut-ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pt1<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
 
-&lt;!--
+<span class="token comment">&lt;!--
 aop:after
 作用：用于配置最终通知
 属性：
-    method： 指定通知中方法的名称。
-    pointct： 定义切入点表达式
-    pointcut-ref： 指定切入点表达式的引用
+	method： 指定通知中方法的名称。
+	pointct： 定义切入点表达式
+	pointcut-ref： 指定切入点表达式的引用
 执行时间点：
-    无论切入点方法执行时是否有异常，它都会在其后面执行。
---&gt;
-&lt;aop:after method="release" pointcut-ref="pt1"/&gt;
+	无论切入点方法执行时是否有异常，它都会在其后面执行。
+--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>after</span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>release<span class="token punctuation">"</span></span> <span class="token attr-name">pointcut-ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pt1<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
 
-&lt;!--例子：--&gt;
-&lt;aop:config&gt;
-&lt;aop:pointcut expression="execution(* com.itheima.service.impl.*.*(..))"
-id="pt1"/&gt;
-&lt;aop:aspect id="txAdvice" ref="txManager"&gt;
-&lt;!-- 配置环绕通知 --&gt;
-&lt;aop:around method="transactionAround" pointcut-ref="pt1"/&gt;
-&lt;/aop:aspect&gt;
-&lt;/aop:config&gt;
-</code></pre>
+<span class="token comment">&lt;!--例子：--&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>config</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>pointcut</span> <span class="token attr-name">expression</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>execution(* com.itheima.service.impl.*.*(..))<span class="token punctuation">"</span></span>
+<span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pt1<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>aspect</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>txAdvice<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>txManager<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token comment">&lt;!-- 配置环绕通知 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>around</span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>transactionAround<span class="token punctuation">"</span></span> <span class="token attr-name">pointcut-ref</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pt1<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">aop:</span>aspect</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">aop:</span>config</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="2-2-基于注解"><a href="#2-2-基于注解" class="headerlink" title="2.2 基于注解"></a>2.2 基于注解</h3><p>导入约束</p>
-<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:aop="http://www.springframework.org/schema/aop"
-xmlns:context="http://www.springframework.org/schema/context"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.springframework.org/schema/beans
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>beans</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans<span class="token punctuation">"</span></span>
+<span class="token attr-name"><span class="token namespace">xmlns:</span>aop</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/aop<span class="token punctuation">"</span></span>
+<span class="token attr-name"><span class="token namespace">xmlns:</span>context</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/context<span class="token punctuation">"</span></span>
+<span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+<span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context.xsd"&gt;
-    &lt;!-- 告知 spring，在创建容器时要扫描的包 --&gt;
-    &lt;context:component-scan base-package="com.itheima"&gt;&lt;/context:component-scan&gt;
-&lt;/beans&gt;
-</code></pre>
+http://www.springframework.org/schema/context/spring-context.xsd<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- 告知 spring，在创建容器时要扫描的包 --&gt;</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>component-scan</span> <span class="token attr-name">base-package</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.itheima<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">context:</span>component-scan</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beans</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>把通知类也使用注解配置  </p>
-<pre><code class="java">@Component("txManager")
-@Aspect//表明当前类是一个切面类
-public class TransactionManager {
-//定义一个 DBAssit
-    @Autowired
-    private DBAssit dbAssit ;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span><span class="token punctuation">(</span><span class="token string">"txManager"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Aspect</span><span class="token comment">//表明当前类是一个切面类</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TransactionManager</span> <span class="token punctuation">{</span>
+<span class="token comment">//定义一个 DBAssit</span>
+	<span class="token annotation punctuation">@Autowired</span>
+	<span class="token keyword">private</span> <span class="token class-name">DBAssit</span> dbAssit <span class="token punctuation">;</span>
     
-    /*
+    <span class="token comment">/*
     @Before
     @AfterReturning
     @AfterThrowing
     @After
-    */
-    @Before("execution(* com.itheima.service.impl.*.*(..))")
-    public void beginTransaction() {
-        try {
-            dbAssit.getCurrentConnection().setAutoCommit(false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    */</span>
+    <span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"execution(* com.itheima.service.impl.*.*(..))"</span><span class="token punctuation">)</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">beginTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">try</span> <span class="token punctuation">{</span>
+			dbAssit<span class="token punctuation">.</span><span class="token function">getCurrentConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setAutoCommit</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
     
-}
-</code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在 spring 配置文件中开启 spring 对注解 AOP 的支持  </p>
-<pre><code class="xml">&lt;!-- 开启 spring 对注解 AOP 的支持 --&gt;
-&lt;aop:aspectj-autoproxy/&gt;
-</code></pre>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- 开启 spring 对注解 AOP 的支持 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>aspectj-autoproxy</span><span class="token punctuation">/&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>环绕通知注解配置  </p>
-<pre><code class="java">@Around("execution(* com.itheima.service.impl.*.*(..))")
-public Object transactionAround(ProceedingJoinPoint pjp) {
-//定义返回值
-Object rtValue = null;
-try {
-//获取方法执行所需的参数
-Object[] args = pjp.getArgs();
-//前置通知：开启事务
-beginTransaction();
-//执行方法
-rtValue = pjp.proceed(args);
-//后置通知：提交事务
-commit();
-}catch(Throwable e) {
-//异常通知：回滚事务
-rollback();
-e.printStackTrace();
-}finally {
-//最终通知：释放资源
-release();
-}
-return rtValue;
-}
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span><span class="token string">"execution(* com.itheima.service.impl.*.*(..))"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">transactionAround</span><span class="token punctuation">(</span><span class="token class-name">ProceedingJoinPoint</span> pjp<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">//定义返回值</span>
+<span class="token class-name">Object</span> rtValue <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+<span class="token comment">//获取方法执行所需的参数</span>
+<span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args <span class="token operator">=</span> pjp<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//前置通知：开启事务</span>
+<span class="token function">beginTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//执行方法</span>
+rtValue <span class="token operator">=</span> pjp<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//后置通知：提交事务</span>
+<span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">Throwable</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">//异常通知：回滚事务</span>
+<span class="token function">rollback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token keyword">finally</span> <span class="token punctuation">{</span>
+<span class="token comment">//最终通知：释放资源</span>
+<span class="token function">release</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">return</span> rtValue<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>不使用 XML 的配置方式  </p>
-<pre><code class="java">@Configuration
-@ComponentScan(basePackages="com.itheima")
-@EnableAspectJAutoProxy//开启注解AOP的支持，相当于&lt;aop:aspectj-autoproxy/&gt;
-public class SpringConfiguration {
-}
-</code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@ComponentScan</span><span class="token punctuation">(</span>basePackages<span class="token operator">=</span><span class="token string">"com.itheima"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@EnableAspectJAutoProxy</span><span class="token comment">//开启注解AOP的支持，相当于&lt;aop:aspectj-autoproxy/&gt;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringConfiguration</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
         </div>
 

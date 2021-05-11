@@ -317,9 +317,9 @@
 <p>axios.all([]) 返回的结果是一个数组，使用 axios.spread 可将数组 [res1,res2] 展开为 res1, res2</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001181609571.png" alt="image-20201001181609571"></p>
 <p>在上面的示例中, 我们的BaseURL是固定的。事实上, 在开发中可能很多参数都是固定的。这个时候我们可以进行一些抽取, 也可以利用axiox的全局配置</p>
-<pre><code class="js">axios.defaults.baseURL = ‘123.207.32.32:8000’
-axios.defaults.headers.post[‘Content-Type’] = ‘application/x-www-form-urlencoded’;
-</code></pre>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js">axios<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>baseURL <span class="token operator">=</span> ‘<span class="token number">123.207</span><span class="token number">.32</span><span class="token number">.32</span><span class="token operator">:</span><span class="token number">8000</span>’
+axios<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>headers<span class="token punctuation">.</span>post<span class="token punctuation">[</span>‘Content<span class="token operator">-</span>Type’<span class="token punctuation">]</span> <span class="token operator">=</span> ‘application<span class="token operator">/</span>x<span class="token operator">-</span>www<span class="token operator">-</span>form<span class="token operator">-</span>urlencoded’<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001181716339.png" alt="image-20201001181716339"></p>
 <h3 id="常见的配置选项"><a href="#常见的配置选项" class="headerlink" title="常见的配置选项"></a>常见的配置选项</h3><p>请求地址：url: ‘/user’    请求类型：method: ‘get’,</p>
 <p>请根路径：baseURL: ‘<a class="link" target="_blank" rel="noopener" href="http://www.mt.com/api'">http://www.mt.com/api'<i class="fas fa-external-link-alt"></i></a>    请求前的数据处理：transformRequest:[function(data){}],</p>
@@ -350,85 +350,86 @@ axios.defaults.headers.post[‘Content-Type’] = ‘application/x-www-form-urle
 <h2 id="项目开发中的网络模块使用"><a href="#项目开发中的网络模块使用" class="headerlink" title="项目开发中的网络模块使用"></a>项目开发中的网络模块使用</h2><p>目录结构</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001182916556.png" alt="image-20201001182916556"></p>
 <p>在 request.js 中封装网络请求模块</p>
-<pre><code class="js">import axios from 'axios'
-import QS from 'qs'
-//import Cookie from 'js-cookie'
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
+<span class="token keyword">import</span> <span class="token constant">QS</span> <span class="token keyword">from</span> <span class="token string">'qs'</span>
+<span class="token comment">//import Cookie from 'js-cookie'</span>
 
-const res = {
-    code: 0,
-    msg: "请求异常",
-    data: {}
-}
+<span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token punctuation">{</span>
+    code<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    msg<span class="token operator">:</span> <span class="token string">"请求异常"</span><span class="token punctuation">,</span>
+    data<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-export async function request(url, data, type) {
-    try {
-        //自动给请求加上token和collegeId，因为mock原因暂时注释掉
-        // try {
-        //     // 获取登录数据
-        //     if (Cookie.get('token') !== undefined) {
-        //         const token = JSON.parse(Cookie.get('token'))
-        //         console.log('token信息',token)
-        //         if (data !== undefined &amp;&amp; data !== null ) {
-        //             data.token = token.token
-        //             data.collegeId = token.collegeId
-        //         } else {
-        //             data = {
-        //                 token: token.token,
-        //                 collegeId: token.collegeId
-        //             }
-        //         }
-        //     }
-        // } catch (e) {
-        //     //
-        // }
-        // 判断请求类型
-        if (type === 'get') {
-            return (await axios.get(url, {params: data})).data
-        } else if (type === 'post') {
-            return (await axios.post(url, QS.stringify(data), {headers: {'content-type': 'application/x-www-form-urlencoded;charset=utf-8'}})).data
-        } else {
-            return res
-        }
-    } catch (e) {
-        return res
-    }
-}
-</code></pre>
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token parameter">url<span class="token punctuation">,</span> data<span class="token punctuation">,</span> type</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment">//自动给请求加上token和collegeId，因为mock原因暂时注释掉</span>
+        <span class="token comment">// try {</span>
+        <span class="token comment">//     // 获取登录数据</span>
+        <span class="token comment">//     if (Cookie.get('token') !== undefined) {</span>
+        <span class="token comment">//         const token = JSON.parse(Cookie.get('token'))</span>
+        <span class="token comment">//         console.log('token信息',token)</span>
+        <span class="token comment">//         if (data !== undefined &amp;&amp; data !== null ) {</span>
+        <span class="token comment">//             data.token = token.token</span>
+        <span class="token comment">//             data.collegeId = token.collegeId</span>
+        <span class="token comment">//         } else {</span>
+        <span class="token comment">//             data = {</span>
+        <span class="token comment">//                 token: token.token,</span>
+        <span class="token comment">//                 collegeId: token.collegeId</span>
+        <span class="token comment">//             }</span>
+        <span class="token comment">//         }</span>
+        <span class="token comment">//     }</span>
+        <span class="token comment">// } catch (e) {</span>
+        <span class="token comment">//     //</span>
+        <span class="token comment">// }</span>
+        <span class="token comment">// 判断请求类型</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">===</span> <span class="token string">'get'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token punctuation">{</span>params<span class="token operator">:</span> data<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">===</span> <span class="token string">'post'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token constant">QS</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>headers<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token string">'content-type'</span><span class="token operator">:</span> <span class="token string">'application/x-www-form-urlencoded;charset=utf-8'</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> res
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> res
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>api文件夹中调用 request.js 封装的 request函数</p>
-<pre><code class="js">// 登录、注册、忘记密码模块
-import { request } from '../util/request.js'
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// 登录、注册、忘记密码模块</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> request <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../util/request.js'</span>
 
-export function login(data) { // 登录接口
-    return request( '/api/login/collegeAdmin', data, 'post')
-}
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 登录接口</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span> <span class="token string">'/api/login/collegeAdmin'</span><span class="token punctuation">,</span> data<span class="token punctuation">,</span> <span class="token string">'post'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-export function register(data) { // 注册接口
-  return request('/api/register', data, 'post')
-}
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 注册接口</span>
+  <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'/api/register'</span><span class="token punctuation">,</span> data<span class="token punctuation">,</span> <span class="token string">'post'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-export function systemMessage(data) { // 获取院管理员信息
-    return request('/api/account/msg', data, 'get')
-}
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">systemMessage</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 获取院管理员信息</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'/api/account/msg'</span><span class="token punctuation">,</span> data<span class="token punctuation">,</span> <span class="token string">'get'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-export function changePassword(data) { // 获取院管理员信息
-    return request('/api/account/password/change', data, 'post')
-}
-</code></pre>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">changePassword</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 获取院管理员信息</span>
+    <span class="token keyword">return</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'/api/account/password/change'</span><span class="token punctuation">,</span> data<span class="token punctuation">,</span> <span class="token string">'post'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在action中的调用</p>
-<pre><code class="js"> changePasswd({ commit },data){
-        return new Promise((resolve, reject) =&gt; {
-            changePassword(data).then(res =&gt; {
-                if (res.code === 1){
-                    resolve(res.msg)
-                    commit('NULL')
-                } else {
-                    reject(res.msg)
-                }
-            }).catch(error=&gt;{
-                reject(error)
-            })
-        })
-</code></pre>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">changePasswd</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> commit <span class="token punctuation">}</span><span class="token punctuation">,</span>data</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+       <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+           <span class="token function">changePassword</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+               <span class="token keyword">if</span> <span class="token punctuation">(</span>res<span class="token punctuation">.</span>code <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                   <span class="token function">resolve</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>msg<span class="token punctuation">)</span>
+                   <span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">'NULL'</span><span class="token punctuation">)</span>
+               <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                   <span class="token function">reject</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>msg<span class="token punctuation">)</span>
+               <span class="token punctuation">}</span>
+           <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+               <span class="token function">reject</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
+           <span class="token punctuation">}</span><span class="token punctuation">)</span>
+       <span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
         </div>
 

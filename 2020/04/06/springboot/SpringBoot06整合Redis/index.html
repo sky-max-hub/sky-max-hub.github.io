@@ -220,50 +220,49 @@
             <hr>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2014/09/10/00/59/mountains-440520_1280.jpg"></p>
 <hr>
-<h1 id="SpringBoot06整合Redis"><a href="#SpringBoot06整合Redis" class="headerlink" title="SpringBoot06整合Redis"></a>SpringBoot06整合Redis</h1><h2 id="1-添加redis的起步依赖"><a href="#1-添加redis的起步依赖" class="headerlink" title="1 添加redis的起步依赖"></a>1 添加redis的起步依赖</h2><pre><code class="xml">&lt;!-- 配置使用redis启动器 --&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
-&lt;/dependency&gt;
-</code></pre>
-<h2 id="2-配置redis的连接信息"><a href="#2-配置redis的连接信息" class="headerlink" title="2 配置redis的连接信息"></a>2 配置redis的连接信息</h2><pre><code class="properties">#Redis
-spring.redis.host=127.0.0.1
-spring.redis.port=6379
-</code></pre>
-<h2 id="3-注入RedisTemplate测试redis操作"><a href="#3-注入RedisTemplate测试redis操作" class="headerlink" title="3 注入RedisTemplate测试redis操作"></a>3 注入RedisTemplate测试redis操作</h2><pre><code class="java">@RunWith(SpringRunner.class)
-@SpringBootTest(classes = SpringbootJpaApplication.class)
-public class RedisTest {
+<h1 id="SpringBoot06整合Redis"><a href="#SpringBoot06整合Redis" class="headerlink" title="SpringBoot06整合Redis"></a>SpringBoot06整合Redis</h1><h2 id="1-添加redis的起步依赖"><a href="#1-添加redis的起步依赖" class="headerlink" title="1 添加redis的起步依赖"></a>1 添加redis的起步依赖</h2><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- 配置使用redis启动器 --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-data-redis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-    @Autowired
-    private UserRepository userRepository;
+<h2 id="2-配置redis的连接信息"><a href="#2-配置redis的连接信息" class="headerlink" title="2 配置redis的连接信息"></a>2 配置redis的连接信息</h2><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment">#Redis</span>
+<span class="token attr-name">spring.redis.host</span><span class="token punctuation">=</span><span class="token attr-value">127.0.0.1</span>
+<span class="token attr-name">spring.redis.port</span><span class="token punctuation">=</span><span class="token attr-value">6379</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-    @Autowired
-    private RedisTemplate&lt;String, String&gt; redisTemplate;
+<h2 id="3-注入RedisTemplate测试redis操作"><a href="#3-注入RedisTemplate测试redis操作" class="headerlink" title="3 注入RedisTemplate测试redis操作"></a>3 注入RedisTemplate测试redis操作</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span><span class="token class-name">SpringRunner</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@SpringBootTest</span><span class="token punctuation">(</span>classes <span class="token operator">=</span> <span class="token class-name">SpringbootJpaApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisTest</span> <span class="token punctuation">{</span>
 
-    @Test
-    public void test() throws JsonProcessingException {
-        //从redis缓存中获得指定的数据
-        String userListData = redisTemplate.boundValueOps("user.findAll").get();
-        //如果redis中没有数据的话
-        if(null==userListData){
-            //查询数据库获得数据
-            List&lt;User&gt; all = userRepository.findAll();
-            //转换成json格式字符串
-            ObjectMapper om = new ObjectMapper();
-            userListData = om.writeValueAsString(all);
-            //将数据存储到redis中，下次在查询直接从redis中获得数据，不用在查询数据库
-            redisTemplate.boundValueOps("user.findAll").set(userListData);
-            System.out.println("===============从数据库获得数据===============");
-        }else{
-            System.out.println("===============从redis缓存中获得数据===============");
-        }
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">UserRepository</span> userRepository<span class="token punctuation">;</span>
 
-        System.out.println(userListData);
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">RedisTemplate</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> redisTemplate<span class="token punctuation">;</span>
 
-    }
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">JsonProcessingException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//从redis缓存中获得指定的数据</span>
+        <span class="token class-name">String</span> userListData <span class="token operator">=</span> redisTemplate<span class="token punctuation">.</span><span class="token function">boundValueOps</span><span class="token punctuation">(</span><span class="token string">"user.findAll"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//如果redis中没有数据的话</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token operator">==</span>userListData<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">//查询数据库获得数据</span>
+            <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">&gt;</span></span> all <span class="token operator">=</span> userRepository<span class="token punctuation">.</span><span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//转换成json格式字符串</span>
+            <span class="token class-name">ObjectMapper</span> om <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            userListData <span class="token operator">=</span> om<span class="token punctuation">.</span><span class="token function">writeValueAsString</span><span class="token punctuation">(</span>all<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//将数据存储到redis中，下次在查询直接从redis中获得数据，不用在查询数据库</span>
+            redisTemplate<span class="token punctuation">.</span><span class="token function">boundValueOps</span><span class="token punctuation">(</span><span class="token string">"user.findAll"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>userListData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"===============从数据库获得数据==============="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"===============从redis缓存中获得数据==============="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-}
-</code></pre>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userListData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
         </div>
 
