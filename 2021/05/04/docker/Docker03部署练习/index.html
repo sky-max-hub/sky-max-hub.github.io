@@ -196,12 +196,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.5k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>5 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>7 分钟</span>
         </span>
     
     
@@ -257,6 +257,23 @@
 
 <p>查看效果：（注意一定要在服务器的安全组中开放对应的端口！！！）</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504112530764.png" alt="image-20210504112530764"></p>
+<h2 id="部署Mysql"><a href="#部署Mysql" class="headerlink" title="部署Mysql"></a>部署Mysql</h2><p>注意：<a class="link" target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql">官网 <i class="fas fa-external-link-alt"></i></a> 中解释 Mysql 是要配置数据库密码的！！</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/6487268471927.jpg" alt="6487268471927"></p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">下载镜像 Mysql5.7</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z ceshi]# docker pull mysql:5.7</span><br><span class="line">5.7: Pulling from library/mysql</span><br><span class="line">69692152171a: Pull complete </span><br><span class="line">1651b0be3df3: Pull complete </span><br><span class="line">951da7386bc8: Pull complete </span><br><span class="line">0f86c95aa242: Pull complete </span><br><span class="line">37ba2d8bd4fe: Pull complete </span><br><span class="line">6d278bb05e94: Pull complete </span><br><span class="line">497efbd93a3e: Pull complete </span><br><span class="line">a023ae82eef5: Pull complete </span><br><span class="line">e76c35f20ee7: Pull complete </span><br><span class="line">e887524d2ef9: Pull complete </span><br><span class="line">ccb65627e1c3: Pull complete </span><br><span class="line">Digest: sha256:a682e3c78fc5bd941e9db080b4796c75f69a28a8cad65677c23f7a9f18ba21fa</span><br><span class="line">Status: Downloaded newer image for mysql:5.7</span><br><span class="line">docker.io/library/mysql:5.7</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动镜像并挂载目录配置数据库的初始密码</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z ceshi]# docker run -d -p 3310:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root --name mysql01 mysql:5.7</span><br><span class="line">d869c76c987c305b9dd91321f523db7708a2a1c220712b4beaf2ac7f0e68fa1e</span><br></pre></td></tr></tbody></table></figure>
+
+<p>使用数据库连接工具连接，查看连接是否成功：</p>
+<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/Snipaste_2021-05-14_12-49-42.jpg" alt="Snipaste_2021-05-14_12-49-42" style="zoom: 50%;">
+
+<p>发现连接成功：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/Snipaste_2021-05-14_12-49-58.jpg" alt="Snipaste_2021-05-14_12-49-58"></p>
+<p>新建数据库并查看主机的文件是否对应改变：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/Snipaste_2021-05-14_12-56-29.jpg" alt="Snipaste_2021-05-14_12-56-29"></p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@izwz91mv6i3x6k12jjqh60z home]# ls</span><br><span class="line">admin  ceshi  mysql  test.java</span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z home]# cd mysql/data</span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z data]# ls</span><br><span class="line">auto.cnf    ca.pem           client-key.pem  ibdata1      ib_logfile1  mysql               private_key.pem  server-cert.pem  sys</span><br><span class="line">ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile0  ibtmp1       performance_schema  public_key.pem   server-key.pem   test</span><br></pre></td></tr></tbody></table></figure>
+
+<p>测试删除 mysql 容器后，主机上的文件是否依然存在：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@izwz91mv6i3x6k12jjqh60z data]# docker ps</span><br><span class="line">CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS                                                  NAMES</span><br><span class="line">d869c76c987c   mysql:5.7   "docker-entrypoint.s…"   26 minutes ago   Up 26 minutes   33060/tcp, 0.0.0.0:3310-&gt;3306/tcp, :::3310-&gt;3306/tcp   mysql01</span><br><span class="line">1309cabd368d   centos      "/bin/bash"              38 minutes ago   Up 38 minutes                                                          epic_neumann</span><br><span class="line">39f11d68d64d   tomcat      "catalina.sh run"        2 hours ago      Up 2 hours      0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp              tomcat02</span><br><span class="line"></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z data]# docker rm -f d869c76c987c</span><br><span class="line">d869c76c987c</span><br><span class="line"></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z data]# ls</span><br><span class="line">auto.cnf    ca.pem           client-key.pem  ibdata1      ib_logfile1  mysql               private_key.pem  server-cert.pem  sys</span><br><span class="line">ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile0  ibtmp1       performance_schema  public_key.pem   server-key.pem   test</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>发现我们挂载到本地的数据卷依旧没有丢失，这就实现了 容器数据持久化的功能！！</p>
 
         </div>
 
@@ -285,13 +302,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/05/14/docker/Docker04%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/"
+                           href="/2021/05/04/linux/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Docker可视化工具</span>
+                                <span class="post-nav-title-item">Linux服务器防火墙端口配置</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -428,7 +445,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2Nginx"><span class="nav-text">部署Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2Tomcat"><span class="nav-text">部署Tomcat</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2Nginx"><span class="nav-text">部署Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2Tomcat"><span class="nav-text">部署Tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2Mysql"><span class="nav-text">部署Mysql</span></a></li></ol>
     </div>
 </div>
         </aside>
