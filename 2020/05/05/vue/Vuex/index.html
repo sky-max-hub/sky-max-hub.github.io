@@ -1,224 +1,105 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="大白小怪兽">
-    
-    <title>
-        
-            vue学习笔记06-vuex |
-        
-        大白小怪兽
-    </title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="shortcut icon" href="/images/blog.png">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
-  </script>
-<meta name="generator" content="Hexo 5.4.0">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Title -->
+<title>vue学习笔记06-vuex - Hexo</title>
+
+<!-- Icon -->
+<link rel="icon" href="/favicon.ico">
+
+<!-- Fonts -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null, this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
+
+
+
+<!-- Style -->
+
+<link rel="stylesheet" href="/styles/main.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-pure@1.0.1/dist/main.css"> -->
+
+
+
+    <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
 </head>
-
-
-<body>
-<div class="progress-bar-container">
-    
-        <span class="scroll-progress-bar"></span>
-    
-
-    
-        <span class="pjax-progress-bar"></span>
-        <span class="pjax-progress-icon">
-            <i class="fas fa-circle-notch fa-spin"></i>
-        </span>
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="page-main-content">
-
-        <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            <a class="logo-title" href="/">
-                大白小怪兽
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                首页
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                归档
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                标签
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                关于
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">关于</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="page-main-content-middle">
-
+    <body>
+        <div class="main gt-bg-theme-color-first">
             <div class="main-content">
-
-                
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
-
-        <div class="article-title">
-            <span class="title-hover-animation">vue学习笔记06-vuex</span>
+                <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/favicon.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            
         </div>
-
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/avatar.jpg">
+    </div>
+    <button aria-label="Navbar Toggler" class="navbar-toggler" type="button" id="changeNavbar">
+        <i class="gt-c-content-color-first" style="font-size: 18px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18px" fill="currentColor">
+                <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
+            </svg>
+        </i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center; ">
+            
+                <div class="nav-item">
+                    <a href="/" class="menu gt-a-link" target="_self">首页</a>
                 </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">大白小怪兽</span>
-                        
-                            <span class="author-label">攻城狮</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2020-05-05 06:45:01
-    </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/vue/">vue</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>3.9k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                    </div>
+            
+                <div class="nav-item">
+                    <a href="/archives/" class="menu gt-a-link" target="_self">归档</a>
                 </div>
+            
+                <div class="nav-item">
+                    <a href="/tags/" class="menu gt-a-link" target="_self">标签</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/friends/" class="menu gt-a-link" target="_self">友链</a>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function() {
+        let element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else { 
+            element.style.display = 'none';
+        }
+    }
+</script>
+                <div class="post-container">
+    <div class="post-detail gt-bg-theme-color-second gt-c-content-color-first">
+        <article class="gt-post-content">
+            <h1 class="post-title">vue学习笔记06-vuex</h1>
+            <div class="post-info">
+                <time class="post-time gt-c-content-color-first">
+                    · 2020-05-05 ·</time>
+                
+                    
+                        <a href="/tags/vue/" class="post-tag">
+                            #vue</a>
+                    
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/" class="post-tag">
+                            #前端</a>
+                    
+                
             </div>
-        
-
-        <div class="article-content markdown-body">
-            <h1 id="vue学习笔记06-vuex"><a href="#vue学习笔记06-vuex" class="headerlink" title="vue学习笔记06-vuex"></a>vue学习笔记06-vuex</h1><hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/tree-736875_1280.jpg"></p>
+            <hr>
+            <div class="post-content gt-c-content-color-first">
+                <h1 id="vue学习笔记06-vuex"><a href="#vue学习笔记06-vuex" class="headerlink" title="vue学习笔记06-vuex"></a>vue学习笔记06-vuex</h1><hr>
+<p><img src="https://img.sky123.top/img/tree-736875_1280.jpg"></p>
 <hr>
 <h2 id="Vuex是做什么的"><a href="#Vuex是做什么的" class="headerlink" title="Vuex是做什么的?"></a>Vuex是做什么的?</h2><p>官方解释：Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。<br>它采用 集中式存储管理 应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。<br>Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。</p>
 <h3 id="状态管理到底是什么？"><a href="#状态管理到底是什么？" class="headerlink" title="状态管理到底是什么？"></a>状态管理到底是什么？</h3><p>状态管理模式、集中式存储管理这些名词听起来就非常高大上，让人捉摸不透。其实，你可以简单的将其看成把需要多个组件共享的变量全部存储在一个对象里面。<br><code>然后，将这个对象放在顶层的Vue实例中，让其他组件可以使用。</code>那么，多个组件是不是就可以共享这个对象中的所有变量属性了呢？等等，如果是这样的话，为什么官方还要专门出一个插件Vuex呢？难道我们不能自己封装一个对象来管理吗？<br><code>当然可以，只是我们要先想想VueJS带给我们最大的便利是什么呢？没错，就是响应式。</code><br>如果你自己封装实现一个对象能不能保证它里面所有的属性做到响应式呢？当然也可以，只是自己封装可能稍微麻烦一些。不用怀疑，Vuex就是为了提供这样一个在多个组件间共享状态的插件，用它就可以了。</p>
@@ -228,12 +109,12 @@
 <p>OK，从理论上理解了状态管理之后，让我们从实际的代码再来看看状态管理。</p>
 <p><code>毕竟，Talk is cheap, Show me the code.(来自Linus)我们先来看看但界面的状态管理吧.</code></p>
 <h3 id="单界面的状态管理"><a href="#单界面的状态管理" class="headerlink" title="单界面的状态管理"></a>单界面的状态管理</h3><p>我们知道，要在单个组件中进行状态管理是一件非常简单的事情。什么意思呢？我们来看下面的图片。</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001101301530.png" alt="image-20201001101301530"></p>
+<p><img src="https://img.sky123.top/img/image-20201001101301530.png" alt="image-20201001101301530"></p>
 <p>这图片中的三种东西，怎么理解呢？<br>State：不用多说，就是我们的状态。（你姑且可以当做就是data中的属性）<br>View：视图层，可以针对State的变化，显示不同的信息。（这个好理解吧？）<br>Actions：这里的Actions主要是用户的各种操作：点击、输入等等，会导致状态的改变。</p>
 <p>写点代码，加深理解：</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001101328897.png" alt="image-20201001101328897"></p>
+<p><img src="https://img.sky123.top/img/image-20201001101328897.png" alt="image-20201001101328897"></p>
 <p>看下右边的代码效果, 肯定会实现吧?</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001101338978.png" alt="image-20201001101338978"></p>
+<p><img src="https://img.sky123.top/img/image-20201001101338978.png" alt="image-20201001101338978"></p>
 <p>在这个案例中，我们有木有状态需要管理呢？没错，就是个数counter。<br><code>counter需要某种方式被记录下来，也就是我们的State。</code></p>
 <p>counter目前的值需要被显示在界面中，也就是我们的View部分。</p>
 <p>界面发生某些操作时（我们这里是用户的点击，也可以是用户的input），<code>需要去更新状态，也就是我们的Actions</code></p>
@@ -244,14 +125,14 @@
 <p>没错，<code>Vuex就是为我们提供这个大管家的工具。</code></p>
 <p><code>全局单例模式（大管家）</code><br>我们现在要做的就是将共享的状态抽取出来，交给我们的大管家，统一进行管理。<br>之后，你们每个 view，按照我规定好的规定，进行访问和修改等操作。<br>这就是Vuex背后的基本思想。</p>
 <h3 id="Vuex状态管理图例"><a href="#Vuex状态管理图例" class="headerlink" title="Vuex状态管理图例"></a>Vuex状态管理图例</h3><p>一起在来看一副官方给出的图片</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001101635053.png" alt="image-20201001101635053"></p>
+<p><img src="https://img.sky123.top/img/image-20201001101635053.png" alt="image-20201001101635053"></p>
 <h2 id="Vuex的基本使用"><a href="#Vuex的基本使用" class="headerlink" title="Vuex的基本使用"></a>Vuex的基本使用</h2><p>我们还是实现一下之前简单的案例</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001101751123.png" alt="image-20201001101751123"></p>
+<p><img src="https://img.sky123.top/img/image-20201001101751123.png" alt="image-20201001101751123"></p>
 <p>首先，我们需要在某个地方存放我们的Vuex代码：<br>这里，我们先创建一个文件夹store，并且在其中创建一个index.js文件<br>在index.js文件中写入如下代码：</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001101815560.png" alt="image-20201001101815560"></p>
+<p><img src="https://img.sky123.top/img/image-20201001101815560.png" alt="image-20201001101815560"></p>
 <p>其次，我们让所有的Vue组件都可以使用这个store对象。来到main.js文件，导入store对象，并且放在new Vue中</p>
 <p>这样，<code>在其他Vue组件中，我们就可以通过this.$store的方式，获取到这个store对象了</code></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001101925409.png" alt="image-20201001101925409"></p>
+<p><img src="https://img.sky123.top/img/image-20201001101925409.png" alt="image-20201001101925409"></p>
 <p>好的，这就是使用Vuex最简单的方式了。我们来对使用步骤，做一个简单的小节：</p>
 <ol>
 <li><p>提取出一个公共的store对象，用于保存在多个组件中共享的状态</p>
@@ -270,28 +151,28 @@
 <p>这些信息被分散在很多地方进行管理，有一天你需要办某个业务时(比如入户某个城市)，你会发现你需要到各个对应的工作地点去打印、盖章各种资料信息，最后到一个地方提交证明你的信息无误。</p>
 <p>这种保存信息的方案，不仅仅低效，而且不方便管理，以及日后的维护也是一个庞大的工作(需要大量的各个部门的人力来维护，当然国家目前已经在完善我们的这个系统了)。<br>这个和我们在应用开发中比较类似：<br><code>如果你的状态信息是保存到多个Store对象中的，那么之后的管理和维护等等都会变得特别困难。所以Vuex也使用了单一状态树来管理应用层级的全部状态。</code><br>单一状态树能够让我们最直接的方式找到某个状态的片段，而且在之后的维护和调试过程中，也可以非常方便的管理和维护。</p>
 <h3 id="Getters基本使用"><a href="#Getters基本使用" class="headerlink" title="Getters基本使用"></a>Getters基本使用</h3><p>有时候，我们需要从store中获取一些state变异后的状态，比如下面的Store中：<br>获取学生年龄大于20的个数。</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001102316623.png" alt="image-20201001102316623"></p>
+<p><img src="https://img.sky123.top/img/image-20201001102316623.png" alt="image-20201001102316623"></p>
 <p>我们可以在Store中定义getters</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001102324808.png" alt="image-20201001102324808"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001102330021.png" alt="image-20201001102330021"></p>
+<p><img src="https://img.sky123.top/img/image-20201001102324808.png" alt="image-20201001102324808"></p>
+<p><img src="https://img.sky123.top/img/image-20201001102330021.png" alt="image-20201001102330021"></p>
 <p>如果我们已经有了一个获取所有年龄大于20岁学生列表的getters, 那么代码可以这样来写</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001102350974.png" alt="image-20201001102350974"></p>
+<p><img src="https://img.sky123.top/img/image-20201001102350974.png" alt="image-20201001102350974"></p>
 <p>getters默认是不能传递参数的, 如果希望传递参数, 那么只能让getters本身返回另一个函数.<br>比如上面的案例中,我们希望根据ID获取用户的信息</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001102358424.png" alt="image-20201001102358424"></p>
+<p><img src="https://img.sky123.top/img/image-20201001102358424.png" alt="image-20201001102358424"></p>
 <h3 id="Mutation状态更新"><a href="#Mutation状态更新" class="headerlink" title="Mutation状态更新"></a>Mutation状态更新</h3><p><code>Vuex的store状态的更新唯一方式：提交Mutation</code></p>
 <p>Mutation主要包括两部分：</p>
 <p>字符串的事件类型（type）。一个回调函数（handler）,该回调函数的第一个参数就是state。<br>mutation的定义方式：</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001102908754.png" alt="image-20201001102908754"></p>
+<p><img src="https://img.sky123.top/img/image-20201001102908754.png" alt="image-20201001102908754"></p>
 <p>通过mutation更新</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001102912834.png" alt="image-20201001102912834"></p>
+<p><img src="https://img.sky123.top/img/image-20201001102912834.png" alt="image-20201001102912834"></p>
 <h4 id="Mutation传递参数"><a href="#Mutation传递参数" class="headerlink" title="Mutation传递参数"></a>Mutation传递参数</h4><p>在通过mutation更新数据的时候, 有可能我们希望携带一些额外的参数。参数被称为是mutation的载荷(Payload)<br>Mutation中的代码:</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001103024606.png" alt="image-20201001103024606"></p>
+<p><img src="https://img.sky123.top/img/image-20201001103024606.png" alt="image-20201001103024606"></p>
 <p>但是如果参数不是一个呢?比如我们有很多参数需要传递.<br>这个时候, 我们通常会以对象的形式传递, 也就是payload是一个对象。这个时候可以再从对象中取出相关的信息.</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001103043242.png" alt="image-20201001103043242"></p>
+<p><img src="https://img.sky123.top/img/image-20201001103043242.png" alt="image-20201001103043242"></p>
 <h4 id="Mutation提交风格"><a href="#Mutation提交风格" class="headerlink" title="Mutation提交风格"></a>Mutation提交风格</h4><p>上面的通过commit进行提交是一种普通的方式<br>Vue还提供了另外一种风格, 它是一个包含type属性的对象</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001103154798.png" alt="image-20201001103154798"></p>
+<p><img src="https://img.sky123.top/img/image-20201001103154798.png" alt="image-20201001103154798"></p>
 <p>Mutation中的处理方式是将整个commit的对象作为payload使用, 所以代码没有改变, 依然如下:</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001103202938.png" alt="image-20201001103202938"></p>
+<p><img src="https://img.sky123.top/img/image-20201001103202938.png" alt="image-20201001103202938"></p>
 <h4 id="Mutation响应规则"><a href="#Mutation响应规则" class="headerlink" title="Mutation响应规则"></a>Mutation响应规则</h4><p>Vuex的store中的state是响应式的, 当state中的数据发生改变时, Vue组件会自动更新。这就要求我们必须遵守一些Vuex对应的规则:</p>
 <p>提前在store中初始化好所需的属性。当给state中的对象添加新属性时, 使用下面的方式:</p>
 <ol>
@@ -300,19 +181,19 @@
 </ol>
 <p>我们来看一个例子:当我们点击更新信息时, 界面并没有发生对应改变.</p>
 <p>如何才能让它改变呢?查看下面代码的方式一和方式二。都可以让state中的属性是响应式的.</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001103428715.png" alt="image-20201001103428715"></p>
+<p><img src="https://img.sky123.top/img/image-20201001103428715.png" alt="image-20201001103428715"></p>
 <h4 id="Mutation常量类型-–-概念"><a href="#Mutation常量类型-–-概念" class="headerlink" title="Mutation常量类型 – 概念"></a>Mutation常量类型 – 概念</h4><p>我们来考虑下面的问题：在mutation中, 我们定义了很多事件类型(也就是其中的方法名称)。</p>
 <p>当我们的项目增大时, Vuex管理的状态越来越多, 需要更新状态的情况越来越多, 那么意味着Mutation中的方法越来越多.</p>
 <p>方法过多, 使用者需要花费大量的经历去记住这些方法, 甚至是多个文件间来回切换, 查看方法名称, 甚至如果不是复制的时候, 可能还会出现写错的情况.<br>如何避免上述的问题呢?</p>
 <p><code>在各种Flux实现中, 一种很常见的方案就是使用常量替代Mutation事件的类型.</code></p>
 <p>我们可以将这些常量放在一个单独的文件中, 方便管理以及让整个app所有的事件类型一目了然.<br>具体怎么做呢?<br>我们可以创建一个文件: mutation-types.js, 并且在其中定义我们的常量.<br>定义常量时, 我们可以使用ES2015中的风格, 使用一个常量来作为函数的名称.</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001103801680.png" alt="image-20201001103801680"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001103819962.png" alt="image-20201001103819962"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001103825664.png" alt="image-20201001103825664"></p>
+<p><img src="https://img.sky123.top/img/image-20201001103801680.png" alt="image-20201001103801680"></p>
+<p><img src="https://img.sky123.top/img/image-20201001103819962.png" alt="image-20201001103819962"></p>
+<p><img src="https://img.sky123.top/img/image-20201001103825664.png" alt="image-20201001103825664"></p>
 <h4 id="Mutation同步函数"><a href="#Mutation同步函数" class="headerlink" title="Mutation同步函数"></a>Mutation同步函数</h4><p>通常情况下, Vuex要求我们Mutation中的方法必须是同步方法。主要的原因是当我们使用devtools时, 可以devtools可以帮助我们捕捉mutation的快照。但是如果是异步操作, 那么devtools将不能很好的追踪这个操作什么时候会被完成.<br>比如我们之前的代码, 当执行更新时, devtools中会有如下信息: 图1</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001103926907.png" alt="image-20201001103926907"></p>
+<p><img src="https://img.sky123.top/img/image-20201001103926907.png" alt="image-20201001103926907"></p>
 <p>但是, 如果Vuex中的代码, 我们使用了异步函数: 图2</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001103931794.png" alt="image-20201001103931794"></p>
+<p><img src="https://img.sky123.top/img/image-20201001103931794.png" alt="image-20201001103931794"></p>
 <p>你会发现state中的info数据一直没有被改变, 因为他无法追踪到。<code>因此，通常情况下, 不要再mutation中进行异步的操作</code></p>
 <h3 id="Action的基本定义"><a href="#Action的基本定义" class="headerlink" title="Action的基本定义"></a>Action的基本定义</h3><p>我们强调, 不要再Mutation中进行异步操作。但是某些情况, 我们确实希望在Vuex中进行一些异步操作, 比如网络请求, 必然是异步的. 这个时候怎么处理呢?</p>
 <p><code>Action类似于Mutation, 但是是用来代替Mutation进行异步操作的.</code></p>
@@ -322,31 +203,31 @@
 <p>但是注意, 这里它们并不是同一个对象, 为什么呢? 我们后面学习Modules的时候,。</p>
 <p>我们定义了actions, 然后又在actions中去进行commit, 这不是脱裤放屁吗?</p>
 <p><code>事实上并不是这样, 如果在Vuex中有异步操作, 那么我们就可以在actions中完成了.</code></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001104150464.png" alt="image-20201001104150464"></p>
+<p><img src="https://img.sky123.top/img/image-20201001104150464.png" alt="image-20201001104150464"></p>
 <h4 id="Action的分发"><a href="#Action的分发" class="headerlink" title="Action的分发"></a>Action的分发</h4><p>在Vue组件中, 如果我们调用action中的方法, 那么就需要使用dispatch</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001104235614.png" alt="image-20201001104235614"></p>
+<p><img src="https://img.sky123.top/img/image-20201001104235614.png" alt="image-20201001104235614"></p>
 <p>同样的, 也是支持传递payload</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001104241037.png" alt="image-20201001104241037"></p>
+<p><img src="https://img.sky123.top/img/image-20201001104241037.png" alt="image-20201001104241037"></p>
 <h4 id="Action返回的Promise"><a href="#Action返回的Promise" class="headerlink" title="Action返回的Promise"></a>Action返回的Promise</h4><p>前面我们学习ES6语法的时候说过, Promise经常用于异步操作。在Action中, 我们可以将异步操作放在一个Promise中, 并且在成功或者失败后, 调用对应的resolve或reject.<br>OK, 我们来看下面的代码:</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001104354476.png" alt="image-20201001104354476"></p>
+<p><img src="https://img.sky123.top/img/image-20201001104354476.png" alt="image-20201001104354476"></p>
 <h3 id="认识Module"><a href="#认识Module" class="headerlink" title="认识Module"></a>认识Module</h3><p>Module是模块的意思, 为什么在Vuex中我们要使用模块呢?<code>Vue使用单一状态树,那么也意味着很多状态都会交给Vuex来管理。当应用变得非常复杂时,store对象就有可能变得相当臃肿。</code>为了解决这个问题, Vuex允许我们将store分割成模块(Module), 而每个模块拥有自己的state、mutation、action、getters等</p>
 <p>我们按照什么样的方式来组织模块呢? </p>
 <p>我们来看左边的代码</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001104611130.png" alt="image-20201001104611130"></p>
+<p><img src="https://img.sky123.top/img/image-20201001104611130.png" alt="image-20201001104611130"></p>
 <h4 id="Module局部状态"><a href="#Module局部状态" class="headerlink" title="Module局部状态"></a>Module局部状态</h4><p>上面的代码中, 我们已经有了整体的组织结构, 下面我们来看看具体的局部模块中的代码如何书写.</p>
 <p>我们在moduleA中添加state、mutations、getters</p>
 <p>mutation和getters接收的第一个参数是局部状态对象</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001104707803.png" alt="image-20201001104707803"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001104728296.png" alt="image-20201001104728296"></p>
+<p><img src="https://img.sky123.top/img/image-20201001104707803.png" alt="image-20201001104707803"></p>
+<p><img src="https://img.sky123.top/img/image-20201001104728296.png" alt="image-20201001104728296"></p>
 <p>注意：虽然, 我们的doubleCount和increment都是定义在对象内部的。但是在调用的时候, 依然是通过this.$store来直接调用的.</p>
 <h4 id="Actions的写法"><a href="#Actions的写法" class="headerlink" title="Actions的写法"></a>Actions的写法</h4><p>actions的写法呢? 接收一个context参数对象<br>局部状态通过 context.state 暴露出来，根节点状态则为 context.rootState</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001110647431.png" alt="image-20201001110647431"></p>
+<p><img src="https://img.sky123.top/img/image-20201001110647431.png" alt="image-20201001110647431"></p>
 <p>如果getters中也需要使用全局的状态, 可以接受更多的参数</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001110654980.png" alt="image-20201001110654980"></p>
+<p><img src="https://img.sky123.top/img/image-20201001110654980.png" alt="image-20201001110654980"></p>
 <p>项目结构</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001110737846.png" alt="image-20201001110737846"></p>
+<p><img src="https://img.sky123.top/img/image-20201001110737846.png" alt="image-20201001110737846"></p>
 <h4 id="常用的模块化开发结构"><a href="#常用的模块化开发结构" class="headerlink" title="常用的模块化开发结构"></a>常用的模块化开发结构</h4><p>目录结构：</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001105136797.png" alt="image-20201001105136797"></p>
+<p><img src="https://img.sky123.top/img/image-20201001105136797.png" alt="image-20201001105136797"></p>
 <p>在 index.js中做如下定义：</p>
 <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store的index.js文件</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> modulesFiles = <span class="built_in">require</span>.context(<span class="string">'./modules'</span>, <span class="literal">true</span>, <span class="regexp">/\.js$/</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> modules = modulesFiles.keys().reduce(<span class="function">(<span class="params">modules, modulePath</span>) =&gt;</span> {</span><br><span class="line">    <span class="comment">// set './app.js' =&gt; 'app'</span></span><br><span class="line">    <span class="keyword">const</span> moduleName = modulePath.replace(<span class="regexp">/^\.\/(.*)\.\w+$/</span>, <span class="string">'$1'</span>)</span><br><span class="line">    <span class="keyword">const</span> value = modulesFiles(modulePath)</span><br><span class="line">    modules[moduleName] = value.default</span><br><span class="line">    <span class="keyword">return</span> modules</span><br><span class="line">}, {})</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store({</span><br><span class="line">    modules</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
@@ -355,277 +236,47 @@
 
 <p>这样在组件中使用的时候可以这样：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  .......</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">import { mapState } from 'vuex' //</span><br><span class="line"></span><br><span class="line">export default {</span><br><span class="line">  name: "login",</span><br><span class="line">  methods: {</span><br><span class="line">  },</span><br><span class="line">  computed: </span><br><span class="line">    ...mapState({ // 这个是提取store中access.js的state的数据</span><br><span class="line">      'loginState': 'login'</span><br><span class="line">    })</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">   ....</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-        </div>
-
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：vue学习笔记06-vuex</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-05-05 06:45:01</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/05/05/vue/Vuex/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
             </div>
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2020/05/05/vue/Promise%E5%92%8Caxios/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">vue学习笔记07-Promise和axios</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2020/05/05/vue/vue-router/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">vue学习笔记05-vue-router</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
+        </article>
     </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+    <br>
+    
+        <div class="next-prev-post">
             
-              <span>2020</span>&nbsp;-&nbsp;
+                <div class="prev-post">
+                    <div class="prev gt-c-content-color-first">
+                        上一篇：<a href="/2020/05/05/vue/Promise%E5%92%8Caxios/" 
+                            class="post-title gt-a-link">vue学习笔记07-Promise和axios</a>
+                    </div>
+                </div>
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
+            
+                <div class="next-post">
+                    <div class="next gt-c-content-color-first">
+                        下一篇：<a href="/2020/05/05/vue/vue-router/" 
+                            class="post-title gt-a-link">vue学习笔记05-vue-router</a>
+                    </div>
+                </div>
+            
         </div>
-        
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
-        </div>
-        
-    </div>
-</footer>
-
-        </div>
-    </div>
-
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-    </ul>
+    
 </div>
-
-        </div>
-    
-
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-    </ul>
-</div>
-
-    </div>
-
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B006-vuex"><span class="nav-text">vue学习笔记06-vuex</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vuex%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%E7%9A%84"><span class="nav-text">Vuex是做什么的?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">状态管理到底是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E4%BB%80%E4%B9%88%E7%8A%B6%E6%80%81%E5%91%A2"><span class="nav-text">管理什么状态呢?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%95%8C%E9%9D%A2%E7%9A%84%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="nav-text">单界面的状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%95%8C%E9%9D%A2%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="nav-text">多界面状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vuex%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E5%9B%BE%E4%BE%8B"><span class="nav-text">Vuex状态管理图例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vuex%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">Vuex的基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vuex%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-text">Vuex的核心概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#State%E5%8D%95%E4%B8%80%E7%8A%B6%E6%80%81%E6%A0%91"><span class="nav-text">State单一状态树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Getters%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">Getters基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mutation%E7%8A%B6%E6%80%81%E6%9B%B4%E6%96%B0"><span class="nav-text">Mutation状态更新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mutation%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0"><span class="nav-text">Mutation传递参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mutation%E6%8F%90%E4%BA%A4%E9%A3%8E%E6%A0%BC"><span class="nav-text">Mutation提交风格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mutation%E5%93%8D%E5%BA%94%E8%A7%84%E5%88%99"><span class="nav-text">Mutation响应规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mutation%E5%B8%B8%E9%87%8F%E7%B1%BB%E5%9E%8B-%E2%80%93-%E6%A6%82%E5%BF%B5"><span class="nav-text">Mutation常量类型 – 概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mutation%E5%90%8C%E6%AD%A5%E5%87%BD%E6%95%B0"><span class="nav-text">Mutation同步函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Action%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89"><span class="nav-text">Action的基本定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Action%E7%9A%84%E5%88%86%E5%8F%91"><span class="nav-text">Action的分发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Action%E8%BF%94%E5%9B%9E%E7%9A%84Promise"><span class="nav-text">Action返回的Promise</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86Module"><span class="nav-text">认识Module</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Module%E5%B1%80%E9%83%A8%E7%8A%B6%E6%80%81"><span class="nav-text">Module局部状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Actions%E7%9A%84%E5%86%99%E6%B3%95"><span class="nav-text">Actions的写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91%E7%BB%93%E6%9E%84"><span class="nav-text">常用的模块化开发结构</span></a></li></ol></li></ol></li></ol></li></ol>
+                <div class="site-footer gt-c-content-color-first">
+    <div class="footer-main">
+        <!-- 建议保留版权信息或者添加主题信息到友链，感谢您的理解 -->
+        <!-- 文件位置：layout/_includes/footer.ejs -->
+        <span style="text-align: right; float: right;">Theme <a 
+            href="https://github.com/renbaoshuo/hexo-theme-pure" target="_blank">Pure</a> | Powered by <a 
+            href="https://hexo.io" target="_blank">Hexo</a></span>
+        <span style="text-align: left;">Footer HTML
+</span>
     </div>
 </div>
-        </aside>
-    
 
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="搜索..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
             </div>
         </div>
-    </div>
-</div>
-
-    
-
-</main>
-
-
-
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/dark-light-toggle.js"></script>
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/lazyload.js"></script>
-
-
-<div class="post-scripts pjax">
-    
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/toc.js"></script>
-    
-</div>
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/pjax.min.js"></script>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            KEEP.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            KEEP.utils.pjaxProgressBarEnd();
-            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            KEEP.refresh();
-        });
-    });
-</script>
-
-
-
-<script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],

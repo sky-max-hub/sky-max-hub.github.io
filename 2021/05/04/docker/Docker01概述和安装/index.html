@@ -1,229 +1,110 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="大白小怪兽">
-    
-    <title>
-        
-            Docker概述和安装 |
-        
-        大白小怪兽
-    </title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="shortcut icon" href="/images/blog.png">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
-  </script>
-<meta name="generator" content="Hexo 5.4.0">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Title -->
+<title>Docker概述和安装 - Hexo</title>
+
+<!-- Icon -->
+<link rel="icon" href="/favicon.ico">
+
+<!-- Fonts -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null, this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
+
+
+
+<!-- Style -->
+
+<link rel="stylesheet" href="/styles/main.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-pure@1.0.1/dist/main.css"> -->
+
+
+
+    <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
 </head>
-
-
-<body>
-<div class="progress-bar-container">
-    
-        <span class="scroll-progress-bar"></span>
-    
-
-    
-        <span class="pjax-progress-bar"></span>
-        <span class="pjax-progress-icon">
-            <i class="fas fa-circle-notch fa-spin"></i>
-        </span>
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="page-main-content">
-
-        <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            <a class="logo-title" href="/">
-                大白小怪兽
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                首页
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                归档
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                标签
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                关于
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">关于</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="page-main-content-middle">
-
+    <body>
+        <div class="main gt-bg-theme-color-first">
             <div class="main-content">
-
-                
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
-
-        <div class="article-title">
-            <span class="title-hover-animation">Docker概述和安装</span>
+                <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/favicon.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            
         </div>
-
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/avatar.jpg">
+    </div>
+    <button aria-label="Navbar Toggler" class="navbar-toggler" type="button" id="changeNavbar">
+        <i class="gt-c-content-color-first" style="font-size: 18px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18px" fill="currentColor">
+                <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
+            </svg>
+        </i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center; ">
+            
+                <div class="nav-item">
+                    <a href="/" class="menu gt-a-link" target="_self">首页</a>
                 </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">大白小怪兽</span>
-                        
-                            <span class="author-label">攻城狮</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-05-04 00:00:00
-    </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/Docker/">Docker</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/Linux/">Linux</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>9 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                    </div>
+            
+                <div class="nav-item">
+                    <a href="/archives/" class="menu gt-a-link" target="_self">归档</a>
                 </div>
+            
+                <div class="nav-item">
+                    <a href="/tags/" class="menu gt-a-link" target="_self">标签</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/friends/" class="menu gt-a-link" target="_self">友链</a>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function() {
+        let element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else { 
+            element.style.display = 'none';
+        }
+    }
+</script>
+                <div class="post-container">
+    <div class="post-detail gt-bg-theme-color-second gt-c-content-color-first">
+        <article class="gt-post-content">
+            <h1 class="post-title">Docker概述和安装</h1>
+            <div class="post-info">
+                <time class="post-time gt-c-content-color-first">
+                    · 2021-05-04 ·</time>
+                
+                    
+                        <a href="/tags/Docker/" class="post-tag">
+                            #Docker</a>
+                    
+                        <a href="/tags/Linux/" class="post-tag">
+                            #Linux</a>
+                    
+                
             </div>
-        
-
-        <div class="article-content markdown-body">
-            <h2 id="Docker概述"><a href="#Docker概述" class="headerlink" title="Docker概述"></a>Docker概述</h2><h3 id="Docker出现的原因"><a href="#Docker出现的原因" class="headerlink" title="Docker出现的原因"></a>Docker出现的原因</h3><p>一款产品有两个环境：开发（开发环境）和上线（运维环境）。</p>
+            <hr>
+            <div class="post-content gt-c-content-color-first">
+                <h2 id="Docker概述"><a href="#Docker概述" class="headerlink" title="Docker概述"></a>Docker概述</h2><h3 id="Docker出现的原因"><a href="#Docker出现的原因" class="headerlink" title="Docker出现的原因"></a>Docker出现的原因</h3><p>一款产品有两个环境：开发（开发环境）和上线（运维环境）。</p>
 <p>环境配置和切换过于麻烦，每一台机器都要部署环境（集群Redis,ES,Hadoop），费时费力。</p>
 <p>解决思路：发布一个项目<code>（jar+(redis+mysql+jdk+es)）</code>的同时能不能都带上环境安装打包？</p>
 <p>传统思路：开发项目，运维部署项目和环境配置。</p>
 <p>现在：开发打包部署上线，一套流程做完。</p>
 <p><code>Docker为以上问题，提出了解决方案！</code></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210422110559011.png" alt="image-20210422110559011"></p>
+<p><img src="https://img.sky123.top/img/image-20210422110559011.png" alt="image-20210422110559011"></p>
 <p>Docker的思想来自于集装箱：通过特殊的隔离机制，将服务器利用到机制。</p>
 <h3 id="Docker历史"><a href="#Docker历史" class="headerlink" title="Docker历史"></a>Docker历史</h3><blockquote>
 <p>1.Docker诞生于2013年</p>
@@ -245,15 +126,15 @@
 </blockquote>
 <p>在容器技术出来以前，都是使用虚拟机技术，相比于虚拟机几个G,几分钟的启动时间，Docker做到了几个M甚至几KB的容量和秒级开启时间，这主要得益于它并不像虚拟机虚拟出操作系统或者内核，而是只保留了最核心的环境，十分的小巧。<code>所有的程序员都必须要会docker!</code></p>
 <h3 id="Docker介绍"><a href="#Docker介绍" class="headerlink" title="Docker介绍"></a>Docker介绍</h3><p><code>Docker是基于GO语言开发的开源项目！！</code></p>
-<p>官网：<a class="link" target="_blank" rel="noopener" href="https://www.docker.com/">https://www.docker.com/<i class="fas fa-external-link-alt"></i></a></p>
-<p>文档地址：<a class="link" target="_blank" rel="noopener" href="https://docs.docker.com/">https://docs.docker.com/<i class="fas fa-external-link-alt"></i></a></p>
-<p>仓库地址：<a class="link" target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/<i class="fas fa-external-link-alt"></i></a></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210422111746659.png" alt="image-20210422111746659"></p>
+<p>官网：<a target="_blank" rel="noopener" href="https://www.docker.com/">https://www.docker.com/</a></p>
+<p>文档地址：<a target="_blank" rel="noopener" href="https://docs.docker.com/">https://docs.docker.com/</a></p>
+<p>仓库地址：<a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a></p>
+<p><img src="https://img.sky123.top/img/image-20210422111746659.png" alt="image-20210422111746659"></p>
 <h3 id="Docker与虚拟机的比较"><a href="#Docker与虚拟机的比较" class="headerlink" title="Docker与虚拟机的比较"></a>Docker与虚拟机的比较</h3><p>虚拟机技术缺点：启动慢，占用资源多，冗余步骤多</p>
-<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210422115546688.png" alt="image-20210422115546688" style="zoom:50%;">
+<img src="https://img.sky123.top/img/image-20210422115546688.png" alt="image-20210422115546688" style="zoom:50%;">
 
 <p>Docker容器化技术：不是模拟出一个完整的操作系统。</p>
-<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210422115733382.png" alt="image-20210422115733382" style="zoom:50%;">
+<img src="https://img.sky123.top/img/image-20210422115733382.png" alt="image-20210422115733382" style="zoom:50%;">
 
 <p>总结：</p>
 <ol>
@@ -268,7 +149,7 @@
 <li>更简单的系统运维：在容器化之后，开发和测试环境都是高度一致的。</li>
 <li>更高效的计算资源利用：Docker是内核级别的虚拟化，可以在一个物理机上运行多个容器实例，容器的性能可以被压榨到极致。</li>
 </ol>
-<h2 id="Docker基本组成"><a href="#Docker基本组成" class="headerlink" title="Docker基本组成"></a>Docker基本组成</h2><h3 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h3><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210221182251636.png" alt="image-20210221182251636"></p>
+<h2 id="Docker基本组成"><a href="#Docker基本组成" class="headerlink" title="Docker基本组成"></a>Docker基本组成</h2><h3 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h3><p><img src="https://img.sky123.top/img/image-20210221182251636.png" alt="image-20210221182251636"></p>
 <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ol>
 <li><p>镜像<code>（image）</code>：docker镜像好比是一个模板，可以通过这个模板创建容器服务，tomcat镜像===》run==》tomcat01容器，通过镜像可以创建多个容器（最终服务运行或项目运行就是在容器中的）</p>
 </li>
@@ -289,8 +170,8 @@
 
 
 
-<h3 id="安装教程："><a href="#安装教程：" class="headerlink" title="安装教程："></a>安装教程：</h3><p>可以查看官网文档：<a class="link" target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/">https://docs.docker.com/engine/install/<i class="fas fa-external-link-alt"></i></a></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210423220917139.png" alt="image-20210423220917139"></p>
+<h3 id="安装教程："><a href="#安装教程：" class="headerlink" title="安装教程："></a>安装教程：</h3><p>可以查看官网文档：<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/">https://docs.docker.com/engine/install/</a></p>
+<p><img src="https://img.sky123.top/img/image-20210423220917139.png" alt="image-20210423220917139"></p>
 <p>对于 <code>CentOS</code> 系统：</p>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">先卸载旧版本Docker系统（如果有的话）</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]# sudo yum remove docker \</span><br><span class="line">                   docker-client \</span><br><span class="line">                   docker-client-latest \</span><br><span class="line">                   docker-common \</span><br><span class="line">                   docker-latest \</span><br><span class="line">                   docker-latest-logrotate \</span><br><span class="line">                   docker-logrotate \</span><br><span class="line">                   docker-engine</span><br><span class="line">                   </span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">No Match for argument: docker</span><br><span class="line">No Match for argument: docker-client</span><br><span class="line">No Match for argument: docker-client-latest</span><br><span class="line">No Match for argument: docker-common</span><br><span class="line">No Match for argument: docker-latest</span><br><span class="line">No Match for argument: docker-latest-logrotate</span><br><span class="line">No Match for argument: docker-logrotate</span><br><span class="line">No Match for argument: docker-engine</span><br><span class="line">No Packages marked for removal</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装需要的安装包</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]# yum install -y yum-utils</span><br><span class="line"></span><br><span class="line">Installed:</span><br><span class="line">  yum-utils.noarch 0:1.1.31-54.el7_8                                                                                                           </span><br><span class="line"></span><br><span class="line">Dependency Installed:</span><br><span class="line">  libxml2-python.x86_64 0:2.9.1-6.el7.5           python-chardet.noarch 0:2.2.1-3.el7           python-kitchen.noarch 0:1.1.1-5.el7          </span><br><span class="line"></span><br><span class="line">Dependency Updated:</span><br><span class="line">  libxml2.x86_64 0:2.9.1-6.el7.5                                                                                                               </span><br><span class="line"></span><br><span class="line">Complete!</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">配置下载Docker镜像</span></span><br><span class="line">sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"></span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">adding repo from: https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">grabbing file https://download.docker.com/linux/centos/docker-ce.repo to /etc/yum.repos.d/docker-ce.repo</span><br><span class="line">repo saved to /etc/yum.repos.d/docker-ce.repo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装docker，一路输入确定安装即可</span></span><br><span class="line">sudo yum install docker-ce docker-ce-cli containerd.io</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Dependency Installed:</span><br><span class="line">  audit-libs-python.x86_64 0:2.8.5-4.el7                                  checkpolicy.x86_64 0:2.5-8.el7                                       </span><br><span class="line">  container-selinux.noarch 2:2.119.2-1.911c772.el7_8                      docker-ce-rootless-extras.x86_64 0:20.10.6-3.el7                     </span><br><span class="line">  docker-scan-plugin.x86_64 0:0.7.0-3.el7                                 fuse-overlayfs.x86_64 0:0.7.2-6.el7_8                                </span><br><span class="line">  fuse3-libs.x86_64 0:3.6.1-4.el7                                         libcgroup.x86_64 0:0.41-21.el7                                       </span><br><span class="line">  libseccomp.x86_64 0:2.3.1-4.el7                                         libsemanage-python.x86_64 0:2.5-14.el7                               </span><br><span class="line">  policycoreutils-python.x86_64 0:2.5-34.el7                              python-IPy.noarch 0:0.75-6.el7                                       </span><br><span class="line">  setools-libs.x86_64 0:3.3.8-4.el7                                       slirp4netns.x86_64 0:0.4.3-4.el7_8                                   </span><br><span class="line"></span><br><span class="line">Dependency Updated:</span><br><span class="line">  audit.x86_64 0:2.8.5-4.el7                             audit-libs.x86_64 0:2.8.5-4.el7         libselinux.x86_64 0:2.5-15.el7               </span><br><span class="line">  libselinux-python.x86_64 0:2.5-15.el7                  libselinux-utils.x86_64 0:2.5-15.el7    libsemanage.x86_64 0:2.5-14.el7              </span><br><span class="line">  libsepol.x86_64 0:2.5-10.el7                           policycoreutils.x86_64 0:2.5-34.el7     selinux-policy.noarch 0:3.13.1-268.el7_9.2   </span><br><span class="line">  selinux-policy-targeted.noarch 0:3.13.1-268.el7_9.2   </span><br><span class="line"></span><br><span class="line">Complete!</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
@@ -300,296 +181,66 @@
 
 
 
-<h2 id="Docker配置阿里云镜像仓库地址"><a href="#Docker配置阿里云镜像仓库地址" class="headerlink" title="Docker配置阿里云镜像仓库地址"></a>Docker配置阿里云镜像仓库地址</h2><p>参考教程：<a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/allenjing/p/12575972.html">https://www.cnblogs.com/allenjing/p/12575972.html<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="Docker配置阿里云镜像仓库地址"><a href="#Docker配置阿里云镜像仓库地址" class="headerlink" title="Docker配置阿里云镜像仓库地址"></a>Docker配置阿里云镜像仓库地址</h2><p>参考教程：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/allenjing/p/12575972.html">https://www.cnblogs.com/allenjing/p/12575972.html</a></p>
 <p>登陆阿里云，找到如下选项：</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210428092132408.png" alt="image-20210428092132408"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210428092924853.png" alt="image-20210428092924853"></p>
+<p><img src="https://img.sky123.top/img/image-20210428092132408.png" alt="image-20210428092132408"></p>
+<p><img src="https://img.sky123.top/img/image-20210428092924853.png" alt="image-20210428092924853"></p>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line"></span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'</span><br><span class="line">{</span><br><span class="line">  "registry-mirrors": ["https://bjyjzfeq.mirror.aliyuncs.com"]</span><br><span class="line">}</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="Docker原理"><a href="#Docker原理" class="headerlink" title="Docker原理"></a>Docker原理</h2><h3 id="helloworld的运行流程："><a href="#helloworld的运行流程：" class="headerlink" title="helloworld的运行流程："></a>helloworld的运行流程：</h3><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210428121216893.png" alt="image-20210428121216893"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210428121520142.png" alt="image-20210428121520142"></p>
+<h2 id="Docker原理"><a href="#Docker原理" class="headerlink" title="Docker原理"></a>Docker原理</h2><h3 id="helloworld的运行流程："><a href="#helloworld的运行流程：" class="headerlink" title="helloworld的运行流程："></a>helloworld的运行流程：</h3><p><img src="https://img.sky123.top/img/image-20210428121216893.png" alt="image-20210428121216893"></p>
+<p><img src="https://img.sky123.top/img/image-20210428121520142.png" alt="image-20210428121520142"></p>
 <h3 id="底层原理："><a href="#底层原理：" class="headerlink" title="底层原理："></a>底层原理：</h3><p>Docker工作原理：Docker是一个 <code>CS结构</code> 的系统，Docker 的守护进程运行在主机上，通过 Socket从客户端访问。</p>
 <p>DockerServer 接收到 DokcerClient 的指令，就会执行这个命令。</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210428122527218.png" alt="image-20210428122527218"></p>
+<p><img src="https://img.sky123.top/img/image-20210428122527218.png" alt="image-20210428122527218"></p>
 <h3 id="Docker为什么比VM快？"><a href="#Docker为什么比VM快？" class="headerlink" title="Docker为什么比VM快？"></a>Docker为什么比VM快？</h3><ol>
 <li>Docker 有着比虚拟机更少的抽象层</li>
 <li>Docker 利用的是宿主机的内核，而 VM 需要的是 <code>Guest OS</code>。</li>
 <li>新建一个容器时，Docker 不需要像虚拟机一样重新加载一个操作系统的内核。</li>
 </ol>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210428122751694.png" alt="image-20210428122751694"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210428123110597.png" alt="image-20210428123110597"></p>
-
-        </div>
-
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：Docker概述和安装</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2021-05-04 00:00:00</li>
-        <li>
-            本文链接：https://blog.sky123.top/2021/05/04/docker/Docker01概述和安装/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
+<p><img src="https://img.sky123.top/img/image-20210428122751694.png" alt="image-20210428122751694"></p>
+<p><img src="https://img.sky123.top/img/image-20210428123110597.png" alt="image-20210428123110597"></p>
 
             </div>
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Docker部署练习</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2021/04/22/javascript/mock/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Mock和Mock.js</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
+        </article>
     </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+    <br>
+    
+        <div class="next-prev-post">
             
-              <span>2020</span>&nbsp;-&nbsp;
+                <div class="prev-post">
+                    <div class="prev gt-c-content-color-first">
+                        上一篇：<a href="/2021/05/14/docker/Docker05%E9%95%9C%E5%83%8F/" 
+                            class="post-title gt-a-link">Docker镜像</a>
+                    </div>
+                </div>
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
+            
+                <div class="next-post">
+                    <div class="next gt-c-content-color-first">
+                        下一篇：<a href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/" 
+                            class="post-title gt-a-link">Docker部署练习</a>
+                    </div>
+                </div>
+            
         </div>
-        
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
-        </div>
-        
-    </div>
-</footer>
-
-        </div>
-    </div>
-
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-    </ul>
+    
 </div>
-
-        </div>
-    
-
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-    </ul>
-</div>
-
-    </div>
-
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E6%A6%82%E8%BF%B0"><span class="nav-text">Docker概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E5%87%BA%E7%8E%B0%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-text">Docker出现的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E5%8E%86%E5%8F%B2"><span class="nav-text">Docker历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E4%BB%8B%E7%BB%8D"><span class="nav-text">Docker介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">Docker与虚拟机的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E4%BD%9C%E7%94%A8"><span class="nav-text">Docker作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="nav-text">Docker基本组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="nav-text">架构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">基本概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E5%AE%89%E8%A3%85"><span class="nav-text">Docker安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87%EF%BC%9A"><span class="nav-text">环境准备：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-text">查看环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%9A"><span class="nav-text">安装教程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%B5%8B%E8%AF%95%EF%BC%9A"><span class="nav-text">启动测试：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BDDocker%EF%BC%9A"><span class="nav-text">卸载Docker：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E9%85%8D%E7%BD%AE%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80"><span class="nav-text">Docker配置阿里云镜像仓库地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E5%8E%9F%E7%90%86"><span class="nav-text">Docker原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#helloworld%E7%9A%84%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="nav-text">helloworld的运行流程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="nav-text">底层原理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94VM%E5%BF%AB%EF%BC%9F"><span class="nav-text">Docker为什么比VM快？</span></a></li></ol></li></ol>
+                <div class="site-footer gt-c-content-color-first">
+    <div class="footer-main">
+        <!-- 建议保留版权信息或者添加主题信息到友链，感谢您的理解 -->
+        <!-- 文件位置：layout/_includes/footer.ejs -->
+        <span style="text-align: right; float: right;">Theme <a 
+            href="https://github.com/renbaoshuo/hexo-theme-pure" target="_blank">Pure</a> | Powered by <a 
+            href="https://hexo.io" target="_blank">Hexo</a></span>
+        <span style="text-align: left;">Footer HTML
+</span>
     </div>
 </div>
-        </aside>
-    
 
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="搜索..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
             </div>
         </div>
-    </div>
-</div>
-
-    
-
-</main>
-
-
-
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/dark-light-toggle.js"></script>
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/lazyload.js"></script>
-
-
-<div class="post-scripts pjax">
-    
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/toc.js"></script>
-    
-</div>
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/pjax.min.js"></script>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            KEEP.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            KEEP.utils.pjaxProgressBarEnd();
-            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            KEEP.refresh();
-        });
-    });
-</script>
-
-
-
-<script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],

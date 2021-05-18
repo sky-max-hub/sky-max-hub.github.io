@@ -1,224 +1,105 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="大白小怪兽">
-    
-    <title>
-        
-            vue学习笔记05-vue-router |
-        
-        大白小怪兽
-    </title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="shortcut icon" href="/images/blog.png">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
-  </script>
-<meta name="generator" content="Hexo 5.4.0">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Title -->
+<title>vue学习笔记05-vue-router - Hexo</title>
+
+<!-- Icon -->
+<link rel="icon" href="/favicon.ico">
+
+<!-- Fonts -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null, this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
+
+
+
+<!-- Style -->
+
+<link rel="stylesheet" href="/styles/main.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-pure@1.0.1/dist/main.css"> -->
+
+
+
+    <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
 </head>
-
-
-<body>
-<div class="progress-bar-container">
-    
-        <span class="scroll-progress-bar"></span>
-    
-
-    
-        <span class="pjax-progress-bar"></span>
-        <span class="pjax-progress-icon">
-            <i class="fas fa-circle-notch fa-spin"></i>
-        </span>
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="page-main-content">
-
-        <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            <a class="logo-title" href="/">
-                大白小怪兽
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                首页
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                归档
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                标签
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                关于
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">关于</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="page-main-content-middle">
-
+    <body>
+        <div class="main gt-bg-theme-color-first">
             <div class="main-content">
-
-                
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
-
-        <div class="article-title">
-            <span class="title-hover-animation">vue学习笔记05-vue-router</span>
+                <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/favicon.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            
         </div>
-
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/avatar.jpg">
+    </div>
+    <button aria-label="Navbar Toggler" class="navbar-toggler" type="button" id="changeNavbar">
+        <i class="gt-c-content-color-first" style="font-size: 18px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18px" fill="currentColor">
+                <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
+            </svg>
+        </i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center; ">
+            
+                <div class="nav-item">
+                    <a href="/" class="menu gt-a-link" target="_self">首页</a>
                 </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">大白小怪兽</span>
-                        
-                            <span class="author-label">攻城狮</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2020-05-05 05:45:01
-    </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/vue/">vue</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>3.9k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                    </div>
+            
+                <div class="nav-item">
+                    <a href="/archives/" class="menu gt-a-link" target="_self">归档</a>
                 </div>
+            
+                <div class="nav-item">
+                    <a href="/tags/" class="menu gt-a-link" target="_self">标签</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/friends/" class="menu gt-a-link" target="_self">友链</a>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function() {
+        let element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else { 
+            element.style.display = 'none';
+        }
+    }
+</script>
+                <div class="post-container">
+    <div class="post-detail gt-bg-theme-color-second gt-c-content-color-first">
+        <article class="gt-post-content">
+            <h1 class="post-title">vue学习笔记05-vue-router</h1>
+            <div class="post-info">
+                <time class="post-time gt-c-content-color-first">
+                    · 2020-05-05 ·</time>
+                
+                    
+                        <a href="/tags/vue/" class="post-tag">
+                            #vue</a>
+                    
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/" class="post-tag">
+                            #前端</a>
+                    
+                
             </div>
-        
-
-        <div class="article-content markdown-body">
-            <h1 id="vue学习笔记05-vue-router"><a href="#vue学习笔记05-vue-router" class="headerlink" title="vue学习笔记05-vue-router"></a>vue学习笔记05-vue-router</h1><hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/forest-166733_1280.jpg"></p>
+            <hr>
+            <div class="post-content gt-c-content-color-first">
+                <h1 id="vue学习笔记05-vue-router"><a href="#vue学习笔记05-vue-router" class="headerlink" title="vue学习笔记05-vue-router"></a>vue学习笔记05-vue-router</h1><hr>
+<p><img src="https://img.sky123.top/img/forest-166733_1280.jpg"></p>
 <hr>
 <h1 id=""><a href="#" class="headerlink" title=""></a></h1><h2 id="什么是路由？"><a href="#什么是路由？" class="headerlink" title="什么是路由？"></a>什么是路由？</h2><p>说起路由你想起了什么？路由是一个网络工程里面的术语。<br><code>路由（routing）就是通过互联的网络把信息从源地址传输到目的地址的活动. --- 维基百科</code></p>
 <p>在生活中, 我们有没有听说过路由的概念呢? 当然了, 路由器嘛.路由器是做什么的? 你有想过吗?路由器提供了两种机制: <code>路</code></p>
@@ -232,14 +113,14 @@
 <h2 id="前后端分离阶段"><a href="#前后端分离阶段" class="headerlink" title="前后端分离阶段"></a>前后端分离阶段</h2><p>随着Ajax的出现, 有了前后端分离的开发模式。后端只提供API来返回数据, 前端通过Ajax获取数据, 并且可以通过JavaScript将数据渲染到页面中。这样做最大的优点就是前后端责任的清晰, 后端专注于数据上, 前端专注于交互和可视化上。<code>并且当移动端(iOS/Android)出现后, 后端不需要进行任何处理, 依然使用之前的一套API即可</code>.<br>目前很多的网站依然采用这种模式开发.</p>
 <h2 id="单页面富应用阶段"><a href="#单页面富应用阶段" class="headerlink" title="单页面富应用阶段"></a>单页面富应用阶段</h2><p>其实SPA最主要的特点就是在前后端分离的基础上加了一层前端路由。也就是前端来维护一套路由规则.<br>前端路由的核心是什么呢？改变URL，但是页面不进行整体的刷新。如何实现呢？</p>
 <h2 id="前端路由规则"><a href="#前端路由规则" class="headerlink" title="前端路由规则"></a>前端路由规则</h2><h3 id="URL的hash"><a href="#URL的hash" class="headerlink" title="URL的hash"></a>URL的hash</h3><p>URL的hash也就是锚点(#), 本质上是改变window.location的href属性。我们可以通过直接赋值location.hash来改变href, 但是页面不发生刷新。</p>
-<img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923220342432.png" alt="image-20200923220342432" style="zoom:80%;">
+<img src="https://img.sky123.top/img/image-20200923220342432.png" alt="image-20200923220342432" style="zoom:80%;">
 
 <h3 id="HTML5的history模式"><a href="#HTML5的history模式" class="headerlink" title="HTML5的history模式"></a>HTML5的history模式</h3><p>history接口是HTML5新增的, 它有五种模式改变URL而不刷新页面.</p>
-<h4 id="history-pushState"><a href="#history-pushState" class="headerlink" title="history.pushState()"></a>history.pushState()</h4><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923220441761.png" alt="image-20200923220441761" style="zoom:80%;">
+<h4 id="history-pushState"><a href="#history-pushState" class="headerlink" title="history.pushState()"></a>history.pushState()</h4><img src="https://img.sky123.top/img/image-20200923220441761.png" alt="image-20200923220441761" style="zoom:80%;">
 
-<h4 id="history-replaceState"><a href="#history-replaceState" class="headerlink" title="history.replaceState()"></a>history.replaceState()</h4><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923220523487.png" alt="image-20200923220523487" style="zoom:80%;">
+<h4 id="history-replaceState"><a href="#history-replaceState" class="headerlink" title="history.replaceState()"></a>history.replaceState()</h4><img src="https://img.sky123.top/img/image-20200923220523487.png" alt="image-20200923220523487" style="zoom:80%;">
 
-<h4 id="history-go"><a href="#history-go" class="headerlink" title="history.go()"></a>history.go()</h4><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923220546868.png" alt="image-20200923220546868" style="zoom:80%;">
+<h4 id="history-go"><a href="#history-go" class="headerlink" title="history.go()"></a>history.go()</h4><img src="https://img.sky123.top/img/image-20200923220546868.png" alt="image-20200923220546868" style="zoom:80%;">
 
 <p><code>补充说明：上面只演示了三个方法。因为 history.back() 等价于 history.go(-1)。history.forward() 则等价于 history.go(1)这三个接口等同于浏览器界面的前进后退。</code></p>
 <h2 id="认识vue-router"><a href="#认识vue-router" class="headerlink" title="认识vue-router"></a>认识vue-router</h2><p>目前前端流行的三大框架, 都有自己的路由实现:</p>
@@ -249,7 +130,7 @@
 <li>Vue的vue-router</li>
 </ul>
 <p>vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适合用于构建单页面应用。</p>
-<p>我们可以访问其官方网站对其进行学习: <a class="link" target="_blank" rel="noopener" href="https://router.vuejs.org/zh/">https://router.vuejs.org/zh/<i class="fas fa-external-link-alt"></i></a></p>
+<p>我们可以访问其官方网站对其进行学习: <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh/">https://router.vuejs.org/zh/</a></p>
 <p>vue-router是基于路由和组件的。路由用于设定访问路径, 将路径和组件映射起来。在vue-router的单页面应用中, 页面的路径的改变就是组件的切换。</p>
 <h3 id="安装和使用vue-router"><a href="#安装和使用vue-router" class="headerlink" title="安装和使用vue-router"></a>安装和使用vue-router</h3><p>因为我们已经学习了webpack, 后续开发中我们主要是通过工程化的方式进行开发的.<br>所以在后续, 我们直接使用npm来安装路由即可.</p>
 <ol>
@@ -258,35 +139,35 @@
 <li><p>在模块化工程中使用它(因为是一个插件, 所以可以通过Vue.use()来安装路由功能)</p>
 <ol>
 <li><p>导入路由对象，并且调用 Vue.use(VueRouter)</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923221159303.png" alt="image-20200923221159303"></p>
+<p><img src="https://img.sky123.top/img/image-20200923221159303.png" alt="image-20200923221159303"></p>
 </li>
 <li><p>创建路由实例，并且传入路由映射配置</p>
 </li>
 <li><p>在Vue实例中挂载创建的路由实例</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923221213842.png" alt="image-20200923221213842"></p>
+<p><img src="https://img.sky123.top/img/image-20200923221213842.png" alt="image-20200923221213842"></p>
 </li>
 </ol>
 </li>
 <li><p>使用vue-router的步骤:</p>
 <ol>
 <li><p>创建路由组件</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923221233833.png" alt="image-20200923221233833"></p>
+<p><img src="https://img.sky123.top/img/image-20200923221233833.png" alt="image-20200923221233833"></p>
 </li>
 <li><p>配置路由映射: 组件和路径映射关系</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923221308596.png" alt="image-20200923221308596"></p>
+<p><img src="https://img.sky123.top/img/image-20200923221308596.png" alt="image-20200923221308596"></p>
 </li>
 <li><p>使用路由: 通过<router-link>和<router-view></router-view></router-link></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923221318561.png" alt="image-20200923221318561"></p>
+<p><img src="https://img.sky123.top/img/image-20200923221318561.png" alt="image-20200923221318561"></p>
 </li>
 </ol>
 </li>
 </ol>
 <p><code>&lt;router-link&gt;: 该标签是一个vue-router中已经内置的组件, 它会被渲染成一个&lt;a&gt;标签.</code><br><code>&lt;router-view&gt;: 该标签会根据当前的路径, 动态渲染出不同的组件.</code><br><code>网页的其他内容, 比如顶部的标题/导航, 或者底部的一些版权信息等会和&lt;router-view&gt;处于同一个等级.</code><br><code>在路由切换时, 切换的是&lt;router-view&gt;挂载的组件, 其他内容不会发生改变.</code></p>
 <p>最终效果如下：</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923221359788.png" alt="image-20200923221359788"></p>
+<p><img src="https://img.sky123.top/img/image-20200923221359788.png" alt="image-20200923221359788"></p>
 <h3 id="细节配置"><a href="#细节配置" class="headerlink" title="细节配置"></a>细节配置</h3><h4 id="路由的默认路径"><a href="#路由的默认路径" class="headerlink" title="路由的默认路径"></a>路由的默认路径</h4><p>我们这里还有一个不太好的实现。默认情况下, 进入网站的首页, 我们希望<router-view>渲染首页的内容.</router-view></p>
 <p>但是我们的实现中, 默认没有显示首页组件, 必须让用户点击才可以.如何可以让路径默认跳到到首页, 并且<router-view>渲染首页组件呢?非常简单, 我们只需要配置多配置一个映射就可以了。</router-view></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923221540662.png" alt="image-20200923221540662"></p>
+<p><img src="https://img.sky123.top/img/image-20200923221540662.png" alt="image-20200923221540662"></p>
 <p>配置解析：<code>我们在routes中又配置了一个映射。path配置的是根路径: /</code><br><code>redirect是重定向, 也就是我们将根路径重定向到/home的路径下, 这样就可以得到我们想要的结果了.</code></p>
 <h4 id="HTML5的History模式"><a href="#HTML5的History模式" class="headerlink" title="HTML5的History模式"></a>HTML5的History模式</h4><p>我们前面说过改变路径的方式有两种:</p>
 <ul>
@@ -294,31 +175,31 @@
 <li>HTML5的history</li>
 </ul>
 <p>默认情况下, 路径的改变使用的URL的hash。如果希望使用HTML5的history模式, 非常简单, 进行如下配置即可:</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923221701111.png" alt="image-20200923221701111"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923221706520.png" alt="image-20200923221706520"></p>
+<p><img src="https://img.sky123.top/img/image-20200923221701111.png" alt="image-20200923221701111"></p>
+<p><img src="https://img.sky123.top/img/image-20200923221706520.png" alt="image-20200923221706520"></p>
 <h4 id="router-link补充"><a href="#router-link补充" class="headerlink" title="router-link补充"></a>router-link补充</h4><p>在前面的<router-link>中, 我们只是使用了一个属性: to, 用于指定跳转的路径.<br><router-link>还有一些其他属性:</router-link></router-link></p>
 <ul>
 <li>tag: tag可以指定<router-link>之后渲染成什么组件, 比如上面的代码会被渲染成一个</router-link></li><li>元素, 而不是<a></a></li><a>
 <li>replace: replace不会留下history记录, <code>所以指定replace的情况下, 后退键返回不能返回到上一个页面中</code></li>
 <li>active-class: 当<router-link>对应的路由匹配成功时, 会自动给当前元素设置一个router-link-active 的 class, 设置active-class可以修改默认的名称。在进行高亮显示的导航菜单或者底部tabbar时, 会使用到该类。但是通常不会修改类的属性, 会直接使用默认的router-link-active即可. </router-link></li>
 </a></ul><a>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923221930141.png" alt="image-20200923221930141"></p>
+<p><img src="https://img.sky123.top/img/image-20200923221930141.png" alt="image-20200923221930141"></p>
 </a><h5 id="修改linkActiveClass"><a></a><a href="#修改linkActiveClass" class="headerlink" title="修改linkActiveClass"></a>修改linkActiveClass</h5><p>该class具体的名称也可以通过router实例的属性进行修改 </p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923222013970.png" alt="image-20200923222013970"></p>
+<p><img src="https://img.sky123.top/img/image-20200923222013970.png" alt="image-20200923222013970"></p>
 <h4 id="路由代码跳转"><a href="#路由代码跳转" class="headerlink" title="路由代码跳转"></a>路由代码跳转</h4><p>有时候, 页面的跳转可能需要执行对应的JavaScript代码, 这个时候, 就可以使用第二种跳转方式了<br>比如, 我们将代码修改如下: </p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923222228304.png" alt="image-20200923222228304"></p>
+<p><img src="https://img.sky123.top/img/image-20200923222228304.png" alt="image-20200923222228304"></p>
 <h3 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h3><p>在某些情况下，一个页面的path路径可能是不确定的，比如我们进入用户界面时，希望是如下的路径：</p>
 <p><code>/user/aaaa或/user/bbbb</code></p>
 <p>除了有前面的/user之外，后面还跟上了用户的ID</p>
 <p>这种path和Component的匹配关系，<code>我们称之为动态路由(也是路由传递数据的一种方式)。</code></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923222338914.png" alt="image-20200923222338914"></p>
+<p><img src="https://img.sky123.top/img/image-20200923222338914.png" alt="image-20200923222338914"></p>
 <h3 id="路由懒加载"><a href="#路由懒加载" class="headerlink" title="路由懒加载"></a>路由懒加载</h3><p>官方给出了解释：<code>当打包构建应用时，Javascript 包会变得非常大，影响页面加载。</code><br><code>如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了</code><br>官方在说什么呢?<br>首先, 我们知道路由中通常会定义很多不同的页面。这个页面最后被打包在哪里呢? 一般情况下, 是放在一个js文件中.</p>
 <p>但是, 页面这么多放在一个js文件中, 必然会造成这个页面非常的大。</p>
 <p>如果我们一次性从服务器请求下来这个页面, 可能需要花费一定的时间, 甚至用户的电脑上还出现了短暂空白的情况.</p>
 <p>如何避免这种情况呢? 使用路由懒加载就可以了.</p>
 <p>路由懒加载做了什么?</p>
 <p>路由懒加载的主要作用就是将路由对应的组件打包成一个个的js代码块。只有在这个路由被访问到的时候, 才加载对应的组件。</p>
-<h4 id="懒加载的实现"><a href="#懒加载的实现" class="headerlink" title="懒加载的实现"></a>懒加载的实现</h4><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923222609010.png" alt="image-20200923222609010"></p>
+<h4 id="懒加载的实现"><a href="#懒加载的实现" class="headerlink" title="懒加载的实现"></a>懒加载的实现</h4><p><img src="https://img.sky123.top/img/image-20200923222609010.png" alt="image-20200923222609010"></p>
 <h4 id="懒加载的方式"><a href="#懒加载的方式" class="headerlink" title="懒加载的方式"></a>懒加载的方式</h4><ol>
 <li><p>结合Vue的异步组件和Webpack的代码分析.</p>
 <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Home = <span class="function"><span class="params">resolve</span> =&gt;</span> { <span class="built_in">require</span>.ensure([<span class="string">'../components/Home.vue'</span>], <span class="function">() =&gt;</span> { resolve(<span class="built_in">require</span>(<span class="string">'../components/Home.vue'</span>)) })};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
@@ -335,35 +216,35 @@
 </ol>
 <h3 id="路由嵌套"><a href="#路由嵌套" class="headerlink" title="路由嵌套"></a>路由嵌套</h3><h4 id="认识嵌套路由"><a href="#认识嵌套路由" class="headerlink" title="认识嵌套路由"></a>认识嵌套路由</h4><p>嵌套路由是一个很常见的功能。比如在home页面中, 我们希望通过/home/news和/home/message访问一些内容.</p>
 <p>一个路径映射一个组件, 访问这两个路径也会分别渲染两个组件。路径和组件的关系如下:</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923222909623.png" alt="image-20200923222909623"></p>
+<p><img src="https://img.sky123.top/img/image-20200923222909623.png" alt="image-20200923222909623"></p>
 <p>实现嵌套路由有两个步骤:</p>
 <ol>
 <li>创建对应的子组件, 并且在路由映射中配置对应的子路由.</li>
 <li>在组件内部使用<router-view>标签.</router-view></li>
 </ol>
-<h4 id="嵌套路由的实现"><a href="#嵌套路由的实现" class="headerlink" title="嵌套路由的实现"></a>嵌套路由的实现</h4><p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923223014241.png" alt="image-20200923223014241"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923223026910.png" alt="image-20200923223026910"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923223036217.png" alt="image-20200923223036217"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923223046378.png" alt="image-20200923223046378"></p>
+<h4 id="嵌套路由的实现"><a href="#嵌套路由的实现" class="headerlink" title="嵌套路由的实现"></a>嵌套路由的实现</h4><p><img src="https://img.sky123.top/img/image-20200923223014241.png" alt="image-20200923223014241"></p>
+<p><img src="https://img.sky123.top/img/image-20200923223026910.png" alt="image-20200923223026910"></p>
+<p><img src="https://img.sky123.top/img/image-20200923223036217.png" alt="image-20200923223036217"></p>
+<p><img src="https://img.sky123.top/img/image-20200923223046378.png" alt="image-20200923223046378"></p>
 <h4 id="嵌套默认路径"><a href="#嵌套默认路径" class="headerlink" title="嵌套默认路径"></a>嵌套默认路径</h4><p>嵌套路由也可以配置默认的路径, 配置方式如下: </p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923223136320.png" alt="image-20200923223136320"></p>
+<p><img src="https://img.sky123.top/img/image-20200923223136320.png" alt="image-20200923223136320"></p>
 <h3 id="路由传递参数"><a href="#路由传递参数" class="headerlink" title="路由传递参数"></a>路由传递参数</h3><p>为了演示传递参数, 我们这里再创建一个组件, 并且将其配置好</p>
 <ol>
 <li>创建新的组件Profile.vue </li>
 <li>配置路由映射 </li>
 <li>添加跳转的<router-link> </router-link></li>
 </ol>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923223252508.png" alt="image-20200923223252508"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923223303292.png" alt="image-20200923223303292"></p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923223310568.png" alt="image-20200923223310568"></p>
+<p><img src="https://img.sky123.top/img/image-20200923223252508.png" alt="image-20200923223252508"></p>
+<p><img src="https://img.sky123.top/img/image-20200923223303292.png" alt="image-20200923223303292"></p>
+<p><img src="https://img.sky123.top/img/image-20200923223310568.png" alt="image-20200923223310568"></p>
 <h4 id="传递参数的方式"><a href="#传递参数的方式" class="headerlink" title="传递参数的方式"></a>传递参数的方式</h4><p>传递参数主要有两种类型: params和query</p>
 <ul>
 <li><p>params的类型：配置路由格式: /router/:id。</p>
 <p>传递的方式: 在path后面跟上对应的值</p>
 <p>传递后形成的路径: /router/123, /router/abc</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923223510447.png" alt="image-20200923223510447"></p>
+<p><img src="https://img.sky123.top/img/image-20200923223510447.png" alt="image-20200923223510447"></p>
 <p>获取参数通过$route对象获取的。在使用了 vue-router 的应用中，路由对象会被注入每个组件中，赋值为 this.$route ，并且当路由切换时，路由对象会被更新。通过$route获取传递的信息如下:</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923223541240.png" alt="image-20200923223541240"></p>
+<p><img src="https://img.sky123.top/img/image-20200923223541240.png" alt="image-20200923223541240"></p>
 </li>
 <li><p>query的类型：配置路由格式: /router, 也就是普通配置</p>
 <p>传递的方式: 对象中使用query的key作为传递方式</p>
@@ -373,7 +254,7 @@
 <p>注意：<code>$route和$router是有区别的</code></p>
 <p>$router为VueRouter实例，想要导航到不同URL，则使用$router.push方法</p>
 <p>$route为当前router跳转对象里面可以获取name、path、query、params等 </p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200923223639810.png" alt="image-20200923223639810"></p>
+<p><img src="https://img.sky123.top/img/image-20200923223639810.png" alt="image-20200923223639810"></p>
 <h3 id="导航守卫"><a href="#导航守卫" class="headerlink" title="导航守卫"></a>导航守卫</h3><p>我们来考虑一个需求: <code>在一个SPA应用中, 如何改变网页的标题呢?</code></p>
 <p>网页标题是通过<title>来显示的, 但是SPA只有一个固定的HTML, 切换不同的页面时, 标题并不会改变.&lt;/p&gt;
 &lt;p&gt;但是我们可以通过JavaScript来修改&lt;title&gt;的内容.window.document.title = ‘新的标题’.&lt;/p&gt;
@@ -391,307 +272,62 @@
 &lt;li&gt;&lt;p&gt;from: 当前导航即将要离开的路由对象.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;next: 调用该方法后, 才能进入下一个钩子.&lt;/p&gt;
-&lt;p&gt;&lt;img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img.sky123.top/img/image-20200923223934004.png"
-                      alt="image-20200923223934004"
-                &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img.sky123.top/img/image-20200923223940612.png"
-                      alt="image-20200923223940612"
-                &gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://img.sky123.top/img/image-20200923223934004.png" alt="image-20200923223934004"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://img.sky123.top/img/image-20200923223940612.png" alt="image-20200923223940612"&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id="导航守卫的补充"&gt;&lt;a href="#导航守卫的补充" class="headerlink" title="导航守卫的补充"&gt;&lt;/a&gt;导航守卫的补充&lt;/h4&gt;&lt;p&gt;补充一：如果是后置钩子, 也就是afterEach, 不需要主动调用next()函数.&lt;br&gt;补充二：上面我们使用的导航守卫, 被称之为全局守卫.&lt;/p&gt;
-&lt;p&gt;更多内容, 可以查看官网进行学习:&lt;br&gt;&lt;a class="link"   href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E8%B7%AF%E7%94%B1%E7%8B%AC%E4%BA%AB%E7%9A%84%E5%AE%88%E5%8D%AB" &gt;https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E8%B7%AF%E7%94%B1%E7%8B%AC%E4%BA%AB%E7%9A%84%E5%AE%88%E5%8D%AB&lt;i class="fas fa-external-link-alt"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;更多内容, 可以查看官网进行学习:&lt;br&gt;&lt;a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E8%B7%AF%E7%94%B1%E7%8B%AC%E4%BA%AB%E7%9A%84%E5%AE%88%E5%8D%AB"&gt;https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E8%B7%AF%E7%94%B1%E7%8B%AC%E4%BA%AB%E7%9A%84%E5%AE%88%E5%8D%AB&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id="keep-alive"&gt;&lt;a href="#keep-alive" class="headerlink" title="keep-alive"&gt;&lt;/a&gt;keep-alive&lt;/h3&gt;&lt;p&gt;keep-alive 是 Vue 内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染。&lt;br&gt;它们有两个非常重要的属性:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;include - 字符串或正则表达，只有匹配的组件会被缓存&lt;/li&gt;
 &lt;li&gt;exclude - 字符串或正则表达式，任何匹配的组件都不会被缓存&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;router-view 也是一个组件，如果直接被包在 keep-alive 里面，所有路径匹配到的视图组件都会被缓存：&lt;/p&gt;
-&lt;p&gt;&lt;img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img.sky123.top/img/image-20200923224116134.png"
-                      alt="image-20200923224116134"
-                &gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://img.sky123.top/img/image-20200923224116134.png" alt="image-20200923224116134"&gt;&lt;/p&gt;
 &lt;p&gt;通过create声明周期函数来验证&lt;/p&gt;
 </title></p>
-        </div>
-
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：vue学习笔记05-vue-router</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-05-05 05:45:01</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/05/05/vue/vue-router/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
             </div>
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2020/05/05/vue/Vuex/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">vue学习笔记06-vuex</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2020/05/05/vue/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96%E5%92%8CVueCLI%E7%9A%84%E4%BD%BF%E7%94%A8/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">vue学习笔记04-前端模块化和vueCli的使用</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
+        </article>
     </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+    <br>
+    
+        <div class="next-prev-post">
             
-              <span>2020</span>&nbsp;-&nbsp;
+                <div class="prev-post">
+                    <div class="prev gt-c-content-color-first">
+                        上一篇：<a href="/2020/05/05/vue/Vuex/" 
+                            class="post-title gt-a-link">vue学习笔记06-vuex</a>
+                    </div>
+                </div>
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
+            
+                <div class="next-post">
+                    <div class="next gt-c-content-color-first">
+                        下一篇：<a href="/2020/05/05/vue/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96%E5%92%8CVueCLI%E7%9A%84%E4%BD%BF%E7%94%A8/" 
+                            class="post-title gt-a-link">vue学习笔记04-前端模块化和vueCli的使用</a>
+                    </div>
+                </div>
+            
         </div>
-        
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
-        </div>
-        
-    </div>
-</footer>
-
-        </div>
-    </div>
-
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-    </ul>
+    
 </div>
-
-        </div>
-    
-
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-    </ul>
-</div>
-
-    </div>
-
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B005-vue-router"><span class="nav-text">vue学习笔记05-vue-router</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%AF%E7%94%B1%EF%BC%9F"><span class="nav-text">什么是路由？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E8%B7%AF%E7%94%B1%E9%98%B6%E6%AE%B5"><span class="nav-text">后端路由阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%98%B6%E6%AE%B5"><span class="nav-text">前后端分离阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%AF%8C%E5%BA%94%E7%94%A8%E9%98%B6%E6%AE%B5"><span class="nav-text">单页面富应用阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E8%A7%84%E5%88%99"><span class="nav-text">前端路由规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#URL%E7%9A%84hash"><span class="nav-text">URL的hash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5%E7%9A%84history%E6%A8%A1%E5%BC%8F"><span class="nav-text">HTML5的history模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#history-pushState"><span class="nav-text">history.pushState()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#history-replaceState"><span class="nav-text">history.replaceState()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#history-go"><span class="nav-text">history.go()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86vue-router"><span class="nav-text">认识vue-router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8vue-router"><span class="nav-text">安装和使用vue-router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%86%E8%8A%82%E9%85%8D%E7%BD%AE"><span class="nav-text">细节配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E7%9A%84%E9%BB%98%E8%AE%A4%E8%B7%AF%E5%BE%84"><span class="nav-text">路由的默认路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5%E7%9A%84History%E6%A8%A1%E5%BC%8F"><span class="nav-text">HTML5的History模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-link%E8%A1%A5%E5%85%85"><span class="nav-text">router-link补充</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9linkActiveClass"><span class="nav-text">修改linkActiveClass</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E4%BB%A3%E7%A0%81%E8%B7%B3%E8%BD%AC"><span class="nav-text">路由代码跳转</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1"><span class="nav-text">动态路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="nav-text">路由懒加载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%87%92%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">懒加载的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%87%92%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-text">懒加载的方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%B5%8C%E5%A5%97"><span class="nav-text">路由嵌套</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1"><span class="nav-text">认识嵌套路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">嵌套路由的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97%E9%BB%98%E8%AE%A4%E8%B7%AF%E5%BE%84"><span class="nav-text">嵌套默认路径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0"><span class="nav-text">路由传递参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-text">传递参数的方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E8%88%AA%E5%AE%88%E5%8D%AB"><span class="nav-text">导航守卫</span></a></li></ol></li></ol></li></ol>
+                <div class="site-footer gt-c-content-color-first">
+    <div class="footer-main">
+        <!-- 建议保留版权信息或者添加主题信息到友链，感谢您的理解 -->
+        <!-- 文件位置：layout/_includes/footer.ejs -->
+        <span style="text-align: right; float: right;">Theme <a 
+            href="https://github.com/renbaoshuo/hexo-theme-pure" target="_blank">Pure</a> | Powered by <a 
+            href="https://hexo.io" target="_blank">Hexo</a></span>
+        <span style="text-align: left;">Footer HTML
+</span>
     </div>
 </div>
-        </aside>
-    
 
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="搜索..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
             </div>
         </div>
-    </div>
-</div>
-
-    
-
-</main>
-
-
-
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/dark-light-toggle.js"></script>
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/lazyload.js"></script>
-
-
-<div class="post-scripts pjax">
-    
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/toc.js"></script>
-    
-</div>
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/pjax.min.js"></script>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            KEEP.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            KEEP.utils.pjaxProgressBarEnd();
-            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            KEEP.refresh();
-        });
-    });
-</script>
-
-
-
-<script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
