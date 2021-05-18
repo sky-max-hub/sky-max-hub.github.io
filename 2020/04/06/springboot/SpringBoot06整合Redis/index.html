@@ -15,6 +15,10 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
 
 
+    <!-- KaTeX -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" as="style" onload="this.onload=null, this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"></noscript>
+
 
 <!-- Style -->
 
@@ -99,13 +103,53 @@
             <hr>
             <div class="post-content gt-c-content-color-first">
                 <hr>
-<p><img src="https://cdn.pixabay.com/photo/2014/09/10/00/59/mountains-440520_1280.jpg"></p>
+<p><img src="https://cdn.pixabay.com/photo/2014/09/10/00/59/mountains-440520_1280.jpg" alt=""></p>
 <hr>
-<h1 id="SpringBoot06整合Redis"><a href="#SpringBoot06整合Redis" class="headerlink" title="SpringBoot06整合Redis"></a>SpringBoot06整合Redis</h1><h2 id="1-添加redis的起步依赖"><a href="#1-添加redis的起步依赖" class="headerlink" title="1 添加redis的起步依赖"></a>1 添加redis的起步依赖</h2><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置使用redis启动器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<h1>SpringBoot06整合Redis</h1>
+<h2 id="1-添加redis的起步依赖">1 添加redis的起步依赖</h2>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 配置使用redis启动器 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<h2 id="2-配置redis的连接信息">2 配置redis的连接信息</h2>
+<pre><code class="hljs properties"><span class="hljs-comment">#Redis</span>
+<span class="hljs-meta">spring.redis.host</span>=<span class="hljs-string">127.0.0.1</span>
+<span class="hljs-meta">spring.redis.port</span>=<span class="hljs-string">6379</span></code></pre>
+<h2 id="3-注入RedisTemplate测试redis操作">3 注入RedisTemplate测试redis操作</h2>
+<pre><code class="hljs java"><span class="hljs-meta">@RunWith(SpringRunner.class)</span>
+<span class="hljs-meta">@SpringBootTest(classes = SpringbootJpaApplication.class)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisTest</span> </span>{
 
-<h2 id="2-配置redis的连接信息"><a href="#2-配置redis的连接信息" class="headerlink" title="2 配置redis的连接信息"></a>2 配置redis的连接信息</h2><figure class="highlight properties"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Redis</span></span><br><span class="line"><span class="meta">spring.redis.host</span>=<span class="string">127.0.0.1</span></span><br><span class="line"><span class="meta">spring.redis.port</span>=<span class="string">6379</span></span><br></pre></td></tr></tbody></table></figure>
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> UserRepository userRepository;
 
-<h2 id="3-注入RedisTemplate测试redis操作"><a href="#3-注入RedisTemplate测试redis操作" class="headerlink" title="3 注入RedisTemplate测试redis操作"></a>3 注入RedisTemplate测试redis操作</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest(classes = SpringbootJpaApplication.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisTest</span> </span>{</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate&lt;String, String&gt; redisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> JsonProcessingException </span>{</span><br><span class="line">        <span class="comment">//从redis缓存中获得指定的数据</span></span><br><span class="line">        String userListData = redisTemplate.boundValueOps(<span class="string">"user.findAll"</span>).get();</span><br><span class="line">        <span class="comment">//如果redis中没有数据的话</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span>==userListData){</span><br><span class="line">            <span class="comment">//查询数据库获得数据</span></span><br><span class="line">            List&lt;User&gt; all = userRepository.findAll();</span><br><span class="line">            <span class="comment">//转换成json格式字符串</span></span><br><span class="line">            ObjectMapper om = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">            userListData = om.writeValueAsString(all);</span><br><span class="line">            <span class="comment">//将数据存储到redis中，下次在查询直接从redis中获得数据，不用在查询数据库</span></span><br><span class="line">            redisTemplate.boundValueOps(<span class="string">"user.findAll"</span>).set(userListData);</span><br><span class="line">            System.out.println(<span class="string">"===============从数据库获得数据==============="</span>);</span><br><span class="line">        }<span class="keyword">else</span>{</span><br><span class="line">            System.out.println(<span class="string">"===============从redis缓存中获得数据==============="</span>);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        System.out.println(userListData);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> RedisTemplate&lt;String, String&gt; redisTemplate;
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> JsonProcessingException </span>{
+        <span class="hljs-comment">//从redis缓存中获得指定的数据</span>
+        String userListData = redisTemplate.boundValueOps(<span class="hljs-string">"user.findAll"</span>).get();
+        <span class="hljs-comment">//如果redis中没有数据的话</span>
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">null</span>==userListData){
+            <span class="hljs-comment">//查询数据库获得数据</span>
+            List&lt;User&gt; all = userRepository.findAll();
+            <span class="hljs-comment">//转换成json格式字符串</span>
+            ObjectMapper om = <span class="hljs-keyword">new</span> ObjectMapper();
+            userListData = om.writeValueAsString(all);
+            <span class="hljs-comment">//将数据存储到redis中，下次在查询直接从redis中获得数据，不用在查询数据库</span>
+            redisTemplate.boundValueOps(<span class="hljs-string">"user.findAll"</span>).set(userListData);
+            System.out.println(<span class="hljs-string">"===============从数据库获得数据==============="</span>);
+        }<span class="hljs-keyword">else</span>{
+            System.out.println(<span class="hljs-string">"===============从redis缓存中获得数据==============="</span>);
+        }
+
+        System.out.println(userListData);
+
+    }
+
+}</code></pre>
 
             </div>
         </article>

@@ -15,6 +15,10 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
 
 
+    <!-- KaTeX -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" as="style" onload="this.onload=null, this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"></noscript>
+
 
 <!-- Style -->
 
@@ -98,17 +102,49 @@
             </div>
             <hr>
             <div class="post-content gt-c-content-color-first">
-                <h3 id="查看防火墙状态"><a href="#查看防火墙状态" class="headerlink" title="查看防火墙状态"></a>查看防火墙状态</h3><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]# systemctl status firewalld</span><br><span class="line">● firewalld.service - firewalld - dynamic firewall daemon</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)</span><br><span class="line">   Active: inactive (dead)</span><br><span class="line">     Docs: man:firewalld(1)</span><br></pre></td></tr></tbody></table></figure>
+                <h3 id="查看防火墙状态">查看防火墙状态</h3>
+<pre><code class="hljs shell">[root@izwz91mv6i3x6k12jjqh60z ~]# systemctl status firewalld
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)
+   Active: inactive (dead)
+     Docs: man:firewalld(1)</code></pre>
+<h3 id="开启、关闭防火墙">开启、关闭防火墙</h3>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 开启</span>
+systemctl start firewalld
 
-<h3 id="开启、关闭防火墙"><a href="#开启、关闭防火墙" class="headerlink" title="开启、关闭防火墙"></a>开启、关闭防火墙</h3><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 开启</span></span><br><span class="line">systemctl start firewalld</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭</span></span><br><span class="line">systemctl start firewalld</span><br></pre></td></tr></tbody></table></figure>
+<span class="hljs-meta">#</span><span class="bash"> 关闭</span>
+systemctl start firewalld</code></pre>
+<h3 id="开放指定端口">开放指定端口</h3>
+<pre><code class="hljs shell">firewall-cmd --zone=public --add-port=1935/tcp --permanent
+命令含义：
+--zone #作用域
+--add-port=1935/tcp #添加端口，格式为：端口/通讯协议
+--permanent #永久生效，没有此参数重启后失效
 
-<h3 id="开放指定端口"><a href="#开放指定端口" class="headerlink" title="开放指定端口"></a>开放指定端口</h3><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=1935/tcp --permanent</span><br><span class="line">命令含义：</span><br><span class="line">--zone #作用域</span><br><span class="line">--add-port=1935/tcp #添加端口，格式为：端口/通讯协议</span><br><span class="line">--permanent #永久生效，没有此参数重启后失效</span><br><span class="line"></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]# firewall-cmd --zone=public --add-port=3304/tcp --permanent</span><br><span class="line">success</span><br></pre></td></tr></tbody></table></figure>
+[root@izwz91mv6i3x6k12jjqh60z ~]# firewall-cmd --zone=public --add-port=3304/tcp --permanent
+success</code></pre>
+<h3 id="重启防火墙">重启防火墙</h3>
+<pre><code class="hljs shell">firewall-cmd --reload
 
-<h3 id="重启防火墙"><a href="#重启防火墙" class="headerlink" title="重启防火墙"></a>重启防火墙</h3><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br><span class="line"></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]# firewall-cmd --reload</span><br><span class="line">success</span><br></pre></td></tr></tbody></table></figure>
+[root@izwz91mv6i3x6k12jjqh60z ~]# firewall-cmd --reload
+success</code></pre>
+<h3 id="查看端口号">查看端口号</h3>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">netstat -ntlp //查看当前所有tcp端口·</span>
 
-<h3 id="查看端口号"><a href="#查看端口号" class="headerlink" title="查看端口号"></a>查看端口号</h3><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">netstat -ntlp //查看当前所有tcp端口·</span></span><br><span class="line"></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]# netstat -ntlp </span><br><span class="line">Active Internet connections (only servers)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    </span><br><span class="line">tcp        0      0 0.0.0.0:3304            0.0.0.0:*               LISTEN      29109/docker-proxy  </span><br><span class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2185/sshd           </span><br><span class="line">tcp6       0      0 :::3304                 :::*                    LISTEN      29113/docker-proxy  </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">netstat -ntulp |grep 3304 //查看所有3304端口使用情况</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]# netstat -ntulp |grep 3304</span><br><span class="line">tcp        0      0 0.0.0.0:3304            0.0.0.0:*               LISTEN      29109/docker-proxy  </span><br><span class="line">tcp6       0      0 :::3304                 :::*                    LISTEN      29113/docker-proxy  </span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+[root@izwz91mv6i3x6k12jjqh60z ~]# netstat -ntlp 
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:3304            0.0.0.0:*               LISTEN      29109/docker-proxy  
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2185/sshd           
+tcp6       0      0 :::3304                 :::*                    LISTEN      29113/docker-proxy  
 
-<h3 id="开放阿里云安全组"><a href="#开放阿里云安全组" class="headerlink" title="开放阿里云安全组"></a>开放阿里云安全组</h3><p><img src="https://img.sky123.top/img/image-20210504102358335.png" alt="image-20210504102358335"></p>
+<span class="hljs-meta">#</span><span class="bash">netstat -ntulp |grep 3304 //查看所有3304端口使用情况</span>
+[root@izwz91mv6i3x6k12jjqh60z ~]# netstat -ntulp |grep 3304
+tcp        0      0 0.0.0.0:3304            0.0.0.0:*               LISTEN      29109/docker-proxy  
+tcp6       0      0 :::3304                 :::*                    LISTEN      29113/docker-proxy  
+</code></pre>
+<h3 id="开放阿里云安全组">开放阿里云安全组</h3>
+<p><img src="https://img.sky123.top/img/image-20210504102358335.png" alt="image-20210504102358335"></p>
 <p>设置要开放的对应的端口</p>
 <p><img src="https://img.sky123.top/img/image-20210504102424090.png" alt="image-20210504102424090"></p>
 
@@ -121,16 +157,16 @@
             
                 <div class="prev-post">
                     <div class="prev gt-c-content-color-first">
-                        上一篇：<a href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/" 
-                            class="post-title gt-a-link">Docker部署练习</a>
+                        上一篇：<a href="/2021/05/14/docker/Docker05%E9%95%9C%E5%83%8F/" 
+                            class="post-title gt-a-link">Docker镜像</a>
                     </div>
                 </div>
             
             
                 <div class="next-post">
                     <div class="next gt-c-content-color-first">
-                        下一篇：<a href="/2021/04/22/javascript/mock/" 
-                            class="post-title gt-a-link">Mock和Mock.js</a>
+                        下一篇：<a href="/2021/05/04/docker/Docker02%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" 
+                            class="post-title gt-a-link">Docker常用命令</a>
                     </div>
                 </div>
             

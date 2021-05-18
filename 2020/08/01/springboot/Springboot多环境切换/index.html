@@ -15,6 +15,10 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
 
 
+    <!-- KaTeX -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" as="style" onload="this.onload=null, this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"></noscript>
+
 
 <!-- Style -->
 
@@ -99,20 +103,27 @@
             <hr>
             <div class="post-content gt-c-content-color-first">
                 <hr>
-<p><img src="https://img.sky123.top/img/dunes-5568253_1280.jpg"></p>
+<p><img src="https://img.sky123.top/img/dunes-5568253_1280.jpg" alt=""></p>
 <hr>
-<h1 id="SpringBoot多环境切换"><a href="#SpringBoot多环境切换" class="headerlink" title="SpringBoot多环境切换"></a>SpringBoot多环境切换</h1><h2 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h2><ol>
-<li><p>不同环境配置可以配置不同的参数,不用来回改参数</p>
+<h1>SpringBoot多环境切换</h1>
+<h2 id="好处">好处</h2>
+<ol>
+<li>
+<p>不同环境配置可以配置不同的参数,不用来回改参数</p>
 </li>
-<li><p>便于部署，提高效率，减少出错</p>
+<li>
+<p>便于部署，提高效率，减少出错</p>
 </li>
 </ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>在默认文件中 <code>application.yml</code>  中 配置切换属性：</p>
-<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br></pre></td></tr></tbody></table></figure>
-
+<h2 id="步骤">步骤</h2>
+<p>在默认文件中 <code>application.yml</code>  中 配置切换属性：</p>
+<pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">profiles:</span>
+    <span class="hljs-attr">active:</span> <span class="hljs-string">dev</span></code></pre>
 <p>新建 <code>application-dev.yml</code> 文件：</p>
-<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">这是开发环境</span></span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code class="hljs yml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">application:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">这是开发环境</span></code></pre>
 <p>启动后看到：</p>
 <p><img src="https://img.sky123.top/img/image-20210301185125610.png" alt="image-20210301185125610"></p>
 <p>说明环境切换成功。</p>

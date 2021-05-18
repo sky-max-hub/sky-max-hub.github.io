@@ -15,6 +15,10 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
 
 
+    <!-- KaTeX -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" as="style" onload="this.onload=null, this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"></noscript>
+
 
 <!-- Style -->
 
@@ -99,52 +103,183 @@
             <hr>
             <div class="post-content gt-c-content-color-first">
                 <hr>
-<p><img src="https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706_1280.jpg"></p>
+<p><img src="https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706_1280.jpg" alt=""></p>
 <hr>
-<h1 id="SpringMVC入门03实现文件上传"><a href="#SpringMVC入门03实现文件上传" class="headerlink" title="SpringMVC入门03实现文件上传"></a>SpringMVC入门03实现文件上传</h1><h2 id="1-1-文件上传的必要前提"><a href="#1-1-文件上传的必要前提" class="headerlink" title="1.1 文件上传的必要前提"></a>1.1 文件上传的必要前提</h2><ol>
-<li><p>form 表单的 enctype 取值必须是： <code>multipart/form-data</code> (默认值是:<code>application/x-www-form-urlencoded</code>)<br>enctype:是表单请求正文的类型</p>
+<h1>SpringMVC入门03实现文件上传</h1>
+<h2 id="1-1-文件上传的必要前提">1.1 文件上传的必要前提</h2>
+<ol>
+<li>
+<p>form 表单的 enctype 取值必须是： <code>multipart/form-data</code> (默认值是:<code>application/x-www-form-urlencoded</code>)<br>
+enctype:是表单请求正文的类型</p>
 </li>
-<li><p>method 属性取值必须是<code> POST</code></p>
+<li>
+<p>method 属性取值必须是<code> POST</code></p>
 </li>
-<li><p>提供一个文件选择域<code>&lt;input type="file" /&gt;  </code></p>
+<li>
+<p>提供一个文件选择域<code>&lt;input type="file" /&gt;  </code></p>
 </li>
-<li><p>导包</p>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--文件上传解析依赖--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
+<li>
+<p>导包</p>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--文件上传解析依赖--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.3.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-io<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-io<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 </li>
 </ol>
-<h2 id="1-2-文件上传的原理分析"><a href="#1-2-文件上传的原理分析" class="headerlink" title="1.2 文件上传的原理分析"></a>1.2 文件上传的原理分析</h2><p>当 form 表单的 enctype 取值不是默认值后， request.getParameter()将失效。<br><code>enctype=”application/x-www-form-urlencoded”</code>时， form 表单的正文内容是：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key=value&amp;key=value&amp;key=value</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="1-2-文件上传的原理分析">1.2 文件上传的原理分析</h2>
+<p>当 form 表单的 enctype 取值不是默认值后， request.getParameter()将失效。<br>
+<code>enctype=”application/x-www-form-urlencoded”</code>时， form 表单的正文内容是：</p>
+<pre><code class="hljs java">key=value&amp;key=value&amp;key=value</code></pre>
+<p>当 form 表单的 enctype 取值为 <code>Mutilpart/form-data</code> 时，请求正文内容就变成：<br>
+每一部分都是 MIME 类型描述的正文</p>
+<pre><code class="hljs pgsql"><span class="hljs-comment">-----------------------------7de1a433602ac                                                    分界符</span>
+Content-Disposition: form-data; <span class="hljs-type">name</span>="userName"                                     协议头  
 
-<p>当 form 表单的 enctype 取值为 <code>Mutilpart/form-data</code> 时，请求正文内容就变成：<br>每一部分都是 MIME 类型描述的正文</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-----------------------------7de1a433602ac                                                    分界符</span><br><span class="line">Content-Disposition: form-data; name="userName"                                     协议头  </span><br><span class="line"></span><br><span class="line">aaa 																																协议的正文</span><br><span class="line">-----------------------------7de1a433602ac</span><br><span class="line">Content-Disposition: form-data; name="file";</span><br><span class="line">filename="C:\Users\zhy\Desktop\fileupload_demofile\b.txt"</span><br><span class="line">Content-Type: text/plain 																						协议的类型（ MIME 类型）</span><br><span class="line">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span><br><span class="line">-----------------------------7de1a433602ac--  </span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="1-3-springmvc-传统方式的文件上传"><a href="#1-3-springmvc-传统方式的文件上传" class="headerlink" title="1.3 springmvc 传统方式的文件上传"></a>1.3 springmvc 传统方式的文件上传</h2><p>传统方式的文件上传， 指的是我们上传的文件和访问的应用存在于同一台服务器上。  </p>
-<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">"/fileUpload"</span> method=<span class="string">"post"</span> enctype=<span class="string">"multipart/form-data"</span>&gt;</span><br><span class="line">名称： &lt;input type=<span class="string">"text"</span> name=<span class="string">"picname"</span>/&gt;&lt;br/&gt;</span><br><span class="line">图片： &lt;input type=<span class="string">"file"</span> name=<span class="string">"uploadFile"</span>/&gt;&lt;br/&gt;</span><br><span class="line">&lt;input type=<span class="string">"submit"</span> value=<span class="string">"上传"</span>/&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></tbody></table></figure>
-
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller("fileUploadController")</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileUploadController</span> </span>{</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 文件上传</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping("/fileUpload")</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testResponseJson</span><span class="params">(String picname,MultipartFile</span></span></span><br><span class="line"><span class="function"><span class="params">uploadFile,HttpServletRequest request)</span> <span class="keyword">throws</span> Exception</span>{</span><br><span class="line"><span class="comment">//定义文件名</span></span><br><span class="line">String fileName = <span class="string">""</span>;</span><br><span class="line"><span class="comment">//1.获取原始文件名</span></span><br><span class="line">String uploadFileName = uploadFile.getOriginalFilename();</span><br><span class="line"><span class="comment">//2.截取文件扩展名</span></span><br><span class="line">String extendName =</span><br><span class="line">uploadFileName.substring(uploadFileName.lastIndexOf(<span class="string">"."</span>)+<span class="number">1</span>,</span><br><span class="line">uploadFileName.length());</span><br><span class="line"><span class="comment">//3.把文件加上随机数，防止文件重复</span></span><br><span class="line">String uuid = UUID.randomUUID().toString().replace(<span class="string">"-"</span>, <span class="string">""</span>).toUpperCase();</span><br><span class="line"><span class="comment">//4.判断是否输入了文件名</span></span><br><span class="line"><span class="keyword">if</span>(!StringUtils.isEmpty(picname)) {</span><br><span class="line">fileName = uuid+<span class="string">"_"</span>+picname+<span class="string">"."</span>+extendName;</span><br><span class="line">}<span class="keyword">else</span> {</span><br><span class="line">fileName = uuid+<span class="string">"_"</span>+uploadFileName;</span><br><span class="line">}</span><br><span class="line">System.out.println(fileName);</span><br><span class="line"><span class="comment">//2.获取文件路径</span></span><br><span class="line">ServletContext context = request.getServletContext();</span><br><span class="line">String basePath = context.getRealPath(<span class="string">"/uploads"</span>);</span><br><span class="line"><span class="comment">//3.解决同一文件夹中文件过多问题</span></span><br><span class="line">String datePath = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>).format(<span class="keyword">new</span> Date());</span><br><span class="line"><span class="comment">//4.判断路径是否存在</span></span><br><span class="line">File file = <span class="keyword">new</span> File(basePath+<span class="string">"/"</span>+datePath);</span><br><span class="line"><span class="keyword">if</span>(!file.exists()) {</span><br><span class="line">file.mkdirs();</span><br><span class="line">}</span><br><span class="line"><span class="comment">//5.使用 MulitpartFile 接口中方法，把上传的文件写到指定位置</span></span><br><span class="line">uploadFile.transferTo(<span class="keyword">new</span> File(file,fileName));</span><br><span class="line"><span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置文件上传解析器 --&gt;</span></span><br><span class="line">&lt;bean id="multipartResolver" &lt;!-- id 的值是固定的--&gt;</span><br><span class="line">class="org.springframework.web.multipart.commons.CommonsMultipartResolver"&gt;</span><br><span class="line"><span class="comment">&lt;!-- 设置上传文件的最大尺寸为 5MB --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxUploadSize"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>5242880<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">注意：</span><br><span class="line">文件上传的解析器 id 是固定的，不能起别的名称，否则无法实现请求参数的绑定。（不光是文件，其他</span><br><span class="line">字段也将无法绑定</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="1-4-springmvc-跨服务器方式的文件上传"><a href="#1-4-springmvc-跨服务器方式的文件上传" class="headerlink" title="1.4 springmvc 跨服务器方式的文件上传"></a>1.4 springmvc 跨服务器方式的文件上传</h2><p>在实际开发中，我们会有很多处理不同功能的服务器。例如：</p>
+aaa 																																协议的正文
+<span class="hljs-comment">-----------------------------7de1a433602ac</span>
+Content-Disposition: form-data; <span class="hljs-type">name</span>="file";
+filename="C:\Users\zhy\Desktop\fileupload_demofile\b.txt"
+Content-<span class="hljs-keyword">Type</span>: <span class="hljs-type">text</span>/plain 																						协议的类型（ MIME 类型）
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+<span class="hljs-comment">-----------------------------7de1a433602ac--  </span></code></pre>
+<h2 id="1-3-springmvc-传统方式的文件上传">1.3 springmvc 传统方式的文件上传</h2>
+<p>传统方式的文件上传， 指的是我们上传的文件和访问的应用存在于同一台服务器上。</p>
+<pre><code class="hljs jsp">&lt;form action=<span class="hljs-string">"/fileUpload"</span> method=<span class="hljs-string">"post"</span> enctype=<span class="hljs-string">"multipart/form-data"</span>&gt;
+名称： &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"picname"</span>/&gt;&lt;br/&gt;
+图片： &lt;input type=<span class="hljs-string">"file"</span> name=<span class="hljs-string">"uploadFile"</span>/&gt;&lt;br/&gt;
+&lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"上传"</span>/&gt;
+&lt;/form&gt;</code></pre>
+<pre><code class="hljs java"><span class="hljs-meta">@Controller("fileUploadController")</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileUploadController</span> </span>{
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* 文件上传</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">@RequestMapping("/fileUpload")</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testResponseJson</span><span class="hljs-params">(String picname,MultipartFile</span></span>
+<span class="hljs-function"><span class="hljs-params">uploadFile,HttpServletRequest request)</span> <span class="hljs-keyword">throws</span> Exception</span>{
+<span class="hljs-comment">//定义文件名</span>
+String fileName = <span class="hljs-string">""</span>;
+<span class="hljs-comment">//1.获取原始文件名</span>
+String uploadFileName = uploadFile.getOriginalFilename();
+<span class="hljs-comment">//2.截取文件扩展名</span>
+String extendName =
+uploadFileName.substring(uploadFileName.lastIndexOf(<span class="hljs-string">"."</span>)+<span class="hljs-number">1</span>,
+uploadFileName.length());
+<span class="hljs-comment">//3.把文件加上随机数，防止文件重复</span>
+String uuid = UUID.randomUUID().toString().replace(<span class="hljs-string">"-"</span>, <span class="hljs-string">""</span>).toUpperCase();
+<span class="hljs-comment">//4.判断是否输入了文件名</span>
+<span class="hljs-keyword">if</span>(!StringUtils.isEmpty(picname)) {
+fileName = uuid+<span class="hljs-string">"_"</span>+picname+<span class="hljs-string">"."</span>+extendName;
+}<span class="hljs-keyword">else</span> {
+fileName = uuid+<span class="hljs-string">"_"</span>+uploadFileName;
+}
+System.out.println(fileName);
+<span class="hljs-comment">//2.获取文件路径</span>
+ServletContext context = request.getServletContext();
+String basePath = context.getRealPath(<span class="hljs-string">"/uploads"</span>);
+<span class="hljs-comment">//3.解决同一文件夹中文件过多问题</span>
+String datePath = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">"yyyy-MM-dd"</span>).format(<span class="hljs-keyword">new</span> Date());
+<span class="hljs-comment">//4.判断路径是否存在</span>
+File file = <span class="hljs-keyword">new</span> File(basePath+<span class="hljs-string">"/"</span>+datePath);
+<span class="hljs-keyword">if</span>(!file.exists()) {
+file.mkdirs();
+}
+<span class="hljs-comment">//5.使用 MulitpartFile 接口中方法，把上传的文件写到指定位置</span>
+uploadFile.transferTo(<span class="hljs-keyword">new</span> File(file,fileName));
+<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
+}
+}</code></pre>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 配置文件上传解析器 --&gt;</span>
+&lt;bean id="multipartResolver" &lt;!-- id 的值是固定的--&gt;
+class="org.springframework.web.multipart.commons.CommonsMultipartResolver"&gt;
+<span class="hljs-comment">&lt;!-- 设置上传文件的最大尺寸为 5MB --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxUploadSize"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>5242880<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+注意：
+文件上传的解析器 id 是固定的，不能起别的名称，否则无法实现请求参数的绑定。（不光是文件，其他
+字段也将无法绑定</code></pre>
+<h2 id="1-4-springmvc-跨服务器方式的文件上传">1.4 springmvc 跨服务器方式的文件上传</h2>
+<p>在实际开发中，我们会有很多处理不同功能的服务器。例如：</p>
 <ul>
 <li>应用服务器：负责部署我们的应用</li>
 <li>数据库服务器：运行我们的数据库</li>
 <li>缓存和消息服务器：负责处理大并发访问的缓存和消息</li>
-<li>文件服务器：负责存储用户上传文件的服务器  </li>
+<li>文件服务器：负责存储用户上传文件的服务器</li>
 </ul>
-<p>准备两个 tomcat 服务器，并创建一个用于存放图片的 web 工程  </p>
+<p>准备两个 tomcat 服务器，并创建一个用于存放图片的 web 工程</p>
 <hr>
 <img src="https://img.sky123.top/springmvc01/image-20200601213408107.png" alt="image-20200601213408107" style="zoom:67%;">
-
-
 <hr>
 <p>导入依赖</p>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--  跨文件上传所需的依赖--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.sun.jersey<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jersey-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.sun.jersey<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jersey-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--文件上传解析依赖--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>编写控制器实现上传图片  </p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller("fileUploadController2")</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileUploadController2</span> </span>{</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String FILESERVERURL =</span><br><span class="line"><span class="string">"http://localhost:9090/day06_spring_image/uploads/"</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 文件上传，保存文件到不同服务器</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping("/fileUpload2")</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testResponseJson</span><span class="params">(String picname,MultipartFile uploadFile)</span> <span class="keyword">throws</span></span></span><br><span class="line"><span class="function">    Exception</span>{</span><br><span class="line"><span class="comment">//定义文件名</span></span><br><span class="line">String fileName = <span class="string">""</span>;</span><br><span class="line"><span class="comment">//1.获取原始文件名</span></span><br><span class="line">String uploadFileName = uploadFile.getOriginalFilename();</span><br><span class="line"><span class="comment">//2.截取文件扩展名</span></span><br><span class="line">String extendName =</span><br><span class="line">uploadFileName.substring(uploadFileName.lastIndexOf(<span class="string">"."</span>)+<span class="number">1</span>,</span><br><span class="line">uploadFileName.length());</span><br><span class="line"><span class="comment">//3.把文件加上随机数，防止文件重复</span></span><br><span class="line">String uuid = UUID.randomUUID().toString().replace(<span class="string">"-"</span>, <span class="string">""</span>).toUpperCase();</span><br><span class="line"><span class="comment">//4.判断是否输入了文件名</span></span><br><span class="line"><span class="keyword">if</span>(!StringUtils.isEmpty(picname)) {</span><br><span class="line">fileName = uuid+<span class="string">"_"</span>+picname+<span class="string">"."</span>+extendName;</span><br><span class="line">}<span class="keyword">else</span> {</span><br><span class="line">fileName = uuid+<span class="string">"_"</span>+uploadFileName;</span><br><span class="line">}</span><br><span class="line">System.out.println(fileName);</span><br><span class="line"><span class="comment">//5.创建 sun 公司提供的 jersey 包中的 Client 对象</span></span><br><span class="line">Client client = Client.create();</span><br><span class="line"><span class="comment">//6.指定上传文件的地址，该地址是 web 路径</span></span><br><span class="line">WebResource resource = client.resource(FILESERVERURL+fileName);</span><br><span class="line"><span class="comment">//7.实现上传</span></span><br><span class="line">String result = resource.put(String.class,uploadFile.getBytes());</span><br><span class="line">System.out.println(result);</span><br><span class="line"><span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--  跨文件上传所需的依赖--&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.sun.jersey<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jersey-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.sun.jersey<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jersey-client<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-comment">&lt;!--文件上传解析依赖--&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.3.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-io<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-io<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<p>编写控制器实现上传图片</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Controller("fileUploadController2")</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileUploadController2</span> </span>{
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String FILESERVERURL =
+<span class="hljs-string">"http://localhost:9090/day06_spring_image/uploads/"</span>;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* 文件上传，保存文件到不同服务器</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">@RequestMapping("/fileUpload2")</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testResponseJson</span><span class="hljs-params">(String picname,MultipartFile uploadFile)</span> <span class="hljs-keyword">throws</span></span>
+<span class="hljs-function">    Exception</span>{
+<span class="hljs-comment">//定义文件名</span>
+String fileName = <span class="hljs-string">""</span>;
+<span class="hljs-comment">//1.获取原始文件名</span>
+String uploadFileName = uploadFile.getOriginalFilename();
+<span class="hljs-comment">//2.截取文件扩展名</span>
+String extendName =
+uploadFileName.substring(uploadFileName.lastIndexOf(<span class="hljs-string">"."</span>)+<span class="hljs-number">1</span>,
+uploadFileName.length());
+<span class="hljs-comment">//3.把文件加上随机数，防止文件重复</span>
+String uuid = UUID.randomUUID().toString().replace(<span class="hljs-string">"-"</span>, <span class="hljs-string">""</span>).toUpperCase();
+<span class="hljs-comment">//4.判断是否输入了文件名</span>
+<span class="hljs-keyword">if</span>(!StringUtils.isEmpty(picname)) {
+fileName = uuid+<span class="hljs-string">"_"</span>+picname+<span class="hljs-string">"."</span>+extendName;
+}<span class="hljs-keyword">else</span> {
+fileName = uuid+<span class="hljs-string">"_"</span>+uploadFileName;
+}
+System.out.println(fileName);
+<span class="hljs-comment">//5.创建 sun 公司提供的 jersey 包中的 Client 对象</span>
+Client client = Client.create();
+<span class="hljs-comment">//6.指定上传文件的地址，该地址是 web 路径</span>
+WebResource resource = client.resource(FILESERVERURL+fileName);
+<span class="hljs-comment">//7.实现上传</span>
+String result = resource.put(String.class,uploadFile.getBytes());
+System.out.println(result);
+<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
+}
+}</code></pre>
 <p>编写 jsp 页面 和 配置文件上传解析器，略。。。。</p>
 
             </div>

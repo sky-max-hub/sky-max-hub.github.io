@@ -15,6 +15,10 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
 
 
+    <!-- KaTeX -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" as="style" onload="this.onload=null, this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"></noscript>
+
 
 <!-- Style -->
 
@@ -98,16 +102,19 @@
             </div>
             <hr>
             <div class="post-content gt-c-content-color-first">
-                <h1 id="可视化工具"><a href="#可视化工具" class="headerlink" title="可视化工具"></a>可视化工具</h1><h2 id="Portainer"><a href="#Portainer" class="headerlink" title="Portainer"></a>Portainer</h2><p>Docker 图形化界面管理工具，提供一个后台面板供我们操作！</p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run <span class="literal">-d</span> <span class="literal">-p</span> <span class="number">8080</span>:<span class="number">9000</span> \</span><br><span class="line">-<span class="literal">-restart</span>=always <span class="literal">-v</span> /var/run/docker.sock:/var/run/docker.sock -<span class="literal">-privileged</span>=true portainer/portainer</span><br></pre></td></tr></tbody></table></figure>
-
+                <h1>可视化工具</h1>
+<h2 id="Portainer">Portainer</h2>
+<p>Docker 图形化界面管理工具，提供一个后台面板供我们操作！</p>
+<pre><code class="hljs powershell">docker run <span class="hljs-literal">-d</span> <span class="hljs-literal">-p</span> <span class="hljs-number">8080</span>:<span class="hljs-number">9000</span> \
+-<span class="hljs-literal">-restart</span>=always <span class="hljs-literal">-v</span> /var/run/docker.sock:/var/run/docker.sock -<span class="hljs-literal">-privileged</span>=true portainer/portainer</code></pre>
 <p>访问测试：<a target="_blank" rel="noopener" href="http://ip:8080/">http://ip:8080/</a> (可视化面板一般不使用，测试时使用)（注意一定要先在阿里云安全组防火墙配置中开放端口）：</p>
 <p><img src="https://img.sky123.top/img/image-20210512111853677.png" alt="image-20210512111853677"></p>
 <p><img src="https://img.sky123.top/img/image-20210512111931325.png" alt="image-20210512111931325"></p>
 <p>创建用户后可以看到：</p>
 <p><img src="https://img.sky123.top/img/image-20210512112815070.png" alt="image-20210512112815070"></p>
 <p><img src="https://img.sky123.top/img/image-20210512112854757.png" alt="image-20210512112854757"></p>
-<h2 id="Rancher（CI-CD再用）"><a href="#Rancher（CI-CD再用）" class="headerlink" title="Rancher（CI/CD再用）"></a>Rancher（CI/CD再用）</h2>
+<h2 id="Rancher（CI-CD再用）">Rancher（CI/CD再用）</h2>
+
             </div>
         </article>
     </div>

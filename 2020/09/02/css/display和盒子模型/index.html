@@ -15,6 +15,10 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
 
 
+    <!-- KaTeX -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" as="style" onload="this.onload=null, this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"></noscript>
+
 
 <!-- Style -->
 
@@ -99,11 +103,13 @@
             <hr>
             <div class="post-content gt-c-content-color-first">
                 <hr>
-<p><img src="https://img.sky123.top/img/mountains-190055_1280.jpg"></p>
+<p><img src="https://img.sky123.top/img/mountains-190055_1280.jpg" alt=""></p>
 <hr>
-<h2 id="display属性"><a href="#display属性" class="headerlink" title="display属性"></a>display属性</h2><p>​    根据CSS规范的规定，每一个网页元素都有一个display属性，用于确定该元素的类型，每一个元素都有默认的display属性值，比如div元素，它的默认display属性值为“block”，称为块元素，而span元素的默认display属性值为“inline”，称为“行内”元素。</p>
+<h2 id="display属性">display属性</h2>
+<p>​	根据CSS规范的规定，每一个网页元素都有一个display属性，用于确定该元素的类型，每一个元素都有默认的display属性值，比如div元素，它的默认display属性值为“block”，称为块元素，而span元素的默认display属性值为“inline”，称为“行内”元素。</p>
 <p>​       块元素与行元素是可以转换的，也就是说display的属性值可以由我们来改变 。</p>
-<h3 id="display常见属性值"><a href="#display常见属性值" class="headerlink" title="display常见属性值"></a>display常见属性值</h3><ol>
+<h3 id="display常见属性值">display常见属性值</h3>
+<ol>
 <li>none：隐藏对象</li>
 <li>inline：指定对象为内联元素</li>
 <li>block：指定对象为块元素</li>
@@ -111,26 +117,32 @@
 <li>table-cell：指定对象作为表格单元格</li>
 <li>flex：弹性盒</li>
 </ol>
-<h3 id="visibility-hidden和display-none和opacity-0的区别："><a href="#visibility-hidden和display-none和opacity-0的区别：" class="headerlink" title="visibility:hidden和display:none和opacity:0的区别："></a>visibility:hidden和display:none和opacity:0的区别：</h3><ol>
-<li><p><code>visibility:hidden</code>和<code>opacity:0</code>会将元素隐藏，但是物理位置实际存在。</p>
+<h3 id="visibility-hidden和display-none和opacity-0的区别：">visibility:hidden和display:none和opacity:0的区别：</h3>
+<ol>
+<li>
+<p><code>visibility:hidden</code>和<code>opacity:0</code>会将元素隐藏，但是物理位置实际存在。</p>
 </li>
-<li><p><code>display:none</code> 隐藏元素，不保留物理位置。</p>
+<li>
+<p><code>display:none</code> 隐藏元素，不保留物理位置。</p>
 </li>
 </ol>
-<p>​    网页中大部分对象<code>默认是占用文档流</code>，也有一些对象是不占文档流的，比如表单中隐藏域。当然我们也可以让占用文档流的元素转换成不占文档流，这就要用到CSS中属性position、float、display来控制。默认情况下，所有元素都处在文档流中。</p>
+<p>​	网页中大部分对象<code>默认是占用文档流</code>，也有一些对象是不占文档流的，比如表单中隐藏域。当然我们也可以让占用文档流的元素转换成不占文档流，这就要用到CSS中属性position、float、display来控制。默认情况下，所有元素都处在文档流中。</p>
 <p>四种情况将<code>使得元素离开文档流：浮动float、绝对定位absolute、固定定位fixed、元素不显示display:none</code>，这种情况不占文档流的空间，而普通元素的位置基于文档流。</p>
-<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><h3 id="W3C盒模型"><a href="#W3C盒模型" class="headerlink" title="W3C盒模型"></a>W3C盒模型</h3><p>盒模型由内容(content)、填充(padding)、边框(border)、边界(margin)组成</p>
+<h2 id="盒子模型">盒子模型</h2>
+<h3 id="W3C盒模型">W3C盒模型</h3>
+<p>盒模型由内容(content)、填充(padding)、边框(border)、边界(margin)组成</p>
 <p><img src="https://img.sky123.top/img/image-20210305211024837.png" alt="image-20210305211024837"></p>
-<h3 id="margin（外边距）"><a href="#margin（外边距）" class="headerlink" title="margin（外边距）"></a>margin（外边距）</h3><p>围绕在元素边框周围的空白区域，会在元素外创建额外的空白区域，外边距是透明的。<br>语法：<code>margin:value;</code><br><code>margin-top/right/bottom/left: value;</code><br>value可取值为<code>像素，%，auto，负值</code></p>
+<h3 id="margin（外边距）">margin（外边距）</h3>
+<p>围绕在元素边框周围的空白区域，会在元素外创建额外的空白区域，外边距是透明的。<br>
+语法：<code>margin:value;</code><br>
+<code>margin-top/right/bottom/left: value;</code><br>
+value可取值为<code>像素，%，auto，负值</code></p>
 <p>外边距简写</p>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">margin</span>:<span class="built_in">value</span>(四个方向相同) ;</span><br><span class="line"><span class="attribute">margin</span>: <span class="built_in">value</span>(上下) <span class="built_in">value</span>(左右);</span><br><span class="line"><span class="attribute">margin</span>: <span class="built_in">value</span>(上) <span class="built_in">value</span>(左右) <span class="built_in">value</span>(下);</span><br><span class="line"><span class="attribute">margin</span>: <span class="built_in">value</span>(上) <span class="built_in">value</span>(右) <span class="built_in">value</span>(下) <span class="built_in">value</span>(左);</span><br></pre></td></tr></tbody></table></figure>
-
-
-
+<pre><code class="hljs css"><span class="hljs-attribute">margin</span>:<span class="hljs-built_in">value</span>(四个方向相同) ;
+<span class="hljs-attribute">margin</span>: <span class="hljs-built_in">value</span>(上下) <span class="hljs-built_in">value</span>(左右);
+<span class="hljs-attribute">margin</span>: <span class="hljs-built_in">value</span>(上) <span class="hljs-built_in">value</span>(左右) <span class="hljs-built_in">value</span>(下);
+<span class="hljs-attribute">margin</span>: <span class="hljs-built_in">value</span>(上) <span class="hljs-built_in">value</span>(右) <span class="hljs-built_in">value</span>(下) <span class="hljs-built_in">value</span>(左);</code></pre>
 <img src="https://img.sky123.top/img/image-20210305211118212.png" alt="image-20210305211118212" style="zoom:80%;">
-
-
-
 <p>margin设置元素外边距的宽度，它有这么几个特点：</p>
 <ol>
 <li>块级元素的垂直相邻外边距会合并</li>
@@ -138,9 +150,10 @@
 <li>浮动元素的外边距也不会合并</li>
 <li>允许指定负的外边距值，不过使用时要小心</li>
 </ol>
-<h3 id="border（边框）"><a href="#border（边框）" class="headerlink" title="border（边框）"></a>border（边框）</h3><p>border属性设置一个元素的边框，它有三个要素：<code>宽、样式、颜色</code>，统称“边框三要素”。三要素书写的时候一般如下顺序：</p>
-<p>​    <code>border：宽度 样式 颜色        border: 1px solid red;</code></p>
-<p>​    不过不按此顺序来写依然能正常显示。<code>div{ border: red solid 2px; }</code></p>
+<h3 id="border（边框）">border（边框）</h3>
+<p>border属性设置一个元素的边框，它有三个要素：<code>宽、样式、颜色</code>，统称“边框三要素”。三要素书写的时候一般如下顺序：</p>
+<p>​	<code>border：宽度 样式 颜色        border: 1px solid red;</code></p>
+<p>​	不过不按此顺序来写依然能正常显示。<code>div{ border: red solid 2px; }</code></p>
 <p><img src="https://img.sky123.top/img/image-20210305211414164.png" alt="image-20210305211414164"></p>
 <p><code>border-style</code>设置边框的样式，有五种常用样式可选：</p>
 <ul>
@@ -151,17 +164,32 @@
 <li>无边框none</li>
 </ul>
 <p>border的三要素可以统一写在”border”属性中，也可以单独设置。</p>
-<p>​    统一的写法：<code>border: 1px solid  red;</code><br>​    单独设置的写法：</p>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">border-width</span>: ; </span><br><span class="line"><span class="attribute">border-style</span>: ;</span><br><span class="line"><span class="attribute">border-color</span>: ;</span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="padding（内边距）"><a href="#padding（内边距）" class="headerlink" title="padding（内边距）"></a>padding（内边距）</h3><p>内容区域和边框之间的空间。会扩大元素边框所占用的区域<br>语法：<code>padding:value;</code><br>单边设置<br><code>padding-top/right/bottom/left:value;</code>value可取值为像素，百分比，但不能为负数</p>
-<p> 内边距的简写</p>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">padding</span>:<span class="built_in">value</span>(四个方向相同) ;</span><br><span class="line"><span class="attribute">padding</span>: <span class="built_in">value</span>(上下) <span class="built_in">value</span>(左右);</span><br><span class="line"><span class="attribute">padding</span>: <span class="built_in">value</span>(上) <span class="built_in">value</span>(左右) <span class="built_in">value</span>(下);</span><br><span class="line"><span class="attribute">padding</span>: <span class="built_in">value</span>(上) <span class="built_in">value</span>(右) <span class="built_in">value</span>(下) <span class="built_in">value</span>(左);</span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="怪异盒模型"><a href="#怪异盒模型" class="headerlink" title="怪异盒模型"></a>怪异盒模型</h3><p>​    盒子模型分两种，一种是符合W3C规范的标准例子模型，另一种是IE的盒子模型，IE的盒子模型也被叫怪异盒子。<br>​    可以看到 IE 盒子模型也包括 margin、border、padding、content，不过，和标准 盒子模型不同的是：IE 盒子模型的宽，包含了 border 和 pading。</p>
+<p>​	统一的写法：<code>border: 1px solid  red;</code><br>
+​	单独设置的写法：</p>
+<pre><code class="hljs css"><span class="hljs-attribute">border-width</span>: ; 
+<span class="hljs-attribute">border-style</span>: ;
+<span class="hljs-attribute">border-color</span>: ;</code></pre>
+<h3 id="padding（内边距）">padding（内边距）</h3>
+<p>内容区域和边框之间的空间。会扩大元素边框所占用的区域<br>
+语法：<code>padding:value;</code><br>
+单边设置<br>
+<code>padding-top/right/bottom/left:value;</code>value可取值为像素，百分比，但不能为负数</p>
+<p>内边距的简写</p>
+<pre><code class="hljs css"><span class="hljs-attribute">padding</span>:<span class="hljs-built_in">value</span>(四个方向相同) ;
+<span class="hljs-attribute">padding</span>: <span class="hljs-built_in">value</span>(上下) <span class="hljs-built_in">value</span>(左右);
+<span class="hljs-attribute">padding</span>: <span class="hljs-built_in">value</span>(上) <span class="hljs-built_in">value</span>(左右) <span class="hljs-built_in">value</span>(下);
+<span class="hljs-attribute">padding</span>: <span class="hljs-built_in">value</span>(上) <span class="hljs-built_in">value</span>(右) <span class="hljs-built_in">value</span>(下) <span class="hljs-built_in">value</span>(左);</code></pre>
+<h3 id="怪异盒模型">怪异盒模型</h3>
+<p>​	盒子模型分两种，一种是符合W3C规范的标准例子模型，另一种是IE的盒子模型，IE的盒子模型也被叫怪异盒子。<br>
+​	可以看到 IE 盒子模型也包括 margin、border、padding、content，不过，和标准 盒子模型不同的是：IE 盒子模型的宽，包含了 border 和 pading。</p>
 <p><img src="https://img.sky123.top/img/image-20210305211844651.png" alt="image-20210305211844651"></p>
-<h3 id="Box-sizing"><a href="#Box-sizing" class="headerlink" title="Box-sizing"></a>Box-sizing</h3><p>​    <code>box-sizing</code> 属性允许你以“W3C的盒模型”或“IE盒模型”来定义元素，以适应区域。换句话说，当前元素使用哪种盒模型，<code>可以由box-sizing属性来指定</code><br>​    它有两个值<br>​    <code>content-box（标准）</code><br>​    padding和border不被包含在width和height内，<code>元素的实际大小为宽高+border+padding</code>，此为标准模式下的盒模型。</p>
-<p>​    <code>border-box（怪异）</code><br>​    padding和border被包含在定义的width和height中，<code>元素实际的大小为你定义了多宽就是多宽</code>。此属性为怪异模式下的盒模型。</p>
+<h3 id="Box-sizing">Box-sizing</h3>
+<p>​	<code>box-sizing</code> 属性允许你以“W3C的盒模型”或“IE盒模型”来定义元素，以适应区域。换句话说，当前元素使用哪种盒模型，<code>可以由box-sizing属性来指定</code><br>
+​	它有两个值<br>
+​	<code>content-box（标准）</code><br>
+​	padding和border不被包含在width和height内，<code>元素的实际大小为宽高+border+padding</code>，此为标准模式下的盒模型。</p>
+<p>​	<code>border-box（怪异）</code><br>
+​	padding和border被包含在定义的width和height中，<code>元素实际的大小为你定义了多宽就是多宽</code>。此属性为怪异模式下的盒模型。</p>
 
             </div>
         </article>

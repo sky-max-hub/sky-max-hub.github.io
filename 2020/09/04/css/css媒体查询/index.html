@@ -15,6 +15,10 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
 
 
+    <!-- KaTeX -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" as="style" onload="this.onload=null, this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"></noscript>
+
 
 <!-- Style -->
 
@@ -99,11 +103,14 @@
             <hr>
             <div class="post-content gt-c-content-color-first">
                 <hr>
-<p><img src="https://img.sky123.top/img/mountains-615428_1280.jpg"></p>
+<p><img src="https://img.sky123.top/img/mountains-615428_1280.jpg" alt=""></p>
 <hr>
-<h2 id="Media-Query响应式布局—媒体查询"><a href="#Media-Query响应式布局—媒体查询" class="headerlink" title="Media Query响应式布局—媒体查询"></a>Media Query响应式布局—媒体查询</h2><p>​    响应式布局是在2010年5月份提出的一个概念，简而言之，就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这个概念是为解决移动互联网浏览而诞生的。<br>​    响应式布局可以为不同终端的用户提供更加舒适的界面和更好的用户体验，而且随着目前大屏幕移动设备的普及，越来越多的网站采用这个技术。</p>
+<h2 id="Media-Query响应式布局—媒体查询">Media Query响应式布局—媒体查询</h2>
+<p>​	响应式布局是在2010年5月份提出的一个概念，简而言之，就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这个概念是为解决移动互联网浏览而诞生的。<br>
+​	响应式布局可以为不同终端的用户提供更加舒适的界面和更好的用户体验，而且随着目前大屏幕移动设备的普及，越来越多的网站采用这个技术。</p>
 <p><img src="https://img.sky123.top/img/image-20210306113916951.png" alt="image-20210306113916951"></p>
-<h3 id="响应式设计一定是最佳选择吗？"><a href="#响应式设计一定是最佳选择吗？" class="headerlink" title="响应式设计一定是最佳选择吗？"></a>响应式设计一定是最佳选择吗？</h3><p>​    如果预算充足且形势需要，做一个真正的“手机版”网站是首选。因为响应式设计没有专门设计一个手机版网站的功能多，比如获取当前用户的<code>GPS定位</code>，只是用响应式设计会很难实现。但如果只是根据视口大小为用户提供匹配的视觉效果还是优先选择响应式设计。</p>
+<h3 id="响应式设计一定是最佳选择吗？">响应式设计一定是最佳选择吗？</h3>
+<p>​	如果预算充足且形势需要，做一个真正的“手机版”网站是首选。因为响应式设计没有专门设计一个手机版网站的功能多，比如获取当前用户的<code>GPS定位</code>，只是用响应式设计会很难实现。但如果只是根据视口大小为用户提供匹配的视觉效果还是优先选择响应式设计。</p>
 <p>优点：</p>
 <ol>
 <li>面对不同分辨率设备灵活性强</li>
@@ -116,37 +123,52 @@
 <li>其实这是一种折中性质的设计解决方案，多方面因素影响而达不到最佳效果</li>
 <li>一定程度上改变了网站原有的布局结构，会出现用户混淆的情况</li>
 </ol>
-<h3 id="CSS中的Media-Query（媒介查询）是什么？"><a href="#CSS中的Media-Query（媒介查询）是什么？" class="headerlink" title="CSS中的Media Query（媒介查询）是什么？"></a>CSS中的Media Query（媒介查询）是什么？</h3><p>​    作为<code>CSS3</code>规范的一部分，媒体查询可以针对不同的屏幕尺寸设置不同的样式，它为每种类型的用户提供了最佳的体验，网站在任何尺寸设置下都能有最佳的显示效果。通过不同的媒体类型和条件定义样式表规则。<br>​<br>​    媒体查询让<code>CSS</code>可以更精确作用于不同的媒体类型和同一媒体的不同条件。媒体查询的大部分媒体特性都接受min和max用于表达“大于或等于”和“小与或等于”。如：<code>width会有min-width和max-width</code><br>​<br>​    <code>Media Queries</code>功能是非常强大的，他可以让你定制不同的分辨率和设备，并在不改变内容的情况下，让你制作的web页面在不同的分辨率和设备下都能显示正常，并且不会因此而丢失样式</p>
-<h4 id="媒体查询实例"><a href="#媒体查询实例" class="headerlink" title="媒体查询实例"></a>媒体查询实例</h4><p>​    通过此实例观察媒体查询的功能后，再来分析语法</p>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> 	</span><br><span class="line"><span class="selector-tag">body</span>{<span class="attribute">background-color</span>:grey; }   //正常情况是灰色</span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">992px</span>) {//宽度大于 <span class="number">992px</span> 的时候被应用 pc端</span><br><span class="line"> 	 	<span class="selector-class">.class</span> {<span class="attribute">background</span>: <span class="number">#666</span>;}  }  </span><br><span class="line">   			  			      </span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) { //宽度小于<span class="number">768px</span>的时候被应用  移动端</span><br><span class="line">  		<span class="selector-class">.class</span> { <span class="attribute">background</span>: <span class="number">#ccc</span>; }  }</span><br><span class="line">			 </span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">768</span>x) <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">992px</span>) {  //宽度在 <span class="number">768px</span> 和 <span class="number">992px</span> 之间的时候被应用</span><br><span class="line">  		<span class="selector-class">.class</span> {  <span class="attribute">background</span>: <span class="number">#333</span>;  }   }</span><br></pre></td></tr></tbody></table></figure>
-
-<h4 id="使用Media-Query的基本语法"><a href="#使用Media-Query的基本语法" class="headerlink" title="使用Media Query的基本语法"></a>使用Media Query的基本语法</h4><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> mediatype <span class="keyword">and</span>|<span class="keyword">not</span>|<span class="keyword">only</span> (media feature) {</span><br><span class="line">       CSS-<span class="selector-tag">Code</span>;</span><br><span class="line"> }</span><br></pre></td></tr></tbody></table></figure>
-
-<p>​    以上通过<code>@media</code>定义媒体查询，<code>mediatype</code>代表了设备类型，目前只有<code>screen</code>最常用，<code>and|not|only</code>为条件，<code>media feature</code>为媒体特点，通常是写设备的宽度。</p>
-<p>​    <code>@media screen and (max-width:960px)</code> 的意思为：当前设备为screen（电脑、平板、手机）时，并且最大宽度为960时，显示的样式。</p>
+<h3 id="CSS中的Media-Query（媒介查询）是什么？">CSS中的Media Query（媒介查询）是什么？</h3>
+<p>​	作为<code>CSS3</code>规范的一部分，媒体查询可以针对不同的屏幕尺寸设置不同的样式，它为每种类型的用户提供了最佳的体验，网站在任何尺寸设置下都能有最佳的显示效果。通过不同的媒体类型和条件定义样式表规则。<br>
+​	<br>
+​	媒体查询让<code>CSS</code>可以更精确作用于不同的媒体类型和同一媒体的不同条件。媒体查询的大部分媒体特性都接受min和max用于表达“大于或等于”和“小与或等于”。如：<code>width会有min-width和max-width</code><br>
+​	<br>
+​	<code>Media Queries</code>功能是非常强大的，他可以让你定制不同的分辨率和设备，并在不改变内容的情况下，让你制作的web页面在不同的分辨率和设备下都能显示正常，并且不会因此而丢失样式</p>
+<h4 id="媒体查询实例">媒体查询实例</h4>
+<p>​	通过此实例观察媒体查询的功能后，再来分析语法</p>
+<pre><code class="hljs css">
+ 	
+<span class="hljs-selector-tag">body</span>{<span class="hljs-attribute">background-color</span>:grey; }   //正常情况是灰色
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>: <span class="hljs-number">992px</span>) {//宽度大于 <span class="hljs-number">992px</span> 的时候被应用 pc端
+ 	 	<span class="hljs-selector-class">.class</span> {<span class="hljs-attribute">background</span>: <span class="hljs-number">#666</span>;}  }  
+   			  			      
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>: <span class="hljs-number">768px</span>) { //宽度小于<span class="hljs-number">768px</span>的时候被应用  移动端
+  		<span class="hljs-selector-class">.class</span> { <span class="hljs-attribute">background</span>: <span class="hljs-number">#ccc</span>; }  }
+             
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>: <span class="hljs-number">768</span>x) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>: <span class="hljs-number">992px</span>) {  //宽度在 <span class="hljs-number">768px</span> 和 <span class="hljs-number">992px</span> 之间的时候被应用
+  		<span class="hljs-selector-class">.class</span> {  <span class="hljs-attribute">background</span>: <span class="hljs-number">#333</span>;  }   }</code></pre>
+<h4 id="使用Media-Query的基本语法">使用Media Query的基本语法</h4>
+<pre><code class="hljs css"><span class="hljs-keyword">@media</span> mediatype <span class="hljs-keyword">and</span>|<span class="hljs-keyword">not</span>|<span class="hljs-keyword">only</span> (media feature) {
+       CSS-<span class="hljs-selector-tag">Code</span>;
+ }</code></pre>
+<p>​	以上通过<code>@media</code>定义媒体查询，<code>mediatype</code>代表了设备类型，目前只有<code>screen</code>最常用，<code>and|not|only</code>为条件，<code>media feature</code>为媒体特点，通常是写设备的宽度。</p>
+<p>​	<code>@media screen and (max-width:960px)</code> 的意思为：当前设备为screen（电脑、平板、手机）时，并且最大宽度为960时，显示的样式。</p>
 <p>媒体类型有：</p>
 <ul>
 <li>all   所有设备</li>
-<li>print    用于打印机和打印预览</li>
-<li>screen    用于电脑屏幕，平板电脑，智能手机等</li>
-<li>speech    应用于屏幕阅读器等发声设备</li>
+<li>print	用于打印机和打印预览</li>
+<li>screen	用于电脑屏幕，平板电脑，智能手机等</li>
+<li>speech	应用于屏幕阅读器等发声设备</li>
 </ul>
-<h3 id="用媒体查询改造我们的设计"><a href="#用媒体查询改造我们的设计" class="headerlink" title="用媒体查询改造我们的设计"></a>用媒体查询改造我们的设计</h3><p>​    我们都知道，样式表里面，后面的样式会覆盖前面的样式。因此，我们可以在设置好网站基本样式后，使用媒体查询来进一步重写相应的部分。例如，在PC端将导航显示成简单的链接，然后再针对小视口，使用媒体查询重写这一部分。理论上讲最好是从小屏幕设备开始设计，然后渐进增强。但实际上我们使用媒体查询要解决的问题，都是已经存在PC端站点了，<code>更多的是要将现有的桌面版网页改造成响应式的</code>。</p>
+<h3 id="用媒体查询改造我们的设计">用媒体查询改造我们的设计</h3>
+<p>​	我们都知道，样式表里面，后面的样式会覆盖前面的样式。因此，我们可以在设置好网站基本样式后，使用媒体查询来进一步重写相应的部分。例如，在PC端将导航显示成简单的链接，然后再针对小视口，使用媒体查询重写这一部分。理论上讲最好是从小屏幕设备开始设计，然后渐进增强。但实际上我们使用媒体查询要解决的问题，都是已经存在PC端站点了，<code>更多的是要将现有的桌面版网页改造成响应式的</code>。</p>
 <p>加载媒体查询的最佳方法：</p>
-<p>​    使用<code>多个独立的CSS文件会增加HTTP请求的数量</code>，使页面加载变慢。所以我们的媒体查询样式的文件尽量放在一个里面，以注释加以区分。</p>
+<p>​	使用<code>多个独立的CSS文件会增加HTTP请求的数量</code>，使页面加载变慢。所以我们的媒体查询样式的文件尽量放在一个里面，以注释加以区分。</p>
 <p>阻止移动浏览器自动调整页面大小</p>
-<p>​    <code>ios和android浏览器都基于webkit内核</code>，这两种浏览器和许多其它浏览器都支持用<code>viewport，meta元素覆盖默认的画布缩放设置</code>。只需要在HTML的<code>&lt;head&gt;</code>标签中插入一个<code>&lt;meta&gt;</code>标签，<code>meta</code>标签中可以设置具体的宽度或缩放比。下面为示例</p>
-<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span>  <span class="attr">content</span>=<span class="string">"initial-scale=1.0,width=device-width"</span> /&gt;</span> </span><br></pre></td></tr></tbody></table></figure>
-
-<p><code>name=”viewport”</code>  说明此meta标签定义视口的属性<br><code>​initial-scale=2.0</code>   意思是将页面放大两倍<br><code>​width=device-width</code>   告诉浏览器页面的宽度等于设备宽度</p>
+<p>​	<code>ios和android浏览器都基于webkit内核</code>，这两种浏览器和许多其它浏览器都支持用<code>viewport，meta元素覆盖默认的画布缩放设置</code>。只需要在HTML的<code>&lt;head&gt;</code>标签中插入一个<code>&lt;meta&gt;</code>标签，<code>meta</code>标签中可以设置具体的宽度或缩放比。下面为示例</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span>  <span class="hljs-attr">content</span>=<span class="hljs-string">"initial-scale=1.0,width=device-width"</span> /&gt;</span></code></pre>
+<p><code>name=”viewport”</code>  说明此meta标签定义视口的属性<br>
+<code>​initial-scale=2.0</code>   意思是将页面放大两倍<br>
+<code>​width=device-width</code>   告诉浏览器页面的宽度等于设备宽度</p>
 <p>允许用户将页面最大放大至设备宽度3倍，最小压缩至设备宽度的一半</p>
-<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">”viewport”</span> <span class="attr">content</span>=<span class="string">”width</span>=<span class="string">device-width,</span> <span class="attr">maximum-scale</span>=<span class="string">3,</span> <span class="attr">minimum-scale</span>=<span class="string">0.5”</span> /&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-
-
-
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">”viewport”</span> <span class="hljs-attr">content</span>=<span class="hljs-string">”width</span>=<span class="hljs-string">device-width,</span> <span class="hljs-attr">maximum-scale</span>=<span class="hljs-string">3,</span> <span class="hljs-attr">minimum-scale</span>=<span class="hljs-string">0.5”</span> /&gt;</span></code></pre>
 <p>禁止用户缩放，可以在混合<code>APP</code>时，为了使<code>html</code>页面更逼真，使页面无法缩放</p>
-<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">”viewport”</span> <span class="attr">content</span>=<span class="string">”initial-scale</span>=<span class="string">1.0,</span> <span class="attr">user-scalable</span>=<span class="string">no”</span> /&gt;</span>   //user-scalable=no是禁止缩放</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">”viewport”</span> <span class="hljs-attr">content</span>=<span class="hljs-string">”initial-scale</span>=<span class="hljs-string">1.0,</span> <span class="hljs-attr">user-scalable</span>=<span class="hljs-string">no”</span> /&gt;</span>   //user-scalable=no是禁止缩放</code></pre>
 
             </div>
         </article>
@@ -157,16 +179,16 @@
             
                 <div class="prev-post">
                     <div class="prev gt-c-content-color-first">
-                        上一篇：<a href="/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/" 
-                            class="post-title gt-a-link">栅格布局基本概念</a>
+                        上一篇：<a href="/2021/03/10/%E8%BD%AF%E4%BB%B6/powerDesigner/" 
+                            class="post-title gt-a-link">PowerDesigner安装教程（含下载+汉化+破解）</a>
                     </div>
                 </div>
             
             
                 <div class="next-post">
                     <div class="next gt-c-content-color-first">
-                        下一篇：<a href="/2020/09/03/css/flex%E5%B8%83%E5%B1%80/" 
-                            class="post-title gt-a-link">flex布局</a>
+                        下一篇：<a href="/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/" 
+                            class="post-title gt-a-link">栅格布局基本概念</a>
                     </div>
                 </div>
             
