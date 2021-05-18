@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Title -->
+<title>SpringBoot11配置JSP和thymeleaf模板解析 - Hexo</title>
+
+<!-- Icon -->
+<link rel="icon" href="/favicon.ico">
+
+<!-- Fonts -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null, this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
+
+
+
+<!-- Style -->
+
+<link rel="stylesheet" href="/styles/main.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-pure@1.0.1/dist/main.css"> -->
+
+
+
+    <meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+    <body>
+        <div class="main gt-bg-theme-color-first">
+            <div class="main-content">
+                <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/favicon.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            
+        </div>
+    </div>
+    <button aria-label="Navbar Toggler" class="navbar-toggler" type="button" id="changeNavbar">
+        <i class="gt-c-content-color-first" style="font-size: 18px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18px" fill="currentColor">
+                <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
+            </svg>
+        </i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center; ">
+            
+                <div class="nav-item">
+                    <a href="/" class="menu gt-a-link" target="_self">首页</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/archives/" class="menu gt-a-link" target="_self">归档</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/tags/" class="menu gt-a-link" target="_self">标签</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/friends/" class="menu gt-a-link" target="_self">友链</a>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function() {
+        let element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else { 
+            element.style.display = 'none';
+        }
+    }
+</script>
+                <div class="post-container">
+    <div class="post-detail gt-bg-theme-color-second gt-c-content-color-first">
+        <article class="gt-post-content">
+            <h1 class="post-title">SpringBoot11配置JSP和thymeleaf模板解析</h1>
+            <div class="post-info">
+                <time class="post-time gt-c-content-color-first">
+                    · 2020-04-11 ·</time>
+                
+                    
+                        <a href="/tags/JavaWeb/" class="post-tag">
+                            #JavaWeb</a>
+                    
+                        <a href="/tags/SpringBoot/" class="post-tag">
+                            #SpringBoot</a>
+                    
+                
+            </div>
+            <hr>
+            <div class="post-content gt-c-content-color-first">
+                <hr>
+<p><img src="https://cdn.pixabay.com/photo/2014/10/07/13/48/mountain-477832_1280.jpg"></p>
+<hr>
+<h1 id="SpringBoot11配置JSP和thymeleaf模板解析"><a href="#SpringBoot11配置JSP和thymeleaf模板解析" class="headerlink" title="SpringBoot11配置JSP和thymeleaf模板解析"></a>SpringBoot11配置JSP和thymeleaf模板解析</h1><h2 id="1-集成jsp模板"><a href="#1-集成jsp模板" class="headerlink" title="1 集成jsp模板"></a>1 集成jsp模板</h2><h3 id="引入jsp的集成jar包"><a href="#引入jsp的集成jar包" class="headerlink" title="引入jsp的集成jar包"></a>引入jsp的集成jar包</h3><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.embed<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat-embed-jasper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="引入jsp运行插件"><a href="#引入jsp运行插件" class="headerlink" title="引入jsp运行插件"></a>引入jsp运行插件</h3><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>springboot_day1<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--引入jsp运行插件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="配置视图解析器"><a href="#配置视图解析器" class="headerlink" title="配置视图解析器"></a>配置视图解析器</h3><figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在配置文件中引入视图解析器</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mvc:</span></span><br><span class="line">    <span class="attr">view:</span></span><br><span class="line">      <span class="attr">prefix:</span> <span class="string">/</span>   	<span class="comment"># /代表访问项目中webapp中页面</span></span><br><span class="line">      <span class="attr">suffix:</span> <span class="string">.jsp</span> </span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="第一种方式使用插件启动"><a href="#第一种方式使用插件启动" class="headerlink" title="第一种方式使用插件启动"></a>第一种方式使用插件启动</h3><p><img src="https://img.sky123.top/springboot/image-20191129124602959.png" alt="image-20191129124602959"></p>
+<h3 id="第二种方式使用idea中指定工作目录启动-推荐"><a href="#第二种方式使用idea中指定工作目录启动-推荐" class="headerlink" title="第二种方式使用idea中指定工作目录启动  [推荐]"></a>第二种方式使用idea中指定工作目录启动  [推荐]</h3><p><img src="https://img.sky123.top/springboot/image-20191129124727562.png" alt="image-20191129124727562"></p>
+<h3 id="启动访问jsp页面"><a href="#启动访问jsp页面" class="headerlink" title="启动访问jsp页面"></a>启动访问jsp页面</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8989/cmfz/index.jsp</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="修改jsp无须重启应用"><a href="#修改jsp无须重启应用" class="headerlink" title="修改jsp无须重启应用"></a>修改jsp无须重启应用</h3><figure class="highlight properties"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">server.servlet.jsp.init-parameters.development</span>=<span class="string">true</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="2-集成thymelaf模板"><a href="#2-集成thymelaf模板" class="headerlink" title="2 集成thymelaf模板"></a>2 集成thymelaf模板</h2><blockquote>
+<p>Thymeleaf是一个用于web和独立环境的现代服务器端Java模板引擎。  –摘自官网<a target="_blank" rel="noopener" href="https://www.thymeleaf.org/">https://www.thymeleaf.org/</a></p>
+</blockquote>
+<p><code>Thymeleaf</code>是跟<code>Velocity</code>、<code>FreeMarker</code>类似的模板引擎，它可以完全替代JSP，相较与其他的模板引擎相比, <code>Thymeleaf</code>在有网络和无网络的环境下皆可运行，即它可以让美工在浏览器查看页面的静态效果，也可以让程序员在服务器查看带数据的动态页面效果。</p>
+<h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--使用thymelaf--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="编写配置"><a href="#编写配置" class="headerlink" title="编写配置"></a>编写配置</h3><figure class="highlight properties"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.thymeleaf.prefix</span>=<span class="string">classpath:/templates/      #使用模板目录</span></span><br><span class="line"><span class="meta">spring.thymeleaf.suffix</span>=<span class="string">.html                      #使用模板后缀</span></span><br><span class="line"><span class="meta">spring.thymeleaf.encoding</span>=<span class="string">UTF-8                    #使用模板编码</span></span><br><span class="line"><span class="meta">spring.thymeleaf.enabled</span>=<span class="string">true                      #开始thymelaf模板</span></span><br><span class="line"><span class="meta">spring.thymeleaf.servlet.content-type</span>=<span class="string">text/html    #使用模板响应类型</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="编写控制器测试"><a href="#编写控制器测试" class="headerlink" title="编写控制器测试"></a>编写控制器测试</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span>    <span class="comment">//一定要是@Controller 不能再使用@RestController注解</span></span><br><span class="line"><span class="meta">@RequestMapping("hello")</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>{</span><br><span class="line">    <span class="meta">@GetMapping("hello")</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>{</span><br><span class="line">        System.out.println(<span class="string">"测试与 thymeleaf 的集成"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="在templates目录中定义模板"><a href="#在templates目录中定义模板" class="headerlink" title="在templates目录中定义模板"></a>在templates目录中定义模板</h3><p><img src="http://img.sky123.top/springboot/image-20200323085834206.png" alt="image-20200323085834206"></p>
+<h3 id="测试访问"><a href="#测试访问" class="headerlink" title="测试访问"></a>测试访问</h3><figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8989/springboot_day3/hello/hello</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h3><p><img src="https://img.sky123.top/springboot/image-20200323085948499.png" alt="image-20200323085948499"></p>
+<h3 id="开启直接访问html页面"><a href="#开启直接访问html页面" class="headerlink" title="开启直接访问html页面"></a>开启直接访问html页面</h3><figure class="highlight properties"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.resources.static-locations</span>=<span class="string">classpath:/templates/,classpath:/static/</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h3><figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8989/springboot_day3/index.html</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://img.sky123.top/springboot/image-20200323090142705.png" alt="image-20200323090142705"></p>
+<h2 id="3-Thymeleaf基本使用"><a href="#3-Thymeleaf基本使用" class="headerlink" title="3 Thymeleaf基本使用"></a>3 Thymeleaf基本使用</h2><p><code>使用时必须在页面中加入thymeleaf如下命名空间:</code></p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="展示单个数据"><a href="#展示单个数据" class="headerlink" title="展示单个数据"></a>展示单个数据</h3><h4 id="设置数据"><a href="#设置数据" class="headerlink" title="设置数据"></a>设置数据</h4><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.addAttribute(<span class="string">"name"</span>,<span class="string">"张三"</span>); 或 request.setAttribute(<span class="string">"name"</span>,<span class="string">"小黑"</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h4><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${name}"</span>/&gt;</span>  ---&gt;获取数据</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>注意:在springboot2.x版本中必须加入国际化配置文件才能正常展示:</code></p>
+<p><img src="https://img.sky123.top/springboot/image-20200323100724749.png" alt="image-20200323100724749"></p>
+<p><img src="https://img.sky123.top/springboot/image-20200323100747881.png" alt="image-20200323100747881"></p>
+<h4 id="获取并解析含有html标签数据"><a href="#获取并解析含有html标签数据" class="headerlink" title="获取并解析含有html标签数据"></a>获取并解析含有html标签数据</h4><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model.addAttribute(<span class="string">"name"</span>,<span class="string">"&lt;a href=''&gt;张三&lt;/a&gt;"</span>);</span><br><span class="line">model.addAttribute(<span class="string">"username"</span>,<span class="string">"小陈"</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>直接获取原样输出</li>
+</ul>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${name}"</span>/&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://img.sky123.top/springboot/image-20200323100956740.png" alt="image-20200323100956740"></p>
+<ul>
+<li>获取并解析</li>
+</ul>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:utext</span>=<span class="string">"${name}"</span>/&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://img.sky123.top/springboot/image-20200323101457134.png" alt="image-20200323101457134"></p>
+<ul>
+<li><p>将数据赋值给表单元素</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">th:value</span>=<span class="string">"${username}"</span>/&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://img.sky123.top/springboot/image-20200323103452620.png" alt="image-20200323103452620"></p>
+</li>
+</ul>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 总结</span></span><br><span class="line"><span class="code">	1.使用 th:text="${属性名}"  获取对应数据,获取数据时会将对应标签中数据清空,因此最好是空标签</span></span><br><span class="line"><span class="code">	2.使用 th:utext="${属性名}" 获取对应的数据,可以将数据中html先解析在渲染到页面</span></span><br><span class="line"><span class="code">	3.使用 th:value="${属性名}" 获取数据直接作为表单元素value属性</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="展示对象数据"><a href="#展示对象数据" class="headerlink" title="展示对象数据"></a>展示对象数据</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.addAttribute(<span class="string">"user"</span>,<span class="keyword">new</span> User(<span class="string">"21"</span>,<span class="string">"xiaochen"</span>,<span class="number">23</span>,<span class="keyword">new</span> Date()));</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">id:<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${user.id}"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">name:<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${user.name}"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">age:<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${user.age}"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">bir: <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${user.bir}"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>  ====  <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${#dates.format(user.bir, 'yyyy-MM-dd HH:mm')}"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span> 日期格式化</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="条件展示数据"><a href="#条件展示数据" class="headerlink" title="条件展示数据"></a>条件展示数据</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.addAttribute(<span class="string">"user"</span>,<span class="keyword">new</span> User(<span class="string">"21"</span>,<span class="string">"xiaochen"</span>,<span class="number">23</span>,<span class="keyword">new</span> Date()));</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:if</span>=<span class="string">"${user.age} eq 23"</span>&gt;</span></span><br><span class="line">  青年</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 运算符</span></span><br><span class="line"><span class="code">    gt：great than（大于）&gt;</span></span><br><span class="line"><span class="code">    ge：great equal（大于等于）&gt;=</span></span><br><span class="line"><span class="code">    eq：equal（等于）==</span></span><br><span class="line"><span class="code">    lt：less than（小于）&lt;</span></span><br><span class="line"><span class="code">    le：less equal（小于等于）&lt;=</span></span><br><span class="line"><span class="code">    ne：not equal（不等于）!=</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="展示多条数据"><a href="#展示多条数据" class="headerlink" title="展示多条数据"></a>展示多条数据</h3><ul>
+<li>直接遍历集合</li>
+</ul>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">ul</span> <span class="attr">th:each</span>=<span class="string">"user:${users}"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:text</span>=<span class="string">"${user.id}"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:text</span>=<span class="string">"${user.name}"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:text</span>=<span class="string">"${user.age}"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:text</span>=<span class="string">"${#dates.format(user.bir,'yyyy-MM-dd')}"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>遍历时获取遍历状态</li>
+</ul>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">ul</span> <span class="attr">th:each</span>=<span class="string">"user,userStat:${users}"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${userStat.count}"</span>/&gt;</span>-<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${user.id}"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>   获取遍历次数  count 从1开始 index 从0开始</span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${userStat.odd}"</span>/&gt;</span>-<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${user.name}"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>   获取当前遍历是否是奇数行</span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${userStat.even}"</span>/&gt;</span>-<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${user.age}"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>   获取当前遍历是否是偶数行</span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${userStat.size}"</span>/&gt;</span>-<span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"${user.bir}"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>   获取当前集合的总条数</span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="引入静态资源"><a href="#引入静态资源" class="headerlink" title="引入静态资源"></a>引入静态资源</h3><p><code>使用thymeleaf模板项目中静态资源默认放在resources路径小static目录中</code></p>
+<ul>
+<li><p>项目中放入对应静态资源</p>
+<img src="https://img.sky123.top/springboot/image-20200323142307411.png" alt="image-20200323142307411" style="zoom:200%;">
+</li>
+<li><p>页面中引入</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">th:href</span>=<span class="string">"@{/css/index.css}"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">"@{/js/jquery-min.js}"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+</li>
+</ul>
+
+            </div>
+        </article>
+    </div>
+    <br>
+    
+        <div class="next-prev-post">
+            
+                <div class="prev-post">
+                    <div class="prev gt-c-content-color-first">
+                        上一篇：<a href="/2020/05/01/hexo%E5%8D%9A%E5%AE%A2/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5b%E7%AB%99%E8%A7%86%E9%A2%91/" 
+                            class="post-title gt-a-link">Hexo博客中插入b站视频</a>
+                    </div>
+                </div>
+            
+            
+                <div class="next-post">
+                    <div class="next gt-c-content-color-first">
+                        下一篇：<a href="/2020/04/10/springboot/SpringBoot10%E6%8B%A6%E6%88%AA%E5%99%A8%E4%BD%BF%E7%94%A8/" 
+                            class="post-title gt-a-link">SpringBoot10拦截器使用</a>
+                    </div>
+                </div>
+            
+        </div>
+    
+    
+</div>
+                <div class="site-footer gt-c-content-color-first">
+    <div class="footer-main">
+        <!-- 建议保留版权信息或者添加主题信息到友链，感谢您的理解 -->
+        <!-- 文件位置：layout/_includes/footer.ejs -->
+        <span style="text-align: right; float: right;">Theme <a 
+            href="https://github.com/renbaoshuo/hexo-theme-pure" target="_blank">Pure</a> | Powered by <a 
+            href="https://hexo.io" target="_blank">Hexo</a></span>
+        <span style="text-align: left;">Footer HTML
+</span>
+    </div>
+</div>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

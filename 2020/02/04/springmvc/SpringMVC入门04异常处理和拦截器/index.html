@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Title -->
+<title>SpringMVC入门04异常处理和拦截器 - Hexo</title>
+
+<!-- Icon -->
+<link rel="icon" href="/favicon.ico">
+
+<!-- Fonts -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null, this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
+
+
+
+<!-- Style -->
+
+<link rel="stylesheet" href="/styles/main.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-pure@1.0.1/dist/main.css"> -->
+
+
+
+    <meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+    <body>
+        <div class="main gt-bg-theme-color-first">
+            <div class="main-content">
+                <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/favicon.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            
+        </div>
+    </div>
+    <button aria-label="Navbar Toggler" class="navbar-toggler" type="button" id="changeNavbar">
+        <i class="gt-c-content-color-first" style="font-size: 18px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18px" fill="currentColor">
+                <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
+            </svg>
+        </i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center; ">
+            
+                <div class="nav-item">
+                    <a href="/" class="menu gt-a-link" target="_self">首页</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/archives/" class="menu gt-a-link" target="_self">归档</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/tags/" class="menu gt-a-link" target="_self">标签</a>
+                </div>
+            
+                <div class="nav-item">
+                    <a href="/friends/" class="menu gt-a-link" target="_self">友链</a>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function() {
+        let element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else { 
+            element.style.display = 'none';
+        }
+    }
+</script>
+                <div class="post-container">
+    <div class="post-detail gt-bg-theme-color-second gt-c-content-color-first">
+        <article class="gt-post-content">
+            <h1 class="post-title">SpringMVC入门04异常处理和拦截器</h1>
+            <div class="post-info">
+                <time class="post-time gt-c-content-color-first">
+                    · 2020-02-04 ·</time>
+                
+                    
+                        <a href="/tags/JavaWeb/" class="post-tag">
+                            #JavaWeb</a>
+                    
+                        <a href="/tags/SpringMVC%E6%A1%86%E6%9E%B6/" class="post-tag">
+                            #SpringMVC框架</a>
+                    
+                
+            </div>
+            <hr>
+            <div class="post-content gt-c-content-color-first">
+                <hr>
+<p><img src="https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_1280.jpg"></p>
+<hr>
+<h1 id="SpringMVC入门04异常处理和拦截器"><a href="#SpringMVC入门04异常处理和拦截器" class="headerlink" title="SpringMVC入门04异常处理和拦截器"></a>SpringMVC入门04异常处理和拦截器</h1><h2 id="1-SpringMVC-中的异常处理"><a href="#1-SpringMVC-中的异常处理" class="headerlink" title="1. SpringMVC 中的异常处理"></a>1. SpringMVC 中的异常处理</h2><h3 id="1-1-异常处理的思路"><a href="#1-1-异常处理的思路" class="headerlink" title="1.1 异常处理的思路"></a>1.1 异常处理的思路</h3><p>系统中异常包括两类：预期异常和运行时异常 <code>RuntimeException</code>，前者通过捕获异常从而获取异常信息，<br>后者主要通过规范代码开发、测试通过手段减少运行时异常的发生。<br>系统的 <code>dao、 service、 controller</code> 出现都通过 <code>throws Exception</code> 向上抛出，最后由 <code>springmvc 前端</code><br>控制器交由异常处理器进行异常处理，如下图：  </p>
+<hr>
+<img src="https://img.sky123.top/springmvc01/image-20200601213930767.png" alt="image-20200601213930767" style="zoom:50%;">
+
+<hr>
+<h3 id="1-2-异常处理实例"><a href="#1-2-异常处理实例" class="headerlink" title="1.2 异常处理实例"></a>1.2 异常处理实例</h3><p>编写异常类和错误页面  </p>
+<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 自定义异常</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>{</span><br><span class="line"><span class="keyword">private</span> String message;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">CustomException</span><span class="params">(String message)</span> </span>{</span><br><span class="line"><span class="keyword">this</span>.message = message;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>{</span><br><span class="line"><span class="keyword">return</span> message;</span><br><span class="line">}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">jsp 页面：error.jsp</span><br><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span></span><br><span class="line"><span class="string">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;执行失败&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">执行失败！</span><br><span class="line">${message }</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>自定义异常处理器  </p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 自定义异常处理器</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomExceptionResolver</span> <span class="keyword">implements</span> <span class="title">HandlerExceptionResolver</span> </span>{</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">resolveException</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">HttpServletResponse response, Object handler, Exception ex)</span> </span>{</span><br><span class="line">ex.printStackTrace();</span><br><span class="line">CustomException customException = <span class="keyword">null</span>;</span><br><span class="line"><span class="comment">//如果抛出的是系统自定义异常则直接转换</span></span><br><span class="line"><span class="keyword">if</span>(ex <span class="keyword">instanceof</span> CustomException){</span><br><span class="line">customException = (CustomException)ex;</span><br><span class="line">}<span class="keyword">else</span>{</span><br><span class="line"><span class="comment">//如果抛出的不是系统自定义异常则重新构造一个系统错误异常。</span></span><br><span class="line">customException = <span class="keyword">new</span> CustomException(<span class="string">"系统错误，请与系统管理 员联系！ "</span>);</span><br><span class="line">}</span><br><span class="line">ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">modelAndView.addObject(<span class="string">"message"</span>, customException.getMessage());</span><br><span class="line">modelAndView.setViewName(<span class="string">"error"</span>);</span><br><span class="line"><span class="keyword">return</span> modelAndView;</span><br><span class="line">}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>配置异常处理器  </p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置自定义异常处理器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"handlerExceptionResolver"</span></span></span><br><span class="line"><span class="tag"><span class="attr">class</span>=<span class="string">"com.itheima.exception.CustomExceptionResolver"</span>/&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="2-SpringMVC-中的拦截器"><a href="#2-SpringMVC-中的拦截器" class="headerlink" title="2. SpringMVC 中的拦截器"></a>2. SpringMVC 中的拦截器</h2><h3 id="2-1-拦截器的作用"><a href="#2-1-拦截器的作用" class="headerlink" title="2.1 拦截器的作用"></a>2.1 拦截器的作用</h3><p>Spring MVC 的处理器拦截器类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。用户可以自己定义一些拦截器来实现特定的功能。<br>谈到拦截器，还要向大家提一个词——拦截器链<code>（Interceptor Chain）</code>。拦截器链就是将拦截器按一定的顺<br>序联结成一条链。在访问被拦截的方法或字段时，拦截器链中的拦截器就会按其之前定义的顺序被调用。<br>说到这里，可能大家脑海中有了一个疑问，这不是我们之前学的过滤器吗？是的它和过滤器是有几分相似，但<br>是也有区别，接下来我们就来说说他们的区别：</p>
+<ol>
+<li>过滤器是 servlet 规范中的一部分， 任何 java web 工程都可以使用。</li>
+<li>拦截器是 <code>SpringMVC 框架</code>自己的，只有使用了 SpringMVC 框架的工程才能用。</li>
+<li>过滤器在 url-pattern 中配置了/*之后，可以对所有要访问的资源拦截。</li>
+<li>拦截器它是只会拦截访问的控制器方法，如果访问的是 jsp， html,css,image 或者 js 是不会进行拦截的。它也是 AOP 思想的具体应用。</li>
+<li>我们要想自定义拦截器， 要求必须实现： <code>HandlerInterceptor 接口</code>。  </li>
+</ol>
+<h3 id="2-2-自定义拦截器的步骤"><a href="#2-2-自定义拦截器的步骤" class="headerlink" title="2.2 自定义拦截器的步骤"></a>2.2 自定义拦截器的步骤</h3><p>第一步：编写一个普通类实现 HandlerInterceptor 接口  </p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HandlerInterceptorDemo1</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>{</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse</span></span></span><br><span class="line"><span class="function"><span class="params">response, Object handler)</span></span></span><br><span class="line"><span class="function"><span class="keyword">throws</span> Exception </span>{</span><br><span class="line">System.out.println(<span class="string">"preHandle 拦截器拦截了"</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">}</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response,</span></span></span><br><span class="line"><span class="function"><span class="params">Object handler，ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">System.out.println(<span class="string">"postHandle 方法执行了"</span>);</span><br><span class="line">}</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse</span></span></span><br><span class="line"><span class="function"><span class="params">response, Object handler, Exception ex)</span></span></span><br><span class="line"><span class="function"><span class="keyword">throws</span> Exception </span>{</span><br><span class="line">System.out.println(<span class="string">"afterCompletion 方法执行了"</span>);</span><br><span class="line">}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第二步：配置拦截器  </p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置拦截器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">"/**"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"handlerInterceptorDemo1"</span></span></span><br><span class="line"><span class="tag"><span class="attr">class</span>=<span class="string">"com.itheima.web.interceptor.HandlerInterceptorDemo1"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-3-拦截器的细节"><a href="#2-3-拦截器的细节" class="headerlink" title="2.3 拦截器的细节"></a>2.3 拦截器的细节</h3><p>拦截器的放行 ：放行的含义是指，如果有下一个拦截器就执行下一个，如果该拦截器处于拦截器链的最后一个，则执行控制器中的方法  </p>
+<p>拦截器中方法的说明  ：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HandlerInterceptor</span> </span>{</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 如何调用：</span></span><br><span class="line"><span class="comment">* 按拦截器定义顺序调用</span></span><br><span class="line"><span class="comment">* 何时调用：</span></span><br><span class="line"><span class="comment">* 只要配置了都会调用</span></span><br><span class="line"><span class="comment">* 有什么用：</span></span><br><span class="line"><span class="comment">* 如果程序员决定该拦截器对请求进行拦截处理后还要调用其他的拦截器，或者是业务处理器去</span></span><br><span class="line"><span class="comment">* 进行处理，则返回 true。</span></span><br><span class="line"><span class="comment">* 如果程序员决定不需要再调用其他的组件去处理请求，则返回 false。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">default</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse</span></span></span><br><span class="line"><span class="function"><span class="params">response, Object handler)</span></span></span><br><span class="line"><span class="function"><span class="keyword">throws</span> Exception </span>{</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">}</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">* 如何调用：</span></span><br><span class="line"><span class="comment">* 按拦截器定义逆序调用</span></span><br><span class="line"><span class="comment">* 何时调用：</span></span><br><span class="line"><span class="comment">* 在拦截器链内所有拦截器返成功调用</span></span><br><span class="line"><span class="comment">* 有什么用：</span></span><br><span class="line"><span class="comment">* 在业务处理器处理完请求后，但是 DispatcherServlet 向客户端返回响应前被调用，</span></span><br><span class="line"><span class="comment">* 在该方法中对用户请求 request 进行处理。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse</span></span></span><br><span class="line"><span class="function"><span class="params">response, Object handler,</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="meta">@Nullable</span> ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">}</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 如何调用：</span></span><br><span class="line"><span class="comment">* 按拦截器定义逆序调用</span></span><br><span class="line"><span class="comment">* 何时调用：</span></span><br><span class="line"><span class="comment">* 只有 preHandle 返回 true 才调用</span></span><br><span class="line"><span class="comment">* 有什么用：</span></span><br><span class="line"><span class="comment">* 在 DispatcherServlet 完全处理完请求后被调用，</span></span><br><span class="line"><span class="comment">* 可以在该方法中进行一些资源清理的操作。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse</span></span></span><br><span class="line"><span class="function"><span class="params">response, Object handler,</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="meta">@Nullable</span> Exception ex)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>拦截器的作用路径  </p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">作用路径可以通过在配置文件中配置。</span><br><span class="line"><span class="comment">&lt;!-- 配置拦截器的作用范围 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">"/**"</span> /&gt;</span><span class="comment">&lt;!-- 用于指定对拦截的 url --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:exclude-mapping</span> <span class="attr">path</span>=<span class="string">""</span>/&gt;</span><span class="comment">&lt;!-- 用于指定排除的 url--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"handlerInterceptorDemo1"</span></span></span><br><span class="line"><span class="tag"><span class="attr">class</span>=<span class="string">"com.itheima.web.interceptor.HandlerInterceptorDemo1"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-4-拦截器实现登陆验证"><a href="#2-4-拦截器实现登陆验证" class="headerlink" title="2.4 拦截器实现登陆验证"></a>2.4 拦截器实现登陆验证</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span></span>{</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function">Public <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line"><span class="comment">//如果是登录页面则放行</span></span><br><span class="line"><span class="keyword">if</span>(request.getRequestURI().indexOf(<span class="string">"login.action"</span>)&gt;=<span class="number">0</span>){</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">}</span><br><span class="line">HttpSession session = request.getSession();</span><br><span class="line"><span class="comment">//如果用户已登录也放行</span></span><br><span class="line"><span class="keyword">if</span>(session.getAttribute(<span class="string">"user"</span>)!=<span class="keyword">null</span>){</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">}</span><br><span class="line"><span class="comment">//用户没有登录挑战到登录页面</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">"/WEB-INF/jsp/login.jsp"</span>).forward(request,</span><br><span class="line">response);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+            </div>
+        </article>
+    </div>
+    <br>
+    
+        <div class="next-prev-post">
+            
+                <div class="prev-post">
+                    <div class="prev gt-c-content-color-first">
+                        上一篇：<a href="/2020/03/01/spring/Spring%E5%85%A5%E9%97%A801IOC%E5%92%8CAOP%E6%A6%82%E8%BF%B0/" 
+                            class="post-title gt-a-link">Spring入门01IOC和AOP概述</a>
+                    </div>
+                </div>
+            
+            
+                <div class="next-post">
+                    <div class="next gt-c-content-color-first">
+                        下一篇：<a href="/2020/02/03/springmvc/SpringMVC%E5%85%A5%E9%97%A803%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" 
+                            class="post-title gt-a-link">SpringMVC入门03实现文件上传</a>
+                    </div>
+                </div>
+            
+        </div>
+    
+    
+</div>
+                <div class="site-footer gt-c-content-color-first">
+    <div class="footer-main">
+        <!-- 建议保留版权信息或者添加主题信息到友链，感谢您的理解 -->
+        <!-- 文件位置：layout/_includes/footer.ejs -->
+        <span style="text-align: right; float: right;">Theme <a 
+            href="https://github.com/renbaoshuo/hexo-theme-pure" target="_blank">Pure</a> | Powered by <a 
+            href="https://hexo.io" target="_blank">Hexo</a></span>
+        <span style="text-align: left;">Footer HTML
+</span>
+    </div>
+</div>
+
+            </div>
+        </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
