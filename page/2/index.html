@@ -1,406 +1,915 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Title -->
-<title>Hexo</title>
-
-<!-- Icon -->
-<link rel="icon" href="/favicon.ico">
-
-<!-- Fonts -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null, this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
-
-
-    <!-- KaTeX -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" as="style" onload="this.onload=null, this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"></noscript>
-
-
-<!-- Style -->
-
-<link rel="stylesheet" href="/styles/main.css">
-
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-pure@1.0.1/dist/main.css"> -->
-
-
-
-    <meta name="generator" content="Hexo 5.4.0">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="大白小怪兽">
+    
+    <title>
+        
+        大白小怪兽
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/images/blog.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
 </head>
-    <body>
-        <div class="main gt-bg-theme-color-first">
-            <div class="main-content">
-                <nav class="navbar navbar-expand-lg">
-    <div class="navbar-brand">
-        <img class="user-avatar" src="/favicon.png" alt="头像">
-        <div class="site-name gt-c-content-color-first">
-            
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                大白小怪兽
+            </a>
         </div>
-    </div>
-    <button aria-label="Navbar Toggler" class="navbar-toggler" type="button" id="changeNavbar">
-        <i class="gt-c-content-color-first" style="font-size: 18px;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18px" fill="currentColor">
-                <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
-            </svg>
-        </i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto" style="text-align: center; ">
-            
-                <div class="nav-item">
-                    <a href="/" class="menu gt-a-link" target="_self">首页</a>
-                </div>
-            
-                <div class="nav-item">
-                    <a href="/archives/" class="menu gt-a-link" target="_self">归档</a>
-                </div>
-            
-                <div class="nav-item">
-                    <a href="/tags/" class="menu gt-a-link" target="_self">标签</a>
-                </div>
-            
-                <div class="nav-item">
-                    <a href="/friends/" class="menu gt-a-link" target="_self">友链</a>
-                </div>
-            
-        </div>
-    </div>
-</nav>
 
-<script>
-    /* 移动端导航栏展开/收起切换 */
-    document.getElementById('changeNavbar').onclick = function() {
-        let element = document.getElementById('navbarSupportedContent');
-        if (element.style.display === 'none' || element.style.display === '') {
-            element.style.display = 'block';
-        } else { 
-            element.style.display = 'none';
-        }
-    }
-</script>
-                <div class="post-list-container">
-    <div class="post-inner">
-        
-            
-                <article class="post gt-bg-theme-color-second">
-                    <div class="post-left">
-                        
-                        <a href="/2020/09/03/css/flex%E5%B8%83%E5%B1%80/">
-                            <span class="post-title gt-c-content-color-first">flex布局</span>
-                        </a>
-                        <div class="gt-post-content post-abstract gt-c-content-color-second">
-                            <p></p>
-                        </div>
-                        <div class="post-info">
-                            <span>
-                                <time class="post-time gt-c-content-color-first">
-                                    · 2020-09-03 ·
-                                </time>
-                                
-                                    <a href="/tags/css/" class="post-tag">
-                                        #css</a>
-                                
-                                    <a href="/tags/html/" class="post-tag">
-                                        #html</a>
-                                
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            
-        
-            
-                <article class="post gt-bg-theme-color-second">
-                    <div class="post-left">
-                        
-                        <a href="/2020/09/02/css/display%E5%92%8C%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/">
-                            <span class="post-title gt-c-content-color-first">display属性和盒子模型</span>
-                        </a>
-                        <div class="gt-post-content post-abstract gt-c-content-color-second">
-                            <p></p>
-                        </div>
-                        <div class="post-info">
-                            <span>
-                                <time class="post-time gt-c-content-color-first">
-                                    · 2020-09-02 ·
-                                </time>
-                                
-                                    <a href="/tags/css/" class="post-tag">
-                                        #css</a>
-                                
-                                    <a href="/tags/html/" class="post-tag">
-                                        #html</a>
-                                
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            
-        
-            
-                <article class="post gt-bg-theme-color-second">
-                    <div class="post-left">
-                        
-                        <a href="/2020/09/01/css/position%E5%92%8Cz-index/">
-                            <span class="post-title gt-c-content-color-first">Position定位和z-index</span>
-                        </a>
-                        <div class="gt-post-content post-abstract gt-c-content-color-second">
-                            <p></p>
-                        </div>
-                        <div class="post-info">
-                            <span>
-                                <time class="post-time gt-c-content-color-first">
-                                    · 2020-09-01 ·
-                                </time>
-                                
-                                    <a href="/tags/css/" class="post-tag">
-                                        #css</a>
-                                
-                                    <a href="/tags/html/" class="post-tag">
-                                        #html</a>
-                                
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            
-        
-            
-                <article class="post gt-bg-theme-color-second">
-                    <div class="post-left">
-                        
-                        <a href="/2020/08/30/css/css3%E5%8A%A8%E7%94%BB/">
-                            <span class="post-title gt-c-content-color-first">css3动画常用属性和阴影圆角</span>
-                        </a>
-                        <div class="gt-post-content post-abstract gt-c-content-color-second">
-                            <p></p>
-                        </div>
-                        <div class="post-info">
-                            <span>
-                                <time class="post-time gt-c-content-color-first">
-                                    · 2020-08-30 ·
-                                </time>
-                                
-                                    <a href="/tags/css/" class="post-tag">
-                                        #css</a>
-                                
-                                    <a href="/tags/html/" class="post-tag">
-                                        #html</a>
-                                
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            
-        
-            
-                <article class="post gt-bg-theme-color-second">
-                    <div class="post-left">
-                        
-                        <a href="/2020/08/08/springboot/Swagger/">
-                            <span class="post-title gt-c-content-color-first">Swagger入门</span>
-                        </a>
-                        <div class="gt-post-content post-abstract gt-c-content-color-second">
-                            <p></p>
-                        </div>
-                        <div class="post-info">
-                            <span>
-                                <time class="post-time gt-c-content-color-first">
-                                    · 2020-08-08 ·
-                                </time>
-                                
-                                    <a href="/tags/JavaWeb/" class="post-tag">
-                                        #JavaWeb</a>
-                                
-                                    <a href="/tags/Swagger/" class="post-tag">
-                                        #Swagger</a>
-                                
-                                    <a href="/tags/Java/" class="post-tag">
-                                        #Java</a>
-                                
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            
-        
-            
-                <article class="post gt-bg-theme-color-second">
-                    <div class="post-left">
-                        
-                        <a href="/2020/08/01/springboot/Springboot%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/">
-                            <span class="post-title gt-c-content-color-first">SpringBoot多环境切换</span>
-                        </a>
-                        <div class="gt-post-content post-abstract gt-c-content-color-second">
-                            <p></p>
-                        </div>
-                        <div class="post-info">
-                            <span>
-                                <time class="post-time gt-c-content-color-first">
-                                    · 2020-08-01 ·
-                                </time>
-                                
-                                    <a href="/tags/JavaWeb/" class="post-tag">
-                                        #JavaWeb</a>
-                                
-                                    <a href="/tags/SpringBoot/" class="post-tag">
-                                        #SpringBoot</a>
-                                
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            
-        
-            
-                <article class="post gt-bg-theme-color-second">
-                    <div class="post-left">
-                        
-                        <a href="/2020/07/02/javascript/Javascript%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%9F%E8%83%BD%E6%96%B9%E6%B3%95/">
-                            <span class="post-title gt-c-content-color-first">Javascript常用字符串功能方法</span>
-                        </a>
-                        <div class="gt-post-content post-abstract gt-c-content-color-second">
-                            <p></p>
-                        </div>
-                        <div class="post-info">
-                            <span>
-                                <time class="post-time gt-c-content-color-first">
-                                    · 2020-07-02 ·
-                                </time>
-                                
-                                    <a href="/tags/Javascript/" class="post-tag">
-                                        #Javascript</a>
-                                
-                                    <a href="/tags/%E5%89%8D%E7%AB%AF/" class="post-tag">
-                                        #前端</a>
-                                
-                                    <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-tag">
-                                        #字符串</a>
-                                
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            
-        
-            
-                <article class="post gt-bg-theme-color-second">
-                    <div class="post-left">
-                        
-                        <a href="/2020/07/01/javascript/Javascript%E5%B8%B8%E7%94%A8%E7%9A%8421%E4%B8%AA%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">
-                            <span class="post-title gt-c-content-color-first">Javascript常用的21个数组方法</span>
-                        </a>
-                        <div class="gt-post-content post-abstract gt-c-content-color-second">
-                            <p></p>
-                        </div>
-                        <div class="post-info">
-                            <span>
-                                <time class="post-time gt-c-content-color-first">
-                                    · 2020-07-01 ·
-                                </time>
-                                
-                                    <a href="/tags/Javascript/" class="post-tag">
-                                        #Javascript</a>
-                                
-                                    <a href="/tags/%E5%89%8D%E7%AB%AF/" class="post-tag">
-                                        #前端</a>
-                                
-                                    <a href="/tags/%E6%95%B0%E7%BB%84/" class="post-tag">
-                                        #数组</a>
-                                
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            
-        
-            
-                <article class="post gt-bg-theme-color-second">
-                    <div class="post-left">
-                        
-                        <a href="/2020/05/05/vue/Promise%E5%92%8Caxios/">
-                            <span class="post-title gt-c-content-color-first">vue学习笔记07-Promise和axios</span>
-                        </a>
-                        <div class="gt-post-content post-abstract gt-c-content-color-second">
-                            <p></p>
-                        </div>
-                        <div class="post-info">
-                            <span>
-                                <time class="post-time gt-c-content-color-first">
-                                    · 2020-05-05 ·
-                                </time>
-                                
-                                    <a href="/tags/%E5%89%8D%E7%AB%AF/" class="post-tag">
-                                        #前端</a>
-                                
-                                    <a href="/tags/vue/" class="post-tag">
-                                        #vue</a>
-                                
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            
-        
-            
-                <article class="post gt-bg-theme-color-second">
-                    <div class="post-left">
-                        
-                        <a href="/2020/05/05/vue/Vuex/">
-                            <span class="post-title gt-c-content-color-first">vue学习笔记06-vuex</span>
-                        </a>
-                        <div class="gt-post-content post-abstract gt-c-content-color-second">
-                            <p></p>
-                        </div>
-                        <div class="post-info">
-                            <span>
-                                <time class="post-time gt-c-content-color-first">
-                                    · 2020-05-05 ·
-                                </time>
-                                
-                                    <a href="/tags/%E5%89%8D%E7%AB%AF/" class="post-tag">
-                                        #前端</a>
-                                
-                                    <a href="/tags/vue/" class="post-tag">
-                                        #vue</a>
-                                
-                            </span>
-                        </div>
-                    </div>
-                </article>
-            
-        
-    </div>
-</div>
-
-<div class="pagination-container">
-    
-        <a href="/" class="prev-page gt-a-link">上一页</a>
-    
-    
-        <a href="/page/3/" class="prev-page gt-a-link">下一页</a>
-    
-</div>
-                <div class="site-footer gt-c-content-color-first">
-    <div class="footer-main">
-        <!-- 建议保留版权信息或者添加主题信息到友链，感谢您的理解 -->
-        <!-- 文件位置：layout/_includes/footer.ejs -->
-        <span style="text-align: right; float: right;">Theme <a 
-            href="https://github.com/renbaoshuo/hexo-theme-pure" target="_blank">Pure</a> | Powered by <a 
-            href="https://hexo.io" target="_blank">Hexo</a></span>
-        <span style="text-align: left;">Footer HTML
-</span>
-    </div>
-</div>
-
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="active"
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
             </div>
         </div>
-    <script type="text/x-mathjax-config">
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active"
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2020/09/03/css/flex%E5%B8%83%E5%B1%80/">
+                        flex布局
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
+
+
+伸缩盒模型flexbox
+伸缩盒模型也叫弹性盒模型，或flexBox。它决定一个盒子在其它盒子中的分布，以及如何处理可用的空间。使用该模型，可以轻松的创建“自适应”浏览器窗口的流动布局。
+
+flexbox是一个很新的东西，在w3c希望可以使用f...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Sep 03 2020 14:53:47 GMT+0800">2020-09-03</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/css/">css</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/html/">html</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2020/09/03/css/flex%E5%B8%83%E5%B1%80/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2020/09/02/css/display%E5%92%8C%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/">
+                        display属性和盒子模型
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
+
+
+display属性
+​	根据CSS规范的规定，每一个网页元素都有一个display属性，用于确定该元素的类型，每一个元素都有默认的display属性值，比如div元素，它的默认display属性值为“block”，称为块元素，而span元素的默...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Sep 02 2020 14:53:47 GMT+0800">2020-09-02</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/css/">css</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/html/">html</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2020/09/02/css/display%E5%92%8C%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2020/09/01/css/position%E5%92%8Cz-index/">
+                        Position定位和z-index
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
+
+
+position定位
+position属性指定一个元素（静态的，相对的，绝对或固定）的定位方法的类型。
+
+realtive
+以自身为参照物移动到指定的位置，并且被定位的元素会占据原有的位置
+&lt;style&gt;
+		div{
+			wid...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Sep 01 2020 14:53:47 GMT+0800">2020-09-01</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/css/">css</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/html/">html</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2020/09/01/css/position%E5%92%8Cz-index/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2020/08/30/css/css3%E5%8A%A8%E7%94%BB/">
+                        css3动画常用属性和阴影圆角
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
+
+
+CSS3的含义
+​	CSS3是CSS（层叠样式表）技术的升级版本。CSS3完全向后兼容，不必改变现有的设计，浏览器将永远支持CSS2。W3C的CSS3规范仍在开发。但是，许多新的CSS3属性已在现代浏览器使用。
+浏览器内核以及其前缀
+​	CSS...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Aug 30 2020 14:53:47 GMT+0800">2020-08-30</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/css/">css</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/html/">html</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2020/08/30/css/css3%E5%8A%A8%E7%94%BB/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2020/08/08/springboot/Swagger/">
+                        Swagger入门
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
+
+
+Swagger入门
+学习目标：
+
+了解Swagger的作用和概念
+了解前后端分离的概念
+在Springboot中集成Swagger
+
+Swagger简介
+前后端分离：vue+springboot
+
+后端：控制层+服务层+数据访问层
+前端：前端控...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Aug 08 2020 10:01:25 GMT+0800">2020-08-08</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Swagger/">Swagger</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Java/">Java</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2020/08/08/springboot/Swagger/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2020/08/01/springboot/Springboot%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/">
+                        SpringBoot多环境切换
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
+
+
+SpringBoot多环境切换
+好处
+
+
+不同环境配置可以配置不同的参数,不用来回改参数
+
+
+便于部署，提高效率，减少出错
+
+
+步骤
+在默认文件中 application.yml  中 配置切换属性：
+spring:
+  profiles:
+ ...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Aug 01 2020 00:00:00 GMT+0800">2020-08-01</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/SpringBoot/">SpringBoot</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2020/08/01/springboot/Springboot%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2020/07/02/javascript/Javascript%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%9F%E8%83%BD%E6%96%B9%E6%B3%95/">
+                        Javascript常用字符串功能方法
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
+
+
+Javascript常用字符串功能方法
+字符串转换
+字符串转换是最基础的要求和工作，你可以将任何类型的数据都转换为字符串，你可以用下面三种方法的任何一种：
+var num=24;
+var mystr=num.toString();    //"...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Jul 02 2020 14:04:46 GMT+0800">2020-07-02</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Javascript/">Javascript</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2020/07/02/javascript/Javascript%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%9F%E8%83%BD%E6%96%B9%E6%B3%95/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2020/07/01/javascript/Javascript%E5%B8%B8%E7%94%A8%E7%9A%8421%E4%B8%AA%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">
+                        Javascript常用的21个数组方法
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
+
+
+Javascript常用的21个数组方法
+这七个数组方法
+unshift();	  push()；  shift();
+pop();	 sort();	reverse();	splice();使用后数组是会被改变的。
+
+
+
+方法名
+对应版本
+功...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Jul 01 2020 13:38:27 GMT+0800">2020-07-01</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Javascript/">Javascript</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2020/07/01/javascript/Javascript%E5%B8%B8%E7%94%A8%E7%9A%8421%E4%B8%AA%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2020/05/05/vue/Promise%E5%92%8Caxios/">
+                        vue学习笔记07-Promise和axios
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        vue学习笔记07-Promise和axios
+
+
+
+Promise
+什么是Promise?
+ES6中一个非常重要和好用的特性就是Promise。但是初次接触Promise会一脸懵逼，这TM是什么东西？
+看看官方或者一些文章对它的介绍和用法，也是一头...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 05 2020 07:45:01 GMT+0800">2020-05-05</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/vue/">vue</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2020/05/05/vue/Promise%E5%92%8Caxios/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2020/05/05/vue/Vuex/">
+                        vue学习笔记06-vuex
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        vue学习笔记06-vuex
+
+
+
+Vuex是做什么的?
+官方解释：Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。
+它采用 集中式存储管理 应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+Vuex 也集成到...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 05 2020 06:45:01 GMT+0800">2020-05-05</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/vue/">vue</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2020/05/05/vue/Vuex/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
+        <a class="prev btn"
+           href="/"
+        >上一页</a>
+    
+
+    
+        <a class="next btn"
+           href="/page/3/"
+        >下一页</a>
+    
+</div>
+
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],

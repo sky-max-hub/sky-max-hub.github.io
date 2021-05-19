@@ -1,112 +1,228 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Title -->
-<title>Swagger入门 - Hexo</title>
-
-<!-- Icon -->
-<link rel="icon" href="/favicon.ico">
-
-<!-- Fonts -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null, this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript>
-
-
-    <!-- KaTeX -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" as="style" onload="this.onload=null, this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"></noscript>
-
-
-<!-- Style -->
-
-<link rel="stylesheet" href="/styles/main.css">
-
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-pure@1.0.1/dist/main.css"> -->
-
-
-
-    <meta name="generator" content="Hexo 5.4.0">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="大白小怪兽">
+    
+    <title>
+        
+            Swagger入门 |
+        
+        大白小怪兽
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/images/blog.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
 </head>
-    <body>
-        <div class="main gt-bg-theme-color-first">
-            <div class="main-content">
-                <nav class="navbar navbar-expand-lg">
-    <div class="navbar-brand">
-        <img class="user-avatar" src="/favicon.png" alt="头像">
-        <div class="site-name gt-c-content-color-first">
-            
-        </div>
-    </div>
-    <button aria-label="Navbar Toggler" class="navbar-toggler" type="button" id="changeNavbar">
-        <i class="gt-c-content-color-first" style="font-size: 18px;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18px" fill="currentColor">
-                <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
-            </svg>
-        </i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto" style="text-align: center; ">
-            
-                <div class="nav-item">
-                    <a href="/" class="menu gt-a-link" target="_self">首页</a>
-                </div>
-            
-                <div class="nav-item">
-                    <a href="/archives/" class="menu gt-a-link" target="_self">归档</a>
-                </div>
-            
-                <div class="nav-item">
-                    <a href="/tags/" class="menu gt-a-link" target="_self">标签</a>
-                </div>
-            
-                <div class="nav-item">
-                    <a href="/friends/" class="menu gt-a-link" target="_self">友链</a>
-                </div>
-            
-        </div>
-    </div>
-</nav>
 
-<script>
-    /* 移动端导航栏展开/收起切换 */
-    document.getElementById('changeNavbar').onclick = function() {
-        let element = document.getElementById('navbarSupportedContent');
-        if (element.style.display === 'none' || element.style.display === '') {
-            element.style.display = 'block';
-        } else { 
-            element.style.display = 'none';
-        }
-    }
-</script>
-                <div class="post-container">
-    <div class="post-detail gt-bg-theme-color-second gt-c-content-color-first">
-        <article class="gt-post-content">
-            <h1 class="post-title">Swagger入门</h1>
-            <div class="post-info">
-                <time class="post-time gt-c-content-color-first">
-                    · 2020-08-08 ·</time>
-                
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                大白小怪兽
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
                     
-                        <a href="/tags/JavaWeb/" class="post-tag">
-                            #JavaWeb</a>
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
                     
-                        <a href="/tags/Swagger/" class="post-tag">
-                            #Swagger</a>
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
                     
-                        <a href="/tags/Java/" class="post-tag">
-                            #Java</a>
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
                     
-                
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
             </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Swagger入门</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">大白小怪兽</span>
+                        
+                            <span class="author-label">攻城狮</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2020-08-08 10:01:25
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Swagger/">Swagger</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Java/">Java</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.3k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
             <hr>
-            <div class="post-content gt-c-content-color-first">
-                <hr>
-<p><img src="https://img.sky123.top/img/tree-838667_1280.jpg" alt=""></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/tree-838667_1280.jpg" alt=""></p>
 <hr>
 <h1>Swagger入门</h1>
 <p>学习目标：</p>
@@ -139,8 +255,8 @@
 </ul>
 <h2 id="Swagger">Swagger</h2>
 <p>号称世界上最流行的 API框架，可以实现 API 与 API文档实时更新，支持多种语言（java，php…），直接运行可以在线测试接口。</p>
-<p><a target="_blank" rel="noopener" href="https://swagger.io/">swagger官网</a></p>
-<p><img src="https://img.sky123.top/img/image-20210228101919079.png" alt="image-20210228101919079"></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://swagger.io/">swagger官网<i class="fas fa-external-link-alt"></i></a></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228101919079.png" alt="image-20210228101919079"></p>
 <h3 id="SpringFox-3-0-0-发布">SpringFox 3.0.0 发布</h3>
 <p>此版本的亮点：</p>
 <blockquote>
@@ -159,14 +275,14 @@ SpringBoot支持springfox Boot starter依赖性（零配置、自动配置支持
 <h3 id="swagger3-0-与2-xx配置差异">swagger3.0 与2.xx配置差异</h3>
 <ol>
 <li>应用主类（即Controller层）添加注解<code>@EnableOpenApi (swagger2是@EnableSwagger2)</code>。swagger配置类<code>SwaggerProperties.class</code>，与swagger2.xx 版本有差异。自定义一个配置类 <code>SwaggerConfiguration.class</code></li>
-<li>访问地址：<a target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui/index.html">http://localhost:8080/swagger-ui/index.html</a> (swagger2.xx版本访问的地址为http://localhost:8080/swagger-ui.html)</li>
+<li>访问地址：<a class="link" target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui/index.html">http://localhost:8080/swagger-ui/index.html<i class="fas fa-external-link-alt"></i></a> (swagger2.xx版本访问的地址为http://localhost:8080/swagger-ui.html)</li>
 </ol>
 <h2 id="Springboot集成Swagger">Springboot集成Swagger</h2>
 <p>新建springboot   web 项目</p>
-<p><img src="https://img.sky123.top/img/image-20210228102748582.png" alt="image-20210228102748582"></p>
-<p><img src="https://img.sky123.top/img/image-20210228102207420.png" alt="image-20210228102207420"></p>
-<p><img src="https://img.sky123.top/img/image-20210228102317842.png" alt="image-20210228102317842"></p>
-<p><img src="https://img.sky123.top/img/image-20210228103855243.png" alt="image-20210228103855243"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228102748582.png" alt="image-20210228102748582"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228102207420.png" alt="image-20210228102207420"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228102317842.png" alt="image-20210228102317842"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228103855243.png" alt="image-20210228103855243"></p>
 <p>导入相关依赖</p>
 <pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 --&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
@@ -190,19 +306,19 @@ SpringBoot支持springfox Boot starter依赖性（零配置、自动配置支持
     }
 }</code></pre>
 <p>配置Swagger</p>
-<p><img src="https://img.sky123.top/img/image-20210228104926484.png" alt="image-20210228104926484"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228104926484.png" alt="image-20210228104926484"></p>
 <pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfig</span> </span>{
     
 }</code></pre>
-<p>测试访问：<a target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui/index.html">http://localhost:8080/swagger-ui/index.html</a></p>
-<p><img src="https://img.sky123.top/img/image-20210228110125566.png" alt="image-20210228110125566"></p>
+<p>测试访问：<a class="link" target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui/index.html">http://localhost:8080/swagger-ui/index.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228110125566.png" alt="image-20210228110125566"></p>
 <h2 id="配置Swagger">配置Swagger</h2>
 <h3 id="修改Swagger信息">修改Swagger信息</h3>
 <p>配置的关键是配置一个关键类 <code>Docket</code></p>
 <p>点击 <code>ctrl</code> 进入查看 <code>Docket</code>，在点击进入 <code>ApiInfo.</code> 可以看到默认的配置信息</p>
-<p><img src="https://img.sky123.top/img/image-20210301172604042.png" alt="image-20210301172604042"></p>
-<p><img src="https://img.sky123.top/img/image-20210301172619931.png" alt="image-20210301172619931"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301172604042.png" alt="image-20210301172604042"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301172619931.png" alt="image-20210301172619931"></p>
 <p>因此配置代码为：</p>
 <pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfiguration</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">WebMvcConfigurer</span> </span>{
@@ -269,13 +385,13 @@ swagger:
   version: <span class="hljs-number">2.3</span><span class="hljs-number">.4</span>
 </code></pre>
 <p>查看  <code>ApiInfoBuilder</code> 可以查看更多的配置信息</p>
-<p><img src="https://img.sky123.top/img/image-20210301180154288.png" alt="image-20210301180154288"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301180154288.png" alt="image-20210301180154288"></p>
 <p>效果：</p>
-<p><img src="https://img.sky123.top/img/image-20210301172838848.png" alt="image-20210301172838848"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301172838848.png" alt="image-20210301172838848"></p>
 <h3 id="配置扫描路径">配置扫描路径</h3>
 <p><code>any()：</code>扫描全部</p>
 <p><code>none()：</code>都不扫描</p>
-<p><img src="https://img.sky123.top/img/image-20210301181141539.png" alt="image-20210301181141539"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301181141539.png" alt="image-20210301181141539"></p>
 <h4 id="包扫描">包扫描</h4>
 <pre><code class="hljs java"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
                 .host(host)
@@ -299,7 +415,7 @@ swagger:
                 .build();</code></pre>
 <h4 id="效果">效果</h4>
 <p>没有了 <code>error</code>  的默认接口，只显示自己写的接口：</p>
-<p><img src="https://img.sky123.top/img/image-20210301181946804.png" alt="image-20210301181946804"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301181946804.png" alt="image-20210301181946804"></p>
 <h3 id="配置过滤路径">配置过滤路径</h3>
 <pre><code class="hljs java"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
                .host(host)
@@ -307,7 +423,7 @@ swagger:
                .enable(swaggerEnabled).select()
                .paths(PathSelectors.ant(<span class="hljs-string">"/hello/**"</span>))
                .build();</code></pre>
-<p><img src="https://img.sky123.top/img/image-20210301182510169.png" alt="image-20210301182510169"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301182510169.png" alt="image-20210301182510169"></p>
 <h3 id="配置Swagger的API分组">配置Swagger的API分组</h3>
 <p>关键：Docket有个分组方法，但是只能配置一个分组</p>
 <pre><code class="hljs java">.groupName(<span class="hljs-string">"A"</span>)</code></pre>
@@ -336,7 +452,7 @@ swagger:
             .build();
 }
 </code></pre>
-<p><img src="https://img.sky123.top/img/image-20210301190020294.png" alt="image-20210301190020294"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301190020294.png" alt="image-20210301190020294"></p>
 <h3 id="配置接口注释">配置接口注释</h3>
 <p><code>@Api：</code>用在controller类，描述API接口<br>
 <code>@ApiOperation：</code>描述接口方法<br>
@@ -374,51 +490,281 @@ swagger:
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> User();
     }</code></pre>
 <p>效果：</p>
-<p><img src="https://img.sky123.top/img/image-20210301193506582.png" alt="image-20210301193506582"></p>
-<p><img src="https://img.sky123.top/img/image-20210301193519108.png" alt="image-20210301193519108"></p>
-<p><img src="https://img.sky123.top/img/image-20210301193532477.png" alt="image-20210301193532477"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301193506582.png" alt="image-20210301193506582"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301193519108.png" alt="image-20210301193519108"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301193532477.png" alt="image-20210301193532477"></p>
 
-            </div>
-        </article>
-    </div>
-    <br>
-    
-        <div class="next-prev-post">
-            
-                <div class="prev-post">
-                    <div class="prev gt-c-content-color-first">
-                        上一篇：<a href="/2020/08/30/css/css3%E5%8A%A8%E7%94%BB/" 
-                            class="post-title gt-a-link">css3动画常用属性和阴影圆角</a>
-                    </div>
-                </div>
-            
-            
-                <div class="next-post">
-                    <div class="next gt-c-content-color-first">
-                        下一篇：<a href="/2020/08/01/springboot/Springboot%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/" 
-                            class="post-title gt-a-link">SpringBoot多环境切换</a>
-                    </div>
-                </div>
-            
         </div>
-    
-    
-</div>
-                <div class="site-footer gt-c-content-color-first">
-    <div class="footer-main">
-        <!-- 建议保留版权信息或者添加主题信息到友链，感谢您的理解 -->
-        <!-- 文件位置：layout/_includes/footer.ejs -->
-        <span style="text-align: right; float: right;">Theme <a 
-            href="https://github.com/renbaoshuo/hexo-theme-pure" target="_blank">Pure</a> | Powered by <a 
-            href="https://hexo.io" target="_blank">Hexo</a></span>
-        <span style="text-align: left;">Footer HTML
-</span>
-    </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：Swagger入门</li>
+        <li>本文作者：大白小怪兽</li>
+        <li>创建时间：2020-08-08 10:01:25</li>
+        <li>
+            本文链接：https://blog.sky123.top/2020/08/08/springboot/Swagger/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
 </div>
 
             </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/08/30/css/css3%E5%8A%A8%E7%94%BB/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">css3动画常用属性和阴影圆角</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/08/01/springboot/Springboot%E5%A4%9A%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">SpringBoot多环境切换</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
         </div>
-    <script type="text/x-mathjax-config">
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Swagger入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Swagger%E7%AE%80%E4%BB%8B"><span class="nav-text">Swagger简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swagger"><span class="nav-text">Swagger</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringFox-3-0-0-%E5%8F%91%E5%B8%83"><span class="nav-text">SpringFox 3.0.0 发布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swagger3-0-%E4%B8%8E2-xx%E9%85%8D%E7%BD%AE%E5%B7%AE%E5%BC%82"><span class="nav-text">swagger3.0 与2.xx配置差异</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot%E9%9B%86%E6%88%90Swagger"><span class="nav-text">Springboot集成Swagger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AESwagger"><span class="nav-text">配置Swagger</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9Swagger%E4%BF%A1%E6%81%AF"><span class="nav-text">修改Swagger信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%89%AB%E6%8F%8F%E8%B7%AF%E5%BE%84"><span class="nav-text">配置扫描路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%85%E6%89%AB%E6%8F%8F"><span class="nav-text">包扫描</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E6%B3%A8%E8%A7%A3%E6%89%AB%E6%8F%8F"><span class="nav-text">类注解扫描</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E6%B3%A8%E8%A7%A3%E6%89%AB%E6%8F%8F"><span class="nav-text">方法注解扫描</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%BF%87%E6%BB%A4%E8%B7%AF%E5%BE%84"><span class="nav-text">配置过滤路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AESwagger%E7%9A%84API%E5%88%86%E7%BB%84"><span class="nav-text">配置Swagger的API分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%8E%A5%E5%8F%A3%E6%B3%A8%E9%87%8A"><span class="nav-text">配置接口注释</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ["$","$"], ["\\(","\\)"] ],
