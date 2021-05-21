@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-03-01
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.5k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>9 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.5k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>9 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -299,24 +306,26 @@
 <li>在进行软件设计时，应力争做到高内聚，低耦合。</li>
 </ol>
 </blockquote>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 账户的业务层实现类</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@author</span> </span>
-<span class="hljs-comment">* <span class="hljs-doctag">@Company</span></span>
-<span class="hljs-comment">* <span class="hljs-doctag">@Version</span> 1.0</span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AccountServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IAccountService</span> </span>{
-<span class="hljs-keyword">private</span> IAccountDao accountDao = <span class="hljs-keyword">new</span> AccountDaoImpl();
+<pre><code class="language-java">/**
+* 账户的业务层实现类
+* @author 
+* @Company
+* @Version 1.0
+*/
+public class AccountServiceImpl implements IAccountService {
+private IAccountDao accountDao = new AccountDaoImpl();
 }
 
-<span class="hljs-comment">//业务层调用持久层，并且此时业务层在依赖持久层的接口和实现类。如果此时没有持久层实现类，编译将不能通过。 这种编译期依赖关系，应该在我们开发中杜绝。 我们需要优化代码解决  </span></code></pre>
-<pre><code class="hljs java"><span class="hljs-comment">//当是我们讲解 jdbc 时，是通过反射来注册驱动的，代码如下：</span>
+//业务层调用持久层，并且此时业务层在依赖持久层的接口和实现类。如果此时没有持久层实现类，编译将不能通过。 这种编译期依赖关系，应该在我们开发中杜绝。 我们需要优化代码解决  
+</code></pre>
+<pre><code class="language-java">//当是我们讲解 jdbc 时，是通过反射来注册驱动的，代码如下：
     
-Class.forName(<span class="hljs-string">"com.mysql.jdbc.Driver"</span>);<span class="hljs-comment">//此处只是一个字符串</span>
+Class.forName("com.mysql.jdbc.Driver");//此处只是一个字符串
 
-<span class="hljs-comment">//此时的好处是，我们的类中不再依赖具体的驱动类，此时就算删除 mysql 的驱动 jar 包，依然可以编译（运行就不要想了，没有驱动不可能运行成功的） 。</span>
-<span class="hljs-comment">//同时，也产生了一个新的问题， mysql 驱动的全限定类名字符串是在 java 类中写死的，一旦要改还是要修改源码。</span>
-<span class="hljs-comment">//解决这个问题也很简单，使用配置文件配置。</span></code></pre>
+//此时的好处是，我们的类中不再依赖具体的驱动类，此时就算删除 mysql 的驱动 jar 包，依然可以编译（运行就不要想了，没有驱动不可能运行成功的） 。
+//同时，也产生了一个新的问题， mysql 驱动的全限定类名字符串是在 java 类中写死的，一旦要改还是要修改源码。
+//解决这个问题也很简单，使用配置文件配置。
+</code></pre>
 <h3 id="3-2-工厂模式解耦">3.2 工厂模式解耦</h3>
 <p>在实际开发中我们可以把三层的对象都使用配置文件配置起来，当启动服务器应用加载的时候， 让一个类中的方法通过读取配置文件，把这些对象创建出来并存起来。在接下来的使用的时候，直接拿过来用就好了。<br>
 <code>那么，这个读取配置文件， 创建存储和获取三层对象的类就是工厂。</code></p>
@@ -341,67 +350,71 @@ Class.forName(<span class="hljs-string">"com.mysql.jdbc.Driver"</span>);<span cl
 <hr>
 <h3 id="3-3-使用-Spring-的-IoC-解决程序耦合">3.3 使用 Spring 的 IoC 解决程序耦合</h3>
 <h4 id="3-3-1-导入依赖">3.3.1 导入依赖</h4>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--        spring核心包--&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.0.2.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-comment">&lt;!--        spring整合junit的jar包--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.0.2.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-        <span class="hljs-comment">&lt;!--        用于spring框架检测切入点的Jar包--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.aspectj<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>aspectjweaver<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.8.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-comment">&lt;!--        spring的jdbcTemplate的依赖--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-jdbc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.0.2.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-comment">&lt;!--        spring事务控制依赖包--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-tx<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.0.2.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;!--        spring核心包--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+        &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;!--        spring整合junit的jar包--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+            &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!--        用于spring框架检测切入点的Jar包--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+            &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+            &lt;version&gt;1.8.4&lt;/version&gt;
+        &lt;/dependency&gt;
+&lt;!--        spring的jdbcTemplate的依赖--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+            &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+&lt;!--        spring事务控制依赖包--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-tx&lt;/artifactId&gt;
+            &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
 <h4 id="3-3-2-在resources创建-bean-xml导入约束">3.3.2 在resources创建 bean.xml导入约束</h4>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+&lt;/beans&gt;
+</code></pre>
 <h4 id="3-3-3-在bean-xml中注入对象">3.3.3 在bean.xml中注入对象</h4>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- bean 标签：用于配置让 spring 创建对象，并且存入 ioc 容器之中</span>
-<span class="hljs-comment">id 属性：对象的唯一标识。</span>
-<span class="hljs-comment">class 属性：指定要创建对象的全限定类名</span>
-<span class="hljs-comment">--&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置 service --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"accountService"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.itheima.service.impl.AccountServiceImpl"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置 dao --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"accountDao"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.itheima.dao.impl.AccountDaoImpl"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;!-- bean 标签：用于配置让 spring 创建对象，并且存入 ioc 容器之中
+id 属性：对象的唯一标识。
+class 属性：指定要创建对象的全限定类名
+--&gt;
+&lt;!-- 配置 service --&gt;
+&lt;bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl"&gt;
+&lt;/bean&gt;
+&lt;!-- 配置 dao --&gt;
+&lt;bean id="accountDao" class="com.itheima.dao.impl.AccountDaoImpl"&gt;&lt;/bean&gt;
+</code></pre>
 <h4 id="3-3-4-测试获取容器中的对象">3.3.4 测试获取容器中的对象</h4>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>{
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
-    <span class="hljs-comment">//1.使用 ApplicationContext 接口，就是在获取 spring 容器</span>
-        ApplicationContext ac = <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext(<span class="hljs-string">"bean.xml"</span>);
+<pre><code class="language-java">public class Client {
+    public static void main(String[] args) {
+	//1.使用 ApplicationContext 接口，就是在获取 spring 容器
+		ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
         
-    <span class="hljs-comment">//2.根据 bean 的 id 获取对象</span>
-        IAccountService aService = (IAccountService) ac.getBean(<span class="hljs-string">"accountService"</span>);
-        System.out.println(aService);
+	//2.根据 bean 的 id 获取对象
+		IAccountService aService = (IAccountService) ac.getBean("accountService");
+		System.out.println(aService);
         
-        IAccountDao aDao = (IAccountDao) ac.getBean(<span class="hljs-string">"accountDao"</span>);
-        System.out.println(aDao);
-    }
-}</code></pre>
+		IAccountDao aDao = (IAccountDao) ac.getBean("accountDao");
+		System.out.println(aDao);
+	}
+}
+</code></pre>
 <h2 id="4-AOP的概述和动态代理">4 AOP的概述和动态代理</h2>
 <h3 id="4-1-AOP-概述">4.1 AOP 概述</h3>
 <p>AOP： 全称是 Aspect Oriented Programming 即： 面向切面编程。  简单的说它就是把我们程序重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。</p>
@@ -429,23 +442,6 @@ Class.forName(<span class="hljs-string">"com.mysql.jdbc.Driver"</span>);<span cl
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：Spring入门01IOC和AOP概述</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-03-01 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/03/01/spring/Spring入门01IOC和AOP概述/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -506,20 +502,6 @@ Class.forName(<span class="hljs-string">"com.mysql.jdbc.Driver"</span>);<span cl
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -551,18 +533,18 @@ Class.forName(<span class="hljs-string">"com.mysql.jdbc.Driver"</span>);<span cl
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

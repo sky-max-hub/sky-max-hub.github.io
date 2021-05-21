@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-02-01
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>8 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>8 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -242,85 +249,88 @@
 <hr>
 <h2 id="2-SpringMVC-环境配置">2. SpringMVC 环境配置</h2>
 <h3 id="2-1-创建WEB工程，引入开发的jar包">2.1. 创建WEB工程，引入开发的jar包</h3>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 版本锁定 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">spring.version</span>&gt;</span>5.0.2.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">spring.version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${spring.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${spring.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${spring.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet.jsp<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jsp-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;!-- 版本锁定 --&gt;
+&lt;properties&gt;
+&lt;spring.version&gt;5.0.2.RELEASE&lt;/spring.version&gt;
+&lt;/properties&gt;
+&lt;dependencies&gt;
+&lt;dependency&gt;
+&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+&lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+&lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+&lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+&lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+&lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+&lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+&lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+&lt;artifactId&gt;servlet-api&lt;/artifactId&gt;
+&lt;version&gt;2.5&lt;/version&gt;
+&lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+&lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;
+&lt;artifactId&gt;jsp-api&lt;/artifactId&gt;
+&lt;version&gt;2.0&lt;/version&gt;
+&lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
 <h3 id="2-2-配置核心的控制器（配置DispatcherServlet）">2.2. 配置核心的控制器（配置DispatcherServlet）</h3>
 <p>在web.xml配置文件中<code>核心控制器DispatcherServlet </code></p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- SpringMVC的核心控制器 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span>
+<pre><code class="language-xml">&lt;!-- SpringMVC的核心控制器 --&gt;
+&lt;servlet&gt;
     
-<span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>dispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servletclass</span>&gt;</span>
+&lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt;
+&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servletclass&gt;
     
-<span class="hljs-comment">&lt;!-- 配置Servlet的初始化参数，读取springmvc的配置文件，创建spring容器 --&gt;</span> 
-<span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span>
+&lt;!-- 配置Servlet的初始化参数，读取springmvc的配置文件，创建spring容器 --&gt; 
+&lt;init-param&gt;
+&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+&lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;
+&lt;/init-param&gt;
     
-<span class="hljs-comment">&lt;!-- 配置servlet启动时加载对象 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">load-on-startup</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">load-on-startup</span>&gt;</span>
+&lt;!-- 配置servlet启动时加载对象 --&gt;
+&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span>
+&lt;/servlet&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>dispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span></code></pre>
+&lt;servlet-mapping&gt;
+&lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt;
+&lt;url-pattern&gt;/&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code></pre>
 <p>编写<code>springmvc.xml</code>的配置文件</p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xmlns:mvc</span>=<span class="hljs-string">"http://www.springframework.org/schema/mvc"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/beans</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/beans/spring-beans.xsd</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/mvc</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/mvc/spring-mvc.xsd</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/context</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置spring创建容器时要扫描的包 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.itheima"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">context:component-scan</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置视图解析器 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"viewResolver"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"prefix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/WEB-INF/pages/"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"suffix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">".jsp"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置spring开启注解mvc的支持</span>
-<span class="hljs-comment">&lt;mvc:annotation-driven&gt;&lt;/mvc:annotation-driven&gt;--&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd"&gt;
+&lt;!-- 配置spring创建容器时要扫描的包 --&gt;
+&lt;context:component-scan base-package="com.itheima"&gt;&lt;/context:component-scan&gt;
+&lt;!-- 配置视图解析器 --&gt;
+&lt;bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+&lt;property name="prefix" value="/WEB-INF/pages/"&gt;&lt;/property&gt;
+&lt;property name="suffix" value=".jsp"&gt;&lt;/property&gt;
+&lt;/bean&gt;
+&lt;!-- 配置spring开启注解mvc的支持
+&lt;mvc:annotation-driven&gt;&lt;/mvc:annotation-driven&gt;--&gt;
+&lt;/beans&gt;
+</code></pre>
 <h2 id="3-SpringMVC原理">3. SpringMVC原理</h2>
 <hr>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springmvc01/image-20200530110340704.png" alt="image-20200530110340704"></p>
@@ -354,96 +364,102 @@
 <p>如遇特殊类型转换要求，需要我们自己编写自定义类型转换器  。</p>
 <h4 id="4-1-1-自定义转换器">4.1.1 自定义转换器</h4>
 <p>第一步：定义一个类，实现 Converter 接口，该接口有两个泛型。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Converter</span>&lt;<span class="hljs-title">S</span>, <span class="hljs-title">T</span>&gt; </span>{<span class="hljs-comment">//S:表示接受的类型， T：表示目标类型</span>
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 实现类型转换的方法</span>
-<span class="hljs-comment">*/</span>
+<pre><code class="language-java">public interface Converter&lt;S, T&gt; {//S:表示接受的类型， T：表示目标类型
+/**
+* 实现类型转换的方法
+*/
 Nullable
-<span class="hljs-function">T <span class="hljs-title">convert</span><span class="hljs-params">(S source)</span></span>;
+T convert(S source);
 }
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 自定义类型转换器</span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringToDateConverter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Converter</span>&lt;<span class="hljs-title">String</span>, <span class="hljs-title">Date</span>&gt; </span>{
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 用于把 String 类型转成日期类型</span>
-<span class="hljs-comment">*/</span>
+/**
+* 自定义类型转换器
+*/
+public class StringToDateConverter implements Converter&lt;String, Date&gt; {
+/**
+* 用于把 String 类型转成日期类型
+*/
 Override
-<span class="hljs-function"><span class="hljs-keyword">public</span> Date <span class="hljs-title">convert</span><span class="hljs-params">(String source)</span> </span>{
-DateFormat format = <span class="hljs-keyword">null</span>;
-<span class="hljs-keyword">try</span> {
-<span class="hljs-keyword">if</span>(StringUtils.isEmpty(source)) {
-<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException(<span class="hljs-string">"请输入要转换的日期"</span>);
+public Date convert(String source) {
+DateFormat format = null;
+try {
+if(StringUtils.isEmpty(source)) {
+throw new NullPointerException("请输入要转换的日期");
 }
-format = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">"yyyy-MM-dd"</span>);
+format = new SimpleDateFormat("yyyy-MM-dd");
 Date date = format.parse(source);
-<span class="hljs-keyword">return</span> date;
-} <span class="hljs-keyword">catch</span> (Exception e) {
-<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"输入日期有误"</span>);
+return date;
+} catch (Exception e) {
+throw new RuntimeException("输入日期有误");
 }
 }
-}</code></pre>
+}
+</code></pre>
 <p>第二步：在 spring 配置文件中配置类型转换器。<br>
 spring 配置类型转换器的机制是，将自定义的转换器注册到类型转换服务中去。</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 配置类型转换器工厂 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"converterService"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.context.support.ConversionServiceFactoryBean"</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 给工厂注入一个新的类型转换器 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"converters"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置自定义类型转换器 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.itheima.web.converter.StringToDateConverter"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">array</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;!-- 配置类型转换器工厂 --&gt;
+&lt;bean id="converterService"
+class="org.springframework.context.support.ConversionServiceFactoryBean"&gt;
+&lt;!-- 给工厂注入一个新的类型转换器 --&gt;
+&lt;property name="converters"&gt;
+&lt;array&gt;
+&lt;!-- 配置自定义类型转换器 --&gt;
+&lt;bean class="com.itheima.web.converter.StringToDateConverter"&gt;&lt;/bean&gt;
+&lt;/array&gt;
+&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
 <p>第三步：在 annotation-driven 标签中引用配置的类型转换服务</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 引用自定义类型转换器 --&gt;</span>
+<pre><code class="language-xml">&lt;!-- 引用自定义类型转换器 --&gt;
 &lt;mvc:annotation-driven
-conversion-service="converterService"&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:annotation-driven</span>&gt;</span></code></pre>
+conversion-service="converterService"&gt;&lt;/mvc:annotation-driven&gt;
+</code></pre>
 <h3 id="4-2-请求参数乱码问题">4.2 请求参数乱码问题</h3>
 <p>post 请求方式：<br>
 在 <code>web.xml</code> 中配置一个过滤器</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 配置 springMVC 编码过滤器 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">filter</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>CharacterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">filter-class</span>&gt;</span>
+<pre><code class="language-xml">&lt;!-- 配置 springMVC 编码过滤器 --&gt;
+&lt;filter&gt;
+&lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;
+&lt;filter-class&gt;
 org.springframework.web.filter.CharacterEncodingFilter
-<span class="hljs-tag">&lt;/<span class="hljs-name">filter-class</span>&gt;</span>  
- <span class="hljs-comment">&lt;!-- 设置过滤器中的属性值 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>encoding<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 启动过滤器 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>forceEncoding<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 过滤所有请求 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>CharacterEncodingFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span>
+&lt;/filter-class&gt;  
+ &lt;!-- 设置过滤器中的属性值 --&gt;
+&lt;init-param&gt;
+&lt;param-name&gt;encoding&lt;/param-name&gt;
+&lt;param-value&gt;UTF-8&lt;/param-value&gt;
+&lt;/init-param&gt;
+&lt;!-- 启动过滤器 --&gt;
+&lt;init-param&gt;
+&lt;param-name&gt;forceEncoding&lt;/param-name&gt;
+&lt;param-value&gt;true&lt;/param-value&gt;
+&lt;/init-param&gt;
+&lt;/filter&gt;
+&lt;!-- 过滤所有请求 --&gt;
+&lt;filter-mapping&gt;
+&lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;
+&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+
 </code></pre>
 <p>在 springmvc 的配置文件中可以配置，静态资源不过滤：</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- location 表示路径， mapping 表示文件， **表示该目录下的文件以及子目录的文件 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mvc:resources</span> <span class="hljs-attr">location</span>=<span class="hljs-string">"/css/"</span> <span class="hljs-attr">mapping</span>=<span class="hljs-string">"/css/**"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mvc:resources</span> <span class="hljs-attr">location</span>=<span class="hljs-string">"/images/"</span> <span class="hljs-attr">mapping</span>=<span class="hljs-string">"/images/**"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mvc:resources</span> <span class="hljs-attr">location</span>=<span class="hljs-string">"/scripts/"</span> <span class="hljs-attr">mapping</span>=<span class="hljs-string">"/javascript/**"</span>/&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;!-- location 表示路径， mapping 表示文件， **表示该目录下的文件以及子目录的文件 --&gt;
+&lt;mvc:resources location="/css/" mapping="/css/**"/&gt;
+&lt;mvc:resources location="/images/" mapping="/images/**"/&gt;
+&lt;mvc:resources location="/scripts/" mapping="/javascript/**"/&gt;
+</code></pre>
 <p>get 请求方式：tomacat 对 GET 和 POST 请求处理方式是不同的， GET 请求的编码问题， 要改 tomcat 的 <code>server.xml</code><br>
 配置文件，如下：</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">Connector</span> <span class="hljs-attr">connectionTimeout</span>=<span class="hljs-string">"20000"</span> <span class="hljs-attr">port</span>=<span class="hljs-string">"8080"</span> <span class="hljs-attr">protocol</span>=<span class="hljs-string">"HTTP/1.1"</span> <span class="hljs-attr">redirectPort</span>=<span class="hljs-string">"8443"</span>/&gt;</span>
+<pre><code class="language-xml">&lt;Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/&gt;
 改为：
-<span class="hljs-tag">&lt;<span class="hljs-name">Connector</span> <span class="hljs-attr">connectionTimeout</span>=<span class="hljs-string">"20000"</span> <span class="hljs-attr">port</span>=<span class="hljs-string">"8080"</span> <span class="hljs-attr">protocol</span>=<span class="hljs-string">"HTTP/1.1"</span> <span class="hljs-attr">redirectPort</span>=<span class="hljs-string">"8443"</span></span>
-<span class="hljs-tag"></span>
-<span class="hljs-tag"><span class="hljs-attr">useBodyEncodingForURI</span>=<span class="hljs-string">"true"</span>/&gt;</span>
+&lt;Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"
+
+useBodyEncodingForURI="true"/&gt;
 
 如果遇到 ajax 请求仍然乱码，请把：
 
 useBodyEncodingForURI="true"改为 URIEncoding="UTF-8"
 
 即可。  
+
 </code></pre>
 <h3 id="4-3-使用-ServletAPI-对象作为方法参数">4.3 使用 ServletAPI 对象作为方法参数</h3>
 <p>SpringMVC 还支持使用原始 ServletAPI 对象作为控制器方法的参数。支持原始 <code>ServletAPI</code> 对象有：</p>
@@ -465,23 +481,6 @@ useBodyEncodingForURI="true"改为 URIEncoding="UTF-8"
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：SpringMVC入门01环境配置和原理</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-02-01 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/02/01/springmvc/SpringMVC入门01环境配置和原理/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -542,20 +541,6 @@ useBodyEncodingForURI="true"改为 URIEncoding="UTF-8"
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -587,18 +572,18 @@ useBodyEncodingForURI="true"改为 URIEncoding="UTF-8"
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

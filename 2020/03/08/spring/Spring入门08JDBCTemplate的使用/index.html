@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-03-08
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>409 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>409 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -230,65 +237,53 @@
 </ol>
 <h2 id="JdbcTemplate-的使用">JdbcTemplate 的使用</h2>
 <p>配置数据源</p>
-<pre><code class="hljs xml">C3P0
-<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dataSource"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driverClass"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"jdbcUrl"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"jdbc:mysql:///spring_day02"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"root"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1234"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+<pre><code class="language-xml">C3P0
+&lt;bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"&gt;
+	&lt;property name="driverClass" value="com.mysql.jdbc.Driver"&gt;&lt;/property&gt;
+	&lt;property name="jdbcUrl" value="jdbc:mysql:///spring_day02"&gt;&lt;/property&gt;
+	&lt;property name="user" value="root"&gt;&lt;/property&gt;
+	&lt;property name="password" value="1234"&gt;&lt;/property&gt;
+&lt;/bean&gt;
 
 DBCP
-<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dataSource"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.apache.commons.dbcp.BasicDataSource"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driverClassName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"jdbc:mysql:// /spring_day02"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"root"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1234"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"&gt;
+	&lt;property name="driverClassName" value="com.mysql.jdbc.Driver"&gt;&lt;/property&gt;
+	&lt;property name="url" value="jdbc:mysql:// /spring_day02"&gt;&lt;/property&gt;
+	&lt;property name="username" value="root"&gt;&lt;/property&gt;
+	&lt;property name="password" value="1234"&gt;&lt;/property&gt;
+&lt;/bean&gt;
 
 spring 内置数据源
-<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dataSource"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driverClassName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"jdbc:mysql:///spring_day02"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"root"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1234"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+&lt;bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;
+	&lt;property name="driverClassName" value="com.mysql.jdbc.Driver"&gt;&lt;/property&gt;
+	&lt;property name="url" value="jdbc:mysql:///spring_day02"&gt;&lt;/property&gt;
+	&lt;property name="username" value="root"&gt;&lt;/property&gt;
+	&lt;property name="password" value="1234"&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
 <p>将数据库连接的信息配置到属性文件中</p>
-<pre><code class="hljs properties"><span class="hljs-meta">jdbc.driverClass</span>=<span class="hljs-string">com.mysql.jdbc.Driver</span>
-<span class="hljs-meta">jdbc.url</span>=<span class="hljs-string">jdbc:mysql:///spring_day02</span>
-<span class="hljs-meta">jdbc.username</span>=<span class="hljs-string">root</span>
-<span class="hljs-meta">jdbc.password</span>=<span class="hljs-string">123</span></code></pre>
+<pre><code class="language-properties">jdbc.driverClass=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql:///spring_day02
+jdbc.username=root
+jdbc.password=123
+</code></pre>
 <p>引入该外部属性文件，有两种方式</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"location"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"classpath:jdbc.properties"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">context:property-placeholder</span> <span class="hljs-attr">location</span>=<span class="hljs-string">"classpath:jdbc.properties"</span>/&gt;</span></code></pre>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dataSource"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driverClassName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"${jdbc.driverClass}"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"${jdbc.url}"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"${jdbc.username}"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"${jdbc.password}"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"&gt;
+    &lt;property name="location" value="classpath:jdbc.properties"/&gt;
+&lt;/bean&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;context:property-placeholder location="classpath:jdbc.properties"/&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;
+	&lt;property name="driverClassName" value="${jdbc.driverClass}"&gt;&lt;/property&gt;
+	&lt;property name="url" value="${jdbc.url}"&gt;&lt;/property&gt;
+	&lt;property name="username" value="${jdbc.username}"&gt;&lt;/property&gt;
+	&lt;property name="password" value="${jdbc.password}"&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：Spring入门08JDBCTemplate的使用</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-03-08 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/03/08/spring/Spring入门08JDBCTemplate的使用/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -349,20 +344,6 @@ spring 内置数据源
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -394,18 +375,18 @@ spring 内置数据源
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

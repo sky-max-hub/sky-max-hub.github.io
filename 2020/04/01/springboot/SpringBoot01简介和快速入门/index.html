@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-04-01
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>8 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>8 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -265,67 +272,72 @@
 <hr>
 <h3 id="3-2-添加SpringBoot的起步依赖">3.2 添加SpringBoot的起步依赖</h3>
 <p>SpringBoot要求，项目要继承SpringBoot的起步依赖spring-boot-starter-parent</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+&lt;/parent&gt;
+</code></pre>
 <p>SpringBoot要集成SpringMVC进行Controller的开发，所以项目要导入web的启动依赖</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
 <h3 id="3-3-编写SpringBoot引导类">3.3 编写SpringBoot引导类</h3>
 <p>要通过SpringBoot提供的引导类起步SpringBoot才可以进行访问</p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima;
+<pre><code class="language-java">package com.itheima;
 
-<span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;
-<span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-<span class="hljs-meta">@SpringBootApplication</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MySpringBootApplication</span> </span>{
+@SpringBootApplication
+public class MySpringBootApplication {
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+    public static void main(String[] args) {
         SpringApplication.run(MySpringBootApplication.class);
     }
 
-}</code></pre>
+}
+</code></pre>
 <h3 id="3-4-编写Controller">3.4 编写Controller</h3>
 <p>在引导类MySpringBootApplication同级包或者子级包中创建QuickStartController</p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima.controller;
+<pre><code class="language-java">package com.itheima.controller;
 
-<span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
-<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;
-<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-<span class="hljs-meta">@Controller</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuickStartController</span> </span>{
+@Controller
+public class QuickStartController {
     
-    <span class="hljs-meta">@RequestMapping("/quick")</span>
-    <span class="hljs-meta">@ResponseBody</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">quick</span><span class="hljs-params">()</span></span>{
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"springboot 访问成功!"</span>;
+    @RequestMapping("/quick")
+    @ResponseBody
+    public String quick(){
+        return "springboot 访问成功!";
     }
     
-}</code></pre>
+}
+</code></pre>
 <h3 id="3-5-测试">3.5 测试</h3>
 <p>执行SpringBoot起步类的主方法，控制台打印日志如下：</p>
-<pre><code class="hljs maxima">.   ____          <span class="hljs-symbol">_</span>            <span class="hljs-symbol">__</span> <span class="hljs-symbol">_</span> <span class="hljs-symbol">_</span>
- /\\ / ___'<span class="hljs-symbol">_</span> <span class="hljs-symbol">__</span> <span class="hljs-symbol">_</span> <span class="hljs-symbol">_</span>(<span class="hljs-symbol">_</span>)<span class="hljs-symbol">_</span> <span class="hljs-symbol">__</span>  <span class="hljs-symbol">__</span> <span class="hljs-symbol">_</span> \ \ \ \
-( ( )\___ | '<span class="hljs-symbol">_</span> | '<span class="hljs-symbol">_</span>| | '<span class="hljs-symbol">_</span> \/ <span class="hljs-symbol">_</span>` | \ \ \ \
- \\/  ___)| |<span class="hljs-symbol">_</span>)| | | | | || (<span class="hljs-symbol">_</span>| |  ) ) ) )
-  '  |____| .<span class="hljs-symbol">__</span>|<span class="hljs-symbol">_</span>| |<span class="hljs-symbol">_</span>|<span class="hljs-symbol">_</span>| |<span class="hljs-symbol">_</span>\<span class="hljs-symbol">__</span>, | / / / /
- =========|<span class="hljs-symbol">_</span>|==============|___/=/<span class="hljs-symbol">_</span>/<span class="hljs-symbol">_</span>/<span class="hljs-symbol">_</span>/
- :: Spring Boot ::        (v2<span class="hljs-number">.0</span><span class="hljs-number">.1</span>.RELEASE)
+<pre><code>.   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.1.RELEASE)
 
-<span class="hljs-number">2018</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">14</span>:<span class="hljs-number">29</span>:<span class="hljs-number">59.714</span>  INFO <span class="hljs-number">5672</span> --- [           main] com.itheima.MySpringBootApplication      : Starting MySpringBootApplication on DESKTOP-RRUNFUH with PID <span class="hljs-number">5672</span> (C:\Users\muzimoo\IdeaProjects\IdeaTest\springboot_quick\target\classes started by muzimoo <span class="hljs-keyword">in</span> C:\Users\muzimoo\IdeaProjects\IdeaTest)
+2018-05-08 14:29:59.714  INFO 5672 --- [           main] com.itheima.MySpringBootApplication      : Starting MySpringBootApplication on DESKTOP-RRUNFUH with PID 5672 (C:\Users\muzimoo\IdeaProjects\IdeaTest\springboot_quick\target\classes started by muzimoo in C:\Users\muzimoo\IdeaProjects\IdeaTest)
 ... ... ...
-o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [<span class="hljs-comment">/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]</span>
-<span class="hljs-comment">2018-05-08 14:30:03.126  INFO 5672 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup</span>
-<span class="hljs-comment">2018-05-08 14:30:03.196  INFO 5672 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''</span>
-<span class="hljs-comment">2018-05-08 14:30:03.206  INFO 5672 --- [           main] com.itheima.MySpringBootApplication      : Started MySpringBootApplication in 4.252 seconds (JVM running for 5.583)</span></code></pre>
+o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-08 14:30:03.126  INFO 5672 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-05-08 14:30:03.196  INFO 5672 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-08 14:30:03.206  INFO 5672 --- [           main] com.itheima.MySpringBootApplication      : Started MySpringBootApplication in 4.252 seconds (JVM running for 5.583)
+</code></pre>
 <p>通过日志发现，Tomcat started on port(s): 8080 (http) with context path ‘’</p>
 <p>tomcat已经起步，端口监听8080，web应用的虚拟工程名称为空</p>
 <p>打开浏览器访问url地址为：<a class="link" target="_blank" rel="noopener" href="http://localhost:8080/quick">http://localhost:8080/quick<i class="fas fa-external-link-alt"></i></a></p>
@@ -340,11 +352,12 @@ o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [<span class="hljs-co
 </ul>
 <h3 id="4-2-SpringBoot工程热部署">4.2 SpringBoot工程热部署</h3>
 <p>我们在开发中反复修改类、页面等资源，每次修改后都是需要重新启动才生效，这样每次启动都很麻烦，浪费了大量的时间，我们可以在修改代码后不重启就能生效，在 pom.xml 中添加如下配置就可以实现这样的功能，我们称之为热部署。</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--热部署配置--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-devtools<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;!--热部署配置--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
 <p>注意：IDEA进行SpringBoot热部署失败原因</p>
 <p>出现这种情况，并不是热部署配置问题，其根本原因是因为Intellij IEDA默认情况下不会自动编译，需要对IDEA进行自动编译的设置，如下：</p>
 <hr>
@@ -367,78 +380,62 @@ o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [<span class="hljs-co
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/10.png" alt=""></p>
 <hr>
 <p>通过idea快速创建的SpringBoot项目的pom.xml中已经导入了我们选择的web的起步依赖的坐标</p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0"</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
-<span class="hljs-tag">	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.itheima<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springboot_quick2<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">packaging</span>&gt;</span>jar<span class="hljs-tag">&lt;/<span class="hljs-name">packaging</span>&gt;</span>
+	&lt;groupId&gt;com.itheima&lt;/groupId&gt;
+	&lt;artifactId&gt;springboot_quick2&lt;/artifactId&gt;
+	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+	&lt;packaging&gt;jar&lt;/packaging&gt;
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>springboot_quick2<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>Demo project for Spring Boot<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span>
+	&lt;name&gt;springboot_quick2&lt;/name&gt;
+	&lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">relativePath</span>/&gt;</span> <span class="hljs-comment">&lt;!-- lookup parent from repository --&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span>
+	&lt;parent&gt;
+		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+		&lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+		&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
+	&lt;/parent&gt;
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">project.reporting.outputEncoding</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">java.version</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-name">java.version</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span>
+	&lt;properties&gt;
+		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+		&lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+		&lt;java.version&gt;9&lt;/java.version&gt;
+	&lt;/properties&gt;
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+		&lt;/dependency&gt;
 
-        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+		&lt;/dependency&gt;
+	&lt;/dependencies&gt;
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span>
+	&lt;build&gt;
+		&lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+	&lt;/build&gt;
 
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span>
+&lt;/project&gt;
+
 </code></pre>
 <p>可以使用快速入门的方式创建Controller进行访问，此处不再赘述</p>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：SpringBoot01简介和快速入门</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-04-01 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/04/01/springboot/SpringBoot01简介和快速入门/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -499,20 +496,6 @@ o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [<span class="hljs-co
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -544,18 +527,18 @@ o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [<span class="hljs-co
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

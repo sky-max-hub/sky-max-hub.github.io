@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2021-05-14
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -265,24 +272,26 @@
 </ol>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210514102529830.png" alt="image-20210514102529830"></p>
 <h3 id="commit镜像">commit镜像</h3>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">docker commit -m=<span class="hljs-string">"提交的描述信息"</span> -a=<span class="hljs-string">"作者"</span> 容器ID 目标镜像名:[tag]</span></code></pre>
+<pre><code class="language-shell">#docker commit -m="提交的描述信息" -a="作者" 容器ID 目标镜像名:[tag]
+</code></pre>
 <p>参考教程：<a href="https://blog.sky123.top/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">Tomcat 部署练习</a></p>
 <p>发现：官方的默认 tomcat 的 <code>webapp文件夹</code> 并没有一些文件，需要自己手动拷贝。</p>
 <p>解决：将我们操作国的容器 <code>commit</code> 提交成一个新的镜像，我们以后就直接使用我们修改过的镜像即可。</p>
-<pre><code class="hljs sh">[root@izwz91mv6i3x6k12jjqh60z ~]<span class="hljs-comment"># docker ps</span>
+<pre><code class="language-sh">[root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND             CREATED          STATUS          PORTS                                       NAMES
-39f11d68d64d   tomcat    <span class="hljs-string">"catalina.sh run"</span>   18 minutes ago   Up 18 minutes   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02
+39f11d68d64d   tomcat    "catalina.sh run"   18 minutes ago   Up 18 minutes   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02
 
-[root@izwz91mv6i3x6k12jjqh60z ~]<span class="hljs-comment"># docker commit -m="这个修改了的tomcat" -a="zhang" 39f11d68d64d modified_tomcat:1.1</span>
+[root@izwz91mv6i3x6k12jjqh60z ~]# docker commit -m="这个修改了的tomcat" -a="zhang" 39f11d68d64d modified_tomcat:1.1
 sha256:57cab5f1479d5c0c6f85ba59415b8c7e9563d9907d32fc5d61a54a74945e57e7
 
-[root@izwz91mv6i3x6k12jjqh60z ~]<span class="hljs-comment"># docker images</span>
+[root@izwz91mv6i3x6k12jjqh60z ~]# docker images
 REPOSITORY            TAG       IMAGE ID       CREATED         SIZE
 modified_tomcat       1.1       57cab5f1479d   7 seconds ago   672MB
 tomcat                latest    c0e850d7b9bb   3 weeks ago     667MB
 nginx                 latest    62d49f9bab67   4 weeks ago     133MB
 portainer/portainer   latest    580c0e4e98b0   8 weeks ago     79.1MB
-centos                latest    300e315adb2f   5 months ago    209MB</code></pre>
+centos                latest    300e315adb2f   5 months ago    209MB
+</code></pre>
 <blockquote>
 <p>总结：如果想保存当前容器的状态，可以通过 commit 来提交，获得一个镜像。</p>
 </blockquote>
@@ -290,50 +299,18 @@ centos                latest    300e315adb2f   5 months ago    209MB</code></pre
         </div>
 
         
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：Docker镜像</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2021-05-14 00:00:00</li>
-        <li>
-            本文链接：https://blog.sky123.top/2021/05/14/docker/Docker05镜像/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
-        
 
         
             <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/05/14/docker/Docker04%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Docker可视化工具</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
                 
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/"
+                           href="/2021/05/14/docker/Docker04%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Docker部署练习</span>
+                                <span class="post-nav-title-item">Docker可视化工具</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -366,20 +343,6 @@ centos                latest    300e315adb2f   5 months ago    209MB</code></pre
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -411,18 +374,18 @@ centos                latest    300e315adb2f   5 months ago    209MB</code></pre
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

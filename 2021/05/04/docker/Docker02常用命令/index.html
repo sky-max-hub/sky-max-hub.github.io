@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2021-05-04
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.9k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.9k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -218,7 +225,7 @@
 
         <div class="article-content markdown-body">
             <h3 id="帮助命令：">帮助命令：</h3>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">显示版本</span>
+<pre><code class="language-shell">#显示版本
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker version
 
 Client: Docker Engine - Community
@@ -250,7 +257,7 @@ Server: Docker Engine - Community
   Version:          0.19.0
   GitCommit:        de40ad0
 
-<span class="hljs-meta">#</span><span class="bash">显示Docker的系统信息</span>
+#显示Docker的系统信息
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker info
 
 Client:
@@ -309,7 +316,7 @@ Server:
   https://bjyjzfeq.mirror.aliyuncs.com/
  Live Restore Enabled: false
 
-<span class="hljs-meta">#</span><span class="bash">帮助信息</span>
+#帮助信息
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker --help
 
 Commands:
@@ -350,18 +357,19 @@ Commands:
   top        #查看容器中运行的进程消息
   unpause    #取消暂停容器
   version    #查看容器版本号
-  wait       #获取容器停止时的退出状态值</code></pre>
+  wait       #获取容器停止时的退出状态值
+</code></pre>
 <h3 id="镜像命令：">镜像命令：</h3>
 <h4 id="docker-images">docker images</h4>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 主机上的所有本地镜像</span>
+<pre><code class="language-shell"># 主机上的所有本地镜像
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker images help
-<span class="hljs-meta">#</span><span class="bash">解释</span>
+#解释
 REPOSITORY：镜像的仓库源   
 TAG：镜像的标签
 IMAGE ID：镜像的ID   
 CREATED：创建时间   
 SIZE：大小
-<span class="hljs-meta">#</span><span class="bash">可选项</span>
+#可选项
 -a   --all #列出所有镜像
 -q   --quiet #只列出镜像的ID
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker images
@@ -369,9 +377,10 @@ REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
 hello-world   latest    d1165f221234   7 weeks ago   13.3kB
 
 
+
 </code></pre>
 <h4 id="docker-search">docker search</h4>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">搜索镜像</span>
+<pre><code class="language-shell">#搜索镜像
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker search mysql
 
 NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
@@ -379,13 +388,14 @@ mysql                             MySQL is a widely used, open-source relation�
 mariadb                           MariaDB Server is a high performing open sou…   4058      [OK] 
 ......
 
-<span class="hljs-meta">#</span><span class="bash">搜索镜像的 star&gt;3000 的镜像</span>
+#搜索镜像的 star&gt;3000 的镜像
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker search mysql --filter=stars=3000
 NAME      DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
 mysql     MySQL is a widely used, open-source relation…   10777     [OK]       
-mariadb   MariaDB Server is a high performing open sou…   4058      [OK]</code></pre>
+mariadb   MariaDB Server is a high performing open sou…   4058      [OK]   
+</code></pre>
 <h4 id="docker-pull">docker pull</h4>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 下载镜像 [:tag]</span>
+<pre><code class="language-shell"># 下载镜像 [:tag]
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker pull mysql
 Using default tag: latest  # 不写tag 默认就是 latest
 latest: Pulling from library/mysql
@@ -405,10 +415,10 @@ Digest: sha256:04ee7141256e83797ea4a84a4d31b1f1bc10111c8d1bc1879d52729ccd19e20a 
 Status: Downloaded newer image for mysql:latest
 docker.io/library/mysql:latest #存放的镜像的文件真实地址
 
-<span class="hljs-meta">#</span><span class="bash">等价写法</span>
+#等价写法
 docker pull docker.io/library/mysql:latest
 
-<span class="hljs-meta">#</span><span class="bash">指定版本下载</span>
+#指定版本下载
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker pull mysql:5.7
 5.7: Pulling from library/mysql
 f7ec5a41d630: Already exists 
@@ -431,10 +441,11 @@ REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
 mysql         5.7       87eca374c0ed   8 days ago    447MB
 mysql         latest    0627ec6901db   8 days ago    556MB
 hello-world   latest    d1165f221234   7 weeks ago   13.3kB
+
 </code></pre>
 <h4 id="docker-rmi">docker rmi</h4>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">删除镜像</span>
-<span class="hljs-meta">#</span><span class="bash"> docker rmi 镜像ID [镜像ID,...]   删除没有运行容器的镜像</span>
+<pre><code class="language-shell">#删除镜像
+# docker rmi 镜像ID [镜像ID,...]   删除没有运行容器的镜像
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker rmi 0627ec6901db
 Untagged: mysql:latest
 Untagged: mysql@sha256:04ee7141256e83797ea4a84a4d31b1f1bc10111c8d1bc1879d52729ccd19e20a
@@ -445,28 +456,30 @@ Deleted: sha256:124a9d262ebecea284b6438b0a04766b076bd3f89cb0f29a8a475f26bf93911f
 Deleted: sha256:5aa37b6c8e31197ab2f357c09755bcb83228ff0fb69c2009a12b6eddb087e884
 Deleted: sha256:d0b1d5665c308823bbc5b8986d405e5202ade6994dfa00d8ff576eff372dd045
 
-<span class="hljs-meta">#</span><span class="bash"> docker rmi -f 镜像ID [镜像ID,...]  删除连带删除容器的镜像</span>
+# docker rmi -f 镜像ID [镜像ID,...]  删除连带删除容器的镜像
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker rmi -f d1165f221234
 Untagged: hello-world:latest
 Untagged: hello-world@sha256:f2266cbfc127c960fd30e76b7c792dc23b588c0db76233517e1891a4e357d519
 Deleted: sha256:d1165f2212346b2bab48cb01c1e39ee8ad1be46b87873d9ca7a4e434980a7726
 
-<span class="hljs-meta">#</span><span class="bash">docker rmi -f $(docker images -aq)  删除所有容器和镜像</span>
+#docker rmi -f $(docker images -aq)  删除所有容器和镜像
 
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker images
 REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
 </code></pre>
 <h3 id="容器命令：">容器命令：</h3>
 <p>前置环境，下载一个  <code>centos</code> 镜像</p>
-<pre><code class="hljs shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker pull centos
+<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker pull centos
 Using default tag: latest
 latest: Pulling from library/centos
 7a0437f04f83: Pull complete 
 Digest: sha256:5528e8b1b1719d34604c87e11dcd1c0a20bedf46e83b5632cdeac91b8c04efc1
 Status: Downloaded newer image for centos:latest
-docker.io/library/centos:latest</code></pre>
+docker.io/library/centos:latest
+</code></pre>
 <h4 id="新建并运行容器：">新建并运行容器：</h4>
-<pre><code class="hljs shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker run --help
+<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker run --help
 
 Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
@@ -480,18 +493,19 @@ Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
   -it       					 使用交互方式运行，进入容器内查看内容
 
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker run -it centos /bin/bash
-<span class="hljs-meta">#</span><span class="bash">容器内的centos ,发现很多命令并不完善</span>
+#容器内的centos ,发现很多命令并不完善
 [root@e77313cc0ef1 /]# ls
 bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
-<span class="hljs-meta">#</span><span class="bash">从容器中退出到主机</span>
+#从容器中退出到主机
 [root@e77313cc0ef1 /]# exit
 exit
-<span class="hljs-meta">#</span><span class="bash">主机的centos</span>
+#主机的centos
 [root@izwz91mv6i3x6k12jjqh60z ~]# ls
 docker-client  docker-client-latest  docker-common  docker-engine  docker-latest  docker-latest-logrotate  docker-logrotate
+
 </code></pre>
 <h4 id="列出所有运行的容器：">列出所有运行的容器：</h4>
-<pre><code class="hljs shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
+<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
 -q 只显示容器编号
@@ -508,26 +522,29 @@ e77313cc0ef1   centos         "/bin/bash"   3 minutes ago   Exited (0) 2 minutes
 CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS                      PORTS     NAMES
 e77313cc0ef1   centos    "/bin/bash"   11 minutes ago   Exited (0) 9 minutes ago              romantic_elgamal
 17d31c5f5553   centos    "/bin/bash"   16 minutes ago   Exited (0) 16 minutes ago             os1
+
 </code></pre>
 <h4 id="退出容器：">退出容器：</h4>
-<pre><code class="hljs shell">exit #直接容器停止并退出
+<pre><code class="language-shell">exit #直接容器停止并退出
 Ctrl + P + Q #容器不停止而退出
 
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker run -it centos /bin/bash
-<span class="hljs-meta">#</span><span class="bash">进入容器后按住快捷键</span>
+#进入容器后按住快捷键
 [root@f3a97eadb092 /]# 
-<span class="hljs-meta">#</span><span class="bash">发现返回了主机</span>
+#发现返回了主机
 [root@izwz91mv6i3x6k12jjqh60z ~]# 
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS          PORTS     NAMES
 f3a97eadb092   centos    "/bin/bash"   28 seconds ago   Up 27 seconds             thirsty_pasteur
+
 </code></pre>
 <h4 id="删除容器：">删除容器：</h4>
-<pre><code class="hljs shell">docker rm [-f] 容器ID #删除指定的容器，rm -f 表示强制删除正在运行的容器
+<pre><code class="language-shell">docker rm [-f] 容器ID #删除指定的容器，rm -f 表示强制删除正在运行的容器
 docker rm -f $(docker ps -aq) #删除所有的容器
-docker ps -a -q|xargs docker rm #删除所有容器</code></pre>
+docker ps -a -q|xargs docker rm #删除所有容器
+</code></pre>
 <h4 id="启动和停止容器：">启动和停止容器：</h4>
-<pre><code class="hljs shell">docker start 容器ID  #启动容器
+<pre><code class="language-shell">docker start 容器ID  #启动容器
 docker restart 容器ID #重启容器
 docker stop 容器ID #停止正在运行的容器
 docker kill 容器ID #强制停止当前运行的容器
@@ -555,18 +572,20 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 f3a97eadb092
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS         PORTS     NAMES
-f3a97eadb092   centos    "/bin/bash"   12 minutes ago   Up 2 seconds             thirsty_pasteur</code></pre>
+f3a97eadb092   centos    "/bin/bash"   12 minutes ago   Up 2 seconds             thirsty_pasteur
+</code></pre>
 <h4 id="后台启动容器：">后台启动容器：</h4>
-<pre><code class="hljs shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d centos
+<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d centos
 ddb941029e1fd47abfbd83968afc2103b2685d3ee0cf3f7ec32cd6f6fee96aca
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
-<span class="hljs-meta">#</span><span class="bash">常见问题：-d 运行之后，docker ps 发现它并没有运行</span>
-<span class="hljs-meta">#</span><span class="bash">原因：docker 容器使用后台运行，就必须要有一个前台进程，docker 发现没有应用，就会自动停止</span>
-<span class="hljs-meta">#</span><span class="bash">nginx 容器启动后，发现自己没有提供服务，就会立刻停止，就是没有程序了。</span></code></pre>
+#常见问题：-d 运行之后，docker ps 发现它并没有运行
+#原因：docker 容器使用后台运行，就必须要有一个前台进程，docker 发现没有应用，就会自动停止
+#nginx 容器启动后，发现自己没有提供服务，就会立刻停止，就是没有程序了。
+</code></pre>
 <h4 id="查看日志：">查看日志：</h4>
-<pre><code class="hljs shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker logs --help
+<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker logs --help
 
 Usage:  docker logs [OPTIONS] CONTAINER
 
@@ -581,22 +600,24 @@ Options:
       --until string   Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)
 
 
-<span class="hljs-meta">#</span><span class="bash">自己写一段 shell 脚本</span>
+#自己写一段 shell 脚本
 docker run -d centos /bin/sh -c "while true;do echo ios;sleep 1;done"
 
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d centos /bin/sh -c "while true;do echo ios;sleep 1;done"
 018801a5cdcfc762fb5def6d8f1ff3a7ec4d136f6b2812717937ee43a5f6ff66
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker logs 018801a5cdcfc762fb5def6d8f1ff3a7ec4d136f6b2812717937ee43a5f6ff66
 ios....
+
 </code></pre>
 <h4 id="查看容器进程的信息：">查看容器进程的信息：</h4>
-<pre><code class="hljs shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker top 018801a5cdcf
+<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker top 018801a5cdcf
 UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
 root                9040                9015                0                   16:09               ?                   00:00:00            /bin/sh -c while true;do echo ios;sleep 1;done
 root                9288                9040                0                   16:11               ?                   00:00:00            /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 1
+
 </code></pre>
 <h4 id="查看镜像中的元数据：">查看镜像中的元数据：</h4>
-<pre><code class="hljs shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker inspect 018801a5cdcf 
+<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker inspect 018801a5cdcf 
 [
     {
         "Id": "018801a5cdcfc762fb5def6d8f1ff3a7ec4d136f6b2812717937ee43a5f6ff66",
@@ -608,22 +629,23 @@ root                9288                9040                0                   
         ],
         ......
     }
-]</code></pre>
+]
+</code></pre>
 <h4 id="进入当前正在运行的容器：">进入当前正在运行的容器：</h4>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">通常容器都是使用后台方式运行的，需要进入容器，修改一些配置</span>
+<pre><code class="language-shell">#通常容器都是使用后台方式运行的，需要进入容器，修改一些配置
 
-<span class="hljs-meta">#</span><span class="bash">方法一：docker <span class="hljs-built_in">exec</span>进入容器后开启一个新的终端，可以在里面操作（常用）</span>
-<span class="hljs-meta">#</span><span class="bash">查看正在运行的容器</span>
+#方法一：docker exec进入容器后开启一个新的终端，可以在里面操作（常用）
+#查看正在运行的容器
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED        STATUS        PORTS     NAMES
 018801a5cdcf   centos    "/bin/sh -c 'while t…"   21 hours ago   Up 21 hours             confident_mayer
 f79cbdf9c012   centos    "/bin/bash"              21 hours ago   Up 21 hours             sweet_lehmann
 
-<span class="hljs-meta">#</span><span class="bash">进入容器</span>
+#进入容器
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker exec -it 018801a5cdcf /bin/bash
 [root@018801a5cdcf /]# ls
 bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
-<span class="hljs-meta">#</span><span class="bash">查看容器内的进程</span>
+#查看容器内的进程
 [root@018801a5cdcf /]# ps -ef
 UID        PID  PPID  C STIME TTY          TIME CMD
 root         1     0  0 Apr28 ?        00:00:16 /bin/sh -c while true;do echo ios;sleep 1;done
@@ -631,26 +653,27 @@ root      9005     0  0 04:43 pts/0    00:00:00 /bin/bash
 root      9042     1  0 04:43 ?        00:00:00 /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 1
 root      9043  9005  0 04:43 pts/0    00:00:00 ps -ef
 
-<span class="hljs-meta">#</span><span class="bash">方法二：docker attach 进入容器正在执行的终端，不会执行新的进程</span>
+#方法二：docker attach 进入容器正在执行的终端，不会执行新的进程
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker attach 018801a5cdcf
 ios
 ios
 ios
 ios
-<span class="hljs-meta">#</span><span class="bash">发现正在执行脚本。。</span></code></pre>
+#发现正在执行脚本。。
+</code></pre>
 <h4 id="拷贝文件到主机：">拷贝文件到主机：</h4>
 <p>从容器中拷贝文件到主机上（拷贝目前是一个手动过程，未来使用 -v 卷技术可以实现自动拷贝）</p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">查看运行的容器</span>
+<pre><code class="language-shell">#查看运行的容器
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED        STATUS        PORTS     NAMES
 018801a5cdcf   centos    "/bin/sh -c 'while t…"   21 hours ago   Up 21 hours             confident_mayer
 f79cbdf9c012   centos    "/bin/bash"              21 hours ago   Up 21 hours             sweet_lehmann
 
-<span class="hljs-meta">#</span><span class="bash">查看主机文件</span>
+#查看主机文件
 [root@izwz91mv6i3x6k12jjqh60z ~]# ls
 docker-client  docker-client-latest  docker-common  docker-engine  docker-latest  docker-latest-logrotate  docker-logrotate
 
-<span class="hljs-meta">#</span><span class="bash">进入容器，新建一个测试文件后退出</span>
+#进入容器，新建一个测试文件后退出
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker attach f79cbdf9c012
 [root@f79cbdf9c012 /]# cd /home
 [root@f79cbdf9c012 home]# ls
@@ -658,7 +681,7 @@ docker-client  docker-client-latest  docker-common  docker-engine  docker-latest
 [root@f79cbdf9c012 home]# exit
 exit
 
-<span class="hljs-meta">#</span><span class="bash">再次查看，发现容器已经不再运行</span>
+#再次查看，发现容器已经不再运行
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED        STATUS        PORTS     NAMES
 018801a5cdcf   centos    "/bin/sh -c 'while t…"   21 hours ago   Up 21 hours             confident_mayer
@@ -667,35 +690,19 @@ CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS    
 018801a5cdcf   centos         "/bin/sh -c 'while t…"   21 hours ago   Up 21 hours                           confident_mayer
 f79cbdf9c012   centos         "/bin/bash"              21 hours ago   Exited (0) 25 seconds ago 
 
-<span class="hljs-meta">#</span><span class="bash">拷贝文件命令</span>
+#拷贝文件命令
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker cp f79cbdf9c012:/home/test.java /home
 
-<span class="hljs-meta">#</span><span class="bash">查看是否拷贝成功</span>
+#查看是否拷贝成功
 [root@izwz91mv6i3x6k12jjqh60z ~]# cd /home
 [root@izwz91mv6i3x6k12jjqh60z home]# ls
-admin  test.java</code></pre>
+admin  test.java
+</code></pre>
 <h4 id="小结">小结</h4>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210221200910336.png" alt="image-20210221200910336"></p>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：Docker常用命令</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2021-05-04 00:00:00</li>
-        <li>
-            本文链接：https://blog.sky123.top/2021/05/04/docker/Docker02常用命令/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -704,13 +711,13 @@ admin  test.java</code></pre>
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/"
+                           href="/2021/05/04/docker/Docker01%E6%A6%82%E8%BF%B0%E5%92%8C%E5%AE%89%E8%A3%85/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Docker部署练习</span>
+                                <span class="post-nav-title-item">Docker概述和安装</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -720,10 +727,10 @@ admin  test.java</code></pre>
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/05/04/docker/Docker01%E6%A6%82%E8%BF%B0%E5%92%8C%E5%AE%89%E8%A3%85/"
+                           href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Docker概述和安装</span>
+                                <span class="post-nav-title-item">Docker部署练习</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -756,20 +763,6 @@ admin  test.java</code></pre>
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -801,18 +794,18 @@ admin  test.java</code></pre>
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

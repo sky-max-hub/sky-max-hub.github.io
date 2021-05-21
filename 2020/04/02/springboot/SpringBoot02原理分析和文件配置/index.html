@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-04-02
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.8k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.8k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -224,167 +231,173 @@
 <h2 id="1-起步依赖原理分析">1 起步依赖原理分析</h2>
 <h3 id="1-1-分析spring-boot-starter-parent">1.1 分析spring-boot-starter-parent</h3>
 <p>按住Ctrl点击pom.xml中的<code>spring-boot-starter-parent</code>，跳转到了<code>spring-boot-starter-parent</code>的<code>pom.xml</code>，xml配置如下（只摘抄了部分重点配置）：</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">relativePath</span>&gt;</span>../../spring-boot-dependencies<span class="hljs-tag">&lt;/<span class="hljs-name">relativePath</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;parent&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;
+  &lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+  &lt;relativePath&gt;../../spring-boot-dependencies&lt;/relativePath&gt;
+&lt;/parent&gt;
+</code></pre>
 <p>按住Ctrl点击<code>pom.xml</code>中的<code>spring-boot-starter-dependencies</code>，跳转到了<code>spring-boot-starter-dependencies</code>的<code>pom.xml</code>，xml配置如下（只摘抄了部分重点配置）：</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">activemq.version</span>&gt;</span>5.15.3<span class="hljs-tag">&lt;/<span class="hljs-name">activemq.version</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">antlr2.version</span>&gt;</span>2.7.7<span class="hljs-tag">&lt;/<span class="hljs-name">antlr2.version</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">appengine-sdk.version</span>&gt;</span>1.9.63<span class="hljs-tag">&lt;/<span class="hljs-name">appengine-sdk.version</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">artemis.version</span>&gt;</span>2.4.0<span class="hljs-tag">&lt;/<span class="hljs-name">artemis.version</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">aspectj.version</span>&gt;</span>1.8.13<span class="hljs-tag">&lt;/<span class="hljs-name">aspectj.version</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">assertj.version</span>&gt;</span>3.9.1<span class="hljs-tag">&lt;/<span class="hljs-name">assertj.version</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">atomikos.version</span>&gt;</span>4.0.6<span class="hljs-tag">&lt;/<span class="hljs-name">atomikos.version</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">bitronix.version</span>&gt;</span>2.1.4<span class="hljs-tag">&lt;/<span class="hljs-name">bitronix.version</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">build-helper-maven-plugin.version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">build-helper-maven-plugin.version</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">byte-buddy.version</span>&gt;</span>1.7.11<span class="hljs-tag">&lt;/<span class="hljs-name">byte-buddy.version</span>&gt;</span>
+<pre><code class="language-xml">&lt;properties&gt;
+  	&lt;activemq.version&gt;5.15.3&lt;/activemq.version&gt;
+  	&lt;antlr2.version&gt;2.7.7&lt;/antlr2.version&gt;
+  	&lt;appengine-sdk.version&gt;1.9.63&lt;/appengine-sdk.version&gt;
+  	&lt;artemis.version&gt;2.4.0&lt;/artemis.version&gt;
+  	&lt;aspectj.version&gt;1.8.13&lt;/aspectj.version&gt;
+  	&lt;assertj.version&gt;3.9.1&lt;/assertj.version&gt;
+  	&lt;atomikos.version&gt;4.0.6&lt;/atomikos.version&gt;
+  	&lt;bitronix.version&gt;2.1.4&lt;/bitronix.version&gt;
+  	&lt;build-helper-maven-plugin.version&gt;3.0.0&lt;/build-helper-maven-plugin.version&gt;
+  	&lt;byte-buddy.version&gt;1.7.11&lt;/byte-buddy.version&gt;
   	... ... ...
-<span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependencyManagement</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
-      	<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-        	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-      	<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-      	<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-        	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-      	<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+&lt;/properties&gt;
+&lt;dependencyManagement&gt;
+  	&lt;dependencies&gt;
+      	&lt;dependency&gt;
+        	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        	&lt;artifactId&gt;spring-boot&lt;/artifactId&gt;
+        	&lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+      	&lt;/dependency&gt;
+      	&lt;dependency&gt;
+        	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        	&lt;artifactId&gt;spring-boot-test&lt;/artifactId&gt;
+        	&lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+      	&lt;/dependency&gt;
       	... ... ...
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependencyManagement</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">pluginManagement</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>
-        		<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.jetbrains.kotlin<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        		<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>kotlin-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        		<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${kotlin.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-      		<span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>
-        		<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.jooq<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        		<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jooq-codegen-maven<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        		<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${jooq.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-      		<span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>
-        		<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        		<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        		<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-      		<span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
+	&lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;
+&lt;build&gt;
+  	&lt;pluginManagement&gt;
+    	&lt;plugins&gt;
+      		&lt;plugin&gt;
+        		&lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
+        		&lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
+        		&lt;version&gt;${kotlin.version}&lt;/version&gt;
+      		&lt;/plugin&gt;
+      		&lt;plugin&gt;
+        		&lt;groupId&gt;org.jooq&lt;/groupId&gt;
+        		&lt;artifactId&gt;jooq-codegen-maven&lt;/artifactId&gt;
+        		&lt;version&gt;${jooq.version}&lt;/version&gt;
+      		&lt;/plugin&gt;
+      		&lt;plugin&gt;
+        		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        		&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        		&lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+      		&lt;/plugin&gt;
           	... ... ...
-    	<span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
-  	<span class="hljs-tag">&lt;/<span class="hljs-name">pluginManagement</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span></code></pre>
+    	&lt;/plugins&gt;
+  	&lt;/pluginManagement&gt;
+&lt;/build&gt;
+</code></pre>
 <p>从上面的<code>spring-boot-starter-dependencies</code>的<code>pom.xml</code>中我们可以发现，一部分坐标的版本、依赖管理、插件管理已经定义好，所以我们的SpringBoot工程继承<code>spring-boot-starter-parent</code>后已经具备版本锁定等配置了。所以起步依赖的作用就是进行依赖的传递。</p>
 <h3 id="1-2-分析spring-boot-starter-web">1.2 分析spring-boot-starter-web</h3>
 <p>按住Ctrl点击<code>pom.xml</code>中的<code>spring-boot-starter-web</code>，跳转到了<code>spring-boot-starter-web</code>的<code>pom.xml</code>，xml配置如下（只摘抄了部分重点配置）：</p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0"</span></span>
-<span class="hljs-tag">    <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starters<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-  	<span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-  	<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>Spring Boot Web Starter<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  	&lt;parent&gt;
+    	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    	&lt;artifactId&gt;spring-boot-starters&lt;/artifactId&gt;
+    	&lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+  	&lt;/parent&gt;
+  	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  	&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+  	&lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+  	&lt;name&gt;Spring Boot Web Starter&lt;/name&gt;
   
-  	<span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-    	<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-json<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-    	<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-    	<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.hibernate.validator<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hibernate-validator<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>6.0.9.Final<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-    	<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.0.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-    	<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    	<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.0.5.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-      		<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-    	<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-  	<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span>
+  	&lt;dependencies&gt;
+    	&lt;dependency&gt;
+      		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      		&lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+      		&lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+      		&lt;scope&gt;compile&lt;/scope&gt;
+    	&lt;/dependency&gt;
+    	&lt;dependency&gt;
+      		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      		&lt;artifactId&gt;spring-boot-starter-json&lt;/artifactId&gt;
+      		&lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+      		&lt;scope&gt;compile&lt;/scope&gt;
+    	&lt;/dependency&gt;
+    	&lt;dependency&gt;
+      		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      		&lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+      		&lt;version&gt;2.0.1.RELEASE&lt;/version&gt;
+      		&lt;scope&gt;compile&lt;/scope&gt;
+    	&lt;/dependency&gt;
+    	&lt;dependency&gt;
+      		&lt;groupId&gt;org.hibernate.validator&lt;/groupId&gt;
+      		&lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;
+      		&lt;version&gt;6.0.9.Final&lt;/version&gt;
+      		&lt;scope&gt;compile&lt;/scope&gt;
+    	&lt;/dependency&gt;
+    	&lt;dependency&gt;
+      		&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+      		&lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+      		&lt;version&gt;5.0.5.RELEASE&lt;/version&gt;
+      		&lt;scope&gt;compile&lt;/scope&gt;
+    	&lt;/dependency&gt;
+    	&lt;dependency&gt;
+      		&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+      		&lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+      		&lt;version&gt;5.0.5.RELEASE&lt;/version&gt;
+      		&lt;scope&gt;compile&lt;/scope&gt;
+    	&lt;/dependency&gt;
+  	&lt;/dependencies&gt;
+&lt;/project&gt;
+
 </code></pre>
 <p>从上面的spring-boot-starter-web的pom.xml中我们可以发现，spring-boot-starter-web就是将web开发要使用的spring-web、spring-webmvc等坐标进行了“打包”，这样我们的工程只要引入spring-boot-starter-web起步依赖的坐标就可以进行web开发了，同样体现了依赖传递的作用。</p>
 <h2 id="2-自动配置原理解析">2 自动配置原理解析</h2>
 <p>按住Ctrl点击查看启动类<code>MySpringBootApplication</code>上的注解<code>@SpringBootApplication</code></p>
-<pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MySpringBootApplication</span> </span>{
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+<pre><code class="language-java">@SpringBootApplication
+public class MySpringBootApplication {
+    public static void main(String[] args) {
         SpringApplication.run(MySpringBootApplication.class);
     }
-}</code></pre>
+}
+</code></pre>
 <p>注解<code>@SpringBootApplication</code>的源码</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Target(ElementType.TYPE)</span>
-<span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span>
-<span class="hljs-meta">@Documented</span>
-<span class="hljs-meta">@Inherited</span>
-<span class="hljs-meta">@SpringBootConfiguration</span>
-<span class="hljs-meta">@EnableAutoConfiguration</span>
-<span class="hljs-meta">@ComponentScan(excludeFilters = {</span>
-<span class="hljs-meta">		@Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),</span>
-<span class="hljs-meta">		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })</span>
-<span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> SpringBootApplication {
+<pre><code class="language-java">@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan(excludeFilters = {
+		@Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
+		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
+public @interface SpringBootApplication {
 
-    <span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 * Exclude specific auto-configuration classes such that they will never be applied.</span>
-<span class="hljs-comment">	 * <span class="hljs-doctag">@return</span> the classes to exclude</span>
-<span class="hljs-comment">	 */</span>
-    <span class="hljs-meta">@AliasFor(annotation = EnableAutoConfiguration.class)</span>
-    Class&lt;?&gt;[] exclude() <span class="hljs-keyword">default</span> {};
+	/**
+	 * Exclude specific auto-configuration classes such that they will never be applied.
+	 * @return the classes to exclude
+	 */
+	@AliasFor(annotation = EnableAutoConfiguration.class)
+	Class&lt;?&gt;[] exclude() default {};
 
-    ... ... ...
+	... ... ...
 
-}</code></pre>
+}
+</code></pre>
 <p>其中，</p>
 <p><code>@SpringBootConfiguration</code>：等同与<code>@Configuration</code>，既标注该类是Spring的一个配置类</p>
 <p><code>@EnableAutoConfiguration</code>：SpringBoot自动配置功能开启</p>
 <p>按住Ctrl点击查看注解<code>@EnableAutoConfiguration</code></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Target(ElementType.TYPE)</span>
-<span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span>
-<span class="hljs-meta">@Documented</span>
-<span class="hljs-meta">@Inherited</span>
-<span class="hljs-meta">@AutoConfigurationPackage</span>
-<span class="hljs-meta">@Import(AutoConfigurationImportSelector.class)</span>
-<span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> EnableAutoConfiguration {
-    ... ... ...
-}</code></pre>
+<pre><code class="language-java">@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@AutoConfigurationPackage
+@Import(AutoConfigurationImportSelector.class)
+public @interface EnableAutoConfiguration {
+	... ... ...
+}
+</code></pre>
 <p>其中，<code>@Import(AutoConfigurationImportSelector.class)</code> 导入了<code>AutoConfigurationImportSelector</code>类</p>
 <p>按住Ctrl点击查看<code>AutoConfigurationImportSelector</code>源码</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> String[] selectImports(AnnotationMetadata annotationMetadata) {
+<pre><code class="language-java">public String[] selectImports(AnnotationMetadata annotationMetadata) {
         ... ... ...
         List&lt;String&gt; configurations = getCandidateConfigurations(annotationMetadata,
                                                                    attributes);
@@ -394,65 +407,69 @@
         configurations.removeAll(exclusions);
         configurations = filter(configurations, autoConfigurationMetadata);
         fireAutoConfigurationImportEvents(configurations, exclusions);
-        <span class="hljs-keyword">return</span> StringUtils.toStringArray(configurations);
+        return StringUtils.toStringArray(configurations);
 }
 
 
-<span class="hljs-function"><span class="hljs-keyword">protected</span> List&lt;String&gt; <span class="hljs-title">getCandidateConfigurations</span><span class="hljs-params">(AnnotationMetadata metadata,</span></span>
-<span class="hljs-function"><span class="hljs-params">			AnnotationAttributes attributes)</span> </span>{
-        List&lt;String&gt; configurations = SpringFactoriesLoader.loadFactoryNames(
-                getSpringFactoriesLoaderFactoryClass(), getBeanClassLoader());
-        
-        <span class="hljs-keyword">return</span> configurations;
+protected List&lt;String&gt; getCandidateConfigurations(AnnotationMetadata metadata,
+			AnnotationAttributes attributes) {
+		List&lt;String&gt; configurations = SpringFactoriesLoader.loadFactoryNames(
+				getSpringFactoriesLoaderFactoryClass(), getBeanClassLoader());
+		
+		return configurations;
 }
+
 </code></pre>
 <p>其中，<code>SpringFactoriesLoader.loadFactoryNames</code> 方法的作用就是从<code>META-INF/spring.factories</code>文件中读取指定类对应的类名称列表</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/11.png" alt=""></p>
 <p>spring.factories 文件中有关自动配置的配置信息如下：</p>
-<pre><code class="hljs stylus">... ... ...
+<pre><code>... ... ...
 
-org<span class="hljs-selector-class">.springframework</span><span class="hljs-selector-class">.boot</span><span class="hljs-selector-class">.autoconfigure</span><span class="hljs-selector-class">.web</span><span class="hljs-selector-class">.reactive</span><span class="hljs-selector-class">.function</span><span class="hljs-selector-class">.client</span><span class="hljs-selector-class">.WebClientAutoConfiguration</span>,\
-org<span class="hljs-selector-class">.springframework</span><span class="hljs-selector-class">.boot</span><span class="hljs-selector-class">.autoconfigure</span><span class="hljs-selector-class">.web</span><span class="hljs-selector-class">.servlet</span><span class="hljs-selector-class">.DispatcherServletAutoConfiguration</span>,\
-org<span class="hljs-selector-class">.springframework</span><span class="hljs-selector-class">.boot</span><span class="hljs-selector-class">.autoconfigure</span><span class="hljs-selector-class">.web</span><span class="hljs-selector-class">.servlet</span><span class="hljs-selector-class">.ServletWebServerFactoryAutoConfiguration</span>,\
-org<span class="hljs-selector-class">.springframework</span><span class="hljs-selector-class">.boot</span><span class="hljs-selector-class">.autoconfigure</span><span class="hljs-selector-class">.web</span><span class="hljs-selector-class">.servlet</span><span class="hljs-selector-class">.error</span><span class="hljs-selector-class">.ErrorMvcAutoConfiguration</span>,\
-org<span class="hljs-selector-class">.springframework</span><span class="hljs-selector-class">.boot</span><span class="hljs-selector-class">.autoconfigure</span><span class="hljs-selector-class">.web</span><span class="hljs-selector-class">.servlet</span><span class="hljs-selector-class">.HttpEncodingAutoConfiguration</span>,\
-org<span class="hljs-selector-class">.springframework</span><span class="hljs-selector-class">.boot</span><span class="hljs-selector-class">.autoconfigure</span><span class="hljs-selector-class">.web</span><span class="hljs-selector-class">.servlet</span><span class="hljs-selector-class">.MultipartAutoConfiguration</span>,\
+org.springframework.boot.autoconfigure.web.reactive.function.client.WebClientAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration,\
+org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration,\
 
-... ... ...</code></pre>
+... ... ...
+</code></pre>
 <p>上面配置文件存在大量的以<code>Configuration</code>为结尾的类名称，这些类就是存有自动配置信息的类，而<code>SpringApplication</code>在获取这些类名后再加载</p>
 <p>我们以<code>ServletWebServerFactoryAutoConfiguration</code>为例来分析源码：</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)</span>
-<span class="hljs-meta">@ConditionalOnClass(ServletRequest.class)</span>
-<span class="hljs-meta">@ConditionalOnWebApplication(type = Type.SERVLET)</span>
-<span class="hljs-meta">@EnableConfigurationProperties(ServerProperties.class)</span>
-<span class="hljs-meta">@Import({ ServletWebServerFactoryAutoConfiguration.BeanPostProcessorsRegistrar.class,</span>
-<span class="hljs-meta">		ServletWebServerFactoryConfiguration.EmbeddedTomcat.class,</span>
-<span class="hljs-meta">		ServletWebServerFactoryConfiguration.EmbeddedJetty.class,</span>
-<span class="hljs-meta">		ServletWebServerFactoryConfiguration.EmbeddedUndertow.class })</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServletWebServerFactoryAutoConfiguration</span> </span>{
-    ... ... ...
+<pre><code class="language-java">@Configuration
+@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
+@ConditionalOnClass(ServletRequest.class)
+@ConditionalOnWebApplication(type = Type.SERVLET)
+@EnableConfigurationProperties(ServerProperties.class)
+@Import({ ServletWebServerFactoryAutoConfiguration.BeanPostProcessorsRegistrar.class,
+		ServletWebServerFactoryConfiguration.EmbeddedTomcat.class,
+		ServletWebServerFactoryConfiguration.EmbeddedJetty.class,
+		ServletWebServerFactoryConfiguration.EmbeddedUndertow.class })
+public class ServletWebServerFactoryAutoConfiguration {
+	... ... ...
 }
+
 </code></pre>
 <p>其中，</p>
 <p><code>@EnableConfigurationProperties(ServerProperties.class)</code> 代表加载<code>ServerProperties</code>服务器配置属性类</p>
 <p>进入ServerProperties.class源码如下：</p>
-<pre><code class="hljs java"><span class="hljs-meta">@ConfigurationProperties(prefix = "server", ignoreUnknownFields = true)</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServerProperties</span> </span>{
+<pre><code class="language-java">@ConfigurationProperties(prefix = "server", ignoreUnknownFields = true)
+public class ServerProperties {
 
-    <span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 * Server HTTP port.</span>
-<span class="hljs-comment">	 */</span>
-    <span class="hljs-keyword">private</span> Integer port;
+	/**
+	 * Server HTTP port.
+	 */
+	private Integer port;
 
-    <span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 * Network address to which the server should bind.</span>
-<span class="hljs-comment">	 */</span>
-    <span class="hljs-keyword">private</span> InetAddress address;
+	/**
+	 * Network address to which the server should bind.
+	 */
+	private InetAddress address;
   
   	... ... ...
   
-}</code></pre>
+}
+</code></pre>
 <p>其中，</p>
 <p><code>prefix = "server" </code>表示SpringBoot配置文件中的前缀，SpringBoot会将配置文件中以server开始的属性映射到该类的字段中。映射关系如下：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="http://img.sky123.top/springboot/12.png" alt=""></p>
@@ -477,7 +494,8 @@ org<span class="hljs-selector-class">.springframework</span><span class="hljs-se
 <p>示例代码：</p>
 </li>
 </ul>
-<pre><code class="hljs yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">haohao</span></code></pre>
+<pre><code class="language-yaml">name: haohao
+</code></pre>
 <ul>
 <li>注意：value之前有一个空格</li>
 </ul>
@@ -495,14 +513,15 @@ org<span class="hljs-selector-class">.springframework</span><span class="hljs-se
 <p>示例代码：</p>
 </li>
 </ul>
-<pre><code class="hljs yaml"><span class="hljs-attr">person:</span>
-  <span class="hljs-attr">name:</span> <span class="hljs-string">haohao</span>
-  <span class="hljs-attr">age:</span> <span class="hljs-number">31</span>
-  <span class="hljs-attr">addr:</span> <span class="hljs-string">beijing</span>
+<pre><code class="language-yaml">  person:
+    name: haohao
+    age: 31
+    addr: beijing
 
-<span class="hljs-comment">#或者</span>
+  #或者
 
-<span class="hljs-attr">person:</span> {<span class="hljs-attr">name:</span> <span class="hljs-string">haohao</span>,<span class="hljs-attr">age:</span> <span class="hljs-number">31</span>,<span class="hljs-attr">addr:</span> <span class="hljs-string">beijing</span>}</code></pre>
+  person: {name: haohao,age: 31,addr: beijing}
+</code></pre>
 <ul>
 <li>注意：key1前面的空格个数不限定，在yml语法中，相同缩进代表同一个级别</li>
 </ul>
@@ -522,27 +541,28 @@ org<span class="hljs-selector-class">.springframework</span><span class="hljs-se
 <p>示例代码：</p>
 </li>
 </ul>
-<pre><code class="hljs yaml"><span class="hljs-attr">city:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">beijing</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">tianjin</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">shanghai</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">chongqing</span>
-  
-<span class="hljs-comment">#或者</span>
+<pre><code class="language-yaml">  city:
+    - beijing
+    - tianjin
+    - shanghai
+    - chongqing
+    
+  #或者
 
-<span class="hljs-attr">city:</span> [<span class="hljs-string">beijing</span>,<span class="hljs-string">tianjin</span>,<span class="hljs-string">shanghai</span>,<span class="hljs-string">chongqing</span>]
+  city: [beijing,tianjin,shanghai,chongqing]
 
-<span class="hljs-comment">#集合中的元素是对象形式</span>
-<span class="hljs-attr">student:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">zhangsan</span>
-    <span class="hljs-attr">age:</span> <span class="hljs-number">18</span>
-    <span class="hljs-attr">score:</span> <span class="hljs-number">100</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">lisi</span>
-    <span class="hljs-attr">age:</span> <span class="hljs-number">28</span>
-    <span class="hljs-attr">score:</span> <span class="hljs-number">88</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">wangwu</span>
-    <span class="hljs-attr">age:</span> <span class="hljs-number">38</span>
-    <span class="hljs-attr">score:</span> <span class="hljs-number">90</span></code></pre>
+  #集合中的元素是对象形式
+  student:
+    - name: zhangsan
+      age: 18
+      score: 100
+    - name: lisi
+      age: 28
+      score: 88
+    - name: wangwu
+      age: 38
+      score: 90
+</code></pre>
 <ul>
 <li>注意：value1与之间的 - 之间存在一个空格</li>
 </ul>
@@ -550,142 +570,134 @@ org<span class="hljs-selector-class">.springframework</span><span class="hljs-se
 <p>上面提及过，SpringBoot的配置文件，主要的目的就是对配置信息进行修改的，但在配置时的key从哪里去查询呢？我们可以查阅SpringBoot的官方文档</p>
 <p>文档URL：<a class="link" target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/htmlsingle/#common-application-properties">https://docs.spring.io/spring-boot/docs/2.0.1.RELEASE/reference/htmlsingle/#common-application-properties<i class="fas fa-external-link-alt"></i></a></p>
 <p>常用的配置摘抄如下：</p>
-<pre><code class="hljs properties"><span class="hljs-comment"># QUARTZ SCHEDULER (QuartzProperties)</span>
-<span class="hljs-meta">spring.quartz.jdbc.initialize-schema</span>=<span class="hljs-string">embedded # Database schema initialization mode.</span>
-<span class="hljs-meta">spring.quartz.jdbc.schema</span>=<span class="hljs-string">classpath:org/quartz/impl/jdbcjobstore/tables_@@platform@@.sql # Path to the SQL file to use to initialize the database schema.</span>
-<span class="hljs-meta">spring.quartz.job-store-type</span>=<span class="hljs-string">memory # Quartz job store type.</span>
-<span class="hljs-meta">spring.quartz.properties.*</span>= <span class="hljs-string"># Additional Quartz Scheduler properties.</span>
+<pre><code class="language-properties"># QUARTZ SCHEDULER (QuartzProperties)
+spring.quartz.jdbc.initialize-schema=embedded # Database schema initialization mode.
+spring.quartz.jdbc.schema=classpath:org/quartz/impl/jdbcjobstore/tables_@@platform@@.sql # Path to the SQL file to use to initialize the database schema.
+spring.quartz.job-store-type=memory # Quartz job store type.
+spring.quartz.properties.*= # Additional Quartz Scheduler properties.
 
-<span class="hljs-comment"># ----------------------------------------</span>
-<span class="hljs-comment"># WEB PROPERTIES</span>
-<span class="hljs-comment"># ----------------------------------------</span>
+# ----------------------------------------
+# WEB PROPERTIES
+# ----------------------------------------
 
-<span class="hljs-comment"># EMBEDDED SERVER CONFIGURATION (ServerProperties)</span>
-<span class="hljs-meta">server.port</span>=<span class="hljs-string">8080 # Server HTTP port.</span>
-<span class="hljs-meta">server.servlet.context-path</span>= <span class="hljs-string"># Context path of the application.</span>
-<span class="hljs-meta">server.servlet.path</span>=<span class="hljs-string">/ # Path of the main dispatcher servlet.</span>
+# EMBEDDED SERVER CONFIGURATION (ServerProperties)
+server.port=8080 # Server HTTP port.
+server.servlet.context-path= # Context path of the application.
+server.servlet.path=/ # Path of the main dispatcher servlet.
 
-<span class="hljs-comment"># HTTP encoding (HttpEncodingProperties)</span>
-<span class="hljs-meta">spring.http.encoding.charset</span>=<span class="hljs-string">UTF-8 # Charset of HTTP requests and responses. Added to the "Content-Type" header if not set explicitly.</span>
+# HTTP encoding (HttpEncodingProperties)
+spring.http.encoding.charset=UTF-8 # Charset of HTTP requests and responses. Added to the "Content-Type" header if not set explicitly.
 
-<span class="hljs-comment"># JACKSON (JacksonProperties)</span>
-<span class="hljs-meta">spring.jackson.date-format</span>= <span class="hljs-string"># Date format string or a fully-qualified date format class name. For instance, `yyyy-MM-dd HH:mm:ss`.</span>
+# JACKSON (JacksonProperties)
+spring.jackson.date-format= # Date format string or a fully-qualified date format class name. For instance, `yyyy-MM-dd HH:mm:ss`.
 
-<span class="hljs-comment"># SPRING MVC (WebMvcProperties)</span>
-<span class="hljs-meta">spring.mvc.servlet.load-on-startup</span>=<span class="hljs-string">-1 # Load on startup priority of the dispatcher servlet.</span>
-<span class="hljs-meta">spring.mvc.static-path-pattern</span>=<span class="hljs-string">/** # Path pattern used for static resources.</span>
-<span class="hljs-meta">spring.mvc.view.prefix</span>= <span class="hljs-string"># Spring MVC view prefix.</span>
-<span class="hljs-meta">spring.mvc.view.suffix</span>= <span class="hljs-string"># Spring MVC view suffix.</span>
+# SPRING MVC (WebMvcProperties)
+spring.mvc.servlet.load-on-startup=-1 # Load on startup priority of the dispatcher servlet.
+spring.mvc.static-path-pattern=/** # Path pattern used for static resources.
+spring.mvc.view.prefix= # Spring MVC view prefix.
+spring.mvc.view.suffix= # Spring MVC view suffix.
 
-<span class="hljs-comment"># DATASOURCE (DataSourceAutoConfiguration &amp; DataSourceProperties)</span>
-<span class="hljs-meta">spring.datasource.driver-class-name</span>= <span class="hljs-string"># Fully qualified name of the JDBC driver. Auto-detected based on the URL by default.</span>
-<span class="hljs-meta">spring.datasource.password</span>= <span class="hljs-string"># Login password of the database.</span>
-<span class="hljs-meta">spring.datasource.url</span>= <span class="hljs-string"># JDBC URL of the database.</span>
-<span class="hljs-meta">spring.datasource.username</span>= <span class="hljs-string"># Login username of the database.</span>
+# DATASOURCE (DataSourceAutoConfiguration &amp; DataSourceProperties)
+spring.datasource.driver-class-name= # Fully qualified name of the JDBC driver. Auto-detected based on the URL by default.
+spring.datasource.password= # Login password of the database.
+spring.datasource.url= # JDBC URL of the database.
+spring.datasource.username= # Login username of the database.
 
-<span class="hljs-comment"># JEST (Elasticsearch HTTP client) (JestProperties)</span>
-<span class="hljs-meta">spring.elasticsearch.jest.password</span>= <span class="hljs-string"># Login password.</span>
-<span class="hljs-meta">spring.elasticsearch.jest.proxy.host</span>= <span class="hljs-string"># Proxy host the HTTP client should use.</span>
-<span class="hljs-meta">spring.elasticsearch.jest.proxy.port</span>= <span class="hljs-string"># Proxy port the HTTP client should use.</span>
-<span class="hljs-meta">spring.elasticsearch.jest.read-timeout</span>=<span class="hljs-string">3s # Read timeout.</span>
-<span class="hljs-meta">spring.elasticsearch.jest.username</span>= <span class="hljs-string"># Login username.</span>
+# JEST (Elasticsearch HTTP client) (JestProperties)
+spring.elasticsearch.jest.password= # Login password.
+spring.elasticsearch.jest.proxy.host= # Proxy host the HTTP client should use.
+spring.elasticsearch.jest.proxy.port= # Proxy port the HTTP client should use.
+spring.elasticsearch.jest.read-timeout=3s # Read timeout.
+spring.elasticsearch.jest.username= # Login username.
+
 </code></pre>
 <p>我们可以通过配置<code>application.poperties</code> 或者 <code>application.yml </code>来修改SpringBoot的默认配置</p>
 <p>例如：</p>
 <p>application.properties文件</p>
-<pre><code class="hljs properties"><span class="hljs-meta">server.port</span>=<span class="hljs-string">8888</span>
-<span class="hljs-meta">server.servlet.context-path</span>=<span class="hljs-string">demo</span></code></pre>
+<pre><code class="language-properties">server.port=8888
+server.servlet.context-path=demo
+</code></pre>
 <p>application.yml文件</p>
-<pre><code class="hljs yaml"><span class="hljs-attr">server:</span>
-  <span class="hljs-attr">port:</span> <span class="hljs-number">8888</span>
-  <span class="hljs-attr">servlet:</span>
-    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/demo</span></code></pre>
+<pre><code class="language-yaml">server:
+  port: 8888
+  servlet:
+    context-path: /demo
+</code></pre>
 <h2 id="4-配置文件与配置类的属性映射方式">4 配置文件与配置类的属性映射方式</h2>
 <h3 id="4-1-使用注解-Value映射">4.1 使用注解@Value映射</h3>
 <p>我们可以通过@Value注解将配置文件中的值映射到一个Spring管理的Bean的字段上</p>
 <p>例如：</p>
 <p><code>application.properties</code>配置如下：</p>
-<pre><code class="hljs properties"><span class="hljs-attr">person</span>:<span class="hljs-string"></span>
-  <span class="hljs-attr">name</span>: <span class="hljs-string">zhangsan</span>
-  <span class="hljs-attr">age</span>: <span class="hljs-string">18</span></code></pre>
+<pre><code class="language-properties">person:
+  name: zhangsan
+  age: 18
+</code></pre>
 <p>或者，<code>application.yml</code>配置如下：</p>
-<pre><code class="hljs yaml"><span class="hljs-attr">person:</span>
-  <span class="hljs-attr">name:</span> <span class="hljs-string">zhangsan</span>
-  <span class="hljs-attr">age:</span> <span class="hljs-number">18</span></code></pre>
+<pre><code class="language-yaml">person:
+  name: zhangsan
+  age: 18
+</code></pre>
 <p>实体Bean代码如下：</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuickStartController</span> </span>{
+<pre><code class="language-java">@Controller
+public class QuickStartController {
 
-    <span class="hljs-meta">@Value("${person.name}")</span>
-    <span class="hljs-keyword">private</span> String name;
-    <span class="hljs-meta">@Value("${person.age}")</span>
-    <span class="hljs-keyword">private</span> Integer age;
+    @Value("${person.name}")
+    private String name;
+    @Value("${person.age}")
+    private Integer age;
 
 
-    <span class="hljs-meta">@RequestMapping("/quick")</span>
-    <span class="hljs-meta">@ResponseBody</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">quick</span><span class="hljs-params">()</span></span>{
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"springboot 访问成功! name="</span>+name+<span class="hljs-string">",age="</span>+age;
+    @RequestMapping("/quick")
+    @ResponseBody
+    public String quick(){
+        return "springboot 访问成功! name="+name+",age="+age;
     }
 
-}</code></pre>
+}
+</code></pre>
 <p>浏览器访问地址：<a class="link" target="_blank" rel="noopener" href="http://localhost:8080/quick">http://localhost:8080/quick<i class="fas fa-external-link-alt"></i></a> 结果如下：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="img%5C13.png" alt=""></p>
 <h3 id="4-2-使用注解-ConfigurationProperties映射">4.2 使用注解@ConfigurationProperties映射</h3>
 <p>通过注解<code>@ConfigurationProperties(prefix="配置文件中的key的前缀")</code>可以将配置文件中的配置自动与实体进行映射</p>
 <p><code>application.properties</code>配置如下：</p>
-<pre><code class="hljs properties"><span class="hljs-attr">person</span>:<span class="hljs-string"></span>
-  <span class="hljs-attr">name</span>: <span class="hljs-string">zhangsan</span>
-  <span class="hljs-attr">age</span>: <span class="hljs-string">18</span></code></pre>
+<pre><code class="language-properties">person:
+  name: zhangsan
+  age: 18
+</code></pre>
 <p>或者，<code>application.yml</code>配置如下：</p>
-<pre><code class="hljs yaml"><span class="hljs-attr">person:</span>
-  <span class="hljs-attr">name:</span> <span class="hljs-string">zhangsan</span>
-  <span class="hljs-attr">age:</span> <span class="hljs-number">18</span></code></pre>
+<pre><code class="language-yaml">person:
+  name: zhangsan
+  age: 18
+</code></pre>
 <p>实体Bean代码如下：</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
-<span class="hljs-meta">@ConfigurationProperties(prefix = "person")</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuickStartController</span> </span>{
+<pre><code class="language-java">@Controller
+@ConfigurationProperties(prefix = "person")
+public class QuickStartController {
 
-    <span class="hljs-keyword">private</span> String name;
-    <span class="hljs-keyword">private</span> Integer age;
+    private String name;
+    private Integer age;
 
-    <span class="hljs-meta">@RequestMapping("/quick")</span>
-    <span class="hljs-meta">@ResponseBody</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">quick</span><span class="hljs-params">()</span></span>{
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"springboot 访问成功! name="</span>+name+<span class="hljs-string">",age="</span>+age;
+    @RequestMapping("/quick")
+    @ResponseBody
+    public String quick(){
+        return "springboot 访问成功! name="+name+",age="+age;
     }
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>{
-        <span class="hljs-keyword">this</span>.name = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(Integer age)</span> </span>{
-        <span class="hljs-keyword">this</span>.age = age;
+    public void setAge(Integer age) {
+        this.age = age;
     }
-}</code></pre>
+}
+</code></pre>
 <p>浏览器访问地址：<a class="link" target="_blank" rel="noopener" href="http://localhost:8080/quick">http://localhost:8080/quick<i class="fas fa-external-link-alt"></i></a> 结果如下：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/13.png" alt=""></p>
 <p>注意：使用<code>@ConfigurationProperties</code>方式可以进行配置文件与实体字段的自动映射，但需要字段必须提供set方法才可以，而使用@Value注解修饰的字段不需要提供set方法</p>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：SpringBoot02原理分析和文件配置</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-04-02 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/04/02/springboot/SpringBoot02原理分析和文件配置/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -746,20 +758,6 @@ org<span class="hljs-selector-class">.springframework</span><span class="hljs-se
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -791,18 +789,18 @@ org<span class="hljs-selector-class">.springframework</span><span class="hljs-se
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

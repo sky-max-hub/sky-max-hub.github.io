@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-04-04
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>255 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>255 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -222,79 +229,65 @@
 <hr>
 <h1>SpringBoot04整合Junit</h1>
 <h2 id="1-添加Junit的起步依赖">1 添加Junit的起步依赖</h2>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--测试的起步依赖--&gt;</span>
- 		<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.junit.vintage<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit-vintage-engine<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-comment">&lt;!--junit--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<pre><code class="language-xml">&lt;!--测试的起步依赖--&gt;
+ 		&lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+            &lt;exclusions&gt;
+                &lt;exclusion&gt;
+                    &lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;
+                    &lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;
+                &lt;/exclusion&gt;
+            &lt;/exclusions&gt;
+        &lt;/dependency&gt;
+&lt;!--junit--&gt;
+		&lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+
 </code></pre>
 <h2 id="2-编写测试类">2 编写测试类</h2>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima.test;
+<pre><code class="language-java">package com.itheima.test;
 
-<span class="hljs-keyword">import</span> com.itheima.MySpringBootApplication;
-<span class="hljs-keyword">import</span> com.itheima.domain.User;
-<span class="hljs-keyword">import</span> com.itheima.mapper.UserMapper;
-<span class="hljs-keyword">import</span> org.junit.Test;
-<span class="hljs-keyword">import</span> org.junit.runner.RunWith;
-<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
-<span class="hljs-keyword">import</span> org.springframework.boot.test.context.SpringBootTest;
-<span class="hljs-keyword">import</span> org.springframework.test.context.junit4.SpringRunner;
+import com.itheima.MySpringBootApplication;
+import com.itheima.domain.User;
+import com.itheima.mapper.UserMapper;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-<span class="hljs-keyword">import</span> java.util.List;
+import java.util.List;
 
-<span class="hljs-meta">@RunWith(SpringRunner.class)</span>
-<span class="hljs-meta">@SpringBootTest(classes = MySpringBootApplication.class)</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MapperTest</span> </span>{
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = MySpringBootApplication.class)
+public class MapperTest {
 
-    <span class="hljs-meta">@Autowired</span>
-    <span class="hljs-keyword">private</span> UserMapper userMapper;
+    @Autowired
+    private UserMapper userMapper;
 
-    <span class="hljs-meta">@Test</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>{
+    @Test
+    public void test() {
         List&lt;User&gt; users = userMapper.queryUserList();
         System.out.println(users);
     }
 
-}</code></pre>
+}
+</code></pre>
 <p>其中，</p>
 <p><code>SpringRunner</code>继承自<code>SpringJUnit4ClassRunner</code>，使用哪一个Spring提供的测试测试引擎都可以</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringRunner</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SpringJUnit4ClassRunner</span> </span></code></pre>
+<pre><code class="language-java">public final class SpringRunner extends SpringJUnit4ClassRunner 
+</code></pre>
 <p><code>@SpringBootTest</code>的属性指定的是引导类的字节码对象</p>
 <h2 id="3-控制台打印信息">3 控制台打印信息</h2>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/15.png" alt=""></p>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：SpringBoot04整合Junit</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-04-04 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/04/04/springboot/SpringBoot04整合Junit/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -355,20 +348,6 @@
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -400,18 +379,18 @@
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

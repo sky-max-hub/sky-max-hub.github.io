@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-04-08
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>458 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>458 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -227,82 +234,70 @@
 </blockquote>
 <h2 id="使用">使用</h2>
 <h3 id="引入依赖">引入依赖</h3>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-aop<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
 <h3 id="相关注解">相关注解</h3>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment">    <span class="hljs-doctag">@Aspect</span> 用来类上,代表这个类是一个切面</span>
-<span class="hljs-comment">    <span class="hljs-doctag">@Before</span> 用在方法上代表这个方法是一个前置通知方法 </span>
-<span class="hljs-comment">    <span class="hljs-doctag">@After</span> 用在方法上代表这个方法是一个后置通知方法 <span class="hljs-doctag">@Around</span> 用在方法上代表这个方法是一个环绕的方法</span>
-<span class="hljs-comment">    <span class="hljs-doctag">@Around</span> 用在方法上代表这个方法是一个环绕的方法</span>
-<span class="hljs-comment">**/</span></code></pre>
+<pre><code class="language-java">/**
+    @Aspect 用来类上,代表这个类是一个切面
+    @Before 用在方法上代表这个方法是一个前置通知方法 
+    @After 用在方法上代表这个方法是一个后置通知方法 @Around 用在方法上代表这个方法是一个环绕的方法
+    @Around 用在方法上代表这个方法是一个环绕的方法
+**/
+</code></pre>
 <h4 id="前置切面">前置切面</h4>
-<pre><code class="hljs java"><span class="hljs-meta">@Aspect</span>
-<span class="hljs-meta">@Component</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAspect</span> </span>{
-    <span class="hljs-meta">@Before("execution(* com.baizhi.service.*.*(..))")</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">before</span><span class="hljs-params">(JoinPoint joinPoint)</span></span>{
-        System.out.println(<span class="hljs-string">"前置通知"</span>);
-        joinPoint.getTarget();<span class="hljs-comment">//目标对象</span>
-        joinPoint.getSignature();<span class="hljs-comment">//方法签名</span>
-        joinPoint.getArgs();<span class="hljs-comment">//方法参数</span>
+<pre><code class="language-java">@Aspect
+@Component
+public class MyAspect {
+    @Before("execution(* com.baizhi.service.*.*(..))")
+    public void before(JoinPoint joinPoint){
+        System.out.println("前置通知");
+        joinPoint.getTarget();//目标对象
+        joinPoint.getSignature();//方法签名
+        joinPoint.getArgs();//方法参数
     }
-}</code></pre>
+}
+</code></pre>
 <h4 id="后置切面">后置切面</h4>
-<pre><code class="hljs java"><span class="hljs-meta">@Aspect</span>
-<span class="hljs-meta">@Component</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAspect</span> </span>{
-    <span class="hljs-meta">@After("execution(* com.baizhi.service.*.*(..))")</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">before</span><span class="hljs-params">(JoinPoint joinPoint)</span></span>{
-        System.out.println(<span class="hljs-string">"后置通知"</span>);
-        joinPoint.getTarget();<span class="hljs-comment">//目标对象</span>
-        joinPoint.getSignature();<span class="hljs-comment">//方法签名</span>
-        joinPoint.getArgs();<span class="hljs-comment">//方法参数</span>
+<pre><code class="language-java">@Aspect
+@Component
+public class MyAspect {
+    @After("execution(* com.baizhi.service.*.*(..))")
+    public void before(JoinPoint joinPoint){
+        System.out.println("后置通知");
+        joinPoint.getTarget();//目标对象
+        joinPoint.getSignature();//方法签名
+        joinPoint.getArgs();//方法参数
     }
-}</code></pre>
+}
+</code></pre>
 <blockquote>
 <p>注意: 前置通知和后置通知都没有返回值,方法参数都为joinpoint</p>
 </blockquote>
 <h4 id="环绕切面">环绕切面</h4>
-<pre><code class="hljs java"><span class="hljs-meta">@Aspect</span>
-<span class="hljs-meta">@Component</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAspect</span> </span>{
-    <span class="hljs-meta">@Around("execution(* com.baizhi.service.*.*(..))")</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">before</span><span class="hljs-params">(ProceedingJoinPoint proceedingJoinPoint)</span> <span class="hljs-keyword">throws</span> Throwable </span>{
-        System.out.println(<span class="hljs-string">"进入环绕通知"</span>);
-        proceedingJoinPoint.getTarget();<span class="hljs-comment">//目标对象</span>
-        proceedingJoinPoint.getSignature();<span class="hljs-comment">//方法签名</span>
-        proceedingJoinPoint.getArgs();<span class="hljs-comment">//方法参数</span>
-        Object proceed = proceedingJoinPoint.proceed();<span class="hljs-comment">//放行执行目标方法</span>
-        System.out.println(<span class="hljs-string">"目标方法执行之后回到环绕通知"</span>);
-        <span class="hljs-keyword">return</span> proceed;<span class="hljs-comment">//返回目标方法返回值</span>
+<pre><code class="language-java">@Aspect
+@Component
+public class MyAspect {
+    @Around("execution(* com.baizhi.service.*.*(..))")
+    public Object before(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        System.out.println("进入环绕通知");
+        proceedingJoinPoint.getTarget();//目标对象
+        proceedingJoinPoint.getSignature();//方法签名
+        proceedingJoinPoint.getArgs();//方法参数
+        Object proceed = proceedingJoinPoint.proceed();//放行执行目标方法
+        System.out.println("目标方法执行之后回到环绕通知");
+        return proceed;//返回目标方法返回值
     }
-}</code></pre>
+}
+</code></pre>
 <blockquote>
 <p>注意: 环绕通知存在返回值,参数为<code>ProceedingJoinPoint</code>,如果执行放行,不会执行目标方法,一旦放行必须将目标方法的返回值返回,否则调用者无法接受返回数据</p>
 </blockquote>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：SpringBoot08面向切面编程</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-04-08 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/04/08/springboot/SpringBoot08面向切面编程/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -363,20 +358,6 @@
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -408,18 +389,18 @@
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

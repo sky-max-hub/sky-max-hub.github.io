@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-09-01
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>876 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>876 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -225,53 +232,55 @@
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305201823730.png" alt="image-20210305201823730"></p>
 <h3 id="realtive">realtive</h3>
 <p>以<code>自身为参照物</code>移动到指定的位置，并且<code>被定位的元素会占据原有的位置</code></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-<span class="css">		<span class="hljs-selector-tag">div</span>{</span>
-<span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span>
-        }
-        .d1{
-<span class="css">			<span class="hljs-attribute">background-color</span>: red;</span>
-        }
-        .d2{
-<span class="css">			<span class="hljs-attribute">background-color</span>: black;</span>
-<span class="css">			<span class="hljs-attribute">position</span>: relative;</span>
+<pre><code class="language-html">&lt;style&gt;
+		div{
+			width: 200px;
+			height: 200px;
+		}
+		.d1{
+			background-color: red;
+		}
+		.d2{
+			background-color: black;
+			position: relative;
 /* 			left: 200px;
-<span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>; */</span>
-        }
-        .d3{
-<span class="css">			<span class="hljs-attribute">background-color</span>: aliceblue;</span>
-        }
-    <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+			top: 200px; */
+		}
+		.d3{
+			background-color: aliceblue;
+		}
+	&lt;/style&gt;
+	&lt;body&gt;
+		&lt;div class="d1"&gt;&lt;/div&gt;
+		&lt;div class="d2"&gt;&lt;/div&gt;
+		&lt;div class="d3"&gt;&lt;/div&gt;
+	&lt;/body&gt;
+</code></pre>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305203011083.png" alt="image-20210305203011083" style="zoom:50%;">
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-<span class="css">		<span class="hljs-selector-tag">div</span>{</span>
-<span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span>
-        }
-        .d1{
-<span class="css">			<span class="hljs-attribute">background-color</span>: red;</span>
-        }
-        .d2{
-<span class="css">			<span class="hljs-attribute">background-color</span>: black;</span>
-<span class="css">			<span class="hljs-attribute">position</span>: relative;</span>
+<pre><code class="language-html">&lt;style&gt;
+		div{
+			width: 200px;
+			height: 200px;
+		}
+		.d1{
+			background-color: red;
+		}
+		.d2{
+			background-color: black;
+			position: relative;
 /* 			left: 200px;
-<span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>; */</span>
-        }
-        .d3{
-<span class="css">			<span class="hljs-attribute">background-color</span>: aliceblue;</span>
-        }
-    <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+			top: 200px; */
+		}
+		.d3{
+			background-color: aliceblue;
+		}
+	&lt;/style&gt;
+	&lt;body&gt;
+		&lt;div class="d1"&gt;&lt;/div&gt;
+		&lt;div class="d2"&gt;&lt;/div&gt;
+		&lt;div class="d3"&gt;&lt;/div&gt;
+	&lt;/body&gt;
+</code></pre>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305203041348.png" alt="image-20210305203041348" style="zoom:50%;">
 <h3 id="absolute">absolute</h3>
 <p>以其他元素作为参照物，移动指定距离，且不会占据原有的位置，关于 <code>absolute</code> 定位参考点的选择：</p>
@@ -280,179 +289,168 @@
 <li>如果元素的外层元素没有设置任何 <code>position</code> 的值，那么该元素将寻找离自己最近的设定过非默认 <code>position</code> 属性的外层元素作为参照物。</li>
 <li>如果元素的外层元素没有找到设定为非默认 <code>positon</code> 属性的外层元素，那么此时定位参考元素变为 <code>body</code> ，或者说页面</li>
 </ol>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-<span class="css">		<span class="hljs-selector-tag">div</span>{</span>
-<span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span>
-        }
-        .d1{
-<span class="css">			<span class="hljs-attribute">background-color</span>: red;</span>
-        }
-        .d2{
-<span class="css">			<span class="hljs-attribute">background-color</span>: black;</span>
-<span class="css">			<span class="hljs-attribute">position</span>: absolute;</span>
-        }
-        .d3{
-<span class="css">			<span class="hljs-attribute">background-color</span>: aliceblue;</span>
-        }
-    <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+<pre><code class="language-html">&lt;style&gt;
+		div{
+			width: 200px;
+			height: 200px;
+		}
+		.d1{
+			background-color: red;
+		}
+		.d2{
+			background-color: black;
+			position: absolute;
+		}
+		.d3{
+			background-color: aliceblue;
+		}
+	&lt;/style&gt;
+	&lt;body&gt;
+		&lt;div class="d1"&gt;&lt;/div&gt;
+		&lt;div class="d2"&gt;&lt;/div&gt;
+		&lt;div class="d3"&gt;&lt;/div&gt;
+	&lt;/body&gt;
+</code></pre>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305203556950.png" alt="image-20210305203556950" style="zoom:50%;">
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-<span class="css">		<span class="hljs-selector-tag">div</span>{</span>
-<span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span>
-        }
-        .d1{
-<span class="css">			<span class="hljs-attribute">background-color</span>: red;</span>
-        }
-        .d2{
-<span class="css">			<span class="hljs-attribute">background-color</span>: black;</span>
-<span class="css">			<span class="hljs-attribute">position</span>: absolute;</span>
-<span class="css">			<span class="hljs-attribute">left</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>;</span>
-        }
-        .d3{
-<span class="css">			<span class="hljs-attribute">background-color</span>: aliceblue;</span>
-        }
-    <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+<pre><code class="language-html">&lt;style&gt;
+		div{
+			width: 200px;
+			height: 200px;
+		}
+		.d1{
+			background-color: red;
+		}
+		.d2{
+			background-color: black;
+			position: absolute;
+			left: 200px;
+			top: 200px;
+		}
+		.d3{
+			background-color: aliceblue;
+		}
+	&lt;/style&gt;
+	&lt;body&gt;
+		&lt;div class="d1"&gt;&lt;/div&gt;
+		&lt;div class="d2"&gt;&lt;/div&gt;
+		&lt;div class="d3"&gt;&lt;/div&gt;
+	&lt;/body&gt;
+</code></pre>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305203705689.png" alt="image-20210305203705689" style="zoom:50%;">
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-<span class="css">	<span class="hljs-selector-tag">div</span>{</span>
-<span class="css">		<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">		<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span>
-    }
-    .d1{
-<span class="css">		<span class="hljs-attribute">background-color</span>: red;</span>
-    }
-    .d2{
-<span class="css">		<span class="hljs-attribute">background-color</span>: black;</span>
-<span class="css">		<span class="hljs-attribute">position</span>: relative;</span>
-<span class="css">		<span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;</span>
-<span class="css">		<span class="hljs-attribute">height</span>: <span class="hljs-number">500px</span>;</span>
-    }
-    .d22{
-<span class="css">		<span class="hljs-attribute">position</span>: absolute;</span>
-<span class="css">		<span class="hljs-attribute">background-color</span>: aqua;</span>
-<span class="css">		<span class="hljs-attribute">left</span>: <span class="hljs-number">100px</span>;</span>
-<span class="css">		<span class="hljs-attribute">top</span>: <span class="hljs-number">100px</span>;</span>
-    }
-    .d3{
-<span class="css">		<span class="hljs-attribute">background-color</span>: aliceblue;</span>
-    }
-<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d22"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+<pre><code class="language-html">	&lt;style&gt;
+		div{
+			width: 200px;
+			height: 200px;
+		}
+		.d1{
+			background-color: red;
+		}
+		.d2{
+			background-color: black;
+			position: relative;
+			width: 500px;
+			height: 500px;
+		}
+		.d22{
+			position: absolute;
+			background-color: aqua;
+			left: 100px;
+			top: 100px;
+		}
+		.d3{
+			background-color: aliceblue;
+		}
+	&lt;/style&gt;
+	&lt;body&gt;
+		&lt;div class="d1"&gt;&lt;/div&gt;
+		&lt;div class="d2"&gt;
+			&lt;div class="d22"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+</code></pre>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305204434371.png" alt="image-20210305204434371" style="zoom:50%;">
 <h3 id="fixed">fixed</h3>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-        .d1{
-<span class="css">			<span class="hljs-attribute">background-color</span>: bisque;</span>
-<span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">1000px</span>;</span>
-<span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">1000px</span>;</span>
-        }
-        .d2{
-<span class="css">			<span class="hljs-attribute">position</span>: fixed;</span>
-<span class="css">			<span class="hljs-attribute">background-color</span>: aqua;</span>
-<span class="css">			<span class="hljs-attribute">right</span>: <span class="hljs-number">0px</span>;</span>
-<span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">0px</span>;</span>
-<span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span>
-        }
-    <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-        &gt;&gt;&gt;&gt;&gt;&gt;1
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        &gt;&gt;&gt;&gt;&gt;&gt;2
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+<pre><code class="language-html">&lt;style&gt;
+		.d1{
+			background-color: bisque;
+			width: 1000px;
+			height: 1000px;
+		}
+		.d2{
+			position: fixed;
+			background-color: aqua;
+			right: 0px;
+			top: 0px;
+			width: 200px;
+			height: 200px;
+		}
+	&lt;/style&gt;
+	&lt;body&gt;
+		&gt;&gt;&gt;&gt;&gt;&gt;1
+		&lt;div class="d1"&gt;&lt;/div&gt;
+		&gt;&gt;&gt;&gt;&gt;&gt;2
+		&lt;div class="d2"&gt;&lt;/div&gt;
+	&lt;/body&gt;
+</code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305205431227.png" alt="image-20210305205431227"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305205442554.png" alt="image-20210305205442554"></p>
 <h2 id="z-index堆叠顺序">z-index堆叠顺序</h2>
 <p>一旦修改了元素的定位方式，则元素可能会发生堆叠。可以<code>使用z-index属性来控制定位元素的出现顺序</code>。z-index仅能在定位的元素（使用了 <code>position</code> 非默认属性的元素）上生效<br>
 z-index属性：<br>
 值为数值，数值越大表示堆叠顺序越高，即离用户越近，可以设置为负值，表示离用户更远 ，一般不设置负值</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-        .d1{
-<span class="css">			<span class="hljs-attribute">background-color</span>: black;</span>
-<span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">position</span>: absolute;</span>
-<span class="css">			<span class="hljs-attribute">left</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>;</span>
-        }
-        .d2{
-<span class="css">			<span class="hljs-attribute">position</span>: fixed;</span>
-<span class="css">			<span class="hljs-attribute">background-color</span>: red;</span>
-<span class="css">			<span class="hljs-attribute">left</span>: <span class="hljs-number">100px</span>;</span>
-<span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">100px</span>;</span>
-<span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span>
-        }
-    <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+<pre><code class="language-html">&lt;style&gt;
+		.d1{
+			background-color: black;
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			left: 200px;
+			top: 200px;
+		}
+		.d2{
+			position: fixed;
+			background-color: red;
+			left: 100px;
+			top: 100px;
+			width: 200px;
+			height: 200px;
+		}
+	&lt;/style&gt;
+	&lt;body&gt;
+		&lt;div class="d1"&gt;&lt;/div&gt;
+		&lt;div class="d2"&gt;&lt;/div&gt;
+	&lt;/body&gt;
+</code></pre>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305210239608.png" alt="image-20210305210239608" style="zoom:50%;">
 <p>可以发现后面的<code>div</code>会覆盖前面的，如果想让前面的覆盖后面的，可以设置 <code>z-index</code>：</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-        .d1{
-<span class="css">			<span class="hljs-attribute">background-color</span>: black;</span>
-<span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">position</span>: absolute;</span>
-<span class="css">			<span class="hljs-attribute">left</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">z-index</span>: <span class="hljs-number">1</span>;</span>
-        }
-        .d2{
-<span class="css">			<span class="hljs-attribute">position</span>: fixed;</span>
-<span class="css">			<span class="hljs-attribute">background-color</span>: red;</span>
-<span class="css">			<span class="hljs-attribute">left</span>: <span class="hljs-number">100px</span>;</span>
-<span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">100px</span>;</span>
-<span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span>
-        }
-    <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+<pre><code class="language-html">&lt;style&gt;
+		.d1{
+			background-color: black;
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			left: 200px;
+			top: 200px;
+			z-index: 1;
+		}
+		.d2{
+			position: fixed;
+			background-color: red;
+			left: 100px;
+			top: 100px;
+			width: 200px;
+			height: 200px;
+		}
+	&lt;/style&gt;
+	&lt;body&gt;
+		&lt;div class="d1"&gt;&lt;/div&gt;
+		&lt;div class="d2"&gt;&lt;/div&gt;
+	&lt;/body&gt;
+</code></pre>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305210411571.png" alt="image-20210305210411571" style="zoom:50%;">
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：Position定位和z-index</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-09-01 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/09/01/css/position和z-index/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -513,20 +511,6 @@ z-index属性：<br>
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -558,18 +542,18 @@ z-index属性：<br>
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

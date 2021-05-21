@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-01-05
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>383 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>383 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -223,101 +230,90 @@
 <h1>MyBatis入门05基于注解的Mybatis</h1>
 <h2 id="1-配置方式">1.配置方式</h2>
 <p>修改Dao,SqlMapConfig.xml,并移除Dao.xml</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IUserDao</span> </span>{
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 查询所有用户</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@return</span></span>
-<span class="hljs-comment">*/</span>
-Select(<span class="hljs-string">"select * from user"</span>)
-<span class="hljs-function">List&lt;User&gt; <span class="hljs-title">findAll</span><span class="hljs-params">()</span></span>;
-}</code></pre>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 告知 mybatis 映射配置的位置 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.itheima.dao.IUserDao"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span></code></pre>
+<pre><code class="language-java">public interface IUserDao {
+/**
+* 查询所有用户
+* @return
+*/
+Select("select * from user")
+List&lt;User&gt; findAll();
+}
+</code></pre>
+<pre><code class="language-xml">&lt;!-- 告知 mybatis 映射配置的位置 --&gt;
+&lt;mappers&gt;
+&lt;mapper class="com.itheima.dao.IUserDao"/&gt;
+&lt;/mappers&gt;
+</code></pre>
 <h2 id="2-使用方法">2. 使用方法</h2>
-<pre><code class="hljs java"><span class="hljs-meta">@Insert</span>:实现新增
-<span class="hljs-meta">@Update</span>:实现更新
-<span class="hljs-meta">@Delete</span>:实现删除
-<span class="hljs-meta">@Select</span>:实现查询
-<span class="hljs-meta">@Result</span>:实现结果集封装
-<span class="hljs-meta">@Results</span>:可以与<span class="hljs-meta">@Result</span> 一起使用，封装多个结果集
-<span class="hljs-meta">@ResultMap</span>:实现引用<span class="hljs-meta">@Results</span> 定义的封装
-<span class="hljs-meta">@One</span>:实现一对一结果集封装
-<span class="hljs-meta">@Many</span>:实现一对多结果集封装
-<span class="hljs-meta">@SelectProvider</span>: 实现动态 SQL 映射
-<span class="hljs-meta">@CacheNamespace</span>:实现注解二级缓存的使用</code></pre>
-<pre><code class="hljs Java"><span class="hljs-comment">//UserDao中</span>
+<pre><code class="language-java">@Insert:实现新增
+@Update:实现更新
+@Delete:实现删除
+@Select:实现查询
+@Result:实现结果集封装
+@Results:可以与@Result 一起使用，封装多个结果集
+@ResultMap:实现引用@Results 定义的封装
+@One:实现一对一结果集封装
+@Many:实现一对多结果集封装
+@SelectProvider: 实现动态 SQL 映射
+@CacheNamespace:实现注解二级缓存的使用
+</code></pre>
+<pre><code class="language-Java">//UserDao中
 
-<span class="hljs-meta">@Select("select * from user")</span>
-<span class="hljs-meta">@Results(id="userMap",</span>
-<span class="hljs-meta">value= {</span>
-<span class="hljs-meta">@Result(id=true,column="id",property="userId"),</span>
-<span class="hljs-meta">@Result(column="username",property="userName"),</span>
-<span class="hljs-meta">@Result(column="sex",property="userSex"),</span>
-<span class="hljs-meta">@Result(column="address",property="userAddress"),</span>
-<span class="hljs-meta">@Result(column="birthday",property="userBirthday")</span>
-<span class="hljs-meta">})</span>
-<span class="hljs-function">List&lt;User&gt; <span class="hljs-title">findAll</span><span class="hljs-params">()</span></span>;
-
-
-<span class="hljs-meta">@Select("select * from user where id = #{uid} ")</span>
-<span class="hljs-meta">@ResultMap("userMap")</span>
-<span class="hljs-function">User <span class="hljs-title">findById</span><span class="hljs-params">(Integer userId)</span></span>;
+@Select("select * from user")
+@Results(id="userMap",
+value= {
+@Result(id=true,column="id",property="userId"),
+@Result(column="username",property="userName"),
+@Result(column="sex",property="userSex"),
+@Result(column="address",property="userAddress"),
+@Result(column="birthday",property="userBirthday")
+})
+List&lt;User&gt; findAll();
 
 
-<span class="hljs-meta">@Insert("insert into</span>
-<span class="hljs-meta">user(username,sex,birthday,address)values(#{username},#{sex},#{birthday},#{address}</span>
-<span class="hljs-meta">)")</span>
-<span class="hljs-meta">@SelectKey(keyColumn="id",keyProperty="id",resultType=Integer.class,before =</span>
-<span class="hljs-meta">false, statement = { "select last_insert_id()" })</span>
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">saveUser</span><span class="hljs-params">(User user)</span></span>;</code></pre>
+@Select("select * from user where id = #{uid} ")
+@ResultMap("userMap")
+User findById(Integer userId);
+
+
+@Insert("insert into
+user(username,sex,birthday,address)values(#{username},#{sex},#{birthday},#{address}
+)")
+@SelectKey(keyColumn="id",keyProperty="id",resultType=Integer.class,before =
+false, statement = { "select last_insert_id()" })
+int saveUser(User user);
+</code></pre>
 <p><code>获取插入数据的 id</code></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"saveUser"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"USER"</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置保存时获取插入的 id --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">selectKey</span> <span class="hljs-attr">keyColumn</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"int"</span>&gt;</span>
+<pre><code class="language-xml">&lt;insert id="saveUser" parameterType="USER"&gt;
+&lt;!-- 配置保存时获取插入的 id --&gt;
+&lt;selectKey keyColumn="id" keyProperty="id" resultType="int"&gt;
 select last_insert_id();
-<span class="hljs-tag">&lt;/<span class="hljs-name">selectKey</span>&gt;</span>
+&lt;/selectKey&gt;
 insert into user(username,birthday,sex,address)
 values(#{username},#{birthday},#{sex},#{address})
-<span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span></code></pre>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 查询所有账户，采用延迟加载的方式查询账户的所属用户</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@return</span></span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-meta">@Select("select * from account")</span>
-<span class="hljs-meta">@Results(id="accountMap",</span>
-<span class="hljs-meta">value= {</span>
-<span class="hljs-meta">@Result(id=true,column="id",property="id"),</span>
-<span class="hljs-meta">@Result(column="uid",property="uid"),</span>
-<span class="hljs-meta">@Result(column="money",property="money"),</span>
-<span class="hljs-meta">@Result(column="uid",</span>
-<span class="hljs-meta">property="user",</span>
-<span class="hljs-meta">one=@One(select="com.itheima.dao.IUserDao.findById",</span>
-<span class="hljs-meta">fetchType=FetchType.LAZY)</span>
-<span class="hljs-meta">)</span>
-<span class="hljs-meta">})</span>
-<span class="hljs-function">List&lt;Account&gt; <span class="hljs-title">findAll</span><span class="hljs-params">()</span></span>;</code></pre>
+&lt;/insert&gt;
+</code></pre>
+<pre><code class="language-java">/**
+* 查询所有账户，采用延迟加载的方式查询账户的所属用户
+* @return
+*/
+@Select("select * from account")
+@Results(id="accountMap",
+value= {
+@Result(id=true,column="id",property="id"),
+@Result(column="uid",property="uid"),
+@Result(column="money",property="money"),
+@Result(column="uid",
+property="user",
+one=@One(select="com.itheima.dao.IUserDao.findById",
+fetchType=FetchType.LAZY)
+)
+})
+List&lt;Account&gt; findAll();
+</code></pre>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：MyBatis入门05基于注解的Mybatis</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-01-05 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/01/05/Mybatis/MyBatis入门05基于注解的Mybatis/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -378,20 +374,6 @@ values(#{username},#{birthday},#{sex},#{address})
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -423,18 +405,18 @@ values(#{username},#{birthday},#{sex},#{address})
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

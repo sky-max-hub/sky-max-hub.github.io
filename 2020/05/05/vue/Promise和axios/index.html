@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-05-05
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>11 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>3k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>11 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -358,8 +365,9 @@ JSONP如何封装呢?<br>
 <p>axios.all([]) 返回的结果是一个数组，使用 axios.spread 可将数组 [res1,res2] 展开为 res1, res2</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001181609571.png" alt="image-20201001181609571"></p>
 <p>在上面的示例中, 我们的BaseURL是固定的。事实上, 在开发中可能很多参数都是固定的。这个时候我们可以进行一些抽取, 也可以利用axiox的全局配置</p>
-<pre><code class="hljs js">axios.defaults.baseURL = ‘<span class="hljs-number">123.207</span><span class="hljs-number">.32</span><span class="hljs-number">.32</span>:<span class="hljs-number">8000</span>’
-axios.defaults.headers.post[‘Content-Type’] = ‘application/x-www-form-urlencoded’;</code></pre>
+<pre><code class="language-js">axios.defaults.baseURL = ‘123.207.32.32:8000’
+axios.defaults.headers.post[‘Content-Type’] = ‘application/x-www-form-urlencoded’;
+</code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001181716339.png" alt="image-20201001181716339"></p>
 <h3 id="常见的配置选项">常见的配置选项</h3>
 <p>请求地址：url: ‘/user’	请求类型：method: ‘get’,</p>
@@ -394,103 +402,89 @@ axios.defaults.headers.post[‘Content-Type’] = ‘application/x-www-form-urle
 <p>目录结构</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001182916556.png" alt="image-20201001182916556"></p>
 <p>在 request.js 中封装网络请求模块</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">'axios'</span>
-<span class="hljs-keyword">import</span> QS <span class="hljs-keyword">from</span> <span class="hljs-string">'qs'</span>
-<span class="hljs-comment">//import Cookie from 'js-cookie'</span>
+<pre><code class="language-js">import axios from 'axios'
+import QS from 'qs'
+//import Cookie from 'js-cookie'
 
-<span class="hljs-keyword">const</span> res = {
-    code: <span class="hljs-number">0</span>,
-    msg: <span class="hljs-string">"请求异常"</span>,
+const res = {
+    code: 0,
+    msg: "请求异常",
     data: {}
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">request</span>(<span class="hljs-params">url, data, type</span>) </span>{
-    <span class="hljs-keyword">try</span> {
-        <span class="hljs-comment">//自动给请求加上token和collegeId，因为mock原因暂时注释掉</span>
-        <span class="hljs-comment">// try {</span>
-        <span class="hljs-comment">//     // 获取登录数据</span>
-        <span class="hljs-comment">//     if (Cookie.get('token') !== undefined) {</span>
-        <span class="hljs-comment">//         const token = JSON.parse(Cookie.get('token'))</span>
-        <span class="hljs-comment">//         console.log('token信息',token)</span>
-        <span class="hljs-comment">//         if (data !== undefined &amp;&amp; data !== null ) {</span>
-        <span class="hljs-comment">//             data.token = token.token</span>
-        <span class="hljs-comment">//             data.collegeId = token.collegeId</span>
-        <span class="hljs-comment">//         } else {</span>
-        <span class="hljs-comment">//             data = {</span>
-        <span class="hljs-comment">//                 token: token.token,</span>
-        <span class="hljs-comment">//                 collegeId: token.collegeId</span>
-        <span class="hljs-comment">//             }</span>
-        <span class="hljs-comment">//         }</span>
-        <span class="hljs-comment">//     }</span>
-        <span class="hljs-comment">// } catch (e) {</span>
-        <span class="hljs-comment">//     //</span>
-        <span class="hljs-comment">// }</span>
-        <span class="hljs-comment">// 判断请求类型</span>
-        <span class="hljs-keyword">if</span> (type === <span class="hljs-string">'get'</span>) {
-            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">await</span> axios.get(url, {<span class="hljs-attr">params</span>: data})).data
-        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (type === <span class="hljs-string">'post'</span>) {
-            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">await</span> axios.post(url, QS.stringify(data), {<span class="hljs-attr">headers</span>: {<span class="hljs-string">'content-type'</span>: <span class="hljs-string">'application/x-www-form-urlencoded;charset=utf-8'</span>}})).data
-        } <span class="hljs-keyword">else</span> {
-            <span class="hljs-keyword">return</span> res
+export async function request(url, data, type) {
+    try {
+        //自动给请求加上token和collegeId，因为mock原因暂时注释掉
+        // try {
+        //     // 获取登录数据
+        //     if (Cookie.get('token') !== undefined) {
+        //         const token = JSON.parse(Cookie.get('token'))
+        //         console.log('token信息',token)
+        //         if (data !== undefined &amp;&amp; data !== null ) {
+        //             data.token = token.token
+        //             data.collegeId = token.collegeId
+        //         } else {
+        //             data = {
+        //                 token: token.token,
+        //                 collegeId: token.collegeId
+        //             }
+        //         }
+        //     }
+        // } catch (e) {
+        //     //
+        // }
+        // 判断请求类型
+        if (type === 'get') {
+            return (await axios.get(url, {params: data})).data
+        } else if (type === 'post') {
+            return (await axios.post(url, QS.stringify(data), {headers: {'content-type': 'application/x-www-form-urlencoded;charset=utf-8'}})).data
+        } else {
+            return res
         }
-    } <span class="hljs-keyword">catch</span> (e) {
-        <span class="hljs-keyword">return</span> res
+    } catch (e) {
+        return res
     }
-}</code></pre>
-<p>api文件夹中调用 request.js 封装的 request函数</p>
-<pre><code class="hljs js"><span class="hljs-comment">// 登录、注册、忘记密码模块</span>
-<span class="hljs-keyword">import</span> { request } <span class="hljs-keyword">from</span> <span class="hljs-string">'../util/request.js'</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">login</span>(<span class="hljs-params">data</span>) </span>{ <span class="hljs-comment">// 登录接口</span>
-    <span class="hljs-keyword">return</span> request( <span class="hljs-string">'/api/login/collegeAdmin'</span>, data, <span class="hljs-string">'post'</span>)
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">register</span>(<span class="hljs-params">data</span>) </span>{ <span class="hljs-comment">// 注册接口</span>
-  <span class="hljs-keyword">return</span> request(<span class="hljs-string">'/api/register'</span>, data, <span class="hljs-string">'post'</span>)
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">systemMessage</span>(<span class="hljs-params">data</span>) </span>{ <span class="hljs-comment">// 获取院管理员信息</span>
-    <span class="hljs-keyword">return</span> request(<span class="hljs-string">'/api/account/msg'</span>, data, <span class="hljs-string">'get'</span>)
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changePassword</span>(<span class="hljs-params">data</span>) </span>{ <span class="hljs-comment">// 获取院管理员信息</span>
-    <span class="hljs-keyword">return</span> request(<span class="hljs-string">'/api/account/password/change'</span>, data, <span class="hljs-string">'post'</span>)
 }
 </code></pre>
+<p>api文件夹中调用 request.js 封装的 request函数</p>
+<pre><code class="language-js">// 登录、注册、忘记密码模块
+import { request } from '../util/request.js'
+
+export function login(data) { // 登录接口
+    return request( '/api/login/collegeAdmin', data, 'post')
+}
+
+export function register(data) { // 注册接口
+  return request('/api/register', data, 'post')
+}
+
+export function systemMessage(data) { // 获取院管理员信息
+    return request('/api/account/msg', data, 'get')
+}
+
+export function changePassword(data) { // 获取院管理员信息
+    return request('/api/account/password/change', data, 'post')
+}
+
+</code></pre>
 <p>在action中的调用</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">changePasswd</span>(<span class="hljs-params">{ commit },data</span>)</span>{
-       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
-           changePassword(data).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
-               <span class="hljs-keyword">if</span> (res.code === <span class="hljs-number">1</span>){
-                   resolve(res.msg)
-                   commit(<span class="hljs-string">'NULL'</span>)
-               } <span class="hljs-keyword">else</span> {
-                   reject(res.msg)
-               }
-           }).catch(<span class="hljs-function"><span class="hljs-params">error</span>=&gt;</span>{
-               reject(error)
-           })
-       })</code></pre>
+<pre><code class="language-js"> changePasswd({ commit },data){
+        return new Promise((resolve, reject) =&gt; {
+            changePassword(data).then(res =&gt; {
+                if (res.code === 1){
+                    resolve(res.msg)
+                    commit('NULL')
+                } else {
+                    reject(res.msg)
+                }
+            }).catch(error=&gt;{
+                reject(error)
+            })
+        })
+</code></pre>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：vue学习笔记07-Promise和axios</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-05-05 07:45:01</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/05/05/vue/Promise和axios/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -551,20 +545,6 @@ axios.defaults.headers.post[‘Content-Type’] = ‘application/x-www-form-urle
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -596,18 +576,18 @@ axios.defaults.headers.post[‘Content-Type’] = ‘application/x-www-form-urle
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

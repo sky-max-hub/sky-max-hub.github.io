@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-05-05
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.9k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>3.9k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -415,57 +422,59 @@ OK, 我们来看下面的代码:</p>
 <p>目录结构：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001105136797.png" alt="image-20201001105136797"></p>
 <p>在 index.js中做如下定义：</p>
-<pre><code class="hljs js"><span class="hljs-comment">// store的index.js文件</span>
-<span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
-<span class="hljs-keyword">import</span> Vuex <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span>
+<pre><code class="language-js">// store的index.js文件
+import Vue from 'vue'
+import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-<span class="hljs-keyword">const</span> modulesFiles = <span class="hljs-built_in">require</span>.context(<span class="hljs-string">'./modules'</span>, <span class="hljs-literal">true</span>, <span class="hljs-regexp">/\.js$/</span>)
+const modulesFiles = require.context('./modules', true, /\.js$/)
 
-<span class="hljs-keyword">const</span> modules = modulesFiles.keys().reduce(<span class="hljs-function">(<span class="hljs-params">modules, modulePath</span>) =&gt;</span> {
-    <span class="hljs-comment">// set './app.js' =&gt; 'app'</span>
-    <span class="hljs-keyword">const</span> moduleName = modulePath.replace(<span class="hljs-regexp">/^\.\/(.*)\.\w+$/</span>, <span class="hljs-string">'$1'</span>)
-    <span class="hljs-keyword">const</span> value = modulesFiles(modulePath)
+const modules = modulesFiles.keys().reduce((modules, modulePath) =&gt; {
+    // set './app.js' =&gt; 'app'
+    const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
+    const value = modulesFiles(modulePath)
     modules[moduleName] = value.default
-    <span class="hljs-keyword">return</span> modules
+    return modules
 }, {})
 
 
-<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
+const store = new Vuex.Store({
     modules
 })
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store
+export default store
+
 </code></pre>
 <p>在每个store文件中可以这样定义：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> state = <span class="hljs-function">() =&gt;</span> ({
+<pre><code class="language-js">const state = () =&gt; ({
   .......
 })
 
-<span class="hljs-keyword">const</span> getters = {
+const getters = {
     ......
 }
 
-<span class="hljs-keyword">const</span> mutations = { <span class="hljs-comment">// mutations改变state中的数据</span>
+const mutations = { // mutations改变state中的数据
   ......
 }
 
-<span class="hljs-keyword">const</span> actions = { <span class="hljs-comment">// 发送请求</span>
+const actions = { // 发送请求
   ........
 }
 
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-    namespaced: <span class="hljs-literal">true</span>,<span class="hljs-comment">//注意要开启这个</span>
+export default {
+    namespaced: true,//注意要开启这个
     state,
     mutations,
     actions,
     getters
 }
+
 </code></pre>
 <p>这样在组件中使用的时候可以这样：</p>
-<pre><code class="hljs vue">&lt;template&gt;
+<pre><code class="language-vue">&lt;template&gt;
   .......
 &lt;/template&gt;
 
@@ -487,26 +496,11 @@ export default {
 &lt;style scoped&gt;
    ....
 &lt;/style&gt;
+
 </code></pre>
+
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：vue学习笔记06-vuex</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-05-05 06:45:01</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/05/05/vue/Vuex/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -567,20 +561,6 @@ export default {
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -612,18 +592,18 @@ export default {
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

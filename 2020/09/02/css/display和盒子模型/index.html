@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-09-02
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -253,10 +260,11 @@
 <code>margin-top/right/bottom/left: value;</code><br>
 value可取值为<code>像素，%，auto，负值</code></p>
 <p>外边距简写</p>
-<pre><code class="hljs css"><span class="hljs-attribute">margin</span>:<span class="hljs-built_in">value</span>(四个方向相同) ;
-<span class="hljs-attribute">margin</span>: <span class="hljs-built_in">value</span>(上下) <span class="hljs-built_in">value</span>(左右);
-<span class="hljs-attribute">margin</span>: <span class="hljs-built_in">value</span>(上) <span class="hljs-built_in">value</span>(左右) <span class="hljs-built_in">value</span>(下);
-<span class="hljs-attribute">margin</span>: <span class="hljs-built_in">value</span>(上) <span class="hljs-built_in">value</span>(右) <span class="hljs-built_in">value</span>(下) <span class="hljs-built_in">value</span>(左);</code></pre>
+<pre><code class="language-css">    margin:value(四个方向相同) ;
+    margin: value(上下) value(左右);
+    margin: value(上) value(左右) value(下);
+    margin: value(上) value(右) value(下) value(左);
+</code></pre>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305211118212.png" alt="image-20210305211118212" style="zoom:80%;">
 <p>margin设置元素外边距的宽度，它有这么几个特点：</p>
 <ol>
@@ -281,19 +289,21 @@ value可取值为<code>像素，%，auto，负值</code></p>
 <p>border的三要素可以统一写在”border”属性中，也可以单独设置。</p>
 <p>​	统一的写法：<code>border: 1px solid  red;</code><br>
 ​	单独设置的写法：</p>
-<pre><code class="hljs css"><span class="hljs-attribute">border-width</span>: ; 
-<span class="hljs-attribute">border-style</span>: ;
-<span class="hljs-attribute">border-color</span>: ;</code></pre>
+<pre><code class="language-css">	border-width: ; 
+	border-style: ;
+	border-color: ;
+</code></pre>
 <h3 id="padding（内边距）">padding（内边距）</h3>
 <p>内容区域和边框之间的空间。会扩大元素边框所占用的区域<br>
 语法：<code>padding:value;</code><br>
 单边设置<br>
 <code>padding-top/right/bottom/left:value;</code>value可取值为像素，百分比，但不能为负数</p>
 <p>内边距的简写</p>
-<pre><code class="hljs css"><span class="hljs-attribute">padding</span>:<span class="hljs-built_in">value</span>(四个方向相同) ;
-<span class="hljs-attribute">padding</span>: <span class="hljs-built_in">value</span>(上下) <span class="hljs-built_in">value</span>(左右);
-<span class="hljs-attribute">padding</span>: <span class="hljs-built_in">value</span>(上) <span class="hljs-built_in">value</span>(左右) <span class="hljs-built_in">value</span>(下);
-<span class="hljs-attribute">padding</span>: <span class="hljs-built_in">value</span>(上) <span class="hljs-built_in">value</span>(右) <span class="hljs-built_in">value</span>(下) <span class="hljs-built_in">value</span>(左);</code></pre>
+<pre><code class="language-css">  padding:value(四个方向相同) ;
+  padding: value(上下) value(左右);
+  padding: value(上) value(左右) value(下);
+  padding: value(上) value(右) value(下) value(左);
+</code></pre>
 <h3 id="怪异盒模型">怪异盒模型</h3>
 <p>​	盒子模型分两种，一种是符合W3C规范的标准例子模型，另一种是IE的盒子模型，IE的盒子模型也被叫怪异盒子。<br>
 ​	可以看到 IE 盒子模型也包括 margin、border、padding、content，不过，和标准 盒子模型不同的是：IE 盒子模型的宽，包含了 border 和 pading。</p>
@@ -308,23 +318,6 @@ value可取值为<code>像素，%，auto，负值</code></p>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：display属性和盒子模型</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-09-02 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/09/02/css/display和盒子模型/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -385,20 +378,6 @@ value可取值为<code>像素，%，auto，负值</code></p>
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -430,18 +409,18 @@ value可取值为<code>像素，%，auto，负值</code></p>
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

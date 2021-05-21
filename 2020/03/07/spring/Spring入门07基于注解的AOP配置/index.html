@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-03-07
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.3k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.3k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -223,244 +230,239 @@
 <h1>Spring入门07基于注解的AOP配置</h1>
 <h2 id="1-使用步骤">1. 使用步骤</h2>
 <p>导入约束</p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">"http://www.springframework.org/schema/aop"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xmlns:tx</span>=<span class="hljs-string">"http://www.springframework.org/schema/tx"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/beans</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/beans/spring-beans.xsd</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/aop</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/aop/spring-aop.xsd</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/tx</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/tx/spring-tx.xsd</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/context</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd"&gt;
     
-<span class="hljs-comment">&lt;!-- 配置 spring 创建容器时要扫描的包 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.itheima"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">context:component-scan</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+&lt;!-- 配置 spring 创建容器时要扫描的包 --&gt;
+&lt;context:component-scan base-package="com.itheima"&gt;&lt;/context:component-scan&gt;
+&lt;/beans&gt;
+</code></pre>
 <p>在业务层使用@Transactional 注解</p>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment">*该注解的属性和 xml 中的属性含义一致。该注解可以出现在接口上，类上和方法上。</span>
-<span class="hljs-comment">*出现接口上，表示该接口的所有实现类都有事务支持。</span>
-<span class="hljs-comment">*出现在类上，表示类中所有方法有事务支持</span>
-<span class="hljs-comment">*出现在方法上，表示方法有事务支持。</span>
-<span class="hljs-comment">*以上三个位置的优先级：方法&gt;类&gt;接口</span>
-<span class="hljs-comment">**/</span>
+<pre><code class="language-java">/**
+*该注解的属性和 xml 中的属性含义一致。该注解可以出现在接口上，类上和方法上。
+*出现接口上，表示该接口的所有实现类都有事务支持。
+*出现在类上，表示类中所有方法有事务支持
+*出现在方法上，表示方法有事务支持。
+*以上三个位置的优先级：方法&gt;类&gt;接口
+**/
 
-<span class="hljs-meta">@Transactional(readOnly=false,propagation=Propagation.REQUIRED)</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">transfer</span><span class="hljs-params">(String sourceName, String targeName, Float money)</span> </span>{
+@Transactional(readOnly=false,propagation=Propagation.REQUIRED)
+public void transfer(String sourceName, String targeName, Float money) {
     ..........
-}</code></pre>
+}
+</code></pre>
 <p>在配置文件中开启 spring 对注解事务的支持</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 开启 spring 对注解事务的支持 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">tx:annotation-driven</span> <span class="hljs-attr">transaction-manager</span>=<span class="hljs-string">"transactionManager"</span>/&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;!-- 开启 spring 对注解事务的支持 --&gt;
+&lt;tx:annotation-driven transaction-manager="transactionManager"/&gt;
+</code></pre>
 <p>不使用 xml 的配置方式</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@EnableTransactionManagement</span><span class="hljs-comment">//开启事务支持</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringTxConfiguration</span> </span>{
-<span class="hljs-comment">//里面配置数据源，配置 JdbcTemplate,配置事务管理器。在之前的步骤已经写过了。</span>
-}</code></pre>
+<pre><code class="language-java">@Configuration
+@EnableTransactionManagement//开启事务支持
+public class SpringTxConfiguration {
+//里面配置数据源，配置 JdbcTemplate,配置事务管理器。在之前的步骤已经写过了。
+}
+</code></pre>
 <h2 id="2-自定义事务控制器和配置AOP">2. 自定义事务控制器和配置AOP</h2>
 <h3 id="2-1-基于xml">2.1 基于xml</h3>
 <p>自己写一个事务控制器，抽取公共代码作为通知</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TransactionManager</span> </span>{
-<span class="hljs-comment">//定义一个 DBAssit</span>
-<span class="hljs-keyword">private</span> DBAssit dbAssit ;
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDbAssit</span><span class="hljs-params">(DBAssit dbAssit)</span> </span>{
-<span class="hljs-keyword">this</span>.dbAssit = dbAssit;
+<pre><code class="language-java">public class TransactionManager {
+//定义一个 DBAssit
+private DBAssit dbAssit ;
+public void setDbAssit(DBAssit dbAssit) {
+this.dbAssit = dbAssit;
 }
-<span class="hljs-comment">//开启事务</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">beginTransaction</span><span class="hljs-params">()</span> </span>{
-<span class="hljs-keyword">try</span> {
-dbAssit.getCurrentConnection().setAutoCommit(<span class="hljs-keyword">false</span>);
-} <span class="hljs-keyword">catch</span> (SQLException e) {
+//开启事务
+public void beginTransaction() {
+try {
+dbAssit.getCurrentConnection().setAutoCommit(false);
+} catch (SQLException e) {
 e.printStackTrace();
 }
 }
-<span class="hljs-comment">//提交事务</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">commit</span><span class="hljs-params">()</span> </span>{
-<span class="hljs-keyword">try</span> {
+//提交事务
+public void commit() {
+try {
 dbAssit.getCurrentConnection().commit();
-} <span class="hljs-keyword">catch</span> (SQLException e) {
+} catch (SQLException e) {
 e.printStackTrace();
 }
 }
-<span class="hljs-comment">//回滚事务</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rollback</span><span class="hljs-params">()</span> </span>{
-<span class="hljs-keyword">try</span> {
+//回滚事务
+public void rollback() {
+try {
 dbAssit.getCurrentConnection().rollback();
-} <span class="hljs-keyword">catch</span> (SQLException e) {
+} catch (SQLException e) {
 e.printStackTrace();
 }
 }
-<span class="hljs-comment">//释放资源</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">release</span><span class="hljs-params">()</span> </span>{
-<span class="hljs-keyword">try</span> {
+//释放资源
+public void release() {
+try {
 dbAssit.releaseConnection();
-} <span class="hljs-keyword">catch</span> (Exception e) {
+} catch (Exception e) {
 e.printStackTrace();
 }
 }
-}</code></pre>
+}
+</code></pre>
 <p>注入容器中</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"txManager"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.itheima.utils.TransactionManager"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dbAssit"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"dbAssit"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;bean id="txManager" class="com.itheima.utils.TransactionManager"&gt;
+&lt;property name="dbAssit" ref="dbAssit"&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
 <p>通知类型在<code>&lt;aop:aspect&gt;&lt;/aop:aspect&gt;</code>中配置</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--</span>
-<span class="hljs-comment">aop:before</span>
-<span class="hljs-comment">作用：用于配置前置通知。 指定增强的方法在切入点方法之前执行</span>
-<span class="hljs-comment">属性：</span>
-<span class="hljs-comment">	method:用于指定通知类中的增强方法名称</span>
-<span class="hljs-comment">	ponitcut-ref：用于指定切入点的表达式的引用</span>
-<span class="hljs-comment">	poinitcut：用于指定切入点表达式</span>
-<span class="hljs-comment">执行时间点：</span>
-<span class="hljs-comment">	切入点方法执行之前执行</span>
-<span class="hljs-comment">--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aop:before</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"beginTransaction"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"pt1"</span>/&gt;</span>
+<pre><code class="language-xml">&lt;!--
+aop:before
+作用：用于配置前置通知。 指定增强的方法在切入点方法之前执行
+属性：
+	method:用于指定通知类中的增强方法名称
+	ponitcut-ref：用于指定切入点的表达式的引用
+	poinitcut：用于指定切入点表达式
+执行时间点：
+	切入点方法执行之前执行
+--&gt;
+&lt;aop:before method="beginTransaction" pointcut-ref="pt1"/&gt;
 
-<span class="hljs-comment">&lt;!--</span>
-<span class="hljs-comment">aop:after-returning</span>
-<span class="hljs-comment">作用：用于配置后置通知</span>
-<span class="hljs-comment">属性：</span>
-<span class="hljs-comment">	method： 指定通知中方法的名称。</span>
-<span class="hljs-comment">	pointct： 定义切入点表达式</span>
-<span class="hljs-comment">	pointcut-ref： 指定切入点表达式的引用</span>
-<span class="hljs-comment">执行时间点：</span>
-<span class="hljs-comment">	切入点方法正常执行之后。它和异常通知只能有一个执行</span>
-<span class="hljs-comment">--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-returning</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"commit"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"pt1"</span>/&gt;</span>
+&lt;!--
+aop:after-returning
+作用：用于配置后置通知
+属性：
+	method： 指定通知中方法的名称。
+	pointct： 定义切入点表达式
+	pointcut-ref： 指定切入点表达式的引用
+执行时间点：
+	切入点方法正常执行之后。它和异常通知只能有一个执行
+--&gt;
+&lt;aop:after-returning method="commit" pointcut-ref="pt1"/&gt;
 
-<span class="hljs-comment">&lt;!--</span>
-<span class="hljs-comment">aop:after-throwing</span>
-<span class="hljs-comment">作用：用于配置异常通知</span>
-<span class="hljs-comment">属性：</span>
-<span class="hljs-comment">	method： 指定通知中方法的名称。</span>
-<span class="hljs-comment">    pointct： 定义切入点表达式</span>
-<span class="hljs-comment">	pointcut-ref： 指定切入点表达式的引用</span>
-<span class="hljs-comment">执行时间点：</span>
-<span class="hljs-comment">	切入点方法执行产生异常后执行。它和后置通知只能执行一个</span>
-<span class="hljs-comment">--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-throwing</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"rollback"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"pt1"</span>/&gt;</span>
+&lt;!--
+aop:after-throwing
+作用：用于配置异常通知
+属性：
+	method： 指定通知中方法的名称。
+    pointct： 定义切入点表达式
+	pointcut-ref： 指定切入点表达式的引用
+执行时间点：
+	切入点方法执行产生异常后执行。它和后置通知只能执行一个
+--&gt;
+&lt;aop:after-throwing method="rollback" pointcut-ref="pt1"/&gt;
 
-<span class="hljs-comment">&lt;!--</span>
-<span class="hljs-comment">aop:after</span>
-<span class="hljs-comment">作用：用于配置最终通知</span>
-<span class="hljs-comment">属性：</span>
-<span class="hljs-comment">	method： 指定通知中方法的名称。</span>
-<span class="hljs-comment">	pointct： 定义切入点表达式</span>
-<span class="hljs-comment">	pointcut-ref： 指定切入点表达式的引用</span>
-<span class="hljs-comment">执行时间点：</span>
-<span class="hljs-comment">	无论切入点方法执行时是否有异常，它都会在其后面执行。</span>
-<span class="hljs-comment">--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aop:after</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"release"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"pt1"</span>/&gt;</span>
+&lt;!--
+aop:after
+作用：用于配置最终通知
+属性：
+	method： 指定通知中方法的名称。
+	pointct： 定义切入点表达式
+	pointcut-ref： 指定切入点表达式的引用
+执行时间点：
+	无论切入点方法执行时是否有异常，它都会在其后面执行。
+--&gt;
+&lt;aop:after method="release" pointcut-ref="pt1"/&gt;
 
-<span class="hljs-comment">&lt;!--例子：--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aop:config</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aop:pointcut</span> <span class="hljs-attr">expression</span>=<span class="hljs-string">"execution(* com.itheima.service.impl.*.*(..))"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">id</span>=<span class="hljs-string">"pt1"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aop:aspect</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"txAdvice"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"txManager"</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置环绕通知 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aop:around</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"transactionAround"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"pt1"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">aop:aspect</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">aop:config</span>&gt;</span></code></pre>
+&lt;!--例子：--&gt;
+&lt;aop:config&gt;
+&lt;aop:pointcut expression="execution(* com.itheima.service.impl.*.*(..))"
+id="pt1"/&gt;
+&lt;aop:aspect id="txAdvice" ref="txManager"&gt;
+&lt;!-- 配置环绕通知 --&gt;
+&lt;aop:around method="transactionAround" pointcut-ref="pt1"/&gt;
+&lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+</code></pre>
 <h3 id="2-2-基于注解">2.2 基于注解</h3>
 <p>导入约束</p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">"http://www.springframework.org/schema/aop"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/beans/spring-beans.xsd</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/aop</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/aop/spring-aop.xsd</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/context</span></span>
-<span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- 告知 spring，在创建容器时要扫描的包 --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.itheima"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">context:component-scan</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd"&gt;
+    &lt;!-- 告知 spring，在创建容器时要扫描的包 --&gt;
+	&lt;context:component-scan base-package="com.itheima"&gt;&lt;/context:component-scan&gt;
+&lt;/beans&gt;
+</code></pre>
 <p>把通知类也使用注解配置</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Component("txManager")</span>
-<span class="hljs-meta">@Aspect</span><span class="hljs-comment">//表明当前类是一个切面类</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TransactionManager</span> </span>{
-<span class="hljs-comment">//定义一个 DBAssit</span>
-    <span class="hljs-meta">@Autowired</span>
-    <span class="hljs-keyword">private</span> DBAssit dbAssit ;
+<pre><code class="language-java">@Component("txManager")
+@Aspect//表明当前类是一个切面类
+public class TransactionManager {
+//定义一个 DBAssit
+	@Autowired
+	private DBAssit dbAssit ;
     
-    <span class="hljs-comment">/*</span>
-<span class="hljs-comment">    @Before</span>
-<span class="hljs-comment">    @AfterReturning</span>
-<span class="hljs-comment">    @AfterThrowing</span>
-<span class="hljs-comment">    @After</span>
-<span class="hljs-comment">    */</span>
-    <span class="hljs-meta">@Before("execution(* com.itheima.service.impl.*.*(..))")</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">beginTransaction</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-keyword">try</span> {
-            dbAssit.getCurrentConnection().setAutoCommit(<span class="hljs-keyword">false</span>);
-        } <span class="hljs-keyword">catch</span> (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    /*
+    @Before
+    @AfterReturning
+    @AfterThrowing
+    @After
+    */
+    @Before("execution(* com.itheima.service.impl.*.*(..))")
+	public void beginTransaction() {
+		try {
+			dbAssit.getCurrentConnection().setAutoCommit(false);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
     
-}</code></pre>
+}
+</code></pre>
 <p>在 spring 配置文件中开启 spring 对注解 AOP 的支持</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 开启 spring 对注解 AOP 的支持 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aop:aspectj-autoproxy</span>/&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;!-- 开启 spring 对注解 AOP 的支持 --&gt;
+&lt;aop:aspectj-autoproxy/&gt;
+</code></pre>
 <p>环绕通知注解配置</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Around("execution(* com.itheima.service.impl.*.*(..))")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">transactionAround</span><span class="hljs-params">(ProceedingJoinPoint pjp)</span> </span>{
-<span class="hljs-comment">//定义返回值</span>
-Object rtValue = <span class="hljs-keyword">null</span>;
-<span class="hljs-keyword">try</span> {
-<span class="hljs-comment">//获取方法执行所需的参数</span>
+<pre><code class="language-java">@Around("execution(* com.itheima.service.impl.*.*(..))")
+public Object transactionAround(ProceedingJoinPoint pjp) {
+//定义返回值
+Object rtValue = null;
+try {
+//获取方法执行所需的参数
 Object[] args = pjp.getArgs();
-<span class="hljs-comment">//前置通知：开启事务</span>
+//前置通知：开启事务
 beginTransaction();
-<span class="hljs-comment">//执行方法</span>
+//执行方法
 rtValue = pjp.proceed(args);
-<span class="hljs-comment">//后置通知：提交事务</span>
+//后置通知：提交事务
 commit();
-}<span class="hljs-keyword">catch</span>(Throwable e) {
-<span class="hljs-comment">//异常通知：回滚事务</span>
+}catch(Throwable e) {
+//异常通知：回滚事务
 rollback();
 e.printStackTrace();
-}<span class="hljs-keyword">finally</span> {
-<span class="hljs-comment">//最终通知：释放资源</span>
+}finally {
+//最终通知：释放资源
 release();
 }
-<span class="hljs-keyword">return</span> rtValue;
-}</code></pre>
+return rtValue;
+}
+</code></pre>
 <p>不使用 XML 的配置方式</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@ComponentScan(basePackages="com.itheima")</span>
-<span class="hljs-meta">@EnableAspectJAutoProxy</span><span class="hljs-comment">//开启注解AOP的支持，相当于&lt;aop:aspectj-autoproxy/&gt;</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringConfiguration</span> </span>{
-}</code></pre>
+<pre><code class="language-java">@Configuration
+@ComponentScan(basePackages="com.itheima")
+@EnableAspectJAutoProxy//开启注解AOP的支持，相当于&lt;aop:aspectj-autoproxy/&gt;
+public class SpringConfiguration {
+}
+</code></pre>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：Spring入门07基于注解的AOP配置</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-03-07 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/03/07/spring/Spring入门07基于注解的AOP配置/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -521,20 +523,6 @@ release();
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -566,18 +554,18 @@ release();
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

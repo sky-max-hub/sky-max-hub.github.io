@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2021-05-04
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>276 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>276 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -218,33 +225,37 @@
 
         <div class="article-content markdown-body">
             <h3 id="查看防火墙状态">查看防火墙状态</h3>
-<pre><code class="hljs shell">[root@izwz91mv6i3x6k12jjqh60z ~]# systemctl status firewalld
+<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# systemctl status firewalld
 ● firewalld.service - firewalld - dynamic firewall daemon
    Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)
    Active: inactive (dead)
-     Docs: man:firewalld(1)</code></pre>
+     Docs: man:firewalld(1)
+</code></pre>
 <h3 id="开启、关闭防火墙">开启、关闭防火墙</h3>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 开启</span>
+<pre><code class="language-shell"># 开启
 systemctl start firewalld
 
-<span class="hljs-meta">#</span><span class="bash"> 关闭</span>
-systemctl start firewalld</code></pre>
+# 关闭
+systemctl start firewalld
+</code></pre>
 <h3 id="开放指定端口">开放指定端口</h3>
-<pre><code class="hljs shell">firewall-cmd --zone=public --add-port=1935/tcp --permanent
+<pre><code class="language-shell">firewall-cmd --zone=public --add-port=1935/tcp --permanent
 命令含义：
 --zone #作用域
 --add-port=1935/tcp #添加端口，格式为：端口/通讯协议
 --permanent #永久生效，没有此参数重启后失效
 
 [root@izwz91mv6i3x6k12jjqh60z ~]# firewall-cmd --zone=public --add-port=3304/tcp --permanent
-success</code></pre>
+success
+</code></pre>
 <h3 id="重启防火墙">重启防火墙</h3>
-<pre><code class="hljs shell">firewall-cmd --reload
+<pre><code class="language-shell">firewall-cmd --reload
 
 [root@izwz91mv6i3x6k12jjqh60z ~]# firewall-cmd --reload
-success</code></pre>
+success
+</code></pre>
 <h3 id="查看端口号">查看端口号</h3>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">netstat -ntlp //查看当前所有tcp端口·</span>
+<pre><code class="language-shell">#netstat -ntlp //查看当前所有tcp端口·
 
 [root@izwz91mv6i3x6k12jjqh60z ~]# netstat -ntlp 
 Active Internet connections (only servers)
@@ -253,10 +264,11 @@ tcp        0      0 0.0.0.0:3304            0.0.0.0:*               LISTEN      
 tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2185/sshd           
 tcp6       0      0 :::3304                 :::*                    LISTEN      29113/docker-proxy  
 
-<span class="hljs-meta">#</span><span class="bash">netstat -ntulp |grep 3304 //查看所有3304端口使用情况</span>
+#netstat -ntulp |grep 3304 //查看所有3304端口使用情况
 [root@izwz91mv6i3x6k12jjqh60z ~]# netstat -ntulp |grep 3304
 tcp        0      0 0.0.0.0:3304            0.0.0.0:*               LISTEN      29109/docker-proxy  
 tcp6       0      0 :::3304                 :::*                    LISTEN      29113/docker-proxy  
+
 </code></pre>
 <h3 id="开放阿里云安全组">开放阿里云安全组</h3>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504102358335.png" alt="image-20210504102358335"></p>
@@ -266,23 +278,6 @@ tcp6       0      0 :::3304                 :::*                    LISTEN      
         </div>
 
         
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：Linux服务器防火墙端口配置</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2021-05-04 00:00:00</li>
-        <li>
-            本文链接：https://blog.sky123.top/2021/05/04/linux/Linux服务器防火墙端口配置/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
-        
 
         
             <div class="article-nav">
@@ -290,13 +285,13 @@ tcp6       0      0 :::3304                 :::*                    LISTEN      
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/05/04/docker/Docker01%E6%A6%82%E8%BF%B0%E5%92%8C%E5%AE%89%E8%A3%85/"
+                           href="/2021/05/14/docker/Docker04%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Docker概述和安装</span>
+                                <span class="post-nav-title-item">Docker可视化工具</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -306,10 +301,10 @@ tcp6       0      0 :::3304                 :::*                    LISTEN      
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/04/22/javascript/mock/"
+                           href="/2021/05/04/docker/Docker01%E6%A6%82%E8%BF%B0%E5%92%8C%E5%AE%89%E8%A3%85/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Mock和Mock.js</span>
+                                <span class="post-nav-title-item">Docker概述和安装</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -342,20 +337,6 @@ tcp6       0      0 :::3304                 :::*                    LISTEN      
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -387,18 +368,18 @@ tcp6       0      0 :::3304                 :::*                    LISTEN      
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

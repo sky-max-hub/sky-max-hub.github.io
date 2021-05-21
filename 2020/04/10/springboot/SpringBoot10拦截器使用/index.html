@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-04-10
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>335 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>335 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -222,85 +229,71 @@
 <hr>
 <h1>SpringBoot10拦截器使用</h1>
 <h2 id="开发拦截器">开发拦截器</h2>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>{
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object o)</span> <span class="hljs-keyword">throws</span> Exception </span>{
-        System.out.println(<span class="hljs-string">"======1====="</span>);
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<span class="hljs-comment">//返回true 放行  返回false阻止</span>
+<pre><code class="language-java">public class MyInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
+        System.out.println("======1=====");
+        return true;//返回true 放行  返回false阻止
     }
 
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView modelAndView)</span> <span class="hljs-keyword">throws</span> Exception </span>{
-        System.out.println(<span class="hljs-string">"=====2====="</span>);
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView modelAndView) throws Exception {
+        System.out.println("=====2=====");
     }
 
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object o, Exception e)</span> <span class="hljs-keyword">throws</span> Exception </span>{
-        System.out.println(<span class="hljs-string">"=====3====="</span>);
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object o, Exception e) throws Exception {
+        System.out.println("=====3=====");
     }
-}</code></pre>
+}
+</code></pre>
 <h2 id="配置拦截器">配置拦截器</h2>
-<pre><code class="hljs java"><span class="hljs-comment">//1.x中拦截器配置</span>
-<span class="hljs-meta">@Component</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InterceptorConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebMvcConfigurerAdapter</span> </span>{
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> </span>{
-        <span class="hljs-comment">//添加拦截器</span>
-        registry.addInterceptor(<span class="hljs-keyword">new</span> MyInterceptor())
-            .addPathPatterns(<span class="hljs-string">"/**"</span>)<span class="hljs-comment">//定义拦截路径</span>
-            .excludePathPatterns(<span class="hljs-string">"/hello/**"</span>); <span class="hljs-comment">//排除拦截路径</span>
+<pre><code class="language-java">//1.x中拦截器配置
+@Component
+public class InterceptorConfig extends WebMvcConfigurerAdapter {
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        //添加拦截器
+        registry.addInterceptor(new MyInterceptor())
+            .addPathPatterns("/**")//定义拦截路径
+            .excludePathPatterns("/hello/**"); //排除拦截路径
     }
 }
 
-<span class="hljs-comment">//2.x中拦截器配置</span>
-    <span class="hljs-meta">@Configuration</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InterceptorConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebMvcConfigurationSupport</span> </span>{
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> </span>{
-        registry.addInterceptor(<span class="hljs-keyword">new</span> MyInterceptor())<span class="hljs-comment">//添加拦截器</span>
-                .addPathPatterns(<span class="hljs-string">"/hello/**"</span>)<span class="hljs-comment">//添加拦截的请求路径</span>
-                .excludePathPatterns(<span class="hljs-string">"/hello/world"</span>);<span class="hljs-comment">//添加排除那些请求路径不经过拦截器</span>
+//2.x中拦截器配置
+	@Configuration
+public class InterceptorConfig extends WebMvcConfigurationSupport {
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new MyInterceptor())//添加拦截器
+                .addPathPatterns("/hello/**")//添加拦截的请求路径
+                .excludePathPatterns("/hello/world");//添加排除那些请求路径不经过拦截器
     }
-}</code></pre>
+}
+</code></pre>
 <p><code>注意:在springboot2.x版本中自定义拦截器之后出现项目中静态资源 404情况,需要在自定义拦截器的配置中加入如下配置即可:</code></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InterceptorConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebMvcConfigurationSupport</span> </span>{
+<pre><code class="language-java">@Configuration
+public class InterceptorConfig extends WebMvcConfigurationSupport {
 
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> </span>{
-        registry.addInterceptor(<span class="hljs-keyword">new</span> LoginInterceptor())
-                .addPathPatterns(<span class="hljs-string">"/file/**"</span>)
-                .excludePathPatterns(<span class="hljs-string">"/js/**"</span>, <span class="hljs-string">"/css/**"</span>, <span class="hljs-string">"/files/**"</span>);<span class="hljs-comment">//放行静态资源 静态资源被认为是一个控制器请求</span>
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginInterceptor())
+                .addPathPatterns("/file/**")
+                .excludePathPatterns("/js/**", "/css/**", "/files/**");//放行静态资源 静态资源被认为是一个控制器请求
     }
-        <span class="hljs-comment">//springboot2.x 静态资源在自定义拦截器之后无法访问的解决方案</span>
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addResourceHandlers</span><span class="hljs-params">(ResourceHandlerRegistry registry)</span> </span>{
-        registry.addResourceHandler(<span class="hljs-string">"/**"</span>) <span class="hljs-comment">//代表以什么样的请求路径访问静态资源</span>
-                .addResourceLocations(<span class="hljs-string">"classpath:/static/"</span>)
-                .addResourceLocations(<span class="hljs-string">"classpath:/templates/"</span>);
+		//springboot2.x 静态资源在自定义拦截器之后无法访问的解决方案
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**") //代表以什么样的请求路径访问静态资源
+                .addResourceLocations("classpath:/static/")
+                .addResourceLocations("classpath:/templates/");
 
     }
-}</code></pre>
+}
+</code></pre>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：SpringBoot10拦截器使用</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-04-10 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/04/10/springboot/SpringBoot10拦截器使用/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -361,20 +354,6 @@
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -406,18 +385,18 @@
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

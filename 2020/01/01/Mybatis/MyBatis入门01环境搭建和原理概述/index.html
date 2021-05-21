@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-01-01
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>747 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>747 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -241,84 +248,88 @@ sql 的动态参数进行映射生成最终执行的 sql 语句，最后由 myba
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528100320103.png" alt="image-20200528100320103">
 <hr>
 <h3 id="2-2-导入依赖">2.2. 导入依赖</h3>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.4.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<pre><code class="language-xml">&lt;dependency&gt;
+&lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+&lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+&lt;version&gt;3.4.5&lt;/version&gt;
+&lt;/dependency&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.1.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+&lt;dependency&gt;
+&lt;groupId&gt;mysql&lt;/groupId&gt;
+&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+&lt;version&gt;5.1.6&lt;/version&gt;
+&lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+
 </code></pre>
 <h3 id="2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）">2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）</h3>
 <h3 id="2-4-编写接口的映射文件">2.4. 编写接口的映射文件</h3>
 <hr>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528100817522.png" alt="image-20200528100817522">
 <hr>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">mapper</span></span>
-<span class="hljs-meta">PUBLIC <span class="hljs-meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span>
-<span class="hljs-meta"><span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"com.itheima.dao.IUserDao"</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置查询所有操作 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findAll"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"com.itheima.domain.User"</span>&gt;</span>
+&lt;mapper namespace="com.itheima.dao.IUserDao"&gt;
+&lt;!-- 配置查询所有操作 --&gt;
+&lt;select id="findAll" resultType="com.itheima.domain.User"&gt;
 select * from user
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+&lt;/select&gt;
+&lt;/mapper&gt;
+</code></pre>
 <h3 id="2-5-编写核心配置文件-SqlMapConfig-xml-resources目录下">2.5. 编写核心配置文件 SqlMapConfig.xml  (resources目录下)</h3>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">configuration</span></span>
-<span class="hljs-meta">PUBLIC <span class="hljs-meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span>
-<span class="hljs-meta"><span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置 mybatis 的环境 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">environments</span> <span class="hljs-attr">default</span>=<span class="hljs-string">"mysql"</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置 mysql 的环境 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">environment</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mysql"</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置事务的类型 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">transactionManager</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"JDBC"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">transactionManager</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 配置连接数据库的信息：用的是数据源(连接池) --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"POOLED"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driver"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"com.mysql.jdbc.Driver"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"jdbc:mysql://localhost:3306/ee50"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"root"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1234"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">environment</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 告知 mybatis 映射配置的位置 resource表明其在resources文件上 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"com/itheima/dao/IUserDao.xml"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;
+&lt;configuration&gt;
+&lt;!-- 配置 mybatis 的环境 --&gt;
+&lt;environments default="mysql"&gt;
+&lt;!-- 配置 mysql 的环境 --&gt;
+&lt;environment id="mysql"&gt;
+&lt;!-- 配置事务的类型 --&gt;
+&lt;transactionManager type="JDBC"&gt;&lt;/transactionManager&gt;
+&lt;!-- 配置连接数据库的信息：用的是数据源(连接池) --&gt;
+&lt;dataSource type="POOLED"&gt;
+&lt;property name="driver" value="com.mysql.jdbc.Driver"/&gt;
+&lt;property name="url" value="jdbc:mysql://localhost:3306/ee50"/&gt;
+&lt;property name="username" value="root"/&gt;
+&lt;property name="password" value="1234"/&gt;
+&lt;/dataSource&gt;
+&lt;/environment&gt;
+&lt;/environments&gt;
+&lt;!-- 告知 mybatis 映射配置的位置 resource表明其在resources文件上 --&gt;
+&lt;mappers&gt;
+&lt;mapper resource="com/itheima/dao/IUserDao.xml"/&gt;
+&lt;/mappers&gt;
+&lt;/configuration&gt;
+</code></pre>
 <h2 id="3-MyBatis框架原理">3. MyBatis框架原理</h2>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MybatisTest</span> </span>{
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span><span class="hljs-keyword">throws</span> Exception </span>{
-<span class="hljs-comment">//1.读取配置文件</span>
-InputStream in = Resources.getResourceAsStream(<span class="hljs-string">"SqlMapConfig.xml"</span>);
-<span class="hljs-comment">//2.创建 SqlSessionFactory 的构建者对象</span>
-SqlSessionFactoryBuilder builder = <span class="hljs-keyword">new</span> SqlSessionFactoryBuilder();
-<span class="hljs-comment">//3.使用构建者创建工厂对象 SqlSessionFactory</span>
+<pre><code class="language-java">public class MybatisTest {
+public static void main(String[] args)throws Exception {
+//1.读取配置文件
+InputStream in = Resources.getResourceAsStream("SqlMapConfig.xml");
+//2.创建 SqlSessionFactory 的构建者对象
+SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+//3.使用构建者创建工厂对象 SqlSessionFactory
 SqlSessionFactory factory = builder.build(in);
-<span class="hljs-comment">//4.使用 SqlSessionFactory 生产 SqlSession 对象</span>
+//4.使用 SqlSessionFactory 生产 SqlSession 对象
 SqlSession session = factory.openSession();
-<span class="hljs-comment">//5.使用 SqlSession 创建 dao 接口的代理对象</span>
+//5.使用 SqlSession 创建 dao 接口的代理对象
 IUserDao userDao = session.getMapper(IUserDao.class);
-<span class="hljs-comment">//6.使用代理对象执行查询所有方法</span>
+//6.使用代理对象执行查询所有方法
 List&lt;User&gt; users = userDao.findAll();
-<span class="hljs-keyword">for</span>(User user : users) {
+for(User user : users) {
 System.out.println(user);
 }
-<span class="hljs-comment">//7.释放资源</span>
+//7.释放资源
 session.close();
 in.close();
 }
-}</code></pre>
+}
+</code></pre>
 <h3 id="3-1-构建者模式">3.1 构建者模式</h3>
 <hr>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528140047789.png" alt="image-20200528140047789"></p>
@@ -330,23 +341,6 @@ in.close();
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：MyBatis入门01环境搭建和原理概述</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-01-01 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/01/01/Mybatis/MyBatis入门01环境搭建和原理概述/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -392,20 +386,6 @@ in.close();
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -437,18 +417,18 @@ in.close();
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-08-30
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>7 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -242,37 +249,42 @@
 </ol>
 <h3 id="圆角border-radius">圆角border-radius</h3>
 <p>语法</p>
-<pre><code class="hljs css"><span class="hljs-attribute">border-radius</span>：value；四个角
-<span class="hljs-attribute">border-radius</span>：value value；左上右下、右上左下
-<span class="hljs-attribute">border-radius</span>：value value value value；		
-        代表设置对象左上角、右上角、右下角、左下角</code></pre>
+<pre><code class="language-css">border-radius：value；四个角
+border-radius：value value；左上右下、右上左下
+border-radius：value value value value；		
+		代表设置对象左上角、右上角、右下角、左下角
+</code></pre>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103337192.png" alt="image-20210306103337192" style="zoom:50%;">
 <h3 id="盒阴影box-shadow">盒阴影box-shadow</h3>
-<pre><code class="hljs css">语法：<span class="hljs-attribute">box-shadow</span>: h-shadow v-shadow blur spread color inset;</code></pre>
+<pre><code class="language-css">语法：box-shadow: h-shadow v-shadow blur spread color inset;
+</code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103327261.png" alt="image-20210306103327261"></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+<pre><code class="language-html">&lt;style&gt;
     .shadow{
-<span class="css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;</span>
-<span class="css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span>
-<span class="css">            <span class="hljs-attribute">background-color</span>: red;</span>
-<span class="css">            <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">5px</span> <span class="hljs-number">3px</span> darkred;</span>
+            width: 300px;
+            height: 100px;
+            background-color: red;
+            box-shadow: 10px 10px 5px 3px darkred;
         }
-<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"shadow"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+&lt;/style&gt;
+&lt;div class="shadow"&gt;&lt;/div&gt;
+
 </code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103724901.png" alt="image-20210306103724901"></p>
 <h3 id="文字阴影text-shadow">文字阴影text-shadow</h3>
-<pre><code class="hljs css">语法：<span class="hljs-attribute">text-shadow</span>: h-shadow v-shadow blur color;</code></pre>
+<pre><code class="language-css">语法：text-shadow: h-shadow v-shadow blur color;
+</code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103735569.png" alt="image-20210306103735569"></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+<pre><code class="language-html">&lt;style&gt;
     .text1{
-<span class="css">            <span class="hljs-attribute">font-size</span>: <span class="hljs-number">50px</span>;</span>
-<span class="css">            <span class="hljs-attribute">font-weight</span>: bold;</span>
-<span class="css">            <span class="hljs-attribute">color</span>: palegreen;</span>
-<span class="css">            <span class="hljs-attribute">text-shadow</span>: <span class="hljs-number">10px</span> -<span class="hljs-number">5px</span> <span class="hljs-number">5px</span> <span class="hljs-number">#ccc</span> ;</span>
+            font-size: 50px;
+            font-weight: bold;
+            color: palegreen;
+            text-shadow: 10px -5px 5px #ccc ;
        }
-<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text1"</span>&gt;</span>学习猿地<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+&lt;/style&gt;
+&lt;div class="text1"&gt;学习猿地&lt;/div&gt;
+</code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103747132.png" alt="image-20210306103747132"></p>
 <h2 id="CSS3-渐变">CSS3 渐变</h2>
 <p><a class="link" target="_blank" rel="noopener" href="https://www.runoob.com/css3/css3-gradients.html">菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
@@ -356,15 +368,16 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
 <h3 id="简写属性transition">简写属性transition</h3>
 <p>transition属性是一个简写属性，用于设置四个过渡属性<br>
 <code>语法：transition:property duration timing-function delay;</code></p>
-<pre><code class="hljs css"><span class="hljs-selector-id">#box</span>{
-     <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
-     <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;
-     <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#1fb57b</span>;
-     <span class="hljs-attribute">transition</span>: background <span class="hljs-number">4s</span> linear <span class="hljs-number">1s</span>;
- }
- <span class="hljs-selector-id">#box</span><span class="hljs-selector-pseudo">:hover</span>{
-     <span class="hljs-attribute">background-color</span>: red;
-}</code></pre>
+<pre><code class="language-css">       #box{
+            width: 200px;
+            height: 200px;
+            background-color: #1fb57b;
+            transition: background 4s linear 1s;
+        }
+        #box:hover{
+            background-color: red;
+       }
+</code></pre>
 <h2 id="CSS3-animation动画">CSS3 animation动画</h2>
 <p><a class="link" target="_blank" rel="noopener" href="https://www.runoob.com/css3/css3-animations.html">菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
 <p>过渡属性只能模拟动画效果，animation属性可以制作类似Flash动画，通过关键帧控制动画的每一步，使元素从一种样式逐渐变化为另一种样式，实现复杂的动画效果。</p>
@@ -373,7 +386,7 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
 帧：用于分解动画动作，每个帧代表某个时间点。定义每个帧上的动作</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306105920430.png" alt="image-20210306105920430"></p>
 <h3 id="keyframes的语法">@keyframes的语法</h3>
-<pre><code class="hljs css"><span class="hljs-keyword">@keyframes</span> name  {
+<pre><code class="language-css">@keyframes name  {
     from|0%{
         css样式
     }
@@ -383,46 +396,31 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
     to|100%{
         css样式
     }
- }</code></pre>
+ }
+</code></pre>
 <h3 id="animation属性">animation属性</h3>
 <p><code>animation</code>属性用于控制动画，调用由<code>@keyframes</code>定义的动画，设置动画属性，如时间、次数等。animation属性是一个简写属性。<br>
 语法为：<code>animation:name  duration timing-function delay iteration-count direction;</code></p>
 <h3 id="动画子属性">动画子属性</h3>
-<pre><code class="hljs css"><span class="hljs-attribute">animation-name</span>: ;	调用动画，规定需要和keyframes的名字一致
+<pre><code class="language-css">animation-name: ;	调用动画，规定需要和keyframes的名字一致
 
-<span class="hljs-attribute">animation-duration</span>: s|ms;	动画完成一个周期所需要的时间
+animation-duration: s|ms;	动画完成一个周期所需要的时间
 
-<span class="hljs-attribute">animation-timing-function</span>: ;	规定动画的速度变化类型
+animation-timing-function: ;	规定动画的速度变化类型
 
-<span class="hljs-attribute">animation-delay</span>:s|ms ;	播放之前的延迟时间
+animation-delay:s|ms ;	播放之前的延迟时间
 
-<span class="hljs-attribute">animation-iteration-count</span>: 数值|infinite;	播放次数 infinite表示无限次播放
+animation-iteration-count: 数值|infinite;	播放次数 infinite表示无限次播放
 
-<span class="hljs-attribute">animation-direction</span>: normal|alternate;	动画播放方向,<span class="hljs-attribute">normal</span>为默认值，表示正常播放,alternate表示轮流播放，即动画会在奇数次正常播放，而在偶数次向后播放
+animation-direction: normal|alternate;	动画播放方向,normal为默认值，表示正常播放,alternate表示轮流播放，即动画会在奇数次正常播放，而在偶数次向后播放
 
-<span class="hljs-attribute">animation-fill-mode</span>: forwards;	动画停在最后一帧，默认值为<span class="hljs-attribute">none</span>
+animation-fill-mode: forwards;	动画停在最后一帧，默认值为none
 
-<span class="hljs-attribute">animation-play-state</span>:paused|running; 属性规定动画正在运行还是暂停，默认值为running</code></pre>
+animation-play-state:paused|running; 属性规定动画正在运行还是暂停，默认值为running
+</code></pre>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：css3动画常用属性和阴影圆角</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-08-30 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/08/30/css/css3动画/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -483,20 +481,6 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -528,18 +512,18 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

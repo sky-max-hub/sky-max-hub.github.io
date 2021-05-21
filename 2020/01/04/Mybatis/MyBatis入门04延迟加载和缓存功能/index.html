@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-01-04
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -225,75 +232,80 @@
 <p>延迟加载：就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也称懒加载.<br>
 好处： 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多zhangruwang表速度要快。</p>
 <p>坏处：因为只有当需要用到数据时，才会进行数据库查询，这样在大批量数据查询时，因为查询工作也要消耗时间，所以可能造成用户等待时间变长，造成用户体验下降。</p>
-<pre><code class="hljs xml">需先在 SqlMapConfig.xml 中配置开启功能
-<span class="hljs-tag">&lt;<span class="hljs-name">settings</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"lazyLoadingEnabled"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"aggressiveLazyLoading"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"false"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span></code></pre>
+<pre><code class="language-xml">需先在 SqlMapConfig.xml 中配置开启功能
+&lt;settings&gt;
+&lt;setting name="lazyLoadingEnabled" value="true"/&gt;
+&lt;setting name="aggressiveLazyLoading" value="false"/&gt;
+&lt;/settings&gt;
+</code></pre>
 <h3 id="1-1-使用-assocation-实现延迟加载">1.1 使用 assocation 实现延迟加载</h3>
 <p>查询账户信息同时查询用户信息  Account 中有 User 类</p>
-<pre><code class="hljs xml">AccountDao.xml
-List<span class="hljs-tag">&lt;<span class="hljs-name">Account</span>&gt;</span> findAll();
+<pre><code class="language-xml">AccountDao.xml
+List&lt;Account&gt; findAll();
 
-<span class="hljs-comment">&lt;!-- 建立对应关系 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"account"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"accountMap"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"aid"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"uid"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"uid"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"money"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"money"</span>/&gt;</span>
+&lt;!-- 建立对应关系 --&gt;
+&lt;resultMap type="account" id="accountMap"&gt;
+&lt;id column="aid" property="id"/&gt;
+&lt;result column="uid" property="uid"/&gt;
+&lt;result column="money" property="money"/&gt;
     
-<span class="hljs-comment">&lt;!-- 它是用于指定从表方的引用实体属性的 --&gt;</span>
+&lt;!-- 它是用于指定从表方的引用实体属性的 --&gt;
     select： 填写我们要调用的 select 映射的 id
-    column ： 填写我们要传递给 select 映射的参数
-<span class="hljs-tag">&lt;<span class="hljs-name">association</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">javaType</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">select</span>=<span class="hljs-string">"com.itheima.dao.IUserDao.findById"</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"uid"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">association</span>&gt;</span>
+	column ： 填写我们要传递给 select 映射的参数
+&lt;association property="user" javaType="user" select="com.itheima.dao.IUserDao.findById" column="uid"&gt;
+&lt;/association&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
+&lt;/resultMap&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findAll"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"accountMap"</span>&gt;</span>
+&lt;select id="findAll" resultMap="accountMap"&gt;
 select * from account
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
-<pre><code class="hljs xml">UserDao.xml
+&lt;/select&gt;
+</code></pre>
+<pre><code class="language-xml">UserDao.xml
 User findById(Integer userId);
 
-<span class="hljs-comment">&lt;!-- 根据 id 查询 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findById"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"int"</span> &gt;</span>
+&lt;!-- 根据 id 查询 --&gt;
+&lt;select id="findById" resultType="user" parameterType="int" &gt;
 select * from user where id = #{uid}
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+&lt;/select&gt;
+</code></pre>
 <h3 id="1-2-使用-Collection-实现延迟加载">1.2 使用 Collection 实现延迟加载</h3>
 <p>完成加载用户对象时，查询该用户所拥有的账户信息。</p>
 <p>User 中有 List<account></account></p>
-<pre><code class="hljs xml">UserDao.xml
+<pre><code class="language-xml">UserDao.xml
 
-<span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"userMap"</span>&gt;</span>
+&lt;resultMap type="user" id="userMap"&gt;
     
-<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"username"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"address"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"address"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"sex"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"sex"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"birthday"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"birthday"</span>/&gt;</span>
+&lt;id column="id" property="id"&gt;&lt;/id&gt;
+&lt;result column="username" property="username"/&gt;
+&lt;result column="address" property="address"/&gt;
+&lt;result column="sex" property="sex"/&gt;
+&lt;result column="birthday" property="birthday"/&gt;
     
-<span class="hljs-comment">&lt;!-- collection 是用于建立一对多中集合属性的对应关系</span>
-<span class="hljs-comment">ofType 用于指定集合元素的数据类型</span>
-<span class="hljs-comment">select 是用于指定查询账户的唯一标识（账户的 dao 全限定类名加上方法名称）</span>
-<span class="hljs-comment">column 是用于指定使用哪个字段的值作为条件查询</span>
-<span class="hljs-comment">--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">collection</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"accounts"</span> <span class="hljs-attr">ofType</span>=<span class="hljs-string">"account"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">select</span>=<span class="hljs-string">"com.itheima.dao.IAccountDao.findByUid"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span>&gt;</span>
+&lt;!-- collection 是用于建立一对多中集合属性的对应关系
+ofType 用于指定集合元素的数据类型
+select 是用于指定查询账户的唯一标识（账户的 dao 全限定类名加上方法名称）
+column 是用于指定使用哪个字段的值作为条件查询
+--&gt;
+&lt;collection property="accounts" ofType="account"
+select="com.itheima.dao.IAccountDao.findByUid"
+column="id"&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">collection</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
+&lt;/collection&gt;
+&lt;/resultMap&gt;
 
-<span class="hljs-comment">&lt;!-- 配置查询所有操作 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findAll"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"userMap"</span>&gt;</span>
+&lt;!-- 配置查询所有操作 --&gt;
+&lt;select id="findAll" resultMap="userMap"&gt;
 select * from user
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
-<pre><code class="hljs xml">AccountDao.xml
+&lt;/select&gt;
+</code></pre>
+<pre><code class="language-xml">AccountDao.xml
 
-<span class="hljs-comment">&lt;!-- 根据用户 id 查询账户信息 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findByUid"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"account"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"int"</span>&gt;</span>
+&lt;!-- 根据用户 id 查询账户信息 --&gt;
+&lt;select id="findByUid" resultType="account" parameterType="int"&gt;
 select * from account where uid = #{uid}
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+&lt;/select&gt;
+</code></pre>
 <h2 id="2-Mybatis-缓存">2. Mybatis 缓存</h2>
 <p>提供了缓存策略，通过缓存策略来减少数据库的查询次数， 从而提高性能。Mybatis 中缓存分为一级缓存，二级缓存。</p>
 <hr>
@@ -311,53 +323,39 @@ select * from account where uid = #{uid}
 <hr>
 <h5 id="二级缓存的开启与关闭">二级缓存的开启与关闭</h5>
 <p>在 SqlMapConfig.xml 文件开启二级缓存</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">settings</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 开启二级缓存的支持 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"cacheEnabled"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span>
+<pre><code class="language-xml">&lt;settings&gt;
+&lt;!-- 开启二级缓存的支持 --&gt;
+&lt;setting name="cacheEnabled" value="true"/&gt;
+&lt;/settings&gt;
 因为 cacheEnabled 的取值默认就为 true，所以这一步可以省略不配置。为 true 代表开启二级缓存；为
-false 代表不开启二级缓存。</code></pre>
+false 代表不开启二级缓存。
+</code></pre>
 <p>配置相关的 Mapper 映射文件</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">cache</span>&gt;</span>标签表示当前这个 mapper 映射将使用二级缓存，区分的标准就看 mapper 的 namespace 值。
+<pre><code class="language-xml">&lt;cache&gt;标签表示当前这个 mapper 映射将使用二级缓存，区分的标准就看 mapper 的 namespace 值。
 
-<span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">mapper</span></span>
-<span class="hljs-meta">PUBLIC <span class="hljs-meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span>
-<span class="hljs-meta"><span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"com.itheima.dao.IUserDao"</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 开启二级缓存的支持 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">cache</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">cache</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;
+&lt;mapper namespace="com.itheima.dao.IUserDao"&gt;
+&lt;!-- 开启二级缓存的支持 --&gt;
+&lt;cache&gt;&lt;/cache&gt;
+&lt;/mapper&gt;
+</code></pre>
 <p>配置 statement 上面的 useCache 属性</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 根据 id 查询 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findById"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"int"</span> <span class="hljs-attr">useCache</span>=<span class="hljs-string">"true"</span>&gt;</span>
+<pre><code class="language-xml">&lt;!-- 根据 id 查询 --&gt;
+&lt;select id="findById" resultType="user" parameterType="int" useCache="true"&gt;
 select * from user where id = #{uid}
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+&lt;/select&gt;
 
-将 UserDao.xml 映射文件中的<span class="hljs-tag">&lt;<span class="hljs-name">select</span>&gt;</span>标签中设置 useCache=”true”代表当前这个 statement 要使用
+将 UserDao.xml 映射文件中的&lt;select&gt;标签中设置 useCache=”true”代表当前这个 statement 要使用
 二级缓存，如果不使用二级缓存可以设置为 false。
 注意： 针对每次查询都需要最新的数据 sql，要设置成 useCache=false，禁用二级缓存。
-当我们在使用二级缓存时，所缓存的类一定要实现 java.io.Serializable 接口，这种就可以使用序列化方式来保存对象。</code></pre>
+当我们在使用二级缓存时，所缓存的类一定要实现 java.io.Serializable 接口，这种就可以使用序列化方式来保存对象。
+</code></pre>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：MyBatis入门04延迟加载和缓存功能</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-01-04 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/01/04/Mybatis/MyBatis入门04延迟加载和缓存功能/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -418,20 +416,6 @@ select * from user where id = #{uid}
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -463,18 +447,18 @@ select * from user where id = #{uid}
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

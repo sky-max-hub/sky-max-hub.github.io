@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-01-03
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.4k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.4k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -223,201 +230,197 @@
 <h1>MyBatis入门03动态SQL和多表查询</h1>
 <h2 id="1-动态SQL语句">1. 动态SQL语句</h2>
 <h3 id="1-1-动态-SQL-之if标签">1.1 动态 SQL 之if标签</h3>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findByUser"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"user"</span>&gt;</span>
+<pre><code class="language-xml">&lt;select id="findByUser" resultType="user" parameterType="user"&gt;
     
 select * from user where 1=1
     
-<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"username!=null and username != '' "</span>&gt;</span>
+&lt;if test="username!=null and username != '' "&gt;
 and username like #{username}
-<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+&lt;/if&gt;
     
-<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"address != null"</span>&gt;</span>
+&lt;if test="address != null"&gt;
 and address like #{address}
-<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+&lt;/if&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+&lt;/select&gt;
+</code></pre>
 <h3 id="1-2-动态-SQL-之where标签">1.2 动态 SQL 之where标签</h3>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 根据用户信息查询  if标签的 "and" 不能不写 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findByUser"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"user"</span>&gt;</span>
+<pre><code class="language-xml">&lt;!-- 根据用户信息查询  if标签的 "and" 不能不写 --&gt;
+&lt;select id="findByUser" resultType="user" parameterType="user"&gt;
     
 select * from user
     
-<span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span>
+&lt;where&gt;
     
-<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"username!=null and username != '' "</span>&gt;</span>
+&lt;if test="username!=null and username != '' "&gt;
 and username like #{username}
-<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+&lt;/if&gt;
     
-<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"address != null"</span>&gt;</span>
+&lt;if test="address != null"&gt;
 and address like #{address}
-<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+&lt;/if&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span>
+&lt;/where&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+&lt;/select&gt;
+</code></pre>
 <h3 id="1-3-动态标签之foreach标签">1.3 动态标签之foreach标签</h3>
 <p>传入多个 id 查询用户信息，用下边两个 sql 实现：</p>
-<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> USERS <span class="hljs-keyword">WHERE</span> username <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'%zhangruwang%'</span> <span class="hljs-keyword">AND</span> (id <span class="hljs-operator">=</span><span class="hljs-number">10</span> <span class="hljs-keyword">OR</span> id <span class="hljs-operator">=</span><span class="hljs-number">89</span> <span class="hljs-keyword">OR</span> id<span class="hljs-operator">=</span><span class="hljs-number">16</span>)
-<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> USERS <span class="hljs-keyword">WHERE</span> username <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'%zhangruwang%'</span> <span class="hljs-keyword">AND</span> id <span class="hljs-keyword">IN</span> (<span class="hljs-number">10</span>,<span class="hljs-number">89</span>,<span class="hljs-number">16</span>)</code></pre>
+<pre><code class="language-sql">SELECT * FROM USERS WHERE username LIKE '%zhangruwang%' AND (id =10 OR id =89 OR id=16)
+SELECT * FROM USERS WHERE username LIKE '%zhangruwang%' AND id IN (10,89,16)
+</code></pre>
 <p>这样我们在进行范围查询时，就要将一个集合中的值，作为参数动态添加进来。  注意不能直接用集合作为参数，只能将它包装在一个对象中（如   Queryvo  queryvo 中包含一个   <code>List&lt;Integer&gt; ids</code>  ）</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 查询所有用户在 id 的集合之中 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findInIds"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"queryvo"</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- select * from user where id in (1,2,3,4,5); --&gt;</span>
+<pre><code class="language-xml">&lt;!-- 查询所有用户在 id 的集合之中 --&gt;
+&lt;select id="findInIds" resultType="user" parameterType="queryvo"&gt;
+&lt;!-- select * from user where id in (1,2,3,4,5); --&gt;
 select * from user 
-<span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span>
+&lt;where&gt;
     
-<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"ids != null and ids.size() &gt; 0"</span>&gt;</span>
+&lt;if test="ids != null and ids.size() &gt; 0"&gt;
     
-<span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">"ids"</span> <span class="hljs-attr">open</span>=<span class="hljs-string">"id in ( "</span> <span class="hljs-attr">close</span>=<span class="hljs-string">")"</span> <span class="hljs-attr">item</span>=<span class="hljs-string">"uid"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">separator</span>=<span class="hljs-string">","</span>&gt;</span>
+&lt;foreach collection="ids" open="id in ( " close=")" item="uid"
+separator=","&gt;
 #{uid}
-<span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span>
+&lt;/foreach&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+&lt;/if&gt;
+&lt;/where&gt;
+&lt;/select&gt;
 SQL 语句：
 select 字段 from user where id in (?)
-<span class="hljs-tag">&lt;<span class="hljs-name">foreach</span>&gt;</span>标签用于遍历集合，它的属性：
+&lt;foreach&gt;标签用于遍历集合，它的属性：
 collection:代表要遍历的集合元素，注意编写时不要写#{}
 open:代表语句的开始部分
 close:代表结束部分
 item:代表遍历集合的每个元素，生成的变量名
-sperator:代表分隔符</code></pre>
+sperator:代表分隔符
+</code></pre>
 <h3 id="1-4-include标签抽取重复sql">1.4 include标签抽取重复sql</h3>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 抽取重复的语句代码片段 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">sql</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"defaultSql"</span>&gt;</span>
+<pre><code class="language-xml">&lt;!-- 抽取重复的语句代码片段 --&gt;
+&lt;sql id="defaultSql"&gt;
 select * from user
-<span class="hljs-tag">&lt;/<span class="hljs-name">sql</span>&gt;</span>
+&lt;/sql&gt;
 
-<span class="hljs-comment">&lt;!-- 配置查询所有操作 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findAll"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"user"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span>=<span class="hljs-string">"defaultSql"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">include</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+&lt;!-- 配置查询所有操作 --&gt;
+&lt;select id="findAll" resultType="user"&gt;
+&lt;include refid="defaultSql"&gt;&lt;/include&gt;
+&lt;/select&gt;
+</code></pre>
 <h2 id="2-Mybatis-多表查询">2. Mybatis 多表查询</h2>
 <h3 id="2-1-一对一查询-多对一">2.1 一对一查询(多对一)</h3>
 <p>因为一个账户信息只能供某个用户使用，所以从查询账户信息出发关联查询用户信息为一对一查询。如<br>
 果从用户信息出发查询用户下的账户信息则为一对多查询，因为一个用户可以有多个账户。</p>
-<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> account.<span class="hljs-operator">*</span>,user.username,user.address
-<span class="hljs-keyword">FROM</span> account,<span class="hljs-keyword">user</span>
-<span class="hljs-keyword">WHERE</span> account.uid <span class="hljs-operator">=</span> user.id</code></pre>
+<pre><code class="language-sql">SELECT account.*,user.username,user.address
+FROM account,user
+WHERE account.uid = user.id
+</code></pre>
 <p>第一种方式</p>
-<pre><code class="hljs xml">定义了一个 AccountUser 类用于接收结果
+<pre><code class="language-xml">定义了一个 AccountUser 类用于接收结果
 
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findAll"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"accountuser"</span>&gt;</span>
+&lt;select id="findAll" resultType="accountuser"&gt;
 select a.*,u.username,u.address from account a,user u where a.uid =u.id;
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+&lt;/select&gt;
+</code></pre>
 <p>第二种方式</p>
-<pre><code class="hljs xml">在 Account 类中加入 User 类的对象作为 Account 类的一个属性。
+<pre><code class="language-xml">在 Account 类中加入 User 类的对象作为 Account 类的一个属性。
 
-<span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"account"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"accountMap"</span>&gt;</span>
+&lt;resultMap type="account" id="accountMap"&gt;
     
-<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"aid"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"uid"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"uid"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"money"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"money"</span>/&gt;</span>
+&lt;id column="aid" property="id"/&gt;
+&lt;result column="uid" property="uid"/&gt;
+&lt;result column="money" property="money"/&gt;
     
-<span class="hljs-comment">&lt;!-- 它是用于指定从表方的引用实体属性的 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">association</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">javaType</span>=<span class="hljs-string">"user"</span>&gt;</span>
+&lt;!-- 它是用于指定从表方的引用实体属性的 --&gt;
+&lt;association property="user" javaType="user"&gt;
     
-<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"username"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"sex"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"sex"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"birthday"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"birthday"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"address"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"address"</span>/&gt;</span>
+&lt;id column="id" property="id"/&gt;
+&lt;result column="username" property="username"/&gt;
+&lt;result column="sex" property="sex"/&gt;
+&lt;result column="birthday" property="birthday"/&gt;
+&lt;result column="address" property="address"/&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">association</span>&gt;</span>
+&lt;/association&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span></code></pre>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findAll"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"accountMap"</span>&gt;</span>
+&lt;/resultMap&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;select id="findAll" resultMap="accountMap"&gt;
 select u.*,a.id as aid,a.uid,a.money from account a,user u where a.uid =u.id;
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+&lt;/select&gt;
+</code></pre>
 <h3 id="2-2-一对多查询">2.2 一对多查询</h3>
 <p>用户信息和他的账户信息为一对多关系，并且查询过程中如果用户没有账户信息，此时也要将用户信息<br>
 查询出来，我们想到了左外连接查询比较合适</p>
-<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> u.<span class="hljs-operator">*</span>, acc.id id,acc.uid,acc.money
-<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span> u
-<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> account acc <span class="hljs-keyword">ON</span> u.id <span class="hljs-operator">=</span> acc.uid</code></pre>
-<pre><code class="hljs xml">User 类加入 List<span class="hljs-tag">&lt;<span class="hljs-name">Account</span>&gt;</span>  
+<pre><code class="language-sql">SELECT u.*, acc.id id,acc.uid,acc.money
+FROM user u
+LEFT JOIN account acc ON u.id = acc.uid
+</code></pre>
+<pre><code class="language-xml">User 类加入 List&lt;Account&gt;  
 
-<span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"userMap"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"username"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"address"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"address"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"sex"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"sex"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"birthday"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"birthday"</span>/&gt;</span>
+&lt;resultMap type="user" id="userMap"&gt;
+&lt;id column="id" property="id"&gt;&lt;/id&gt;
+&lt;result column="username" property="username"/&gt;
+&lt;result column="address" property="address"/&gt;
+&lt;result column="sex" property="sex"/&gt;
+&lt;result column="birthday" property="birthday"/&gt;
     
-<span class="hljs-comment">&lt;!-- collection 是用于建立一对多中集合属性的对应关系  ofType 用于指定集合元素的数据类型--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">collection</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"accounts"</span> <span class="hljs-attr">ofType</span>=<span class="hljs-string">"account"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"aid"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"uid"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"uid"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"money"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"money"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">collection</span>&gt;</span>
+&lt;!-- collection 是用于建立一对多中集合属性的对应关系  ofType 用于指定集合元素的数据类型--&gt;
+&lt;collection property="accounts" ofType="account"&gt;
+&lt;id column="aid" property="id"/&gt;
+&lt;result column="uid" property="uid"/&gt;
+&lt;result column="money" property="money"/&gt;
+&lt;/collection&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
+&lt;/resultMap&gt;
 
-<span class="hljs-comment">&lt;!-- 配置查询所有操作 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findAll"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"userMap"</span>&gt;</span>
+&lt;!-- 配置查询所有操作 --&gt;
+&lt;select id="findAll" resultMap="userMap"&gt;
 select u.*,a.id as aid ,a.uid,a.money from user u left outer join account
 a on u.id =a.uid
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+&lt;/select&gt;
 
 collection部分定义了用户关联的账户信息。表示关联查询结果集
 property="accounts"：关联查询的结果集存储在 User 对象的上哪个属性。
-ofType="account"：指定关联查询的结果集中的对象类型即List中的对象类型。此处可以使用别名，也可以使用全限定名。</code></pre>
+ofType="account"：指定关联查询的结果集中的对象类型即List中的对象类型。此处可以使用别名，也可以使用全限定名。
+</code></pre>
 <h3 id="2-3-多对多查询">2.3 多对多查询</h3>
 <p>查询角色我们需要用到Role表，但角色分配的用户的信息我们并不能直接找到用户信息，而是要通过中<br>
 间表(USER_ROLE 表)才能关联到用户信息。</p>
-<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> r.<span class="hljs-operator">*</span>,u.id uid,u.username username,u.birthday birthday,u.sex sex,u.address address
-<span class="hljs-keyword">FROM</span> ROLE r <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> USER_ROLE ur
-<span class="hljs-keyword">ON</span> ( r.id <span class="hljs-operator">=</span> ur.rid)
-<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">USER</span> u
-<span class="hljs-keyword">ON</span> (ur.uid <span class="hljs-operator">=</span> u.id)</code></pre>
-<pre><code class="hljs xml">Role 类加入 List<span class="hljs-tag">&lt;<span class="hljs-name">User</span>&gt;</span>  
+<pre><code class="language-sql">SELECT r.*,u.id uid,u.username username,u.birthday birthday,u.sex sex,u.address address
+FROM ROLE r INNER JOIN USER_ROLE ur
+ON ( r.id = ur.rid)
+INNER JOIN USER u
+ON (ur.uid = u.id)
+</code></pre>
+<pre><code class="language-xml">Role 类加入 List&lt;User&gt;  
     
-<span class="hljs-comment">&lt;!--定义 role 表的 ResultMap--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"roleMap"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"role"</span>&gt;</span>
+&lt;!--定义 role 表的 ResultMap--&gt;
+&lt;resultMap id="roleMap" type="role"&gt;
     
-<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"roleId"</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"rid"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"roleName"</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"role_name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"roleDesc"</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"role_desc"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
+&lt;id property="roleId" column="rid"&gt;&lt;/id&gt;
+&lt;result property="roleName" column="role_name"&gt;&lt;/result&gt;
+&lt;result property="roleDesc" column="role_desc"&gt;&lt;/result&gt;
     
-<span class="hljs-tag">&lt;<span class="hljs-name">collection</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"users"</span> <span class="hljs-attr">ofType</span>=<span class="hljs-string">"user"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"id"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"username"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"address"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"address"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"sex"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"sex"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"birthday"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"birthday"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">collection</span>&gt;</span>
+&lt;collection property="users" ofType="user"&gt;
+&lt;id column="id" property="id"&gt;&lt;/id&gt;
+&lt;result column="username" property="username"&gt;&lt;/result&gt;
+&lt;result column="address" property="address"&gt;&lt;/result&gt;
+&lt;result column="sex" property="sex"&gt;&lt;/result&gt;
+&lt;result column="birthday" property="birthday"&gt;&lt;/result&gt;
+&lt;/collection&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
+&lt;/resultMap&gt;
     
     
-<span class="hljs-comment">&lt;!--查询所有--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findAll"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"roleMap"</span>&gt;</span>
+&lt;!--查询所有--&gt;
+&lt;select id="findAll" resultMap="roleMap"&gt;
 select u.*,r.id as rid,r.role_name,r.role_desc from role r
 left outer join user_role ur on r.id = ur.rid
 left outer join user u on u.id = ur.uid
-<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></code></pre>
+&lt;/select&gt;
+</code></pre>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：MyBatis入门03动态SQL和多表查询</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-01-03 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/01/03/Mybatis/MyBatis入门03动态SQL和多表查询/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -478,20 +481,6 @@ left outer join user u on u.id = ur.uid
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -523,18 +512,18 @@ left outer join user u on u.id = ur.uid
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

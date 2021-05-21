@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-04-07
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>485 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>485 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -233,12 +240,13 @@
 <ol>
 <li>
 <p>引入依赖：</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--热部署依赖--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-devtools<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">optional</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">optional</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;!--热部署依赖--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+</code></pre>
 </li>
 <li>
 <p>开启idea的自动编译功能</p>
@@ -248,7 +256,8 @@
 <ol start="3">
 <li>开启idea在程序运行过程中交换类加载器</li>
 </ol>
-<pre><code class="hljs stylus">ctrl+alt+shift+/,选择registry,勾选complier<span class="hljs-selector-class">.sutomake</span><span class="hljs-selector-class">.allow</span><span class="hljs-selector-class">.when</span><span class="hljs-selector-class">.app</span>.running</code></pre>
+<pre><code>ctrl+alt+shift+/,选择registry,勾选complier.sutomake.allow.when.app.running
+</code></pre>
 <ol start="4">
 <li>运行时出现如下提示，说明成功开启：</li>
 </ol>
@@ -257,71 +266,58 @@
 <h3 id="设置打包方式为war">设置打包方式为war</h3>
 <p><code>&lt;packaging&gt;war&lt;/packaging&gt;</code></p>
 <h3 id="在插件中指定入口类">在插件中指定入口类</h3>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-comment">&lt;!--使用热部署出现中文乱码解决方案--&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">fork</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">fork</span>&gt;</span>
-          <span class="hljs-comment">&lt;!--增加jvm参数--&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">jvmArguments</span>&gt;</span>-Dfile.encoding=UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">jvmArguments</span>&gt;</span>
-          <span class="hljs-comment">&lt;!--指定入口类--&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">mainClass</span>&gt;</span>com.baizhi.Application<span class="hljs-tag">&lt;/<span class="hljs-name">mainClass</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;build&gt;
+	&lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+        &lt;!--使用热部署出现中文乱码解决方案--&gt;
+        &lt;configuration&gt;
+          &lt;fork&gt;true&lt;/fork&gt;
+          &lt;!--增加jvm参数--&gt;
+          &lt;jvmArguments&gt;-Dfile.encoding=UTF-8&lt;/jvmArguments&gt;
+          &lt;!--指定入口类--&gt;
+          &lt;mainClass&gt;com.baizhi.Application&lt;/mainClass&gt;
+        &lt;/configuration&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;	
+</code></pre>
 <h3 id="排除内嵌的tomcat">排除内嵌的tomcat</h3>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>   <span class="hljs-comment">&lt;!--去掉内嵌tomcat--&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+  &lt;scope&gt;provided&lt;/scope&gt;   &lt;!--去掉内嵌tomcat--&gt;
+&lt;/dependency&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.tomcat.embed<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>tomcat-embed-jasper<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>  <span class="hljs-comment">&lt;!--去掉使用内嵌tomcat解析jsp--&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;
+  &lt;artifactId&gt;tomcat-embed-jasper&lt;/artifactId&gt;
+  &lt;scope&gt;provided&lt;/scope&gt;  &lt;!--去掉使用内嵌tomcat解析jsp--&gt;
+&lt;/dependency&gt;
+</code></pre>
 <h3 id="配置入口类">配置入口类</h3>
-<pre><code class="hljs java"><span class="hljs-comment">//1.继承SpringBootServletInitializer</span>
-<span class="hljs-comment">//2.覆盖configure方法</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SpringBootServletInitializer</span></span>{
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+<pre><code class="language-java">//1.继承SpringBootServletInitializer
+//2.覆盖configure方法
+public class Application extends SpringBootServletInitializer{
+    public static void main(String[] args) {
         SpringApplication.run(Application.class,args);
     }
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> SpringApplicationBuilder <span class="hljs-title">configure</span><span class="hljs-params">(SpringApplicationBuilder builder)</span> </span>{
-        <span class="hljs-keyword">return</span> builder.sources(Application.class);
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(Application.class);
     }
-}</code></pre>
+}
+</code></pre>
 <h3 id="打包测试">打包测试</h3>
-<pre><code class="hljs java"><span class="hljs-comment">/* 一旦使用war包部署注意:</span>
-<span class="hljs-comment">	1. application.yml 中配置port context-path 失效</span>
-<span class="hljs-comment">	2. 访问时使用打成war包的名字和外部tomcat端口号进行访问项目</span>
-<span class="hljs-comment">*/</span></code></pre>
+<pre><code class="language-java">/* 一旦使用war包部署注意:
+	1. application.yml 中配置port context-path 失效
+	2. 访问时使用打成war包的名字和外部tomcat端口号进行访问项目
+*/
+</code></pre>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：SpringBoot07热部署和war包部署</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-04-07 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/04/07/springboot/SpringBoot07热部署和war部署/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -382,20 +378,6 @@
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -427,18 +409,18 @@
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

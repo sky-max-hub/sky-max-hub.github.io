@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-02-02
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.9k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>12 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.9k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>12 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -227,21 +234,23 @@
 属性：<br>
 value： 请求参数中的名称。<br>
 required：请求参数中是否必须提供此参数。 默认值： true。表示必须提供，如果不提供将报错。</p>
-<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping("/useRequestParam")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">useRequestParam</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam("name")</span>String username,</span></span>
-<span class="hljs-function"><span class="hljs-params"><span class="hljs-meta">@RequestParam(value="age",required=false)</span>Integer age)</span></span>{
-System.out.println(username+<span class="hljs-string">","</span>+age);
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
-}</code></pre>
+<pre><code class="language-java">@RequestMapping("/useRequestParam")
+public String useRequestParam(@RequestParam("name")String username,
+@RequestParam(value="age",required=false)Integer age){
+System.out.println(username+","+age);
+return "success";
+}
+</code></pre>
 <h3 id="RequestBody">@RequestBody</h3>
 <p>作用：用于获取请求体内容。 直接使用得到是 key=value&amp;key=value…结构的数据。get 请求方式不适用。<br>
 属性：<br>
 required：是否必须有请求体。默认值是:true。当取值为 true 时,get 请求方式会报错。如果取值为 false， get 请求得到是 null。</p>
-<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping("/useRequestBody")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">useRequestBody</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody(required=false)</span> String body)</span></span>{
+<pre><code class="language-java">@RequestMapping("/useRequestBody")
+public String useRequestBody(@RequestBody(required=false) String body){
 System.out.println(body);
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
-}</code></pre>
+return "success";
+}
+</code></pre>
 <hr>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springmvc01/image-20200601200649922.png" alt="image-20200601200649922" style="zoom:50%;">
 <hr>
@@ -252,90 +261,96 @@ System.out.println(body);
 <hr>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springmvc01/image-20200601211858975.png" alt="image-20200601211858975" style="zoom: 67%;">
 <hr>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--    javaBean对象和json字符串的转化依赖 --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-annotations<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span></span>
-<span class="hljs-tag"><span class="hljs-attr">src</span>=<span class="hljs-string">"${pageContext.request.contextPath}/js/jquery.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span>
-<span class="javascript">$(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{</span>
-<span class="javascript">$(<span class="hljs-string">"#testJson"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{</span>
-<span class="javascript">$.ajax({</span>
-<span class="javascript">type:<span class="hljs-string">"post"</span>,</span>
-<span class="javascript">url:<span class="hljs-string">"${pageContext.request.contextPath}/testResponseJson"</span>,</span>
-<span class="javascript">contentType:<span class="hljs-string">"application/json;charset=utf-8"</span>,</span>
-<span class="javascript">data:<span class="hljs-string">'{"id":1,"name":"test","money":999.0}'</span>,</span>
-<span class="javascript">dataType:<span class="hljs-string">"json"</span>,</span>
-<span class="javascript">success:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>{</span>
+<pre><code class="language-xml">&lt;!--    javaBean对象和json字符串的转化依赖 --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+      &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+      &lt;version&gt;2.9.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+      &lt;artifactId&gt;jackson-core&lt;/artifactId&gt;
+      &lt;version&gt;2.9.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+      &lt;artifactId&gt;jackson-annotations&lt;/artifactId&gt;
+      &lt;version&gt;2.9.0&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre>
+<pre><code class="language-html">&lt;script type="text/javascript"
+src="${pageContext.request.contextPath}/js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+$(function(){
+$("#testJson").click(function(){
+$.ajax({
+type:"post",
+url:"${pageContext.request.contextPath}/testResponseJson",
+contentType:"application/json;charset=utf-8",
+data:'{"id":1,"name":"test","money":999.0}',
+dataType:"json",
+success:function(data){
 alert(data);
 }
 });
 });
 })
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 测试异步请求 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"测试 ajax 请求 json 和响应 json"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"testJson"</span>/&gt;</span>
+&lt;/script&gt;
+&lt;!-- 测试异步请求 --&gt;
+&lt;input type="button" value="测试 ajax 请求 json 和响应 json" id="testJson"/&gt;
+
 </code></pre>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 响应 json 数据的控制器</span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-meta">@Controller("jsonController")</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JsonController</span> </span>{
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 测试响应 json 数据</span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-meta">@RequestMapping("/testResponseJson")</span>
-<span class="hljs-keyword">public</span> <span class="hljs-meta">@ResponseBody</span> <span class="hljs-function">Account <span class="hljs-title">testResponseJson</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> Account account)</span> </span>{
-System.out.println(<span class="hljs-string">"异步请求： "</span>+account);
-<span class="hljs-keyword">return</span> account;
+<pre><code class="language-java">/**
+* 响应 json 数据的控制器
+*/
+@Controller("jsonController")
+public class JsonController {
+/**
+* 测试响应 json 数据
+*/
+@RequestMapping("/testResponseJson")
+public @ResponseBody Account testResponseJson(@RequestBody Account account) {
+System.out.println("异步请求： "+account);
+return account;
 }
-}</code></pre>
+}
+</code></pre>
 <h3 id="PathVaribale">@PathVaribale</h3>
 <p>作用：用于绑定 url 中的占位符。 例如：请求 url 中 <code>/delete/{id}</code>， 这个{id}就是 url 占位符。url 支持占位符是 spring3.0 之后加入的。是 springmvc 支持 rest 风格 URL 的一个重要标志。<br>
 属性：<br>
 value： 用于指定 url 中占位符名称。<br>
 required：是否必须提供占位符。</p>
-<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping("/usePathVariable/{id}")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">usePathVariable</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable("id")</span> Integer id)</span></span>{
+<pre><code class="language-java">@RequestMapping("/usePathVariable/{id}")
+public String usePathVariable(@PathVariable("id") Integer id){
 System.out.println(id);
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
-}</code></pre>
+return "success";
+}
+</code></pre>
 <h3 id="RequestHeader">@RequestHeader</h3>
 <p>作用：用于获取请求消息头。<br>
 属性：<br>
 value：提供消息头名称<br>
 required：是否必须有此消息头<br>
 注：在实际开发中一般不怎么用</p>
-<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping("/useRequestHeader")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">useRequestHeader</span><span class="hljs-params">(<span class="hljs-meta">@RequestHeader(value="Accept-Language",</span></span></span>
-<span class="hljs-function"><span class="hljs-params"><span class="hljs-meta">required=false)</span>String requestHeader)</span></span>{
+<pre><code class="language-java">@RequestMapping("/useRequestHeader")
+public String useRequestHeader(@RequestHeader(value="Accept-Language",
+required=false)String requestHeader){
 System.out.println(requestHeader);
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
-}</code></pre>
+return "success";
+}
+</code></pre>
 <h3 id="CookieValue">@CookieValue</h3>
 <p>作用：用于把指定 cookie 名称的值传入控制器方法参数。<br>
 属性：<br>
 value：指定 cookie 的名称。<br>
 required：是否必须有此 cookie。</p>
-<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping("/useCookieValue")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">useCookieValue</span><span class="hljs-params">(<span class="hljs-meta">@CookieValue(value="JSESSIONID",required=false)</span></span></span>
-<span class="hljs-function"><span class="hljs-params">String cookieValue)</span></span>{
+<pre><code class="language-java">@RequestMapping("/useCookieValue")
+public String useCookieValue(@CookieValue(value="JSESSIONID",required=false)
+String cookieValue){
 System.out.println(cookieValue);
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
-}</code></pre>
+return "success";
+}
+</code></pre>
 <h3 id="ModelAttribute">@ModelAttribute</h3>
 <p>作用：该注解是 SpringMVC4.3 版本以后新加入的。它可以用于修饰方法和参数。</p>
 <ol>
@@ -352,69 +367,71 @@ System.out.println(cookieValue);
 <p>例如：<br>
 我们在编辑一个用户时，用户有一个创建信息字段，该字段的值是不允许被修改的。在提交表单数据是肯定没有此字段的内容，一旦更新会把该字段内容置为 null，此时就可以使用此注解解决问题。</p>
 <p>基于 Map 的应用场景示例 1： ModelAttribute 修饰方法带返回值</p>
-<pre><code class="hljs java"><span class="hljs-meta">@ModelAttribute</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">showModel</span><span class="hljs-params">(String username)</span> </span>{
-<span class="hljs-comment">//模拟去数据库查询</span>
+<pre><code class="language-java">@ModelAttribute
+public User showModel(String username) {
+//模拟去数据库查询
 User abc = findUserByName(username);
-System.out.println(<span class="hljs-string">"执行了 showModel 方法"</span>+abc);
-<span class="hljs-keyword">return</span> abc;
+System.out.println("执行了 showModel 方法"+abc);
+return abc;
 }
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 模拟修改用户方法</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@param</span> user</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@return</span></span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-meta">@RequestMapping("/updateUser")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testModelAttribute</span><span class="hljs-params">(User user)</span> </span>{
-System.out.println(<span class="hljs-string">"控制器中处理请求的方法：修改用户： "</span>+user);
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
+/**
+* 模拟修改用户方法
+* @param user
+* @return
+*/
+@RequestMapping("/updateUser")
+public String testModelAttribute(User user) {
+System.out.println("控制器中处理请求的方法：修改用户： "+user);
+return "success";
 }
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 模拟去数据库查询</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@param</span> username</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@return</span></span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-function"><span class="hljs-keyword">private</span> User <span class="hljs-title">findUserByName</span><span class="hljs-params">(String username)</span> </span>{
-User user = <span class="hljs-keyword">new</span> User();
+/**
+* 模拟去数据库查询
+* @param username
+* @return
+*/
+private User findUserByName(String username) {
+User user = new User();
 user.setUsername(username);
-user.setAge(<span class="hljs-number">19</span>);
-user.setPassword(<span class="hljs-string">"123456"</span>);
-<span class="hljs-keyword">return</span> user;
-}</code></pre>
+user.setAge(19);
+user.setPassword("123456");
+return user;
+}
+</code></pre>
 <hr>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springmvc01/image-20200601201956582.png" alt="image-20200601201956582"></p>
 <hr>
 <p>基于 Map 的应用场景示例 1： ModelAttribute 修饰方法不带返回值</p>
-<pre><code class="hljs java"><span class="hljs-meta">@ModelAttribute</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showModel</span><span class="hljs-params">(String username,Map&lt;String,User&gt; map)</span> </span>{
-<span class="hljs-comment">//模拟去数据库查询</span>
+<pre><code class="language-java">@ModelAttribute
+public void showModel(String username,Map&lt;String,User&gt; map) {
+//模拟去数据库查询
 User user = findUserByName(username);
-System.out.println(<span class="hljs-string">"执行了 showModel 方法"</span>+user);
-map.put(<span class="hljs-string">"abc"</span>,user);
+System.out.println("执行了 showModel 方法"+user);
+map.put("abc",user);
 }
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 模拟修改用户方法</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@param</span> user</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@return</span></span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-meta">@RequestMapping("/updateUser")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testModelAttribute</span><span class="hljs-params">(<span class="hljs-meta">@ModelAttribute("abc")</span>User user)</span> </span>{
-System.out.println(<span class="hljs-string">"控制器中处理请求的方法：修改用户： "</span>+user);
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
+/**
+* 模拟修改用户方法
+* @param user
+* @return
+*/
+@RequestMapping("/updateUser")
+public String testModelAttribute(@ModelAttribute("abc")User user) {
+System.out.println("控制器中处理请求的方法：修改用户： "+user);
+return "success";
 }
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 模拟去数据库查询</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@param</span> username</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@return</span></span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-function"><span class="hljs-keyword">private</span> User <span class="hljs-title">findUserByName</span><span class="hljs-params">(String username)</span> </span>{
-User user = <span class="hljs-keyword">new</span> User();
+/**
+* 模拟去数据库查询
+* @param username
+* @return
+*/
+private User findUserByName(String username) {
+User user = new User();
 user.setUsername(username);传智播客——专注于 Java、 .Net 和 Php、网页平面设计工程师的培训
-北京市昌平区建材城西路金燕龙办公楼一层 电话： <span class="hljs-number">400</span>-<span class="hljs-number">618</span>-<span class="hljs-number">9090</span>
-user.setAge(<span class="hljs-number">19</span>);
-user.setPassword(<span class="hljs-string">"123456"</span>);
-<span class="hljs-keyword">return</span> user;
-}</code></pre>
+北京市昌平区建材城西路金燕龙办公楼一层 电话： 400-618-9090
+user.setAge(19);
+user.setPassword("123456");
+return user;
+}
+</code></pre>
 <hr>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springmvc01/image-20200601202224983.png" alt="image-20200601202224983"></p>
 <hr>
@@ -423,37 +440,38 @@ user.setPassword(<span class="hljs-string">"123456"</span>);
 属性：<br>
 value：用于指定存入的属性名称<br>
 type：用于指定存入的数据类型。</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Controller("sessionAttributeController")</span>
-<span class="hljs-meta">@RequestMapping("/springmvc")</span>
-<span class="hljs-meta">@SessionAttributes(value ={"username","password"},types={Integer.class})</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SessionAttributeController</span> </span>{
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 把数据存入 SessionAttribute</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@param</span> model</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@return</span></span>
-<span class="hljs-comment">* Model 是 spring 提供的一个接口，该接口有一个实现类 ExtendedModelMap</span>
-<span class="hljs-comment">* 该类继承了 ModelMap，而 ModelMap 就是 LinkedHashMap 子类</span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-meta">@RequestMapping("/testPut")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testPut</span><span class="hljs-params">(Model model)</span></span>{
-model.addAttribute(<span class="hljs-string">"username"</span>, <span class="hljs-string">"泰斯特"</span>);
-model.addAttribute(<span class="hljs-string">"password"</span>,<span class="hljs-string">"123456"</span>);
-model.addAttribute(<span class="hljs-string">"age"</span>, <span class="hljs-number">31</span>);
-<span class="hljs-comment">//跳转之前将数据保存到 username、 password 和 age 中，因为注解@SessionAttribute 中有这几个参数</span>
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
+<pre><code class="language-java">@Controller("sessionAttributeController")
+@RequestMapping("/springmvc")
+@SessionAttributes(value ={"username","password"},types={Integer.class})
+public class SessionAttributeController {
+/**
+* 把数据存入 SessionAttribute
+* @param model
+* @return
+* Model 是 spring 提供的一个接口，该接口有一个实现类 ExtendedModelMap
+* 该类继承了 ModelMap，而 ModelMap 就是 LinkedHashMap 子类
+*/
+@RequestMapping("/testPut")
+public String testPut(Model model){
+model.addAttribute("username", "泰斯特");
+model.addAttribute("password","123456");
+model.addAttribute("age", 31);
+//跳转之前将数据保存到 username、 password 和 age 中，因为注解@SessionAttribute 中有这几个参数
+return "success";
 }
-<span class="hljs-meta">@RequestMapping("/testGet")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testGet</span><span class="hljs-params">(ModelMap model)</span></span>{
-System.out.println(model.get(<span class="hljs-string">"username"</span>)+<span class="hljs-string">";"</span>+model.get(<span class="hljs-string">"password"</span>)+<span class="hljs-string">";"</span>+model.get(<span class="hljs-string">"a</span>
-<span class="hljs-string">ge"</span>));
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
+@RequestMapping("/testGet")
+public String testGet(ModelMap model){
+System.out.println(model.get("username")+";"+model.get("password")+";"+model.get("a
+ge"));
+return "success";
 }
-<span class="hljs-meta">@RequestMapping("/testClean")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">complete</span><span class="hljs-params">(SessionStatus sessionStatus)</span></span>{
+@RequestMapping("/testClean")
+public String complete(SessionStatus sessionStatus){
 sessionStatus.setComplete();
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
+return "success";
 }
-}</code></pre>
+}
+</code></pre>
 <h2 id="2-REST-风格-URL">2. REST 风格 URL</h2>
 <h3 id="2-1-什么是-rest：">2.1 什么是 rest：</h3>
 <blockquote>
@@ -504,114 +522,108 @@ restful 的示例：</p>
 第一步：在 web.xml 中配置该过滤器。<code>HiddentHttpMethodFilter</code><br>
 第二步：请求方式必须使用 post 请求。<br>
 第三步：按照要求提供_method 请求参数，该参数的取值就是我们需要的请求方式。</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"springmvc/testRestPOST"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
-用户名称： <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
-<span class="hljs-comment">&lt;!-- &lt;input type="hidden" name="_method" value="POST"&gt; --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"保存"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
-<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value="/testRestPOST",method=RequestMethod.POST)</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testRestfulURLPOST</span><span class="hljs-params">(User user)</span></span>{
-System.out.println(<span class="hljs-string">"rest post"</span>+user);
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
-}</code></pre>
+<pre><code class="language-html">&lt;form action="springmvc/testRestPOST" method="post"&gt;
+用户名称： &lt;input type="text" name="username"&gt;&lt;br/&gt;
+&lt;!-- &lt;input type="hidden" name="_method" value="POST"&gt; --&gt;
+&lt;input type="submit" value="保存"&gt;
+&lt;/form&gt;
+</code></pre>
+<pre><code class="language-java">@RequestMapping(value="/testRestPOST",method=RequestMethod.POST)
+public String testRestfulURLPOST(User user){
+System.out.println("rest post"+user);
+return "success";
+}
+</code></pre>
 <h2 id="3-响应数据和结果视图">3. 响应数据和结果视图</h2>
 <h3 id="3-1-返回值分类">3.1 返回值分类</h3>
 <h4 id="3-1-1-字符串">3.1.1 字符串</h4>
 <p>controller 方法返回字符串可以指定逻辑视图名，通过视图解析器解析为物理视图地址。</p>
-<pre><code class="hljs java"><span class="hljs-comment">//指定逻辑视图名，经过视图解析器解析为 jsp 物理路径： /WEB-INF/pages/success.jsp</span>
-<span class="hljs-meta">@RequestMapping("/testReturnString")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testReturnString</span><span class="hljs-params">()</span> </span>{
-System.out.println(<span class="hljs-string">"AccountController 的 testReturnString 方法执行了。。。。 "</span>);
-<span class="hljs-keyword">return</span> <span class="hljs-string">"success"</span>;
-}</code></pre>
+<pre><code class="language-java">//指定逻辑视图名，经过视图解析器解析为 jsp 物理路径： /WEB-INF/pages/success.jsp
+@RequestMapping("/testReturnString")
+public String testReturnString() {
+System.out.println("AccountController 的 testReturnString 方法执行了。。。。 ");
+return "success";
+}  
+</code></pre>
 <h4 id="3-1-2-void">3.1.2 void</h4>
 <p>我们知道 Servlet 原始 API 可以作为控制器中方法的参数：</p>
-<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping("/testReturnVoid")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testReturnVoid</span><span class="hljs-params">(HttpServletRequest request,HttpServletResponse response)</span></span>
-<span class="hljs-function"><span class="hljs-keyword">throws</span> Exception </span>{
-}</code></pre>
+<pre><code class="language-java">@RequestMapping("/testReturnVoid")
+public void testReturnVoid(HttpServletRequest request,HttpServletResponse response)
+throws Exception {
+} 
+</code></pre>
 <p>在controller 方法形参上可以定义 request 和 response，使用 request 或 response 指定响应结果：</p>
 <p>1、使用 request 转向页面，如下</p>
-<pre><code class="hljs java">request.getRequestDispatcher(<span class="hljs-string">"/WEB-INF/pages/success.jsp"</span>).forward(request,response);</code></pre>
+<pre><code class="language-java">request.getRequestDispatcher("/WEB-INF/pages/success.jsp").forward(request,response);
+</code></pre>
 <p>2、也可以通过 response 页面重定向：</p>
-<pre><code class="hljs java">response.sendRedirect(<span class="hljs-string">"testRetrunString"</span>);</code></pre>
+<pre><code class="language-java">response.sendRedirect("testRetrunString");
+</code></pre>
 <p>3、也可以通过 response 指定响应结果， 例如响应 json 数据：</p>
-<pre><code class="hljs java">response.setCharacterEncoding(<span class="hljs-string">"utf-8"</span>);
-response.setContentType(<span class="hljs-string">"application/json;charset=utf-8"</span>);
-response.getWriter().write(<span class="hljs-string">"json 串"</span>);</code></pre>
+<pre><code class="language-java">response.setCharacterEncoding("utf-8");
+response.setContentType("application/json;charset=utf-8");
+response.getWriter().write("json 串");  
+</code></pre>
 <h4 id="3-1-3-ModelAndView">3.1.3 ModelAndView</h4>
 <p><code>ModelAndView</code> 是 SpringMVC 为我们提供的一个对象，该对象也可以用作控制器方法的返回值。<br>
 该对象中有两个方法：</p>
 <hr>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springmvc01/image-20200601203858011.png" alt="image-20200601203858011" style="zoom: 67%;">
 <hr>
-<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping("/testReturnModelAndView")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">testReturnModelAndView</span><span class="hljs-params">()</span> </span>{
-ModelAndView mv = <span class="hljs-keyword">new</span> ModelAndView();
-mv.addObject(<span class="hljs-string">"username"</span>, <span class="hljs-string">"张三"</span>);
-mv.setViewName(<span class="hljs-string">"success"</span>);
-    <span class="hljs-keyword">return</span> mv;
-}</code></pre>
-<pre><code class="hljs jsp">&lt;%@ page language=<span class="hljs-string">"java"</span> contentType=<span class="hljs-string">"text/html; charset=UTF-8"</span>
-pageEncoding=<span class="hljs-string">"UTF-8"</span>%&gt;
-&lt;!DOCTYPE html PUBLIC <span class="hljs-string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span>
-<span class="hljs-string">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;
+<pre><code class="language-java">@RequestMapping("/testReturnModelAndView")
+public ModelAndView testReturnModelAndView() {
+ModelAndView mv = new ModelAndView();
+mv.addObject("username", "张三");
+mv.setViewName("success");
+    return mv;
+}
+</code></pre>
+<pre><code class="language-jsp">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd"&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta http-equiv=<span class="hljs-string">"Content-Type"</span> content=<span class="hljs-string">"text/html; charset=UTF-8"</span>&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
 &lt;title&gt;执行成功&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 执行成功！
 ${requestScope.username}
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
 <h3 id="3-2-转发和重定向">3.2 转发和重定向</h3>
 <h4 id="3-2-1-forward-转发">3.2.1 forward 转发</h4>
 <p>controller 方法在提供了 String 类型的返回值之后，默认就是请求转发。我们也可以写成：</p>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 转发</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@return</span></span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-meta">@RequestMapping("/testForward")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testForward</span><span class="hljs-params">()</span> </span>{
-    System.out.println(<span class="hljs-string">"AccountController 的 testForward 方法执行了。。。。 "</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-string">"forward:/WEB-INF/pages/success.jsp"</span>;
-}</code></pre>
+<pre><code class="language-java">/**
+* 转发
+* @return
+*/
+@RequestMapping("/testForward")
+public String testForward() {
+	System.out.println("AccountController 的 testForward 方法执行了。。。。 ");
+    return "forward:/WEB-INF/pages/success.jsp";
+}
+</code></pre>
 <p>需要注意的是，如果用了 formward： 则路径必须写成实际视图 url，不能写逻辑视图。<br>
 它相当于<code> request.getRequestDispatcher("url").forward(request,response)</code>。使用请求转发，既可以转发到 jsp，也可以转发到其他的控制器方法。</p>
 <h4 id="3-2-2-Redirect-重定向">3.2.2 Redirect 重定向</h4>
 <p>contrller 方法提供了一个 String 类型返回值之后， 它需要在返回值里使用:redirect:</p>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment">* 重定向</span>
-<span class="hljs-comment">* <span class="hljs-doctag">@return</span></span>
-<span class="hljs-comment">*/</span>
-<span class="hljs-meta">@RequestMapping("/testRedirect")</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testRedirect</span><span class="hljs-params">()</span> </span>{
-System.out.println(<span class="hljs-string">"AccountController 的 testRedirect 方法执行了。。。。 "</span>);
-<span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:testReturnModelAndView"</span>;
-}</code></pre>
+<pre><code class="language-java">/**
+* 重定向
+* @return
+*/
+@RequestMapping("/testRedirect")
+public String testRedirect() {
+System.out.println("AccountController 的 testRedirect 方法执行了。。。。 ");
+return "redirect:testReturnModelAndView";
+} 
+</code></pre>
 <p>它相当于<code>response.sendRedirect(url)</code> 。需要注意的是，如果是重定向到 jsp 页面，则 jsp 页面不能写在 WEB-INF 目录中，否则无法找到</p>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：SpringMVC入门02常用注解和Restful和响应结果</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-02-02 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/02/02/springmvc/SpringMVC入门02常用注解和Restful和响应结果/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -672,20 +684,6 @@ System.out.println(<span class="hljs-string">"AccountController 的 testRedirect
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -717,18 +715,18 @@ System.out.println(<span class="hljs-string">"AccountController 的 testRedirect
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

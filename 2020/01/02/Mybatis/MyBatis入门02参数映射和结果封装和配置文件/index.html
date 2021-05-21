@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-01-02
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>568 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>568 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -230,70 +237,57 @@
 <p>基本类型和String ：直接写类名称（首字母大写），也可以使用别名（首字母小写）</p>
 <h3 id="2-2-resultMap">2.2 resultMap</h3>
 <p>resultMap 标签可以建立查询的列名和实体类的属性名称不一致时建立对应关系。从而实现封装。</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 建立 User 实体和数据库表的对应关系</span>
-<span class="hljs-comment">type 属性：指定实体类的全限定类名</span>
-<span class="hljs-comment">id 属性：给定一个唯一标识，是给查询 select 标签引用用的。</span>
-<span class="hljs-comment">--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">resultMap</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"com.itheima.domain.User"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"userMap"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">id</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"userId"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"userName"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"sex"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"userSex"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"address"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"userAddress"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"birthday"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"userBirthday"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">resultMap</span>&gt;</span>
+<pre><code class="language-xml">&lt;!-- 建立 User 实体和数据库表的对应关系
+type 属性：指定实体类的全限定类名
+id 属性：给定一个唯一标识，是给查询 select 标签引用用的。
+--&gt;
+&lt;resultMap type="com.itheima.domain.User" id="userMap"&gt;
+&lt;id column="id" property="userId"/&gt;
+&lt;result column="username" property="userName"/&gt;
+&lt;result column="sex" property="userSex"/&gt;
+&lt;result column="address" property="userAddress"/&gt;
+&lt;result column="birthday" property="userBirthday"/&gt;
+&lt;/resultMap&gt;
 id 标签：用于指定主键字段
 result 标签：用于指定非主键字段
 column 属性：用于指定数据库列名
-property 属性：用于指定实体类属性名称</code></pre>
+property 属性：用于指定实体类属性名称
+</code></pre>
 <h2 id="3-SqlMapConfig-xml配置文件">3. SqlMapConfig.xml配置文件</h2>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">configuration</span></span>
-<span class="hljs-meta">PUBLIC <span class="hljs-meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span>
-<span class="hljs-meta"><span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;
+&lt;configuration&gt;
+&lt;/configuration&gt;
+</code></pre>
 <h3 id="3-1-typeAliases（类型别名）">3.1 typeAliases（类型别名）</h3>
 <p>在 <code>&lt;configuration&gt;&lt;/configuration&gt;</code>中配置</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">typeAliases</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 单个别名定义 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">typeAlias</span> <span class="hljs-attr">alias</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"com.itheima.domain.User"</span>/&gt;</span>
-<span class="hljs-comment">&lt;!-- 批量别名定义，扫描整个包下的类，别名为类名（首字母大写或小写都可以） --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"com.itheima.domain"</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"其它包"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">typeAliases</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;typeAliases&gt;
+&lt;!-- 单个别名定义 --&gt;
+&lt;typeAlias alias="user" type="com.itheima.domain.User"/&gt;
+&lt;!-- 批量别名定义，扫描整个包下的类，别名为类名（首字母大写或小写都可以） --&gt;
+&lt;package name="com.itheima.domain"/&gt;
+&lt;package name="其它包"/&gt;
+&lt;/typeAliases&gt;
+</code></pre>
 <h3 id="3-2-mappers（映射器）">3.2 mappers（映射器）</h3>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
+<pre><code class="language-xml">&lt;mappers&gt;
     
-<span class="hljs-comment">&lt;!-- 注册指定包下的所有 mapper 接口,直接写包名，注意目录结构要相同，接口名和配置文件名相同--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"com.hnust.dao"</span>/&gt;</span>
+&lt;!-- 注册指定包下的所有 mapper 接口,直接写包名，注意目录结构要相同，接口名和配置文件名相同--&gt;
+&lt;package name="com.hnust.dao"/&gt;
     
-<span class="hljs-comment">&lt;!-- 映射某个配置文件，注意目录结构要相同，接口名和配置文件名相同--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"com.hnust/dao/UserDao.xml"</span>/&gt;</span>
+&lt;!-- 映射某个配置文件，注意目录结构要相同，接口名和配置文件名相同--&gt;
+&lt;mapper resource="com.hnust/dao/UserDao.xml"/&gt;
     
-<span class="hljs-comment">&lt;!--用于注解 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cn.hnust.UserDAO"</span>/&gt;</span>
+&lt;!--用于注解 --&gt;
+&lt;mapper class="cn.hnust.UserDAO"/&gt;
     
-<span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span></code></pre>
+&lt;/mappers&gt;
+</code></pre>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：MyBatis入门02参数映射和结果封装</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-01-02 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/01/02/Mybatis/MyBatis入门02参数映射和结果封装和配置文件/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -354,20 +348,6 @@ property 属性：用于指定实体类属性名称</code></pre>
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -399,18 +379,18 @@ property 属性：用于指定实体类属性名称</code></pre>
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

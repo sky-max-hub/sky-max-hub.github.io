@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2020-04-06
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>234 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>234 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -222,69 +229,55 @@
 <hr>
 <h1>SpringBoot06整合Redis</h1>
 <h2 id="1-添加redis的起步依赖">1 添加redis的起步依赖</h2>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 配置使用redis启动器 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre><code class="language-xml">&lt;!-- 配置使用redis启动器 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
 <h2 id="2-配置redis的连接信息">2 配置redis的连接信息</h2>
-<pre><code class="hljs properties"><span class="hljs-comment">#Redis</span>
-<span class="hljs-meta">spring.redis.host</span>=<span class="hljs-string">127.0.0.1</span>
-<span class="hljs-meta">spring.redis.port</span>=<span class="hljs-string">6379</span></code></pre>
+<pre><code class="language-properties">#Redis
+spring.redis.host=127.0.0.1
+spring.redis.port=6379
+</code></pre>
 <h2 id="3-注入RedisTemplate测试redis操作">3 注入RedisTemplate测试redis操作</h2>
-<pre><code class="hljs java"><span class="hljs-meta">@RunWith(SpringRunner.class)</span>
-<span class="hljs-meta">@SpringBootTest(classes = SpringbootJpaApplication.class)</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisTest</span> </span>{
+<pre><code class="language-java">@RunWith(SpringRunner.class)
+@SpringBootTest(classes = SpringbootJpaApplication.class)
+public class RedisTest {
 
-    <span class="hljs-meta">@Autowired</span>
-    <span class="hljs-keyword">private</span> UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    <span class="hljs-meta">@Autowired</span>
-    <span class="hljs-keyword">private</span> RedisTemplate&lt;String, String&gt; redisTemplate;
+    @Autowired
+    private RedisTemplate&lt;String, String&gt; redisTemplate;
 
-    <span class="hljs-meta">@Test</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> JsonProcessingException </span>{
-        <span class="hljs-comment">//从redis缓存中获得指定的数据</span>
-        String userListData = redisTemplate.boundValueOps(<span class="hljs-string">"user.findAll"</span>).get();
-        <span class="hljs-comment">//如果redis中没有数据的话</span>
-        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">null</span>==userListData){
-            <span class="hljs-comment">//查询数据库获得数据</span>
+    @Test
+    public void test() throws JsonProcessingException {
+        //从redis缓存中获得指定的数据
+        String userListData = redisTemplate.boundValueOps("user.findAll").get();
+        //如果redis中没有数据的话
+        if(null==userListData){
+            //查询数据库获得数据
             List&lt;User&gt; all = userRepository.findAll();
-            <span class="hljs-comment">//转换成json格式字符串</span>
-            ObjectMapper om = <span class="hljs-keyword">new</span> ObjectMapper();
+            //转换成json格式字符串
+            ObjectMapper om = new ObjectMapper();
             userListData = om.writeValueAsString(all);
-            <span class="hljs-comment">//将数据存储到redis中，下次在查询直接从redis中获得数据，不用在查询数据库</span>
-            redisTemplate.boundValueOps(<span class="hljs-string">"user.findAll"</span>).set(userListData);
-            System.out.println(<span class="hljs-string">"===============从数据库获得数据==============="</span>);
-        }<span class="hljs-keyword">else</span>{
-            System.out.println(<span class="hljs-string">"===============从redis缓存中获得数据==============="</span>);
+            //将数据存储到redis中，下次在查询直接从redis中获得数据，不用在查询数据库
+            redisTemplate.boundValueOps("user.findAll").set(userListData);
+            System.out.println("===============从数据库获得数据===============");
+        }else{
+            System.out.println("===============从redis缓存中获得数据===============");
         }
 
         System.out.println(userListData);
 
     }
 
-}</code></pre>
+}
+</code></pre>
 
         </div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：SpringBoot06整合Redis</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2020-04-06 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2020/04/06/springboot/SpringBoot06整合Redis/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
         
 
         
@@ -345,20 +338,6 @@
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -390,18 +369,18 @@
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

@@ -526,7 +526,7 @@ button {
   max-width: 100%;
   cursor: zoom-in;
   display: block;
-  box-shadow: 0 0 2px var(--shadow-color);
+  box-shadow: 2px 2px 5px var(--shadow-color);
   transition-property: color, background, box-shadow, border-color, padding, margin;
   transition-delay: 0s, 0s, 0s, 0s, 0s, 0s;
   transition-duration: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
@@ -1713,13 +1713,13 @@ pre .javascript .function {
   position: relative;
 }
 .side-tools-container .tools-item {
-  width: 32px;
-  height: 32px;
-  font-size: 1.1rem;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
   margin-bottom: 3px;
   cursor: pointer;
   border-right: none;
-  border-radius: 1px;
+  border-radius: 2px;
   box-shadow: 1px 1px 3px var(--shadow-color);
   color: var(--default-text-color);
   background: var(--background-color);
@@ -1737,14 +1737,14 @@ pre .javascript .function {
 }
 @media (max-width: 780px) {
   .side-tools-container .tools-item {
-    width: 28.8px;
-    height: 28.8px;
-    font-size: 0.99rem;
+    width: 36px;
+    height: 36px;
+    font-size: 1.08rem;
     margin-bottom: 2px;
   }
 }
 .side-tools-container .tools-item.rss a {
-  border-radius: 1px;
+  border-radius: 2px;
   width: 100%;
   height: 100%;
 }
@@ -2064,14 +2064,18 @@ pre .javascript .function {
   margin-bottom: 0;
 }
 .article-meta-info {
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: var(--third-text-color);
 }
 .article-meta-info .article-meta-item {
-  margin-right: 10px;
+  margin-right: 15px;
 }
 .article-meta-info .article-meta-item:last-child {
   margin-right: 0;
+}
+.article-meta-info .article-meta-item i {
+  margin-right: 1px;
+  font-size: 1.1rem;
 }
 .article-meta-info .article-tags,
 .article-meta-info .article-categories {
@@ -2091,14 +2095,8 @@ pre .javascript .function {
 .article-meta-info .article-categories a:hover {
   color: var(--primary-color);
 }
-@media (max-width: 500px) {
-  .article-meta-info .article-wordcount,
-  .article-meta-info .article-tags {
-    display: none;
-  }
-}
 @media (max-width: 780px) {
-  .article-meta-info .article-min2read,
+  .article-meta-info .article-tags,
   .article-meta-info .article-categories {
     display: none;
   }
@@ -2309,12 +2307,12 @@ pre .javascript .function {
 }
 .article-content-container .article-title {
   color: var(--second-text-color);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 1px;
   font-size: 2rem;
   display: flex;
   justify-content: center;
-  margin: 1.25rem 0;
+  margin: 1.25rem 0 3rem 0;
 }
 @media (max-width: 780px) {
   .article-content-container .article-title {

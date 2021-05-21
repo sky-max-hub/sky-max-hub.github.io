@@ -172,10 +172,33 @@
 <!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
+    <!--日期-->
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;2021-04-22
     </span>
+
+    <!--字数统计-->
     
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
     
         <span class="article-tags article-meta-item">
             <i class="fas fa-tags"></i>&nbsp;
@@ -193,22 +216,6 @@
         </span>
     
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
 </div>
 
                     </div>
@@ -232,8 +239,9 @@
 <h2 id="这个东西怎么用到项目中去？">这个东西怎么用到项目中去？</h2>
 <h3 id="安装">安装</h3>
 <p>进入项目根目录</p>
-<pre><code class="hljs markdown"><span class="hljs-section"># 安装</span>
-npm install mockjs</code></pre>
+<pre><code class="language-markdown"># 安装
+npm install mockjs
+</code></pre>
 <p>出现如下，说明安装成功</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330151134751.png" alt="image-20210330151134751"></p>
 <h3 id="配置使用">配置使用</h3>
@@ -241,43 +249,46 @@ npm install mockjs</code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330155310609.png" alt="image-20210330155310609"></p>
 <p>解释：<code>decision目录</code>中的文件命名尽量和<code>api文件夹</code>里的文件对应</p>
 <p>在  <code>mock/index.js</code> 中写入：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> Mock <span class="hljs-keyword">from</span> <span class="hljs-string">"mockjs"</span>;
-<span class="hljs-keyword">import</span> file <span class="hljs-keyword">from</span> <span class="hljs-string">"./decision/file"</span>;
+<pre><code class="language-js">import Mock from "mockjs";
+import file from "./decision/file";
 
-<span class="hljs-comment">//拦截 `/api/testGet` 接口的`get方式`的请求，如果拦截到就调用 `file.testGet` 中的函数。</span>
-Mock.mock(<span class="hljs-built_in">RegExp</span>(<span class="hljs-string">"/api/testGet"</span> + <span class="hljs-string">".*"</span>), <span class="hljs-string">"get"</span>, file.testGet);
+//拦截 `/api/testGet` 接口的`get方式`的请求，如果拦截到就调用 `file.testGet` 中的函数。
+Mock.mock(RegExp("/api/testGet" + ".*"), "get", file.testGet);
 
-<span class="hljs-comment">//拦截 `/api/testGet` 接口的`post方式`的请求，如果拦截到就返回 `file.testPost` 中的对象。</span>
-Mock.mock(<span class="hljs-string">"/api/testPost"</span>, <span class="hljs-string">"post"</span>, file.testPost);
+//拦截 `/api/testGet` 接口的`post方式`的请求，如果拦截到就返回 `file.testPost` 中的对象。
+Mock.mock("/api/testPost", "post", file.testPost);
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Mock;
+export default Mock;
+
 </code></pre>
 <p>在 <code>mock/decision/file.js</code> 中写入：</p>
-<pre><code class="hljs js"><span class="hljs-comment">// 管理mock数据</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-function"><span class="hljs-title">testGet</span>(<span class="hljs-params">options</span>)</span> {
-    <span class="hljs-built_in">console</span>.log(options);
-    <span class="hljs-keyword">return</span> {
-      code: <span class="hljs-number">1</span>,
-      msg: <span class="hljs-string">"GET成功"</span>,
+<pre><code class="language-js">// 管理mock数据
+export default {
+  testGet(options) {
+    console.log(options);
+    return {
+      code: 1,
+      msg: "GET成功",
       data: {
-        token: <span class="hljs-string">"123456"</span>,
-        collegeId: <span class="hljs-string">"123"</span>
+        token: "123456",
+        collegeId: "123"
       }
     };
-    <span class="hljs-comment">// 登录接口返回的数据</span>
+    // 登录接口返回的数据
   },
   testPost: {
-    code: <span class="hljs-number">1</span>,
-    msg: <span class="hljs-string">"POST成功"</span>,
+    code: 1,
+    msg: "POST成功",
     data: {
-      token: <span class="hljs-string">"123456"</span>,
-      collegeId: <span class="hljs-string">"123"</span>
+      token: "123456",
+      collegeId: "123"
     }
   }
-};</code></pre>
+};
+</code></pre>
 <p>在项目的 <code>main.js</code> 中引入<code>mockjs</code></p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-string">"./mock/index.js"</span>; <span class="hljs-comment">// 使用mockjs模拟</span></code></pre>
+<pre><code class="language-js">import "./mock/index.js"; // 使用mockjs模拟
+</code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330155820989.png" alt="image-20210330155820989"></p>
 <h3 id="测试效果">测试效果</h3>
 <p><img lazyload="" src="/images/loading.svg" data-src="upload%5Cimage-20210330155908404.png" alt="image-20210330155908404"></p>
@@ -286,7 +297,8 @@ Mock.mock(<span class="hljs-string">"/api/testPost"</span>, <span class="hljs-st
 <ol>
 <li>
 <p>模拟 <code>get</code> 请求的 <code>url</code> 注意一定要正则表达式的风格：例如</p>
-<pre><code class="hljs js">Mock.mock(<span class="hljs-built_in">RegExp</span>(<span class="hljs-string">"/api/testGet"</span> + <span class="hljs-string">".*"</span>), <span class="hljs-string">"get"</span>, file.testGet);</code></pre>
+<pre><code class="language-js">Mock.mock(RegExp("/api/testGet" + ".*"), "get", file.testGet);
+</code></pre>
 <p>这段代码的含义是，拦截 <code>/api/testGet</code> 接口的<code>get方式</code>的请求，如果拦截到就调用 <code>file.testGet</code> 函数。</p>
 <p>为什么不直接像拦截post请求那样 <code>url</code>  直接是个字符串形式的？因为 <code>get请求的url后面是带参数的！！！</code></p>
 <p>直接使用字符串mock只会拦截 <code>/api/testGet</code>，不会拦截  <code>/api/testGet?XXX=XXX&amp;XXX=XXX</code>这种形式的。</p>
@@ -303,27 +315,29 @@ Mock.mock(<span class="hljs-string">"/api/testPost"</span>, <span class="hljs-st
 <p>看官网的解释：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330162015199.png" alt="image-20210330162015199"></p>
 <p>这里说明：<code>template</code> 它可以直接就是一个对象或字符串，也就是说你在写它的假数据时可以直接定义一个对象或字符串就行。比如前面写的 <code>testPost</code></p>
-<pre><code class="hljs js">testPost: {
-    code: <span class="hljs-number">1</span>,
-    msg: <span class="hljs-string">"POST成功"</span>,
+<pre><code class="language-js">testPost: {
+    code: 1,
+    msg: "POST成功",
     data: {
-      token: <span class="hljs-string">"123456"</span>,
-      collegeId: <span class="hljs-string">"123"</span>
+      token: "123456",
+      collegeId: "123"
     }
-  }</code></pre>
+  }
+</code></pre>
 <p>拦截成功后直接就是返回你所写的假数据。而这种方式最好的一点是<code>它可以生成随机数据</code></p>
 <p>看到官网的：<a class="link" target="_blank" rel="noopener" href="http://mockjs.com/examples.html#String%E3%80%82%E5%8F%91%E7%8E%B0%E8%BF%99%E9%87%8C%E8%AE%B2%E4%BA%86%E5%BE%88%E5%A4%9A%E7%9A%84%E8%AF%AD%E6%B3%95%E3%80%82%E6%80%8E%E4%B9%88%E7%94%A8%EF%BC%9F%E5%81%87%E5%A6%82%E6%88%91%E6%83%B3%E6%AF%8F%E6%AC%A1%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3%E6%8B%A6%E6%88%AA%E4%B9%8B%E5%90%8E%E8%BF%94%E5%9B%9E%E7%9A%84">http://mockjs.com/examples.html#String。发现这里讲了很多的语法。怎么用？假如我想每次调用接口拦截之后返回的<i class="fas fa-external-link-alt"></i></a> <code>token 和 collegeId</code> 都是不一样的。那么可以这么写：</p>
 <p>在官网找到数据类型：这里由于两个都是字符串类型的，我选择使用 正则表达式的类型</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330163542540.png" alt="image-20210330163542540"></p>
 <p>修改为：</p>
-<pre><code class="hljs js">testPost: {
-    code: <span class="hljs-number">1</span>,
-    msg: <span class="hljs-string">"POST成功"</span>,
+<pre><code class="language-js">testPost: {
+    code: 1,
+    msg: "POST成功",
     data: {
-      token: <span class="hljs-regexp">/[a-z][A-Z][0-9][0-9][0-9]/</span>,
-      collegeId: <span class="hljs-regexp">/[0-9][0-9][0-9][0-9]/</span>
+      token: /[a-z][A-Z][0-9][0-9][0-9]/,
+      collegeId: /[0-9][0-9][0-9][0-9]/
     }
-  }</code></pre>
+  }
+</code></pre>
 <p>查看效果：发现多次调用返回的都是不同的结果：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330163811844.png" alt="image-20210330163811844"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330163820152.png" alt="image-20210330163820152"></p>
@@ -333,17 +347,18 @@ Mock.mock(<span class="hljs-string">"/api/testPost"</span>, <span class="hljs-st
 <p>看官网：<a class="link" target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Mock.mock()">https://github.com/nuysoft/Mock/wiki/Mock.mock()<i class="fas fa-external-link-alt"></i></a></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330164423839.png" alt="image-20210330164423839"></p>
 <p>这种方式就最大的好处就是可以<code>前端简单的实现增删改数据的效果</code>。就是说当你调用涉及到增删改数据的接口时，仅仅使用上面的 <code>template</code> 类型是看不到增删改的效果的。此时只能使用 <code>function</code> 类型的。返回这种类型时实际上就是调用了你所定义的函数，然后<code>将函数的返回值作为假数据</code>。比如之前写的 <code>testGet</code>:</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">testGet</span>(<span class="hljs-params">options</span>)</span> {
-    <span class="hljs-built_in">console</span>.log(options);
-    <span class="hljs-keyword">return</span> {
-      code: <span class="hljs-number">1</span>,
-      msg: <span class="hljs-string">"GET成功"</span>,
+<pre><code class="language-js">testGet(options) {
+    console.log(options);
+    return {
+      code: 1,
+      msg: "GET成功",
       data: {
-        token: <span class="hljs-string">"123456"</span>,
-        collegeId: <span class="hljs-string">"123"</span>
+        token: "123456",
+        collegeId: "123"
       }
     };
-  },</code></pre>
+  },
+</code></pre>
 <p>可以发现这个函数有一个参数，打印之后发现：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330165256662.png" alt="image-20210330165256662"></p>
 <p>实际上就是你调用的接口的信息！！拿到这个你其实可以做很多事情，比如下面这个，找到之前发的出卷系统的项目的<code>mock/decision/auditJoin.js/auditJoinGet  这个函数</code>：</p>
@@ -356,23 +371,6 @@ Mock.mock(<span class="hljs-string">"/api/testPost"</span>, <span class="hljs-st
         </div>
 
         
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li>本文标题：Mock和Mock.js</li>
-        <li>本文作者：大白小怪兽</li>
-        <li>创建时间：2021-04-22 14:53:47</li>
-        <li>
-            本文链接：https://blog.sky123.top/2021/04/22/javascript/mock/
-        </li>
-        <li>
-            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
-        </li>
-    </ul>
-</div>
-
-            </div>
-        
 
         
             <div class="article-nav">
@@ -380,13 +378,13 @@ Mock.mock(<span class="hljs-string">"/api/testPost"</span>, <span class="hljs-st
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/05/04/linux/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/"
+                           href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Linux服务器防火墙端口配置</span>
+                                <span class="post-nav-title-item">Docker部署练习</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -432,20 +430,6 @@ Mock.mock(<span class="hljs-string">"/api/testPost"</span>, <span class="hljs-st
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
         </div>
         
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
         </div>
@@ -477,18 +461,18 @@ Mock.mock(<span class="hljs-string">"/api/testPost"</span>, <span class="hljs-st
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
+<!--            <i class="fas fa-search-plus"></i>-->
+<!--        </li>-->
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
+<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
+<!--            <i class="fas fa-search-minus"></i>-->
+<!--        </li>-->
+<!--        <li class="tools-item tool-expand-width flex-center">-->
+<!--            <i class="fas fa-arrows-alt-h"></i>-->
+<!--        </li>-->
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>
