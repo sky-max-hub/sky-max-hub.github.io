@@ -239,64 +239,61 @@
 <hr>
 <h3 id="1-2-异常处理实例">1.2 异常处理实例</h3>
 <p>编写异常类和错误页面</p>
-<pre><code class="language-java">/**
-* 自定义异常
-*/
-public class CustomException extends Exception {
-private String message;
-public CustomException(String message) {
-this.message = message;
+<pre><code class="highlight java"><span class="comment">/**</span>
+<span class="comment">* 自定义异常</span>
+<span class="comment">*/</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>{
+<span class="keyword">private</span> String message;
+<span class="function"><span class="keyword">public</span> <span class="title">CustomException</span><span class="params">(String message)</span> </span>{
+<span class="keyword">this</span>.message = message;
 }
-public String getMessage() {
-return message;
+<span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>{
+<span class="keyword">return</span> message;
 }
 }
 
 jsp 页面：error.jsp
-&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%&gt;
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span>
+pageEncoding=<span class="string">"UTF-8"</span>%&gt;
+&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span>
+<span class="string">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=UTF-8"</span>&gt;
 &lt;title&gt;执行失败&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 执行失败！
 ${message }
 &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+&lt;/html&gt;</code></pre>
 <p>自定义异常处理器</p>
-<pre><code class="language-java">/**
-* 自定义异常处理器
-*/
-public class CustomExceptionResolver implements HandlerExceptionResolver {
-@Override
-public ModelAndView resolveException(HttpServletRequest request,
-HttpServletResponse response, Object handler, Exception ex) {
+<pre><code class="highlight java"><span class="comment">/**</span>
+<span class="comment">* 自定义异常处理器</span>
+<span class="comment">*/</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomExceptionResolver</span> <span class="keyword">implements</span> <span class="title">HandlerExceptionResolver</span> </span>{
+<span class="meta">@Override</span>
+<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">resolveException</span><span class="params">(HttpServletRequest request,</span></span>
+<span class="function"><span class="params">HttpServletResponse response, Object handler, Exception ex)</span> </span>{
 ex.printStackTrace();
-CustomException customException = null;
-//如果抛出的是系统自定义异常则直接转换
-if(ex instanceof CustomException){
+CustomException customException = <span class="keyword">null</span>;
+<span class="comment">//如果抛出的是系统自定义异常则直接转换</span>
+<span class="keyword">if</span>(ex <span class="keyword">instanceof</span> CustomException){
 customException = (CustomException)ex;
-}else{
-//如果抛出的不是系统自定义异常则重新构造一个系统错误异常。
-customException = new CustomException("系统错误，请与系统管理 员联系！ ");
+}<span class="keyword">else</span>{
+<span class="comment">//如果抛出的不是系统自定义异常则重新构造一个系统错误异常。</span>
+customException = <span class="keyword">new</span> CustomException(<span class="string">"系统错误，请与系统管理 员联系！ "</span>);
 }
-ModelAndView modelAndView = new ModelAndView();
-modelAndView.addObject("message", customException.getMessage());
-modelAndView.setViewName("error");
-return modelAndView;
+ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();
+modelAndView.addObject(<span class="string">"message"</span>, customException.getMessage());
+modelAndView.setViewName(<span class="string">"error"</span>);
+<span class="keyword">return</span> modelAndView;
 }
-}
-</code></pre>
+}</code></pre>
 <p>配置异常处理器</p>
-<pre><code class="language-xml">&lt;!-- 配置自定义异常处理器 --&gt;
-&lt;bean id="handlerExceptionResolver"
-class="com.itheima.exception.CustomExceptionResolver"/&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="comment">&lt;!-- 配置自定义异常处理器 --&gt;</span>
+<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"handlerExceptionResolver"</span></span>
+<span class="tag"><span class="attr">class</span>=<span class="string">"com.itheima.exception.CustomExceptionResolver"</span>/&gt;</span></code></pre>
 <h2 id="2-SpringMVC-中的拦截器">2. SpringMVC 中的拦截器</h2>
 <h3 id="2-1-拦截器的作用">2.1 拦截器的作用</h3>
 <p>Spring MVC 的处理器拦截器类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。用户可以自己定义一些拦截器来实现特定的功能。<br>
@@ -313,117 +310,112 @@ class="com.itheima.exception.CustomExceptionResolver"/&gt;
 </ol>
 <h3 id="2-2-自定义拦截器的步骤">2.2 自定义拦截器的步骤</h3>
 <p>第一步：编写一个普通类实现 HandlerInterceptor 接口</p>
-<pre><code class="language-java">public class HandlerInterceptorDemo1 implements HandlerInterceptor {
-@Override
-public boolean preHandle(HttpServletRequest request, HttpServletResponse
-response, Object handler)
-throws Exception {
-System.out.println("preHandle 拦截器拦截了");
-return true;
+<pre><code class="highlight java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HandlerInterceptorDemo1</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>{
+<span class="meta">@Override</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse</span></span>
+<span class="function"><span class="params">response, Object handler)</span></span>
+<span class="function"><span class="keyword">throws</span> Exception </span>{
+System.out.println(<span class="string">"preHandle 拦截器拦截了"</span>);
+<span class="keyword">return</span> <span class="keyword">true</span>;
 }
-@Override
-public void postHandle(HttpServletRequest request, HttpServletResponse response,
-Object handler，ModelAndView modelAndView) throws Exception {
-System.out.println("postHandle 方法执行了");
+<span class="meta">@Override</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response,</span></span>
+<span class="function"><span class="params">Object handler，ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>{
+System.out.println(<span class="string">"postHandle 方法执行了"</span>);
 }
-@Override
-public void afterCompletion(HttpServletRequest request, HttpServletResponse
-response, Object handler, Exception ex)
-throws Exception {
-System.out.println("afterCompletion 方法执行了");
+<span class="meta">@Override</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse</span></span>
+<span class="function"><span class="params">response, Object handler, Exception ex)</span></span>
+<span class="function"><span class="keyword">throws</span> Exception </span>{
+System.out.println(<span class="string">"afterCompletion 方法执行了"</span>);
 }
-}
-</code></pre>
+}</code></pre>
 <p>第二步：配置拦截器</p>
-<pre><code class="language-xml">&lt;!-- 配置拦截器 --&gt;
-&lt;mvc:interceptors&gt;
-&lt;mvc:interceptor&gt;
-&lt;mvc:mapping path="/**"/&gt;
-&lt;bean id="handlerInterceptorDemo1"
-class="com.itheima.web.interceptor.HandlerInterceptorDemo1"&gt;&lt;/bean&gt;
-&lt;/mvc:interceptor&gt;
-&lt;/mvc:interceptors&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="comment">&lt;!-- 配置拦截器 --&gt;</span>
+<span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span>
+<span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span>
+<span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">"/**"</span>/&gt;</span>
+<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"handlerInterceptorDemo1"</span></span>
+<span class="tag"><span class="attr">class</span>=<span class="string">"com.itheima.web.interceptor.HandlerInterceptorDemo1"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></code></pre>
 <h3 id="2-3-拦截器的细节">2.3 拦截器的细节</h3>
 <p>拦截器的放行 ：放行的含义是指，如果有下一个拦截器就执行下一个，如果该拦截器处于拦截器链的最后一个，则执行控制器中的方法</p>
 <p>拦截器中方法的说明  ：</p>
-<pre><code class="language-java">public interface HandlerInterceptor {
-/**
-* 如何调用：
-* 按拦截器定义顺序调用
-* 何时调用：
-* 只要配置了都会调用
-* 有什么用：
-* 如果程序员决定该拦截器对请求进行拦截处理后还要调用其他的拦截器，或者是业务处理器去
-* 进行处理，则返回 true。
-* 如果程序员决定不需要再调用其他的组件去处理请求，则返回 false。
-*/
-default boolean preHandle(HttpServletRequest request, HttpServletResponse
-response, Object handler)
-throws Exception {
-return true;
+<pre><code class="highlight java"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HandlerInterceptor</span> </span>{
+<span class="comment">/**</span>
+<span class="comment">* 如何调用：</span>
+<span class="comment">* 按拦截器定义顺序调用</span>
+<span class="comment">* 何时调用：</span>
+<span class="comment">* 只要配置了都会调用</span>
+<span class="comment">* 有什么用：</span>
+<span class="comment">* 如果程序员决定该拦截器对请求进行拦截处理后还要调用其他的拦截器，或者是业务处理器去</span>
+<span class="comment">* 进行处理，则返回 true。</span>
+<span class="comment">* 如果程序员决定不需要再调用其他的组件去处理请求，则返回 false。</span>
+<span class="comment">*/</span>
+<span class="function"><span class="keyword">default</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse</span></span>
+<span class="function"><span class="params">response, Object handler)</span></span>
+<span class="function"><span class="keyword">throws</span> Exception </span>{
+<span class="keyword">return</span> <span class="keyword">true</span>;
 }
-    /**
-* 如何调用：
-* 按拦截器定义逆序调用
-* 何时调用：
-* 在拦截器链内所有拦截器返成功调用
-* 有什么用：
-* 在业务处理器处理完请求后，但是 DispatcherServlet 向客户端返回响应前被调用，
-* 在该方法中对用户请求 request 进行处理。
-*/
-default void postHandle(HttpServletRequest request, HttpServletResponse
-response, Object handler,
-@Nullable ModelAndView modelAndView) throws Exception {
+    <span class="comment">/**</span>
+<span class="comment">* 如何调用：</span>
+<span class="comment">* 按拦截器定义逆序调用</span>
+<span class="comment">* 何时调用：</span>
+<span class="comment">* 在拦截器链内所有拦截器返成功调用</span>
+<span class="comment">* 有什么用：</span>
+<span class="comment">* 在业务处理器处理完请求后，但是 DispatcherServlet 向客户端返回响应前被调用，</span>
+<span class="comment">* 在该方法中对用户请求 request 进行处理。</span>
+<span class="comment">*/</span>
+<span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse</span></span>
+<span class="function"><span class="params">response, Object handler,</span></span>
+<span class="function"><span class="params"><span class="meta">@Nullable</span> ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>{
 }
-/**
-* 如何调用：
-* 按拦截器定义逆序调用
-* 何时调用：
-* 只有 preHandle 返回 true 才调用
-* 有什么用：
-* 在 DispatcherServlet 完全处理完请求后被调用，
-* 可以在该方法中进行一些资源清理的操作。
-*/
-default void afterCompletion(HttpServletRequest request, HttpServletResponse
-response, Object handler,
-@Nullable Exception ex) throws Exception {
+<span class="comment">/**</span>
+<span class="comment">* 如何调用：</span>
+<span class="comment">* 按拦截器定义逆序调用</span>
+<span class="comment">* 何时调用：</span>
+<span class="comment">* 只有 preHandle 返回 true 才调用</span>
+<span class="comment">* 有什么用：</span>
+<span class="comment">* 在 DispatcherServlet 完全处理完请求后被调用，</span>
+<span class="comment">* 可以在该方法中进行一些资源清理的操作。</span>
+<span class="comment">*/</span>
+<span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse</span></span>
+<span class="function"><span class="params">response, Object handler,</span></span>
+<span class="function"><span class="params"><span class="meta">@Nullable</span> Exception ex)</span> <span class="keyword">throws</span> Exception </span>{
 }
-}
-</code></pre>
+}</code></pre>
 <p>拦截器的作用路径</p>
-<pre><code class="language-xml">作用路径可以通过在配置文件中配置。
-&lt;!-- 配置拦截器的作用范围 --&gt;
-&lt;mvc:interceptors&gt;
-&lt;mvc:interceptor&gt;
-&lt;mvc:mapping path="/**" /&gt;&lt;!-- 用于指定对拦截的 url --&gt;
-&lt;mvc:exclude-mapping path=""/&gt;&lt;!-- 用于指定排除的 url--&gt;
-&lt;bean id="handlerInterceptorDemo1"
-class="com.itheima.web.interceptor.HandlerInterceptorDemo1"&gt;&lt;/bean&gt;
-&lt;/mvc:interceptor&gt;
-&lt;/mvc:interceptors&gt;
-</code></pre>
+<pre><code class="highlight xml">作用路径可以通过在配置文件中配置。
+<span class="comment">&lt;!-- 配置拦截器的作用范围 --&gt;</span>
+<span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span>
+<span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span>
+<span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">"/**"</span> /&gt;</span><span class="comment">&lt;!-- 用于指定对拦截的 url --&gt;</span>
+<span class="tag">&lt;<span class="name">mvc:exclude-mapping</span> <span class="attr">path</span>=<span class="string">""</span>/&gt;</span><span class="comment">&lt;!-- 用于指定排除的 url--&gt;</span>
+<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"handlerInterceptorDemo1"</span></span>
+<span class="tag"><span class="attr">class</span>=<span class="string">"com.itheima.web.interceptor.HandlerInterceptorDemo1"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></code></pre>
 <h3 id="2-4-拦截器实现登陆验证">2.4 拦截器实现登陆验证</h3>
-<pre><code class="language-java">public class LoginInterceptor implements HandlerInterceptor{
-@Override
-Public boolean preHandle(HttpServletRequest request,
-HttpServletResponse response, Object handler) throws Exception {
-//如果是登录页面则放行
-if(request.getRequestURI().indexOf("login.action")&gt;=0){
-return true;
+<pre><code class="highlight java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span></span>{
+<span class="meta">@Override</span>
+<span class="function">Public <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request,</span></span>
+<span class="function"><span class="params">HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>{
+<span class="comment">//如果是登录页面则放行</span>
+<span class="keyword">if</span>(request.getRequestURI().indexOf(<span class="string">"login.action"</span>)&gt;=<span class="number">0</span>){
+<span class="keyword">return</span> <span class="keyword">true</span>;
 }
 HttpSession session = request.getSession();
-//如果用户已登录也放行
-if(session.getAttribute("user")!=null){
-return true;
+<span class="comment">//如果用户已登录也放行</span>
+<span class="keyword">if</span>(session.getAttribute(<span class="string">"user"</span>)!=<span class="keyword">null</span>){
+<span class="keyword">return</span> <span class="keyword">true</span>;
 }
-//用户没有登录挑战到登录页面
-request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request,
+<span class="comment">//用户没有登录挑战到登录页面</span>
+request.getRequestDispatcher(<span class="string">"/WEB-INF/jsp/login.jsp"</span>).forward(request,
 response);
-return false;
+<span class="keyword">return</span> <span class="keyword">false</span>;
 }
-}
-</code></pre>
+}</code></pre>
 
         </div>
 
@@ -520,16 +512,15 @@ return false;
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

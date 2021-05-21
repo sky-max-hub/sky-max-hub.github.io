@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // print theme base info
   KEEP.printThemeInfo = () => {
-    console.log(`\n %c ${KEEP.themeInfo.theme} %c ${KEEP.themeInfo.repository} \n`, `color: #fadfa3; background: #333; padding: 5px 0;`, `background: #fadfa3; padding: 5px 0;`);
+    //console.log(`\n %c ${KEEP.themeInfo.theme} %c ${KEEP.themeInfo.repository} \n`, `color: #fadfa3; background: #333; padding: 5px 0;`, `background: #fadfa3; padding: 5px 0;`);
   }
 
   // set styleStatus to localStorage

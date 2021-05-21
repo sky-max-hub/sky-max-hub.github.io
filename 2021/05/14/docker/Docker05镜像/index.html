@@ -272,26 +272,24 @@
 </ol>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210514102529830.png" alt="image-20210514102529830"></p>
 <h3 id="commit镜像">commit镜像</h3>
-<pre><code class="language-shell">#docker commit -m="提交的描述信息" -a="作者" 容器ID 目标镜像名:[tag]
-</code></pre>
+<pre><code class="highlight shell"><span class="meta">#</span><span class="bash">docker commit -m=<span class="string">"提交的描述信息"</span> -a=<span class="string">"作者"</span> 容器ID 目标镜像名:[tag]</span></code></pre>
 <p>参考教程：<a href="https://blog.sky123.top/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">Tomcat 部署练习</a></p>
 <p>发现：官方的默认 tomcat 的 <code>webapp文件夹</code> 并没有一些文件，需要自己手动拷贝。</p>
 <p>解决：将我们操作国的容器 <code>commit</code> 提交成一个新的镜像，我们以后就直接使用我们修改过的镜像即可。</p>
-<pre><code class="language-sh">[root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
+<pre><code class="highlight sh">[root@izwz91mv6i3x6k12jjqh60z ~]<span class="comment"># docker ps</span>
 CONTAINER ID   IMAGE     COMMAND             CREATED          STATUS          PORTS                                       NAMES
-39f11d68d64d   tomcat    "catalina.sh run"   18 minutes ago   Up 18 minutes   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02
+39f11d68d64d   tomcat    <span class="string">"catalina.sh run"</span>   18 minutes ago   Up 18 minutes   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02
 
-[root@izwz91mv6i3x6k12jjqh60z ~]# docker commit -m="这个修改了的tomcat" -a="zhang" 39f11d68d64d modified_tomcat:1.1
+[root@izwz91mv6i3x6k12jjqh60z ~]<span class="comment"># docker commit -m="这个修改了的tomcat" -a="zhang" 39f11d68d64d modified_tomcat:1.1</span>
 sha256:57cab5f1479d5c0c6f85ba59415b8c7e9563d9907d32fc5d61a54a74945e57e7
 
-[root@izwz91mv6i3x6k12jjqh60z ~]# docker images
+[root@izwz91mv6i3x6k12jjqh60z ~]<span class="comment"># docker images</span>
 REPOSITORY            TAG       IMAGE ID       CREATED         SIZE
 modified_tomcat       1.1       57cab5f1479d   7 seconds ago   672MB
 tomcat                latest    c0e850d7b9bb   3 weeks ago     667MB
 nginx                 latest    62d49f9bab67   4 weeks ago     133MB
 portainer/portainer   latest    580c0e4e98b0   8 weeks ago     79.1MB
-centos                latest    300e315adb2f   5 months ago    209MB
-</code></pre>
+centos                latest    300e315adb2f   5 months ago    209MB</code></pre>
 <blockquote>
 <p>总结：如果想保存当前容器的状态，可以通过 commit 来提交，获得一个镜像。</p>
 </blockquote>
@@ -376,16 +374,15 @@ centos                latest    300e315adb2f   5 months ago    209MB
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

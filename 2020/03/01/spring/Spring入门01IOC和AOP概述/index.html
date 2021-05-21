@@ -306,26 +306,24 @@
 <li>在进行软件设计时，应力争做到高内聚，低耦合。</li>
 </ol>
 </blockquote>
-<pre><code class="language-java">/**
-* 账户的业务层实现类
-* @author 
-* @Company
-* @Version 1.0
-*/
-public class AccountServiceImpl implements IAccountService {
-private IAccountDao accountDao = new AccountDaoImpl();
+<pre><code class="highlight java"><span class="comment">/**</span>
+<span class="comment">* 账户的业务层实现类</span>
+<span class="comment">* <span class="doctag">@author</span> </span>
+<span class="comment">* <span class="doctag">@Company</span></span>
+<span class="comment">* <span class="doctag">@Version</span> 1.0</span>
+<span class="comment">*/</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceImpl</span> <span class="keyword">implements</span> <span class="title">IAccountService</span> </span>{
+<span class="keyword">private</span> IAccountDao accountDao = <span class="keyword">new</span> AccountDaoImpl();
 }
 
-//业务层调用持久层，并且此时业务层在依赖持久层的接口和实现类。如果此时没有持久层实现类，编译将不能通过。 这种编译期依赖关系，应该在我们开发中杜绝。 我们需要优化代码解决  
-</code></pre>
-<pre><code class="language-java">//当是我们讲解 jdbc 时，是通过反射来注册驱动的，代码如下：
+<span class="comment">//业务层调用持久层，并且此时业务层在依赖持久层的接口和实现类。如果此时没有持久层实现类，编译将不能通过。 这种编译期依赖关系，应该在我们开发中杜绝。 我们需要优化代码解决  </span></code></pre>
+<pre><code class="highlight java"><span class="comment">//当是我们讲解 jdbc 时，是通过反射来注册驱动的，代码如下：</span>
     
-Class.forName("com.mysql.jdbc.Driver");//此处只是一个字符串
+Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">//此处只是一个字符串</span>
 
-//此时的好处是，我们的类中不再依赖具体的驱动类，此时就算删除 mysql 的驱动 jar 包，依然可以编译（运行就不要想了，没有驱动不可能运行成功的） 。
-//同时，也产生了一个新的问题， mysql 驱动的全限定类名字符串是在 java 类中写死的，一旦要改还是要修改源码。
-//解决这个问题也很简单，使用配置文件配置。
-</code></pre>
+<span class="comment">//此时的好处是，我们的类中不再依赖具体的驱动类，此时就算删除 mysql 的驱动 jar 包，依然可以编译（运行就不要想了，没有驱动不可能运行成功的） 。</span>
+<span class="comment">//同时，也产生了一个新的问题， mysql 驱动的全限定类名字符串是在 java 类中写死的，一旦要改还是要修改源码。</span>
+<span class="comment">//解决这个问题也很简单，使用配置文件配置。</span></code></pre>
 <h3 id="3-2-工厂模式解耦">3.2 工厂模式解耦</h3>
 <p>在实际开发中我们可以把三层的对象都使用配置文件配置起来，当启动服务器应用加载的时候， 让一个类中的方法通过读取配置文件，把这些对象创建出来并存起来。在接下来的使用的时候，直接拿过来用就好了。<br>
 <code>那么，这个读取配置文件， 创建存储和获取三层对象的类就是工厂。</code></p>
@@ -350,71 +348,67 @@ Class.forName("com.mysql.jdbc.Driver");//此处只是一个字符串
 <hr>
 <h3 id="3-3-使用-Spring-的-IoC-解决程序耦合">3.3 使用 Spring 的 IoC 解决程序耦合</h3>
 <h4 id="3-3-1-导入依赖">3.3.1 导入依赖</h4>
-<pre><code class="language-xml">&lt;!--        spring核心包--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
-        &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;
-    &lt;/dependency&gt;
-&lt;!--        spring整合junit的jar包--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
-            &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;
-        &lt;/dependency&gt;
-        &lt;!--        用于spring框架检测切入点的Jar包--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
-            &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
-            &lt;version&gt;1.8.4&lt;/version&gt;
-        &lt;/dependency&gt;
-&lt;!--        spring的jdbcTemplate的依赖--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
-            &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;
-        &lt;/dependency&gt;
-&lt;!--        spring事务控制依赖包--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-tx&lt;/artifactId&gt;
-            &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;
-        &lt;/dependency&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="comment">&lt;!--        spring核心包--&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="comment">&lt;!--        spring整合junit的jar包--&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+        <span class="comment">&lt;!--        用于spring框架检测切入点的Jar包--&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="comment">&lt;!--        spring的jdbcTemplate的依赖--&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="comment">&lt;!--        spring事务控制依赖包--&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-tx<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></code></pre>
 <h4 id="3-3-2-在resources创建-bean-xml导入约束">3.3.2 在resources创建 bean.xml导入约束</h4>
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
-&lt;/beans&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span>
+<span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
+<span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">beans</span>&gt;</span></code></pre>
 <h4 id="3-3-3-在bean-xml中注入对象">3.3.3 在bean.xml中注入对象</h4>
-<pre><code class="language-xml">&lt;!-- bean 标签：用于配置让 spring 创建对象，并且存入 ioc 容器之中
-id 属性：对象的唯一标识。
-class 属性：指定要创建对象的全限定类名
---&gt;
-&lt;!-- 配置 service --&gt;
-&lt;bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl"&gt;
-&lt;/bean&gt;
-&lt;!-- 配置 dao --&gt;
-&lt;bean id="accountDao" class="com.itheima.dao.impl.AccountDaoImpl"&gt;&lt;/bean&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="comment">&lt;!-- bean 标签：用于配置让 spring 创建对象，并且存入 ioc 容器之中</span>
+<span class="comment">id 属性：对象的唯一标识。</span>
+<span class="comment">class 属性：指定要创建对象的全限定类名</span>
+<span class="comment">--&gt;</span>
+<span class="comment">&lt;!-- 配置 service --&gt;</span>
+<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountService"</span> <span class="attr">class</span>=<span class="string">"com.itheima.service.impl.AccountServiceImpl"</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">bean</span>&gt;</span>
+<span class="comment">&lt;!-- 配置 dao --&gt;</span>
+<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountDao"</span> <span class="attr">class</span>=<span class="string">"com.itheima.dao.impl.AccountDaoImpl"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></code></pre>
 <h4 id="3-3-4-测试获取容器中的对象">3.3.4 测试获取容器中的对象</h4>
-<pre><code class="language-java">public class Client {
-    public static void main(String[] args) {
-	//1.使用 ApplicationContext 接口，就是在获取 spring 容器
-		ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+<pre><code class="highlight java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+    <span class="comment">//1.使用 ApplicationContext 接口，就是在获取 spring 容器</span>
+        ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"bean.xml"</span>);
         
-	//2.根据 bean 的 id 获取对象
-		IAccountService aService = (IAccountService) ac.getBean("accountService");
-		System.out.println(aService);
+    <span class="comment">//2.根据 bean 的 id 获取对象</span>
+        IAccountService aService = (IAccountService) ac.getBean(<span class="string">"accountService"</span>);
+        System.out.println(aService);
         
-		IAccountDao aDao = (IAccountDao) ac.getBean("accountDao");
-		System.out.println(aDao);
-	}
-}
-</code></pre>
+        IAccountDao aDao = (IAccountDao) ac.getBean(<span class="string">"accountDao"</span>);
+        System.out.println(aDao);
+    }
+}</code></pre>
 <h2 id="4-AOP的概述和动态代理">4 AOP的概述和动态代理</h2>
 <h3 id="4-1-AOP-概述">4.1 AOP 概述</h3>
 <p>AOP： 全称是 Aspect Oriented Programming 即： 面向切面编程。  简单的说它就是把我们程序重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。</p>
@@ -535,16 +529,15 @@ class 属性：指定要创建对象的全限定类名
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

@@ -229,59 +229,56 @@
 <hr>
 <h1>SpringBoot04整合Junit</h1>
 <h2 id="1-添加Junit的起步依赖">1 添加Junit的起步依赖</h2>
-<pre><code class="language-xml">&lt;!--测试的起步依赖--&gt;
- 		&lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-            &lt;scope&gt;test&lt;/scope&gt;
-            &lt;exclusions&gt;
-                &lt;exclusion&gt;
-                    &lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;
-                    &lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;
-                &lt;/exclusion&gt;
-            &lt;/exclusions&gt;
-        &lt;/dependency&gt;
-&lt;!--junit--&gt;
-		&lt;dependency&gt;
-            &lt;groupId&gt;junit&lt;/groupId&gt;
-            &lt;artifactId&gt;junit&lt;/artifactId&gt;
-            &lt;scope&gt;test&lt;/scope&gt;
-        &lt;/dependency&gt;
-
+<pre><code class="highlight xml"><span class="comment">&lt;!--测试的起步依赖--&gt;</span>
+ 		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span>
+                <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span>
+                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.vintage<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-vintage-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+                <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span>
+            <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="comment">&lt;!--junit--&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
 </code></pre>
 <h2 id="2-编写测试类">2 编写测试类</h2>
-<pre><code class="language-java">package com.itheima.test;
+<pre><code class="highlight java"><span class="keyword">package</span> com.itheima.test;
 
-import com.itheima.MySpringBootApplication;
-import com.itheima.domain.User;
-import com.itheima.mapper.UserMapper;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+<span class="keyword">import</span> com.itheima.MySpringBootApplication;
+<span class="keyword">import</span> com.itheima.domain.User;
+<span class="keyword">import</span> com.itheima.mapper.UserMapper;
+<span class="keyword">import</span> org.junit.Test;
+<span class="keyword">import</span> org.junit.runner.RunWith;
+<span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;
+<span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
+<span class="keyword">import</span> java.util.List;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = MySpringBootApplication.class)
-public class MapperTest {
+<span class="meta">@RunWith(SpringRunner.class)</span>
+<span class="meta">@SpringBootTest(classes = MySpringBootApplication.class)</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapperTest</span> </span>{
 
-    @Autowired
-    private UserMapper userMapper;
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> UserMapper userMapper;
 
-    @Test
-    public void test() {
+    <span class="meta">@Test</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>{
         List&lt;User&gt; users = userMapper.queryUserList();
         System.out.println(users);
     }
 
-}
-</code></pre>
+}</code></pre>
 <p>其中，</p>
 <p><code>SpringRunner</code>继承自<code>SpringJUnit4ClassRunner</code>，使用哪一个Spring提供的测试测试引擎都可以</p>
-<pre><code class="language-java">public final class SpringRunner extends SpringJUnit4ClassRunner 
-</code></pre>
+<pre><code class="highlight java"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringRunner</span> <span class="keyword">extends</span> <span class="title">SpringJUnit4ClassRunner</span> </span></code></pre>
 <p><code>@SpringBootTest</code>的属性指定的是引导类的字节码对象</p>
 <h2 id="3-控制台打印信息">3 控制台打印信息</h2>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/15.png" alt=""></p>
@@ -381,16 +378,15 @@ public class MapperTest {
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

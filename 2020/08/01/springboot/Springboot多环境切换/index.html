@@ -239,15 +239,13 @@
 </ol>
 <h2 id="步骤">步骤</h2>
 <p>在默认文件中 <code>application.yml</code>  中 配置切换属性：</p>
-<pre><code class="language-yml">spring:
-  profiles:
-    active: dev
-</code></pre>
+<pre><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">profiles:</span>
+    <span class="attr">active:</span> <span class="string">dev</span></code></pre>
 <p>新建 <code>application-dev.yml</code> 文件：</p>
-<pre><code class="language-yml">spring:
-  application:
-    name: 这是开发环境
-</code></pre>
+<pre><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">这是开发环境</span></code></pre>
 <p>启动后看到：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301185125610.png" alt="image-20210301185125610"></p>
 <p>说明环境切换成功。</p>
@@ -348,16 +346,15 @@
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

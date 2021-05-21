@@ -233,7 +233,7 @@
 </ol>
 <p><a class="link" target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/<i class="fas fa-external-link-alt"></i></a></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504094603067.png" alt="image-20210504094603067"></p>
-<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker pull nginx
+<pre><code class="highlight shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker pull nginx
 Using default tag: latest
 latest: Pulling from library/nginx
 f7ec5a41d630: Pull complete 
@@ -249,14 +249,14 @@ docker.io/library/nginx:latest
 REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
 nginx        latest    62d49f9bab67   2 weeks ago    133MB
 centos       latest    300e315adb2f   4 months ago   209MB
-#参考运行容器的命令
+<span class="meta">#</span><span class="bash">参考运行容器的命令</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d --name nginx01 -p 3304:80 nginx
 dccb2ad300dbbb4598dbb2017805fba5364379326d4a6296dac9b88bc61d8970
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                   NAMES
 dccb2ad300db   nginx     "/docker-entrypoint.…"   21 seconds ago   Up 20 seconds   0.0.0.0:3304-&gt;80/tcp, :::3304-&gt;80/tcp   nginx01
 
-#测试是否运行成功，发送一个请求
+<span class="meta">#</span><span class="bash">测试是否运行成功，发送一个请求</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# curl localhost:3304
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -282,18 +282,16 @@ Commercial support is available at
 
 &lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+&lt;/html&gt;</code></pre>
 <p>开放对应端口后，公网访问看到效果如下图：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504102706906.png" alt="image-20210504102706906"></p>
 <p>查看容器内的ngnix的配置文件：</p>
-<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker exec -it nginx01 /bin/bash
+<pre><code class="highlight shell">[root@izwz91mv6i3x6k12jjqh60z ~]# docker exec -it nginx01 /bin/bash
 root@dccb2ad300db:/# whereis nginx 
 nginx: /usr/sbin/nginx /usr/lib/nginx /etc/nginx /usr/share/nginx
 root@dccb2ad300db:/# cd /etc/nginx
 root@dccb2ad300db:/etc/nginx# ls
-conf.d	fastcgi_params	koi-utf  koi-win  mime.types  modules  nginx.conf  scgi_params	uwsgi_params  win-utf
-</code></pre>
+conf.d	fastcgi_params	koi-utf  koi-win  mime.types  modules  nginx.conf  scgi_params	uwsgi_params  win-utf</code></pre>
 <p>端口暴露原理示意图：</p>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504100014282.png" alt="image-20210504100014282" style="zoom: 67%;">
 <p>问题：每次改动 <code>nginx</code> 配置文件，都需要进入容器内部？十分的麻烦，要是可以在容器外部提供一个映射路径，达到在外部文件修改的同时，同步修改内部就好了！</p>
@@ -304,38 +302,37 @@ conf.d	fastcgi_params	koi-utf  koi-win  mime.types  modules  nginx.conf  scgi_pa
 <li>启动运行</li>
 <li>测试效果</li>
 </ol>
-<pre><code class="language-shell">#运行时提示错误
+<pre><code class="highlight shell"><span class="meta">#</span><span class="bash">运行时提示错误</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d -p 8080:8080 --name tomcat02 tomcat
 9cdceb4daa857dbd5c4e03dfd7eeded50ae027d8484137889d605871520dee97
 docker: Error response from daemon: driver failed programming external connectivity on endpoint tomcat02 (56f474809e2ca18c3e9ce63318aa6918600e004621743625e4be5754f74b6493):  (iptables failed: iptables --wait -t nat -A DOCKER -p tcp -d 0/0 --dport 8080 -j DNAT --to-destination 172.18.0.2:8080 ! -i docker0: iptables: No chain/target/match by that name.
  (exit status 1)).
 
-#重启后再次运行
+<span class="meta">#</span><span class="bash">重启后再次运行</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]#  systemctl restart docker
 
-#提示容器名已经有的
+<span class="meta">#</span><span class="bash">提示容器名已经有的</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d -p 8080:8080 --name tomcat02 tomcat
 docker: Error response from daemon: Conflict. The container name "/tomcat02" is already in use by container "9cdceb4daa857dbd5c4e03dfd7eeded50ae027d8484137889d605871520dee97". You have to remove (or rename) that container to be able to reuse that name.
 See 'docker run --help'.
 
-#没有正在运行的容器
+<span class="meta">#</span><span class="bash">没有正在运行的容器</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
-#查看历史记录
+<span class="meta">#</span><span class="bash">查看历史记录</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps -a
 CONTAINER ID   IMAGE          COMMAND                  CREATED             STATUS                        PORTS     NAMES
 9cdceb4daa85   tomcat         "catalina.sh run"        5 minutes ago       Created                                 tomcat02
 
-#开启容器
+<span class="meta">#</span><span class="bash">开启容器</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker start 9cdceb4daa85
 9cdceb4daa85
 
-#运行成功
+<span class="meta">#</span><span class="bash">运行成功</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND             CREATED         STATUS         PORTS                                       NAMES
 9cdceb4daa85   tomcat    "catalina.sh run"   5 minutes ago   Up 4 seconds   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02
-
 </code></pre>
 <p>查看效果：测试访问没有问题</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504105656898.png" alt="image-20210504105656898"></p>
@@ -344,7 +341,7 @@ CONTAINER ID   IMAGE     COMMAND             CREATED         STATUS         PORT
 <li>容器内部的 <code>Linux</code> 命令变少了（镜像只保证了最小的可运行环境）</li>
 <li>webapps中没有内容（需要把 <code>webapps.dist</code> 文件夹的内容复制到 <code>webapps</code>）</li>
 </ol>
-<pre><code class="language-shell">#查看镜像
+<pre><code class="highlight shell"><span class="meta">#</span><span class="bash">查看镜像</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker images
 REPOSITORY            TAG       IMAGE ID       CREATED        SIZE
 tomcat                latest    c0e850d7b9bb   3 weeks ago    667MB
@@ -352,17 +349,17 @@ nginx                 latest    62d49f9bab67   4 weeks ago    133MB
 portainer/portainer   latest    580c0e4e98b0   8 weeks ago    79.1MB
 centos                latest    300e315adb2f   5 months ago   209MB
 
-#运行 tomcat
+<span class="meta">#</span><span class="bash">运行 tomcat</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker run -d -p 8080:8080 --name tomcat02 tomcat
 39f11d68d64d3c585dd3a7f0a4e2123e03703cead8361c1cf0b6a61c1a7fb474
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND             CREATED          STATUS          PORTS                                       NAMES
 39f11d68d64d   tomcat    "catalina.sh run"   16 seconds ago   Up 15 seconds   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02
 
-#进入容器内部
+<span class="meta">#</span><span class="bash">进入容器内部</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker exec -it tomcat02 /bin/bash
 
-#发现一些命令不存在
+<span class="meta">#</span><span class="bash">发现一些命令不存在</span>
 root@39f11d68d64d:/usr/local/tomcat# ll
 bash: ll: command not found
 
@@ -370,35 +367,34 @@ root@39f11d68d64d:/usr/local/tomcat# ls
 BUILDING.txt	 LICENSE  README.md	 RUNNING.txt  conf  logs	    temp     webapps.dist
 CONTRIBUTING.md  NOTICE   RELEASE-NOTES  bin	      lib   native-jni-lib  webapps  work
 
-#webapps文件夹没有内容
+<span class="meta">#</span><span class="bash">webapps文件夹没有内容</span>
 root@39f11d68d64d:/usr/local/tomcat# cd webapps
 root@39f11d68d64d:/usr/local/tomcat/webapps# ls
 root@39f11d68d64d:/usr/local/tomcat/webapps# cd ../
 
-#webapps.dist文件夹有内容
+<span class="meta">#</span><span class="bash">webapps.dist文件夹有内容</span>
 root@39f11d68d64d:/usr/local/tomcat# cd webapps.dist
 root@39f11d68d64d:/usr/local/tomcat/webapps.dist# ls
 ROOT  docs  examples  host-manager  manager
 root@39f11d68d64d:/usr/local/tomcat/webapps.dist# cd ../
 
-#把webapps.dist文件夹的内容复制到 webapps
+<span class="meta">#</span><span class="bash">把webapps.dist文件夹的内容复制到 webapps</span>
 root@39f11d68d64d:/usr/local/tomcat# cp -r webapps.dist/* webapps
 
-#快捷键 ctrl+P+Q 退出容器但不停止容器运行
+<span class="meta">#</span><span class="bash">快捷键 ctrl+P+Q 退出容器但不停止容器运行</span>
 root@39f11d68d64d:/usr/local/tomcat# read escape sequence
 
-#确认容器状态
+<span class="meta">#</span><span class="bash">确认容器状态</span>
 [root@izwz91mv6i3x6k12jjqh60z ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND             CREATED         STATUS         PORTS                                       NAMES
 39f11d68d64d   tomcat    "catalina.sh run"   4 minutes ago   Up 4 minutes   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02
-
 </code></pre>
 <p>查看效果：（注意一定要在服务器的安全组中开放对应的端口！！！）</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210504112530764.png" alt="image-20210504112530764"></p>
 <h2 id="部署Mysql">部署Mysql</h2>
 <p>注意：<a class="link" target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql">官网 <i class="fas fa-external-link-alt"></i></a> 中解释 Mysql 是要配置数据库密码的！！</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/6487268471927.jpg" alt="6487268471927"></p>
-<pre><code class="language-shell">#下载镜像 Mysql5.7
+<pre><code class="highlight shell"><span class="meta">#</span><span class="bash">下载镜像 Mysql5.7</span>
 [root@izwz91mv6i3x6k12jjqh60z ceshi]# docker pull mysql:5.7
 5.7: Pulling from library/mysql
 69692152171a: Pull complete 
@@ -416,25 +412,23 @@ Digest: sha256:a682e3c78fc5bd941e9db080b4796c75f69a28a8cad65677c23f7a9f18ba21fa
 Status: Downloaded newer image for mysql:5.7
 docker.io/library/mysql:5.7
 
-#启动镜像并挂载目录配置数据库的初始密码
+<span class="meta">#</span><span class="bash">启动镜像并挂载目录配置数据库的初始密码</span>
 [root@izwz91mv6i3x6k12jjqh60z ceshi]# docker run -d -p 3310:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root --name mysql01 mysql:5.7
-d869c76c987c305b9dd91321f523db7708a2a1c220712b4beaf2ac7f0e68fa1e
-</code></pre>
+d869c76c987c305b9dd91321f523db7708a2a1c220712b4beaf2ac7f0e68fa1e</code></pre>
 <p>使用数据库连接工具连接，查看连接是否成功：</p>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/Snipaste_2021-05-14_12-49-42.jpg" alt="Snipaste_2021-05-14_12-49-42" style="zoom: 50%;">
 <p>发现连接成功：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/Snipaste_2021-05-14_12-49-58.jpg" alt="Snipaste_2021-05-14_12-49-58"></p>
 <p>新建数据库并查看主机的文件是否对应改变：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/Snipaste_2021-05-14_12-56-29.jpg" alt="Snipaste_2021-05-14_12-56-29"></p>
-<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z home]# ls
+<pre><code class="highlight shell">[root@izwz91mv6i3x6k12jjqh60z home]# ls
 admin  ceshi  mysql  test.java
 [root@izwz91mv6i3x6k12jjqh60z home]# cd mysql/data
 [root@izwz91mv6i3x6k12jjqh60z data]# ls
 auto.cnf    ca.pem           client-key.pem  ibdata1      ib_logfile1  mysql               private_key.pem  server-cert.pem  sys
-ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile0  ibtmp1       performance_schema  public_key.pem   server-key.pem   test
-</code></pre>
+ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile0  ibtmp1       performance_schema  public_key.pem   server-key.pem   test</code></pre>
 <p>测试删除 mysql 容器后，主机上的文件是否依然存在：</p>
-<pre><code class="language-shell">[root@izwz91mv6i3x6k12jjqh60z data]# docker ps
+<pre><code class="highlight shell">[root@izwz91mv6i3x6k12jjqh60z data]# docker ps
 CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS                                                  NAMES
 d869c76c987c   mysql:5.7   "docker-entrypoint.s…"   26 minutes ago   Up 26 minutes   33060/tcp, 0.0.0.0:3310-&gt;3306/tcp, :::3310-&gt;3306/tcp   mysql01
 1309cabd368d   centos      "/bin/bash"              38 minutes ago   Up 38 minutes                                                          epic_neumann
@@ -446,7 +440,6 @@ d869c76c987c
 [root@izwz91mv6i3x6k12jjqh60z data]# ls
 auto.cnf    ca.pem           client-key.pem  ibdata1      ib_logfile1  mysql               private_key.pem  server-cert.pem  sys
 ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile0  ibtmp1       performance_schema  public_key.pem   server-key.pem   test
-
 </code></pre>
 <p>发现我们挂载到本地的数据卷依旧没有丢失，这就实现了 容器数据持久化的功能！！</p>
 
@@ -460,13 +453,13 @@ ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile0  ibtmp1       performan
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/05/04/docker/Docker02%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+                           href="/2021/05/04/linux/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Docker常用命令</span>
+                                <span class="post-nav-title-item">Linux服务器防火墙端口配置</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -476,10 +469,10 @@ ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile0  ibtmp1       performan
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/04/22/javascript/mock/"
+                           href="/2021/05/04/docker/Docker01%E6%A6%82%E8%BF%B0%E5%92%8C%E5%AE%89%E8%A3%85/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Mock和Mock.js</span>
+                                <span class="post-nav-title-item">Docker概述和安装</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -545,16 +538,15 @@ ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile0  ibtmp1       performan
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

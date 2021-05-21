@@ -234,64 +234,59 @@
 </blockquote>
 <h2 id="使用">使用</h2>
 <h3 id="引入依赖">引入依赖</h3>
-<pre><code class="language-xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;
-&lt;/dependency&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></code></pre>
 <h3 id="相关注解">相关注解</h3>
-<pre><code class="language-java">/**
-    @Aspect 用来类上,代表这个类是一个切面
-    @Before 用在方法上代表这个方法是一个前置通知方法 
-    @After 用在方法上代表这个方法是一个后置通知方法 @Around 用在方法上代表这个方法是一个环绕的方法
-    @Around 用在方法上代表这个方法是一个环绕的方法
-**/
-</code></pre>
+<pre><code class="highlight java"><span class="comment">/**</span>
+<span class="comment">    <span class="doctag">@Aspect</span> 用来类上,代表这个类是一个切面</span>
+<span class="comment">    <span class="doctag">@Before</span> 用在方法上代表这个方法是一个前置通知方法 </span>
+<span class="comment">    <span class="doctag">@After</span> 用在方法上代表这个方法是一个后置通知方法 <span class="doctag">@Around</span> 用在方法上代表这个方法是一个环绕的方法</span>
+<span class="comment">    <span class="doctag">@Around</span> 用在方法上代表这个方法是一个环绕的方法</span>
+<span class="comment">**/</span></code></pre>
 <h4 id="前置切面">前置切面</h4>
-<pre><code class="language-java">@Aspect
-@Component
-public class MyAspect {
-    @Before("execution(* com.baizhi.service.*.*(..))")
-    public void before(JoinPoint joinPoint){
-        System.out.println("前置通知");
-        joinPoint.getTarget();//目标对象
-        joinPoint.getSignature();//方法签名
-        joinPoint.getArgs();//方法参数
+<pre><code class="highlight java"><span class="meta">@Aspect</span>
+<span class="meta">@Component</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> </span>{
+    <span class="meta">@Before("execution(* com.baizhi.service.*.*(..))")</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">(JoinPoint joinPoint)</span></span>{
+        System.out.println(<span class="string">"前置通知"</span>);
+        joinPoint.getTarget();<span class="comment">//目标对象</span>
+        joinPoint.getSignature();<span class="comment">//方法签名</span>
+        joinPoint.getArgs();<span class="comment">//方法参数</span>
     }
-}
-</code></pre>
+}</code></pre>
 <h4 id="后置切面">后置切面</h4>
-<pre><code class="language-java">@Aspect
-@Component
-public class MyAspect {
-    @After("execution(* com.baizhi.service.*.*(..))")
-    public void before(JoinPoint joinPoint){
-        System.out.println("后置通知");
-        joinPoint.getTarget();//目标对象
-        joinPoint.getSignature();//方法签名
-        joinPoint.getArgs();//方法参数
+<pre><code class="highlight java"><span class="meta">@Aspect</span>
+<span class="meta">@Component</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> </span>{
+    <span class="meta">@After("execution(* com.baizhi.service.*.*(..))")</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">(JoinPoint joinPoint)</span></span>{
+        System.out.println(<span class="string">"后置通知"</span>);
+        joinPoint.getTarget();<span class="comment">//目标对象</span>
+        joinPoint.getSignature();<span class="comment">//方法签名</span>
+        joinPoint.getArgs();<span class="comment">//方法参数</span>
     }
-}
-</code></pre>
+}</code></pre>
 <blockquote>
 <p>注意: 前置通知和后置通知都没有返回值,方法参数都为joinpoint</p>
 </blockquote>
 <h4 id="环绕切面">环绕切面</h4>
-<pre><code class="language-java">@Aspect
-@Component
-public class MyAspect {
-    @Around("execution(* com.baizhi.service.*.*(..))")
-    public Object before(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        System.out.println("进入环绕通知");
-        proceedingJoinPoint.getTarget();//目标对象
-        proceedingJoinPoint.getSignature();//方法签名
-        proceedingJoinPoint.getArgs();//方法参数
-        Object proceed = proceedingJoinPoint.proceed();//放行执行目标方法
-        System.out.println("目标方法执行之后回到环绕通知");
-        return proceed;//返回目标方法返回值
+<pre><code class="highlight java"><span class="meta">@Aspect</span>
+<span class="meta">@Component</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> </span>{
+    <span class="meta">@Around("execution(* com.baizhi.service.*.*(..))")</span>
+    <span class="function"><span class="keyword">public</span> Object <span class="title">before</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> <span class="keyword">throws</span> Throwable </span>{
+        System.out.println(<span class="string">"进入环绕通知"</span>);
+        proceedingJoinPoint.getTarget();<span class="comment">//目标对象</span>
+        proceedingJoinPoint.getSignature();<span class="comment">//方法签名</span>
+        proceedingJoinPoint.getArgs();<span class="comment">//方法参数</span>
+        Object proceed = proceedingJoinPoint.proceed();<span class="comment">//放行执行目标方法</span>
+        System.out.println(<span class="string">"目标方法执行之后回到环绕通知"</span>);
+        <span class="keyword">return</span> proceed;<span class="comment">//返回目标方法返回值</span>
     }
-}
-</code></pre>
+}</code></pre>
 <blockquote>
 <p>注意: 环绕通知存在返回值,参数为<code>ProceedingJoinPoint</code>,如果执行放行,不会执行目标方法,一旦放行必须将目标方法的返回值返回,否则调用者无法接受返回数据</p>
 </blockquote>
@@ -391,16 +386,15 @@ public class MyAspect {
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

@@ -228,52 +228,50 @@
 <p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2015/04/23/21/59/tree-736875_1280.jpg" alt=""></p>
 <hr>
 <h1>Spring入门06基于XML的AOP配置</h1>
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns:aop="http://www.springframework.org/schema/aop"
-xmlns:tx="http://www.springframework.org/schema/tx"
-xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd
-http://www.springframework.org/schema/tx
-http://www.springframework.org/schema/tx/spring-tx.xsd
-http://www.springframework.org/schema/aop
-http://www.springframework.org/schema/aop/spring-aop.xsd"&gt;
-&lt;/beans&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span>
+<span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
+<span class="tag"><span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span>
+<span class="tag"><span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></span>
+<span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/beans/spring-beans.xsd</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/tx</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/tx/spring-tx.xsd</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/aop</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/aop/spring-aop.xsd"</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">beans</span>&gt;</span></code></pre>
 <p>配置</p>
-<pre><code class="language-xml">&lt;!-- 配置事务管理器 --&gt;
-    &lt;bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"&gt;
-        &lt;!-- 配置数据源--&gt;
-        &lt;property name="dataSource" ref="comboPooledDataSource"/&gt;
-    &lt;/bean&gt;
+<pre><code class="highlight xml"><span class="comment">&lt;!-- 配置事务管理器 --&gt;</span>
+    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span>
+        <span class="comment">&lt;!-- 配置数据源--&gt;</span>
+        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"comboPooledDataSource"</span>/&gt;</span>
+    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span>
 
-&lt;!-- 配置事务的通知 --&gt;
-    &lt;tx:advice id="txAdvice" transaction-manager="transactionManager"&gt;
-        &lt;tx:attributes&gt;
-        &lt;!-- 指定方法名称：是业务核心方法
-			read-only：是否是只读事务。默认 false，不只读。
-			isolation：指定事务的隔离级别。默认值是使用数据库的默认隔离级别。
-			propagation：指定事务的传播行为。
-			timeout：指定超时时间。默认值为： -1。永不超时。
-			rollback-for：用于指定一个异常，当执行产生该异常时，事务回滚。产生其他异常，事务不回滚。没有默认值，任何异常都回滚。
-			no-rollback-for：用于指定一个异常，当产生该异常时，事务不回滚，产生其他异常时，事务回滚。没有默认值，任何异常都回滚。
---&gt;
-            &lt;tx:method name="*" propagation="REQUIRED" read-only="false"/&gt;
-            &lt;tx:method name="find*" propagation="SUPPORTS" read-only="true"/&gt;
-        &lt;/tx:attributes&gt;
-    &lt;/tx:advice&gt;
+<span class="comment">&lt;!-- 配置事务的通知 --&gt;</span>
+    <span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"txAdvice"</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span>
+        <span class="comment">&lt;!-- 指定方法名称：是业务核心方法</span>
+<span class="comment">			read-only：是否是只读事务。默认 false，不只读。</span>
+<span class="comment">			isolation：指定事务的隔离级别。默认值是使用数据库的默认隔离级别。</span>
+<span class="comment">			propagation：指定事务的传播行为。</span>
+<span class="comment">			timeout：指定超时时间。默认值为： -1。永不超时。</span>
+<span class="comment">			rollback-for：用于指定一个异常，当执行产生该异常时，事务回滚。产生其他异常，事务不回滚。没有默认值，任何异常都回滚。</span>
+<span class="comment">			no-rollback-for：用于指定一个异常，当产生该异常时，事务不回滚，产生其他异常时，事务回滚。没有默认值，任何异常都回滚。</span>
+<span class="comment">--&gt;</span>
+            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"*"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span> <span class="attr">read-only</span>=<span class="string">"false"</span>/&gt;</span>
+            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"find*"</span> <span class="attr">propagation</span>=<span class="string">"SUPPORTS"</span> <span class="attr">read-only</span>=<span class="string">"true"</span>/&gt;</span>
+        <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span>
 
-    &lt;!-- 配置 aop --&gt;
-    &lt;aop:config&gt;
-        &lt;!-- 配置切入点表达式 ( 表示识别 com.hnust.service.impl 下的所有方法 ) --&gt;
-        &lt;aop:pointcut expression="execution(* com.hnust.service.impl.*.*(..))" id="pt1"/&gt;
-        &lt;!-- 建立通知和切入点表达式的关系 --&gt;
-        &lt;aop:advisor advice-ref="txAdvice" pointcut-ref="pt1"/&gt;
-    &lt;/aop:config&gt;
-</code></pre>
+    <span class="comment">&lt;!-- 配置 aop --&gt;</span>
+    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span>
+        <span class="comment">&lt;!-- 配置切入点表达式 ( 表示识别 com.hnust.service.impl 下的所有方法 ) --&gt;</span>
+        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">expression</span>=<span class="string">"execution(* com.hnust.service.impl.*.*(..))"</span> <span class="attr">id</span>=<span class="string">"pt1"</span>/&gt;</span>
+        <span class="comment">&lt;!-- 建立通知和切入点表达式的关系 --&gt;</span>
+        <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"txAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span>/&gt;</span>
+    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></code></pre>
 <p>切入点表达式的说明</p>
-<pre><code>execution:匹配方法的执行(常用)
+<pre><code class="highlight plain">execution:匹配方法的执行(常用)
 execution(表达式)
 表达式语法： execution([修饰符] 返回值类型 包名.类名.方法名(参数))
 写法说明：
@@ -307,8 +305,7 @@ void com.itheima.service.impl.AccountServiceImpl.saveAccount(com.itheima.domain.
 全通配方式：
 * *..*.*(..)
 注：通常情况下，我们都是对业务层的方法进行增强，所以切入点表达式都是切到业务层实现类。
-execution(* com.itheima.service.impl.*.*(..))  
-</code></pre>
+execution(* com.itheima.service.impl.*.*(..))</code></pre>
 
         </div>
 
@@ -405,16 +402,15 @@ execution(* com.itheima.service.impl.*.*(..))
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

@@ -377,22 +377,19 @@ Controller进行各种处理, 最终生成HTML或者数据, 返回给前端.这�
 <ol>
 <li>
 <p>结合Vue的异步组件和Webpack的代码分析.</p>
-<pre><code class="language-js">const Home = resolve =&gt; { require.ensure(['../components/Home.vue'], () =&gt; { resolve(require('../components/Home.vue')) })};
-
+<pre><code class="highlight js"><span class="keyword">const</span> Home = <span class="function"><span class="params">resolve</span> =&gt;</span> { <span class="built_in">require</span>.ensure([<span class="string">'../components/Home.vue'</span>], <span class="function">() =&gt;</span> { resolve(<span class="built_in">require</span>(<span class="string">'../components/Home.vue'</span>)) })};
 </code></pre>
 </li>
 <li>
 <p>AMD写法</p>
 </li>
 </ol>
-<pre><code class="language-js">const About = resolve =&gt; require(['../components/About.vue'], resolve);
-
+   <pre><code class="highlight js"><span class="keyword">const</span> About = <span class="function"><span class="params">resolve</span> =&gt;</span> <span class="built_in">require</span>([<span class="string">'../components/About.vue'</span>], resolve);
 </code></pre>
 <ol start="3">
 <li>
 <p>在ES6中, 我们可以有更加简单的写法来组织Vue异步组件和Webpack的代码分割.</p>
-<pre><code class="language-js">const Home = () =&gt; import('../components/Home.vue')
-
+<pre><code class="highlight js"><span class="keyword">const</span> Home = <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">'../components/Home.vue'</span>)
 </code></pre>
 </li>
 </ol>
@@ -601,16 +598,15 @@ vue-router 提供了&lt;code&gt;beforeEach和afterEach的钩子函数, 它们会
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

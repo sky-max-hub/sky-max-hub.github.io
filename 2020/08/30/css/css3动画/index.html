@@ -249,42 +249,37 @@
 </ol>
 <h3 id="圆角border-radius">圆角border-radius</h3>
 <p>语法</p>
-<pre><code class="language-css">border-radius：value；四个角
-border-radius：value value；左上右下、右上左下
-border-radius：value value value value；		
-		代表设置对象左上角、右上角、右下角、左下角
-</code></pre>
+<pre><code class="highlight css"><span class="attribute">border-radius</span>：value；四个角
+<span class="attribute">border-radius</span>：value value；左上右下、右上左下
+<span class="attribute">border-radius</span>：value value value value；		
+        代表设置对象左上角、右上角、右下角、左下角</code></pre>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103337192.png" alt="image-20210306103337192" style="zoom:50%;">
 <h3 id="盒阴影box-shadow">盒阴影box-shadow</h3>
-<pre><code class="language-css">语法：box-shadow: h-shadow v-shadow blur spread color inset;
-</code></pre>
+<pre><code class="highlight css">语法：<span class="attribute">box-shadow</span>: h-shadow v-shadow blur spread color inset;</code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103327261.png" alt="image-20210306103327261"></p>
-<pre><code class="language-html">&lt;style&gt;
+<pre><code class="highlight html"><span class="tag">&lt;<span class="name">style</span>&gt;</span>
     .shadow{
-            width: 300px;
-            height: 100px;
-            background-color: red;
-            box-shadow: 10px 10px 5px 3px darkred;
+<span class="css">            <span class="attribute">width</span>: <span class="number">300px</span>;</span>
+<span class="css">            <span class="attribute">height</span>: <span class="number">100px</span>;</span>
+<span class="css">            <span class="attribute">background-color</span>: red;</span>
+<span class="css">            <span class="attribute">box-shadow</span>: <span class="number">10px</span> <span class="number">10px</span> <span class="number">5px</span> <span class="number">3px</span> darkred;</span>
         }
-&lt;/style&gt;
-&lt;div class="shadow"&gt;&lt;/div&gt;
-
+<span class="tag">&lt;/<span class="name">style</span>&gt;</span>
+<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shadow"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
 </code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103724901.png" alt="image-20210306103724901"></p>
 <h3 id="文字阴影text-shadow">文字阴影text-shadow</h3>
-<pre><code class="language-css">语法：text-shadow: h-shadow v-shadow blur color;
-</code></pre>
+<pre><code class="highlight css">语法：<span class="attribute">text-shadow</span>: h-shadow v-shadow blur color;</code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103735569.png" alt="image-20210306103735569"></p>
-<pre><code class="language-html">&lt;style&gt;
+<pre><code class="highlight html"><span class="tag">&lt;<span class="name">style</span>&gt;</span>
     .text1{
-            font-size: 50px;
-            font-weight: bold;
-            color: palegreen;
-            text-shadow: 10px -5px 5px #ccc ;
+<span class="css">            <span class="attribute">font-size</span>: <span class="number">50px</span>;</span>
+<span class="css">            <span class="attribute">font-weight</span>: bold;</span>
+<span class="css">            <span class="attribute">color</span>: palegreen;</span>
+<span class="css">            <span class="attribute">text-shadow</span>: <span class="number">10px</span> -<span class="number">5px</span> <span class="number">5px</span> <span class="number">#ccc</span> ;</span>
        }
-&lt;/style&gt;
-&lt;div class="text1"&gt;学习猿地&lt;/div&gt;
-</code></pre>
+<span class="tag">&lt;/<span class="name">style</span>&gt;</span>
+<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"text1"</span>&gt;</span>学习猿地<span class="tag">&lt;/<span class="name">div</span>&gt;</span></code></pre>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103747132.png" alt="image-20210306103747132"></p>
 <h2 id="CSS3-渐变">CSS3 渐变</h2>
 <p><a class="link" target="_blank" rel="noopener" href="https://www.runoob.com/css3/css3-gradients.html">菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
@@ -368,16 +363,15 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
 <h3 id="简写属性transition">简写属性transition</h3>
 <p>transition属性是一个简写属性，用于设置四个过渡属性<br>
 <code>语法：transition:property duration timing-function delay;</code></p>
-<pre><code class="language-css">       #box{
-            width: 200px;
-            height: 200px;
-            background-color: #1fb57b;
-            transition: background 4s linear 1s;
-        }
-        #box:hover{
-            background-color: red;
-       }
-</code></pre>
+<pre><code class="highlight css"><span class="selector-id">#box</span>{
+     <span class="attribute">width</span>: <span class="number">200px</span>;
+     <span class="attribute">height</span>: <span class="number">200px</span>;
+     <span class="attribute">background-color</span>: <span class="number">#1fb57b</span>;
+     <span class="attribute">transition</span>: background <span class="number">4s</span> linear <span class="number">1s</span>;
+ }
+ <span class="selector-id">#box</span><span class="selector-pseudo">:hover</span>{
+     <span class="attribute">background-color</span>: red;
+}</code></pre>
 <h2 id="CSS3-animation动画">CSS3 animation动画</h2>
 <p><a class="link" target="_blank" rel="noopener" href="https://www.runoob.com/css3/css3-animations.html">菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
 <p>过渡属性只能模拟动画效果，animation属性可以制作类似Flash动画，通过关键帧控制动画的每一步，使元素从一种样式逐渐变化为另一种样式，实现复杂的动画效果。</p>
@@ -386,7 +380,7 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
 帧：用于分解动画动作，每个帧代表某个时间点。定义每个帧上的动作</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306105920430.png" alt="image-20210306105920430"></p>
 <h3 id="keyframes的语法">@keyframes的语法</h3>
-<pre><code class="language-css">@keyframes name  {
+<pre><code class="highlight css"><span class="keyword">@keyframes</span> name  {
     from|0%{
         css样式
     }
@@ -396,28 +390,26 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
     to|100%{
         css样式
     }
- }
-</code></pre>
+ }</code></pre>
 <h3 id="animation属性">animation属性</h3>
 <p><code>animation</code>属性用于控制动画，调用由<code>@keyframes</code>定义的动画，设置动画属性，如时间、次数等。animation属性是一个简写属性。<br>
 语法为：<code>animation:name  duration timing-function delay iteration-count direction;</code></p>
 <h3 id="动画子属性">动画子属性</h3>
-<pre><code class="language-css">animation-name: ;	调用动画，规定需要和keyframes的名字一致
+<pre><code class="highlight css"><span class="attribute">animation-name</span>: ;	调用动画，规定需要和keyframes的名字一致
 
-animation-duration: s|ms;	动画完成一个周期所需要的时间
+<span class="attribute">animation-duration</span>: s|ms;	动画完成一个周期所需要的时间
 
-animation-timing-function: ;	规定动画的速度变化类型
+<span class="attribute">animation-timing-function</span>: ;	规定动画的速度变化类型
 
-animation-delay:s|ms ;	播放之前的延迟时间
+<span class="attribute">animation-delay</span>:s|ms ;	播放之前的延迟时间
 
-animation-iteration-count: 数值|infinite;	播放次数 infinite表示无限次播放
+<span class="attribute">animation-iteration-count</span>: 数值|infinite;	播放次数 infinite表示无限次播放
 
-animation-direction: normal|alternate;	动画播放方向,normal为默认值，表示正常播放,alternate表示轮流播放，即动画会在奇数次正常播放，而在偶数次向后播放
+<span class="attribute">animation-direction</span>: normal|alternate;	动画播放方向,<span class="attribute">normal</span>为默认值，表示正常播放,alternate表示轮流播放，即动画会在奇数次正常播放，而在偶数次向后播放
 
-animation-fill-mode: forwards;	动画停在最后一帧，默认值为none
+<span class="attribute">animation-fill-mode</span>: forwards;	动画停在最后一帧，默认值为<span class="attribute">none</span>
 
-animation-play-state:paused|running; 属性规定动画正在运行还是暂停，默认值为running
-</code></pre>
+<span class="attribute">animation-play-state</span>:paused|running; 属性规定动画正在运行还是暂停，默认值为running</code></pre>
 
         </div>
 
@@ -514,16 +506,15 @@ animation-play-state:paused|running; 属性规定动画正在运行还是暂停�
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

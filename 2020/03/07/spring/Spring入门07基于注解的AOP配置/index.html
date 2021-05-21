@@ -230,236 +230,224 @@
 <h1>Spring入门07基于注解的AOP配置</h1>
 <h2 id="1-使用步骤">1. 使用步骤</h2>
 <p>导入约束</p>
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:aop="http://www.springframework.org/schema/aop"
-xmlns:tx="http://www.springframework.org/schema/tx"
-xmlns:context="http://www.springframework.org/schema/context"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="
-http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd
-http://www.springframework.org/schema/aop
-http://www.springframework.org/schema/aop/spring-aop.xsd
-http://www.springframework.org/schema/tx
-http://www.springframework.org/schema/tx/spring-tx.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context.xsd"&gt;
+<pre><code class="highlight xml"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span>
+<span class="tag"><span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span>
+<span class="tag"><span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></span>
+<span class="tag"><span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span>
+<span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
+<span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/beans</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/beans/spring-beans.xsd</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/aop</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/aop/spring-aop.xsd</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/tx</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/tx/spring-tx.xsd</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/context</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span>
     
-&lt;!-- 配置 spring 创建容器时要扫描的包 --&gt;
-&lt;context:component-scan base-package="com.itheima"&gt;&lt;/context:component-scan&gt;
-&lt;/beans&gt;
-</code></pre>
+<span class="comment">&lt;!-- 配置 spring 创建容器时要扫描的包 --&gt;</span>
+<span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.itheima"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">beans</span>&gt;</span></code></pre>
 <p>在业务层使用@Transactional 注解</p>
-<pre><code class="language-java">/**
-*该注解的属性和 xml 中的属性含义一致。该注解可以出现在接口上，类上和方法上。
-*出现接口上，表示该接口的所有实现类都有事务支持。
-*出现在类上，表示类中所有方法有事务支持
-*出现在方法上，表示方法有事务支持。
-*以上三个位置的优先级：方法&gt;类&gt;接口
-**/
+<pre><code class="highlight java"><span class="comment">/**</span>
+<span class="comment">*该注解的属性和 xml 中的属性含义一致。该注解可以出现在接口上，类上和方法上。</span>
+<span class="comment">*出现接口上，表示该接口的所有实现类都有事务支持。</span>
+<span class="comment">*出现在类上，表示类中所有方法有事务支持</span>
+<span class="comment">*出现在方法上，表示方法有事务支持。</span>
+<span class="comment">*以上三个位置的优先级：方法&gt;类&gt;接口</span>
+<span class="comment">**/</span>
 
-@Transactional(readOnly=false,propagation=Propagation.REQUIRED)
-public void transfer(String sourceName, String targeName, Float money) {
+<span class="meta">@Transactional(readOnly=false,propagation=Propagation.REQUIRED)</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">(String sourceName, String targeName, Float money)</span> </span>{
     ..........
-}
-</code></pre>
+}</code></pre>
 <p>在配置文件中开启 spring 对注解事务的支持</p>
-<pre><code class="language-xml">&lt;!-- 开启 spring 对注解事务的支持 --&gt;
-&lt;tx:annotation-driven transaction-manager="transactionManager"/&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="comment">&lt;!-- 开启 spring 对注解事务的支持 --&gt;</span>
+<span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span>/&gt;</span></code></pre>
 <p>不使用 xml 的配置方式</p>
-<pre><code class="language-java">@Configuration
-@EnableTransactionManagement//开启事务支持
-public class SpringTxConfiguration {
-//里面配置数据源，配置 JdbcTemplate,配置事务管理器。在之前的步骤已经写过了。
-}
-</code></pre>
+<pre><code class="highlight java"><span class="meta">@Configuration</span>
+<span class="meta">@EnableTransactionManagement</span><span class="comment">//开启事务支持</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringTxConfiguration</span> </span>{
+<span class="comment">//里面配置数据源，配置 JdbcTemplate,配置事务管理器。在之前的步骤已经写过了。</span>
+}</code></pre>
 <h2 id="2-自定义事务控制器和配置AOP">2. 自定义事务控制器和配置AOP</h2>
 <h3 id="2-1-基于xml">2.1 基于xml</h3>
 <p>自己写一个事务控制器，抽取公共代码作为通知</p>
-<pre><code class="language-java">public class TransactionManager {
-//定义一个 DBAssit
-private DBAssit dbAssit ;
-public void setDbAssit(DBAssit dbAssit) {
-this.dbAssit = dbAssit;
+<pre><code class="highlight java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransactionManager</span> </span>{
+<span class="comment">//定义一个 DBAssit</span>
+<span class="keyword">private</span> DBAssit dbAssit ;
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDbAssit</span><span class="params">(DBAssit dbAssit)</span> </span>{
+<span class="keyword">this</span>.dbAssit = dbAssit;
 }
-//开启事务
-public void beginTransaction() {
-try {
-dbAssit.getCurrentConnection().setAutoCommit(false);
-} catch (SQLException e) {
+<span class="comment">//开启事务</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beginTransaction</span><span class="params">()</span> </span>{
+<span class="keyword">try</span> {
+dbAssit.getCurrentConnection().setAutoCommit(<span class="keyword">false</span>);
+} <span class="keyword">catch</span> (SQLException e) {
 e.printStackTrace();
 }
 }
-//提交事务
-public void commit() {
-try {
+<span class="comment">//提交事务</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">commit</span><span class="params">()</span> </span>{
+<span class="keyword">try</span> {
 dbAssit.getCurrentConnection().commit();
-} catch (SQLException e) {
+} <span class="keyword">catch</span> (SQLException e) {
 e.printStackTrace();
 }
 }
-//回滚事务
-public void rollback() {
-try {
+<span class="comment">//回滚事务</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rollback</span><span class="params">()</span> </span>{
+<span class="keyword">try</span> {
 dbAssit.getCurrentConnection().rollback();
-} catch (SQLException e) {
+} <span class="keyword">catch</span> (SQLException e) {
 e.printStackTrace();
 }
 }
-//释放资源
-public void release() {
-try {
+<span class="comment">//释放资源</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">()</span> </span>{
+<span class="keyword">try</span> {
 dbAssit.releaseConnection();
-} catch (Exception e) {
+} <span class="keyword">catch</span> (Exception e) {
 e.printStackTrace();
 }
 }
-}
-</code></pre>
+}</code></pre>
 <p>注入容器中</p>
-<pre><code class="language-xml">&lt;bean id="txManager" class="com.itheima.utils.TransactionManager"&gt;
-&lt;property name="dbAssit" ref="dbAssit"&gt;&lt;/property&gt;
-&lt;/bean&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"txManager"</span> <span class="attr">class</span>=<span class="string">"com.itheima.utils.TransactionManager"</span>&gt;</span>
+<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dbAssit"</span> <span class="attr">ref</span>=<span class="string">"dbAssit"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></code></pre>
 <p>通知类型在<code>&lt;aop:aspect&gt;&lt;/aop:aspect&gt;</code>中配置</p>
-<pre><code class="language-xml">&lt;!--
-aop:before
-作用：用于配置前置通知。 指定增强的方法在切入点方法之前执行
-属性：
-	method:用于指定通知类中的增强方法名称
-	ponitcut-ref：用于指定切入点的表达式的引用
-	poinitcut：用于指定切入点表达式
-执行时间点：
-	切入点方法执行之前执行
---&gt;
-&lt;aop:before method="beginTransaction" pointcut-ref="pt1"/&gt;
+<pre><code class="highlight xml"><span class="comment">&lt;!--</span>
+<span class="comment">aop:before</span>
+<span class="comment">作用：用于配置前置通知。 指定增强的方法在切入点方法之前执行</span>
+<span class="comment">属性：</span>
+<span class="comment">	method:用于指定通知类中的增强方法名称</span>
+<span class="comment">	ponitcut-ref：用于指定切入点的表达式的引用</span>
+<span class="comment">	poinitcut：用于指定切入点表达式</span>
+<span class="comment">执行时间点：</span>
+<span class="comment">	切入点方法执行之前执行</span>
+<span class="comment">--&gt;</span>
+<span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"beginTransaction"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span>/&gt;</span>
 
-&lt;!--
-aop:after-returning
-作用：用于配置后置通知
-属性：
-	method： 指定通知中方法的名称。
-	pointct： 定义切入点表达式
-	pointcut-ref： 指定切入点表达式的引用
-执行时间点：
-	切入点方法正常执行之后。它和异常通知只能有一个执行
---&gt;
-&lt;aop:after-returning method="commit" pointcut-ref="pt1"/&gt;
+<span class="comment">&lt;!--</span>
+<span class="comment">aop:after-returning</span>
+<span class="comment">作用：用于配置后置通知</span>
+<span class="comment">属性：</span>
+<span class="comment">	method： 指定通知中方法的名称。</span>
+<span class="comment">	pointct： 定义切入点表达式</span>
+<span class="comment">	pointcut-ref： 指定切入点表达式的引用</span>
+<span class="comment">执行时间点：</span>
+<span class="comment">	切入点方法正常执行之后。它和异常通知只能有一个执行</span>
+<span class="comment">--&gt;</span>
+<span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">method</span>=<span class="string">"commit"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span>/&gt;</span>
 
-&lt;!--
-aop:after-throwing
-作用：用于配置异常通知
-属性：
-	method： 指定通知中方法的名称。
-    pointct： 定义切入点表达式
-	pointcut-ref： 指定切入点表达式的引用
-执行时间点：
-	切入点方法执行产生异常后执行。它和后置通知只能执行一个
---&gt;
-&lt;aop:after-throwing method="rollback" pointcut-ref="pt1"/&gt;
+<span class="comment">&lt;!--</span>
+<span class="comment">aop:after-throwing</span>
+<span class="comment">作用：用于配置异常通知</span>
+<span class="comment">属性：</span>
+<span class="comment">	method： 指定通知中方法的名称。</span>
+<span class="comment">    pointct： 定义切入点表达式</span>
+<span class="comment">	pointcut-ref： 指定切入点表达式的引用</span>
+<span class="comment">执行时间点：</span>
+<span class="comment">	切入点方法执行产生异常后执行。它和后置通知只能执行一个</span>
+<span class="comment">--&gt;</span>
+<span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">method</span>=<span class="string">"rollback"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span>/&gt;</span>
 
-&lt;!--
-aop:after
-作用：用于配置最终通知
-属性：
-	method： 指定通知中方法的名称。
-	pointct： 定义切入点表达式
-	pointcut-ref： 指定切入点表达式的引用
-执行时间点：
-	无论切入点方法执行时是否有异常，它都会在其后面执行。
---&gt;
-&lt;aop:after method="release" pointcut-ref="pt1"/&gt;
+<span class="comment">&lt;!--</span>
+<span class="comment">aop:after</span>
+<span class="comment">作用：用于配置最终通知</span>
+<span class="comment">属性：</span>
+<span class="comment">	method： 指定通知中方法的名称。</span>
+<span class="comment">	pointct： 定义切入点表达式</span>
+<span class="comment">	pointcut-ref： 指定切入点表达式的引用</span>
+<span class="comment">执行时间点：</span>
+<span class="comment">	无论切入点方法执行时是否有异常，它都会在其后面执行。</span>
+<span class="comment">--&gt;</span>
+<span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">method</span>=<span class="string">"release"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span>/&gt;</span>
 
-&lt;!--例子：--&gt;
-&lt;aop:config&gt;
-&lt;aop:pointcut expression="execution(* com.itheima.service.impl.*.*(..))"
-id="pt1"/&gt;
-&lt;aop:aspect id="txAdvice" ref="txManager"&gt;
-&lt;!-- 配置环绕通知 --&gt;
-&lt;aop:around method="transactionAround" pointcut-ref="pt1"/&gt;
-&lt;/aop:aspect&gt;
-&lt;/aop:config&gt;
-</code></pre>
+<span class="comment">&lt;!--例子：--&gt;</span>
+<span class="tag">&lt;<span class="name">aop:config</span>&gt;</span>
+<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">expression</span>=<span class="string">"execution(* com.itheima.service.impl.*.*(..))"</span></span>
+<span class="tag"><span class="attr">id</span>=<span class="string">"pt1"</span>/&gt;</span>
+<span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"txAdvice"</span> <span class="attr">ref</span>=<span class="string">"txManager"</span>&gt;</span>
+<span class="comment">&lt;!-- 配置环绕通知 --&gt;</span>
+<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">method</span>=<span class="string">"transactionAround"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span>/&gt;</span>
+<span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></code></pre>
 <h3 id="2-2-基于注解">2.2 基于注解</h3>
 <p>导入约束</p>
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:aop="http://www.springframework.org/schema/aop"
-xmlns:context="http://www.springframework.org/schema/context"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd
-http://www.springframework.org/schema/aop
-http://www.springframework.org/schema/aop/spring-aop.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context.xsd"&gt;
-    &lt;!-- 告知 spring，在创建容器时要扫描的包 --&gt;
-	&lt;context:component-scan base-package="com.itheima"&gt;&lt;/context:component-scan&gt;
-&lt;/beans&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span>
+<span class="tag"><span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span>
+<span class="tag"><span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span>
+<span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
+<span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/beans/spring-beans.xsd</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/aop</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/aop/spring-aop.xsd</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/context</span></span>
+<span class="tag"><span class="string">http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span>
+    <span class="comment">&lt;!-- 告知 spring，在创建容器时要扫描的包 --&gt;</span>
+    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.itheima"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">beans</span>&gt;</span></code></pre>
 <p>把通知类也使用注解配置</p>
-<pre><code class="language-java">@Component("txManager")
-@Aspect//表明当前类是一个切面类
-public class TransactionManager {
-//定义一个 DBAssit
-	@Autowired
-	private DBAssit dbAssit ;
+<pre><code class="highlight java"><span class="meta">@Component("txManager")</span>
+<span class="meta">@Aspect</span><span class="comment">//表明当前类是一个切面类</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransactionManager</span> </span>{
+<span class="comment">//定义一个 DBAssit</span>
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> DBAssit dbAssit ;
     
-    /*
-    @Before
-    @AfterReturning
-    @AfterThrowing
-    @After
-    */
-    @Before("execution(* com.itheima.service.impl.*.*(..))")
-	public void beginTransaction() {
-		try {
-			dbAssit.getCurrentConnection().setAutoCommit(false);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+    <span class="comment">/*</span>
+<span class="comment">    @Before</span>
+<span class="comment">    @AfterReturning</span>
+<span class="comment">    @AfterThrowing</span>
+<span class="comment">    @After</span>
+<span class="comment">    */</span>
+    <span class="meta">@Before("execution(* com.itheima.service.impl.*.*(..))")</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beginTransaction</span><span class="params">()</span> </span>{
+        <span class="keyword">try</span> {
+            dbAssit.getCurrentConnection().setAutoCommit(<span class="keyword">false</span>);
+        } <span class="keyword">catch</span> (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     
-}
-</code></pre>
+}</code></pre>
 <p>在 spring 配置文件中开启 spring 对注解 AOP 的支持</p>
-<pre><code class="language-xml">&lt;!-- 开启 spring 对注解 AOP 的支持 --&gt;
-&lt;aop:aspectj-autoproxy/&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="comment">&lt;!-- 开启 spring 对注解 AOP 的支持 --&gt;</span>
+<span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span></code></pre>
 <p>环绕通知注解配置</p>
-<pre><code class="language-java">@Around("execution(* com.itheima.service.impl.*.*(..))")
-public Object transactionAround(ProceedingJoinPoint pjp) {
-//定义返回值
-Object rtValue = null;
-try {
-//获取方法执行所需的参数
+<pre><code class="highlight java"><span class="meta">@Around("execution(* com.itheima.service.impl.*.*(..))")</span>
+<span class="function"><span class="keyword">public</span> Object <span class="title">transactionAround</span><span class="params">(ProceedingJoinPoint pjp)</span> </span>{
+<span class="comment">//定义返回值</span>
+Object rtValue = <span class="keyword">null</span>;
+<span class="keyword">try</span> {
+<span class="comment">//获取方法执行所需的参数</span>
 Object[] args = pjp.getArgs();
-//前置通知：开启事务
+<span class="comment">//前置通知：开启事务</span>
 beginTransaction();
-//执行方法
+<span class="comment">//执行方法</span>
 rtValue = pjp.proceed(args);
-//后置通知：提交事务
+<span class="comment">//后置通知：提交事务</span>
 commit();
-}catch(Throwable e) {
-//异常通知：回滚事务
+}<span class="keyword">catch</span>(Throwable e) {
+<span class="comment">//异常通知：回滚事务</span>
 rollback();
 e.printStackTrace();
-}finally {
-//最终通知：释放资源
+}<span class="keyword">finally</span> {
+<span class="comment">//最终通知：释放资源</span>
 release();
 }
-return rtValue;
-}
-</code></pre>
+<span class="keyword">return</span> rtValue;
+}</code></pre>
 <p>不使用 XML 的配置方式</p>
-<pre><code class="language-java">@Configuration
-@ComponentScan(basePackages="com.itheima")
-@EnableAspectJAutoProxy//开启注解AOP的支持，相当于&lt;aop:aspectj-autoproxy/&gt;
-public class SpringConfiguration {
-}
-</code></pre>
+<pre><code class="highlight java"><span class="meta">@Configuration</span>
+<span class="meta">@ComponentScan(basePackages="com.itheima")</span>
+<span class="meta">@EnableAspectJAutoProxy</span><span class="comment">//开启注解AOP的支持，相当于&lt;aop:aspectj-autoproxy/&gt;</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfiguration</span> </span>{
+}</code></pre>
 
         </div>
 
@@ -556,16 +544,15 @@ public class SpringConfiguration {
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>

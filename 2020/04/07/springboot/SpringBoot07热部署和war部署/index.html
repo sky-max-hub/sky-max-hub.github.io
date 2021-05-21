@@ -240,13 +240,12 @@
 <ol>
 <li>
 <p>引入依赖：</p>
-<pre><code class="language-xml">&lt;!--热部署依赖--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
-            &lt;optional&gt;true&lt;/optional&gt;
-        &lt;/dependency&gt;
-</code></pre>
+<pre><code class="highlight xml"><span class="comment">&lt;!--热部署依赖--&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></code></pre>
 </li>
 <li>
 <p>开启idea的自动编译功能</p>
@@ -256,8 +255,7 @@
 <ol start="3">
 <li>开启idea在程序运行过程中交换类加载器</li>
 </ol>
-<pre><code>ctrl+alt+shift+/,选择registry,勾选complier.sutomake.allow.when.app.running
-</code></pre>
+<pre><code class="highlight plain">ctrl+alt+shift+/,选择registry,勾选complier.sutomake.allow.when.app.running</code></pre>
 <ol start="4">
 <li>运行时出现如下提示，说明成功开启：</li>
 </ol>
@@ -266,55 +264,51 @@
 <h3 id="设置打包方式为war">设置打包方式为war</h3>
 <p><code>&lt;packaging&gt;war&lt;/packaging&gt;</code></p>
 <h3 id="在插件中指定入口类">在插件中指定入口类</h3>
-<pre><code class="language-xml">&lt;build&gt;
-	&lt;plugins&gt;
-      &lt;plugin&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-        &lt;!--使用热部署出现中文乱码解决方案--&gt;
-        &lt;configuration&gt;
-          &lt;fork&gt;true&lt;/fork&gt;
-          &lt;!--增加jvm参数--&gt;
-          &lt;jvmArguments&gt;-Dfile.encoding=UTF-8&lt;/jvmArguments&gt;
-          &lt;!--指定入口类--&gt;
-          &lt;mainClass&gt;com.baizhi.Application&lt;/mainClass&gt;
-        &lt;/configuration&gt;
-      &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;	
-</code></pre>
+<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">build</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span>
+      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="comment">&lt;!--使用热部署出现中文乱码解决方案--&gt;</span>
+        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span>
+          <span class="tag">&lt;<span class="name">fork</span>&gt;</span>true<span class="tag">&lt;/<span class="name">fork</span>&gt;</span>
+          <span class="comment">&lt;!--增加jvm参数--&gt;</span>
+          <span class="tag">&lt;<span class="name">jvmArguments</span>&gt;</span>-Dfile.encoding=UTF-8<span class="tag">&lt;/<span class="name">jvmArguments</span>&gt;</span>
+          <span class="comment">&lt;!--指定入口类--&gt;</span>
+          <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.baizhi.Application<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span>
+      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">build</span>&gt;</span></code></pre>
 <h3 id="排除内嵌的tomcat">排除内嵌的tomcat</h3>
-<pre><code class="language-xml">&lt;dependency&gt;
-  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-  &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
-  &lt;scope&gt;provided&lt;/scope&gt;   &lt;!--去掉内嵌tomcat--&gt;
-&lt;/dependency&gt;
+<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>   <span class="comment">&lt;!--去掉内嵌tomcat--&gt;</span>
+<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
 
-&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;
-  &lt;artifactId&gt;tomcat-embed-jasper&lt;/artifactId&gt;
-  &lt;scope&gt;provided&lt;/scope&gt;  &lt;!--去掉使用内嵌tomcat解析jsp--&gt;
-&lt;/dependency&gt;
-</code></pre>
+<span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.embed<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat-embed-jasper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>  <span class="comment">&lt;!--去掉使用内嵌tomcat解析jsp--&gt;</span>
+<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></code></pre>
 <h3 id="配置入口类">配置入口类</h3>
-<pre><code class="language-java">//1.继承SpringBootServletInitializer
-//2.覆盖configure方法
-public class Application extends SpringBootServletInitializer{
-    public static void main(String[] args) {
+<pre><code class="highlight java"><span class="comment">//1.继承SpringBootServletInitializer</span>
+<span class="comment">//2.覆盖configure方法</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span></span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
         SpringApplication.run(Application.class,args);
     }
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(Application.class);
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder builder)</span> </span>{
+        <span class="keyword">return</span> builder.sources(Application.class);
     }
-}
-</code></pre>
+}</code></pre>
 <h3 id="打包测试">打包测试</h3>
-<pre><code class="language-java">/* 一旦使用war包部署注意:
-	1. application.yml 中配置port context-path 失效
-	2. 访问时使用打成war包的名字和外部tomcat端口号进行访问项目
-*/
-</code></pre>
+<pre><code class="highlight java"><span class="comment">/* 一旦使用war包部署注意:</span>
+<span class="comment">	1. application.yml 中配置port context-path 失效</span>
+<span class="comment">	2. 访问时使用打成war包的名字和外部tomcat端口号进行访问项目</span>
+<span class="comment">*/</span></code></pre>
 
         </div>
 
@@ -411,16 +405,15 @@ public class Application extends SpringBootServletInitializer{
         <div class="side-tools-container">
     <ul class="side-tools-list show">
         <!--隐藏放大缩小字体和全屏模式-->
-<!--        <li class="tools-item tool-font-adjust-plus flex-center">-->
-<!--            <i class="fas fa-search-plus"></i>-->
-<!--        </li>-->
-
-<!--        <li class="tools-item tool-font-adjust-minus flex-center">-->
-<!--            <i class="fas fa-search-minus"></i>-->
-<!--        </li>-->
-<!--        <li class="tools-item tool-expand-width flex-center">-->
-<!--            <i class="fas fa-arrows-alt-h"></i>-->
-<!--        </li>-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
         <li class="tools-item tool-dark-light-toggle flex-center">
             <i class="fas fa-moon"></i>
