@@ -377,17 +377,17 @@ Controller进行各种处理, 最终生成HTML或者数据, 返回给前端.这�
 <ol>
 <li>
 <p>结合Vue的异步组件和Webpack的代码分析.</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> Home = <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> { <span class="hljs-built_in">require</span>.ensure([<span class="hljs-string">'../components/Home.vue'</span>], <span class="hljs-function">() =&gt;</span> { resolve(<span class="hljs-built_in">require</span>(<span class="hljs-string">'../components/Home.vue'</span>)) })};<br><br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Home = <span class="function"><span class="params">resolve</span> =&gt;</span> { <span class="built_in">require</span>.ensure([<span class="string">'../components/Home.vue'</span>], <span class="function">() =&gt;</span> { resolve(<span class="built_in">require</span>(<span class="string">'../components/Home.vue'</span>)) })};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 </li>
 <li>
 <p>AMD写法</p>
 </li>
 </ol>
-   <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> About = <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> <span class="hljs-built_in">require</span>([<span class="hljs-string">'../components/About.vue'</span>], resolve);<br><br></code></pre></td></tr></tbody></table></figure>
+   <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> About = <span class="function"><span class="params">resolve</span> =&gt;</span> <span class="built_in">require</span>([<span class="string">'../components/About.vue'</span>], resolve);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <ol start="3">
 <li>
 <p>在ES6中, 我们可以有更加简单的写法来组织Vue异步组件和Webpack的代码分割.</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> Home = <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'../components/Home.vue'</span>)<br><br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Home = <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">'../components/Home.vue'</span>)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 </li>
 </ol>
 <h3 id="路由嵌套">路由嵌套</h3>

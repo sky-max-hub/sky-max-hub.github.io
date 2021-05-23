@@ -459,14 +459,14 @@
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <loc>http://blog.sky123.top/tags/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2021-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/tags/Spring%E6%A1%86%E6%9E%B6/</loc>
+    <loc>http://blog.sky123.top/tags/js/</loc>
     <lastmod>2021-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -480,13 +480,6 @@
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/tags/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2021-05-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.sky123.top/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
     <lastmod>2021-05-23</lastmod>
     <changefreq>daily</changefreq>
@@ -494,7 +487,7 @@
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/tags/js/</loc>
+    <loc>http://blog.sky123.top/tags/Spring%E6%A1%86%E6%9E%B6/</loc>
     <lastmod>2021-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -530,6 +523,13 @@
   
   <url>
     <loc>http://blog.sky123.top/tags/vue/</loc>
+    <lastmod>2021-05-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.sky123.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2021-05-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
