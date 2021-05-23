@@ -2547,11 +2547,13 @@ pre .javascript .function {
 }
 .article-content-container .article-nav .article-prev {
   float: left;
-  background-color: var(--mark-down-block-quote);
+  background-color: var(--article-page);
+  padding: 0 1rem;
 }
 .article-content-container .article-nav .article-next {
   float: right;
-  background-color: var(--mark-down-block-quote);
+  background-color: var(--article-page);
+  padding: 0 1rem;
 }
 .article-content-container .article-nav .post-nav-item {
   display: none;
