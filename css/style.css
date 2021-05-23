@@ -5,6 +5,7 @@
   --primary-color: #f22f27;
   --mark-down-block-quote: #fff9f9;
   --mark-down-link: #00f;
+  --article-page: #fff;
   --first-text-color: #2f343a;
   --second-text-color: #31373d;
   --third-text-color: #949b9e;
@@ -29,6 +30,7 @@
     --primary-color: #f22f27;
     --mark-down-block-quote: #fff9f9;
     --mark-down-link: #00f;
+    --article-page: #fff;
     --first-text-color: #2f343a;
     --second-text-color: #31373d;
     --third-text-color: #949b9e;
@@ -54,6 +56,7 @@
     --primary-color: #f22f27;
     --mark-down-block-quote: rgba(59,61,63,0.71);
     --mark-down-link: #0685ea;
+    --article-page: rgba(59,61,63,0.71);
     --first-text-color: #e9f0f4;
     --second-text-color: #e6eef2;
     --third-text-color: #7c8183;
@@ -78,6 +81,7 @@
   --primary-color: #f22f27;
   --mark-down-block-quote: #fff9f9;
   --mark-down-link: #00f;
+  --article-page: #fff;
   --first-text-color: #2f343a;
   --second-text-color: #31373d;
   --third-text-color: #949b9e;
@@ -101,6 +105,7 @@
   --primary-color: #f22f27;
   --mark-down-block-quote: rgba(59,61,63,0.71);
   --mark-down-link: #0685ea;
+  --article-page: rgba(59,61,63,0.71);
   --first-text-color: #e9f0f4;
   --second-text-color: #e6eef2;
   --third-text-color: #7c8183;
@@ -466,7 +471,7 @@ button {
 .markdown-body h3 {
   margin: 2em auto 1.4em;
   line-height: 1.4;
-  border-bottom: 1.5px solid #f22f27;
+  border-bottom: 1.3px solid #f22f27;
 }
 .markdown-body h2::before,
 .markdown-body h3::before {
@@ -483,7 +488,7 @@ button {
 .markdown-body h4::before,
 .markdown-body h5::before,
 .markdown-body h6::before {
-  content: '#6 ' !important;
+  content: '# ' !important;
   color: #f22f27;
 }
 .markdown-body h1 {
@@ -590,6 +595,7 @@ button {
   --primary-color: #f22f27;
   --mark-down-block-quote: #fff9f9;
   --mark-down-link: #00f;
+  --article-page: #fff;
   --first-text-color: #2f343a;
   --second-text-color: #31373d;
   --third-text-color: #949b9e;
@@ -614,6 +620,7 @@ button {
     --primary-color: #f22f27;
     --mark-down-block-quote: #fff9f9;
     --mark-down-link: #00f;
+    --article-page: #fff;
     --first-text-color: #2f343a;
     --second-text-color: #31373d;
     --third-text-color: #949b9e;
@@ -639,6 +646,7 @@ button {
     --primary-color: #f22f27;
     --mark-down-block-quote: rgba(59,61,63,0.71);
     --mark-down-link: #0685ea;
+    --article-page: rgba(59,61,63,0.71);
     --first-text-color: #e9f0f4;
     --second-text-color: #e6eef2;
     --third-text-color: #7c8183;
@@ -663,6 +671,7 @@ button {
   --primary-color: #f22f27;
   --mark-down-block-quote: #fff9f9;
   --mark-down-link: #00f;
+  --article-page: #fff;
   --first-text-color: #2f343a;
   --second-text-color: #31373d;
   --third-text-color: #949b9e;
@@ -686,6 +695,7 @@ button {
   --primary-color: #f22f27;
   --mark-down-block-quote: rgba(59,61,63,0.71);
   --mark-down-link: #0685ea;
+  --article-page: rgba(59,61,63,0.71);
   --first-text-color: #e9f0f4;
   --second-text-color: #e6eef2;
   --third-text-color: #7c8183;
