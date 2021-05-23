@@ -1,5 +1,5 @@
 .markdown-body {
-  font-family: "Open Sans", "PingFang SC", -apple-system, BlinkMacSystemFont, opensans, Optima, "Microsoft Yahei", sans-serif;
+  font-family: "Vollkorn", Palatino, Times;
   font-size: 1.05rem;
   line-height: 2;
   letter-spacing: 0;
@@ -8,10 +8,11 @@
 }
 .markdown-body blockquote {
   box-sizing: border-box;
-  border-left: 5px solid var(--default-text-color);
+  border-left: 5px solid $mark-down-code-foreground;
   margin: 20px 0;
   color: var(--default-text-color);
-  background: var(--second-background-color);
+  border-radius: 5px;
+  background: var(--mark-down-block-quote);
 }
 .markdown-body blockquote p {
   padding: 5px 5px 5px 10px;
@@ -19,6 +20,7 @@
 .markdown-body p {
   line-height: 2;
   color: var(--default-text-color);
+  letter-spacing: 0.5px;
 }
 .markdown-body a {
   position: relative;
@@ -26,28 +28,34 @@
   text-decoration: none;
   overflow-wrap: break-word;
   cursor: pointer;
-  border-bottom: 1px solid var(--third-text-color);
+  border-bottom: 2px solid var(--mark-down-link);
+  color: var(--mark-down-link);
   box-sizing: border-box;
-  padding-bottom: 2px;
+  padding: 5px 2px;
 }
 .markdown-body a .fas,
 .markdown-body a .far,
 .markdown-body a fab {
   margin-left: 6px;
   position: relative;
-  color: var(--third-text-color);
+  color: var(--mark-down-link);
 }
 .markdown-body a:hover {
   text-decoration: underline;
+  border-bottom: 2px solid $mark-down-code-foreground;
+  color: $mark-down-code-foreground !important;
 }
 .markdown-body a:hover::after {
   background: var(--primary-color);
 }
 .markdown-body strong {
-  color: var(--default-text-color);
+  padding: 0.1em;
+  color: $mark-down-strong;
 }
 .markdown-body em {
-  color: var(--default-text-color);
+  padding: 0 2px 0 2px;
+  font-style: normal;
+  color: $mark-down-em;
 }
 .markdown-body ul > li,
 .markdown-body ol > li {
@@ -72,9 +80,6 @@
 .markdown-body ol li ol li ol li {
   list-style: upper-roman;
 }
-.markdown-body li {
-  color: var(--default-text-color);
-}
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
@@ -85,23 +90,33 @@
   margin-bottom: 1.25rem;
   font-weight: 700;
   letter-spacing: 1px;
+  position: relative;
+  margin-top: 1rem;
+  cursor: text;
 }
 .markdown-body h2,
 .markdown-body h3 {
-  display: table !important;
-  padding-top: 0.875rem;
-  position: relative !important;
-  padding-bottom: 5px;
-  background: linear-gradient(180deg, transparent 75%, rgba(77,171,247,0.2) 0) !important;
+  margin: 2em auto 1.4em;
+  line-height: 1.4;
+  border-bottom: 1.5px solid $mark-down-h-color;
+}
+.markdown-body h2::before,
+.markdown-body h3::before {
+  content: '# ' !important;
+  color: $mark-down-h-color;
 }
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  font-size: 1.4em;
   line-height: 1.43;
   margin: 1.6em auto 1.2em;
-  padding: 4px 10px;
-  border-left: 8px solid rgba(77,171,247,0.2);
+  border-bottom: 1.5px solid $mark-down-h-color;
+}
+.markdown-body h4::before,
+.markdown-body h5::before,
+.markdown-body h6::before {
+  content: '#6 ' !important;
+  color: $mark-down-h-color;
 }
 .markdown-body h1 {
   font-weight: 600;

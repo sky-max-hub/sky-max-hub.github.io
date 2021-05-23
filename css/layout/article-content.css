@@ -70,7 +70,6 @@ keep-tablet()
   margin-top: $component-spacing-value;
   padding-bottom: 10px;
   word-wrap: break-word;
-  border-bottom: 1px solid var(--border-color);
   color: var(--default-text-color);
 }
 .article-content-container .post-copyright-info {
@@ -125,9 +124,11 @@ keep-tablet()
 }
 .article-content-container .article-nav .article-prev {
   float: left;
+  background-color: var(--mark-down-block-quote);
 }
 .article-content-container .article-nav .article-next {
   float: right;
+  background-color: var(--mark-down-block-quote);
 }
 .article-content-container .article-nav .post-nav-item {
   display: none;

@@ -1,15 +1,17 @@
 :root {
-  --content-background-color: #f8f9fa;
+  --content-background-color: #fff;
   --background-color: #fff;
   --second-background-color: #f7f7f7;
-  --primary-color: #06c;
+  --primary-color: #f22f27;
+  --mark-down-block-quote: #fff9f9;
+  --mark-down-link: #00f;
   --first-text-color: #2f343a;
   --second-text-color: #31373d;
   --third-text-color: #949b9e;
   --fourth-text-color: #e9ebed;
   --default-text-color: #343a40;
   --border-color: #b3b3b3;
-  --selection-color: #0075eb;
+  --selection-color: #f3443d;
   --shadow-color: rgba(0,0,0,0.2);
   --shadow-hover-color: rgba(0,0,0,0.28);
   --scrollbar-color: #505050;
@@ -21,17 +23,19 @@
 }
 @media (prefers-color-scheme: light) {
   :root {
-    --content-background-color: #f8f9fa;
+    --content-background-color: #fff;
     --background-color: #fff;
     --second-background-color: #f7f7f7;
-    --primary-color: #06c;
+    --primary-color: #f22f27;
+    --mark-down-block-quote: #fff9f9;
+    --mark-down-link: #00f;
     --first-text-color: #2f343a;
     --second-text-color: #31373d;
     --third-text-color: #949b9e;
     --fourth-text-color: #e9ebed;
     --default-text-color: #343a40;
     --border-color: #b3b3b3;
-    --selection-color: #0075eb;
+    --selection-color: #f3443d;
     --shadow-color: rgba(0,0,0,0.2);
     --shadow-hover-color: rgba(0,0,0,0.28);
     --scrollbar-color: #505050;
@@ -47,14 +51,16 @@
     --content-background-color: #1d1e1f;
     --background-color: #151617;
     --second-background-color: #131415;
-    --primary-color: #06c;
+    --primary-color: #f22f27;
+    --mark-down-block-quote: rgba(59,61,63,0.71);
+    --mark-down-link: #0685ea;
     --first-text-color: #e9f0f4;
     --second-text-color: #e6eef2;
     --third-text-color: #7c8183;
     --fourth-text-color: #20333d;
     --default-text-color: #e0eaef;
     --border-color: #414548;
-    --selection-color: #0075eb;
+    --selection-color: #f3443d;
     --shadow-color: rgba(128,128,128,0.2);
     --shadow-hover-color: rgba(128,128,128,0.28);
     --scrollbar-color: #303030;
@@ -66,17 +72,19 @@
   }
 }
 .light-mode {
-  --content-background-color: #f8f9fa;
+  --content-background-color: #fff;
   --background-color: #fff;
   --second-background-color: #f7f7f7;
-  --primary-color: #06c;
+  --primary-color: #f22f27;
+  --mark-down-block-quote: #fff9f9;
+  --mark-down-link: #00f;
   --first-text-color: #2f343a;
   --second-text-color: #31373d;
   --third-text-color: #949b9e;
   --fourth-text-color: #e9ebed;
   --default-text-color: #343a40;
   --border-color: #b3b3b3;
-  --selection-color: #0075eb;
+  --selection-color: #f3443d;
   --shadow-color: rgba(0,0,0,0.2);
   --shadow-hover-color: rgba(0,0,0,0.28);
   --scrollbar-color: #505050;
@@ -90,14 +98,16 @@
   --content-background-color: #1d1e1f;
   --background-color: #151617;
   --second-background-color: #131415;
-  --primary-color: #06c;
+  --primary-color: #f22f27;
+  --mark-down-block-quote: rgba(59,61,63,0.71);
+  --mark-down-link: #0685ea;
   --first-text-color: #e9f0f4;
   --second-text-color: #e6eef2;
   --third-text-color: #7c8183;
   --fourth-text-color: #20333d;
   --default-text-color: #e0eaef;
   --border-color: #414548;
-  --selection-color: #0075eb;
+  --selection-color: #f3443d;
   --shadow-color: rgba(128,128,128,0.2);
   --shadow-hover-color: rgba(128,128,128,0.28);
   --scrollbar-color: #303030;
@@ -108,8 +118,8 @@
   --pjax-progress-bar-color: linear-gradient(45deg, #ea404a, #ea722f, #e9a71f, #67e559, #18ecec, #1b85f1, #ee1dee);
 }
 :root {
-  --code-foreground: #383e44;
-  --code-background: #f2f2f2;
+  --code-foreground: #ff3502;
+  --code-background: #f8f5ec;
   --highlight-background: #eee;
   --highlight-foreground: #383e44;
   --highlight-comment: #8e908c;
@@ -125,8 +135,8 @@
 }
 @media (prefers-color-scheme: light) {
   :root {
-    --code-foreground: #383e44;
-    --code-background: #f2f2f2;
+    --code-foreground: #ff3502;
+    --code-background: #f8f5ec;
     --highlight-background: #eee;
     --highlight-foreground: #383e44;
     --highlight-comment: #8e908c;
@@ -160,8 +170,8 @@
   }
 }
 .light-mode {
-  --code-foreground: #383e44;
-  --code-background: #f2f2f2;
+  --code-foreground: #ff3502;
+  --code-background: #f8f5ec;
   --highlight-background: #eee;
   --highlight-foreground: #383e44;
   --highlight-comment: #8e908c;
