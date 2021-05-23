@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -291,33 +291,12 @@ SpringBoot支持springfox Boot starter依赖性（零配置、自动配置支持
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228102317842.png" alt="image-20210228102317842"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228103855243.png" alt="image-20210228103855243"></p>
 <p>导入相关依赖</p>
-<pre><code class="highlight xml"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 --&gt;</span>
-        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
-        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
-
-        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
-        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-swagger2<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <p>编写测试代码</p>
-<pre><code class="highlight java"><span class="meta">@RestController</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>{
-
-    <span class="meta">@GetMapping("/hello")</span>
-    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>{
-        <span class="keyword">return</span> <span class="string">"hello"</span>;
-    }
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloController</span> </span>{<br><br>    <span class="hljs-meta">@GetMapping("/hello")</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">hello</span><span class="hljs-params">()</span></span>{<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">"hello"</span>;<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
 <p>配置Swagger</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228104926484.png" alt="image-20210228104926484"></p>
-<pre><code class="highlight java"><span class="meta">@Configuration</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SwaggerConfig</span> </span>{
-    
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfig</span> </span>{<br>    <br>}<br></code></pre></td></tr></tbody></table></figure>
 <p>测试访问：<a class="link" target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui/index.html">http://localhost:8080/swagger-ui/index.html<i class="fas fa-external-link-alt"></i></a></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210228110125566.png" alt="image-20210228110125566"></p>
 <h2 id="配置Swagger">配置Swagger</h2>
@@ -327,70 +306,9 @@ SpringBoot支持springfox Boot starter依赖性（零配置、自动配置支持
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301172604042.png" alt="image-20210301172604042"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301172619931.png" alt="image-20210301172619931"></p>
 <p>因此配置代码为：</p>
-<pre><code class="highlight java"><span class="meta">@Configuration</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SwaggerConfiguration</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>{
-
-    <span class="comment">//从配置文件中注入值</span>
-    <span class="meta">@Value("${swagger.application-name}")</span>
-    <span class="keyword">private</span> String title;
-    <span class="meta">@Value("${swagger.enable}")</span>
-    <span class="keyword">private</span> Boolean swaggerEnabled;
-    <span class="meta">@Value("${swagger.application-description}")</span>
-    <span class="keyword">private</span> String description;
-    <span class="meta">@Value("${swagger.name}")</span>
-    <span class="keyword">private</span> String name;
-    <span class="meta">@Value("${swagger.url}")</span>
-    <span class="keyword">private</span> String url;
-    <span class="meta">@Value("${swagger.email}")</span>
-    <span class="keyword">private</span> String email;
-    <span class="meta">@Value("${swagger.version}")</span>
-    <span class="keyword">private</span> String version;
-    <span class="meta">@Value("${swagger.try-host}")</span>
-    <span class="keyword">private</span> String host;
-
-
-    <span class="meta">@Bean</span>
-    <span class="function"><span class="keyword">public</span> Docket <span class="title">createRestApi</span><span class="params">()</span> </span>{
-        <span class="comment">/**</span>
-<span class="comment">         * DocumentationType.OAS_30  "openApi", "3.0"</span>
-<span class="comment">         * .host(host)  默认主机</span>
-<span class="comment">         */</span>
-        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-                .host(host)
-                <span class="comment">// 是否开启</span>
-                .enable(swaggerEnabled).select()
-                .build();
-    }
-
-    <span class="function"><span class="keyword">private</span> ApiInfo <span class="title">apiInfo</span><span class="params">()</span> </span>{
-        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder()
-                .title(title)
-                .description(description)
-                <span class="comment">// 作者信息</span>
-                .contact(<span class="keyword">new</span> Contact(name, url, email))
-                .version(version)
-                .build();
-    }
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SwaggerConfiguration</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">WebMvcConfigurer</span> </span>{<br><br>    <span class="hljs-comment">//从配置文件中注入值</span><br>    <span class="hljs-meta">@Value("${swagger.application-name}")</span><br>    <span class="hljs-keyword">private</span> String title;<br>    <span class="hljs-meta">@Value("${swagger.enable}")</span><br>    <span class="hljs-keyword">private</span> Boolean swaggerEnabled;<br>    <span class="hljs-meta">@Value("${swagger.application-description}")</span><br>    <span class="hljs-keyword">private</span> String description;<br>    <span class="hljs-meta">@Value("${swagger.name}")</span><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-meta">@Value("${swagger.url}")</span><br>    <span class="hljs-keyword">private</span> String url;<br>    <span class="hljs-meta">@Value("${swagger.email}")</span><br>    <span class="hljs-keyword">private</span> String email;<br>    <span class="hljs-meta">@Value("${swagger.version}")</span><br>    <span class="hljs-keyword">private</span> String version;<br>    <span class="hljs-meta">@Value("${swagger.try-host}")</span><br>    <span class="hljs-keyword">private</span> String host;<br><br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">createRestApi</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">         * DocumentationType.OAS_30  "openApi", "3.0"</span><br><span class="hljs-comment">         * .host(host)  默认主机</span><br><span class="hljs-comment">         */</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())<br>                .host(host)<br>                <span class="hljs-comment">// 是否开启</span><br>                .enable(swaggerEnabled).select()<br>                .build();<br>    }<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> ApiInfo <span class="hljs-title">apiInfo</span><span class="hljs-params">()</span> </span>{<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ApiInfoBuilder()<br>                .title(title)<br>                .description(description)<br>                <span class="hljs-comment">// 作者信息</span><br>                .contact(<span class="hljs-keyword">new</span> Contact(name, url, email))<br>                .version(version)<br>                .build();<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
 <p>这里是从 <code>application.yml</code> 配置文件中读取事先定义的值：</p>
-<pre><code class="highlight java">spring:
-  application:
-    name: 这是Swagger应用的名字
-server:
-  port: <span class="number">8080</span>
-
-# ===== 自定义swagger配置 ===== #
-swagger:
-  enable: <span class="keyword">true</span>
-  application-name: ${spring.application.name}
-  application-version: <span class="number">1.0</span>
-  application-description: springfox swagger <span class="number">3.0</span>整合Demo（这里配置项目的描述）
-  <span class="keyword">try</span>-host: http:<span class="comment">//localhost:${server.port}</span>
-  name: 项目负责人
-  email: <span class="number">142342423</span><span class="meta">@qq</span>.com
-  url: http:<span class="comment">//www.baidu.com</span>
-  version: <span class="number">2.3</span><span class="number">.4</span>
-</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java">spring:<br>  application:<br>    name: 这是Swagger应用的名字<br>server:<br>  port: <span class="hljs-number">8080</span><br><br># ===== 自定义swagger配置 ===== #<br>swagger:<br>  enable: <span class="hljs-keyword">true</span><br>  application-name: ${spring.application.name}<br>  application-version: <span class="hljs-number">1.0</span><br>  application-description: springfox swagger <span class="hljs-number">3.0</span>整合Demo（这里配置项目的描述）<br>  <span class="hljs-keyword">try</span>-host: http:<span class="hljs-comment">//localhost:${server.port}</span><br>  name: 项目负责人<br>  email: <span class="hljs-number">142342423</span><span class="hljs-meta">@qq</span>.com<br>  url: http:<span class="hljs-comment">//www.baidu.com</span><br>  version: <span class="hljs-number">2.3</span><span class="hljs-number">.4</span><br><br></code></pre></td></tr></tbody></table></figure>
 <p>查看  <code>ApiInfoBuilder</code> 可以查看更多的配置信息</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301180154288.png" alt="image-20210301180154288"></p>
 <p>效果：</p>
@@ -400,65 +318,22 @@ swagger:
 <p><code>none()：</code>都不扫描</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301181141539.png" alt="image-20210301181141539"></p>
 <h4 id="包扫描">包扫描</h4>
-<pre><code class="highlight java"><span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-                .host(host)
-                <span class="comment">// 是否开启</span>
-                .enable(swaggerEnabled).select()
-                .apis(RequestHandlerSelectors.basePackage(<span class="string">"com.example.swaggerdemo.controller"</span>))
-                .build();</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())<br>                .host(host)<br>                <span class="hljs-comment">// 是否开启</span><br>                .enable(swaggerEnabled).select()<br>                .apis(RequestHandlerSelectors.basePackage(<span class="hljs-string">"com.example.swaggerdemo.controller"</span>))<br>                .build();<br></code></pre></td></tr></tbody></table></figure>
 <h4 id="类注解扫描">类注解扫描</h4>
-<pre><code class="highlight java"><span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-                .host(host)
-                <span class="comment">// 是否开启</span>
-                .enable(swaggerEnabled).select()
-                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-                .build();</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())<br>                .host(host)<br>                <span class="hljs-comment">// 是否开启</span><br>                .enable(swaggerEnabled).select()<br>                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))<br>                .build();<br></code></pre></td></tr></tbody></table></figure>
 <h4 id="方法注解扫描">方法注解扫描</h4>
-<pre><code class="highlight java"><span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-                .host(host)
-                <span class="comment">// 是否开启</span>
-                .enable(swaggerEnabled).select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(GetMapping.class))
-                .build();</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())<br>                .host(host)<br>                <span class="hljs-comment">// 是否开启</span><br>                .enable(swaggerEnabled).select()<br>                .apis(RequestHandlerSelectors.withMethodAnnotation(GetMapping.class))<br>                .build();<br></code></pre></td></tr></tbody></table></figure>
 <h4 id="效果">效果</h4>
 <p>没有了 <code>error</code>  的默认接口，只显示自己写的接口：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301181946804.png" alt="image-20210301181946804"></p>
 <h3 id="配置过滤路径">配置过滤路径</h3>
-<pre><code class="highlight java"><span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-               .host(host)
-               <span class="comment">// 是否开启</span>
-               .enable(swaggerEnabled).select()
-               .paths(PathSelectors.ant(<span class="string">"/hello/**"</span>))
-               .build();</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())<br>               .host(host)<br>               <span class="hljs-comment">// 是否开启</span><br>               .enable(swaggerEnabled).select()<br>               .paths(PathSelectors.ant(<span class="hljs-string">"/hello/**"</span>))<br>               .build();<br></code></pre></td></tr></tbody></table></figure>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301182510169.png" alt="image-20210301182510169"></p>
 <h3 id="配置Swagger的API分组">配置Swagger的API分组</h3>
 <p>关键：Docket有个分组方法，但是只能配置一个分组</p>
-<pre><code class="highlight java">.groupName(<span class="string">"A"</span>)</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">.groupName(<span class="hljs-string">"A"</span>)<br></code></pre></td></tr></tbody></table></figure>
 <p>因此要配置多个分组，只需要注入多个 Docket 实例：</p>
-<pre><code class="highlight java">
-<span class="meta">@Bean</span>
-<span class="function"><span class="keyword">public</span> Docket <span class="title">docket1</span><span class="params">()</span></span>{
-    <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.OAS_30).groupName(<span class="string">"B"</span>);
-}
-<span class="meta">@Bean</span>
-<span class="function"><span class="keyword">public</span> Docket <span class="title">docket2</span><span class="params">()</span></span>{
-    <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.OAS_30).groupName(<span class="string">"C"</span>);
-}
-<span class="meta">@Bean</span>
-<span class="function"><span class="keyword">public</span> Docket <span class="title">createRestApi</span><span class="params">()</span> </span>{
-    <span class="comment">/**</span>
-<span class="comment">     * DocumentationType.OAS_30  "openApi", "3.0"</span>
-<span class="comment">     * .host(host)  默认主机</span>
-<span class="comment">     */</span>
-    <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())
-            .host(host)
-            .groupName(<span class="string">"A"</span>)
-            <span class="comment">// 是否开启</span>
-            .enable(swaggerEnabled).select()
-            .paths(PathSelectors.ant(<span class="string">"/hello/**"</span>))
-            .build();
-}
-</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-meta">@Bean</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket1</span><span class="hljs-params">()</span></span>{<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.OAS_30).groupName(<span class="hljs-string">"B"</span>);<br>}<br><span class="hljs-meta">@Bean</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">docket2</span><span class="hljs-params">()</span></span>{<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.OAS_30).groupName(<span class="hljs-string">"C"</span>);<br>}<br><span class="hljs-meta">@Bean</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> Docket <span class="hljs-title">createRestApi</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * DocumentationType.OAS_30  "openApi", "3.0"</span><br><span class="hljs-comment">     * .host(host)  默认主机</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Docket(DocumentationType.OAS_30).apiInfo(apiInfo())<br>            .host(host)<br>            .groupName(<span class="hljs-string">"A"</span>)<br>            <span class="hljs-comment">// 是否开启</span><br>            .enable(swaggerEnabled).select()<br>            .paths(PathSelectors.ant(<span class="hljs-string">"/hello/**"</span>))<br>            .build();<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301190020294.png" alt="image-20210301190020294"></p>
 <h3 id="配置接口注释">配置接口注释</h3>
 <p><code>@Api：</code>用在controller类，描述API接口<br>
@@ -468,34 +343,9 @@ swagger:
 <code>@ApiImplicitParams：</code>描述接口参数<br>
 <code>@ApiResponses：</code>描述接口响应</p>
 <p>新建实体类 <code>User</code></p>
-<pre><code class="highlight java"><span class="meta">@ApiModel("关于实体类的描述")</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>{
-    <span class="meta">@ApiModelProperty("关于实体类属性的描述")</span>
-    <span class="keyword">private</span> String username;
-    <span class="meta">@ApiModelProperty("关于实体类属性的描述")</span>
-    <span class="keyword">private</span> String password;
-<span class="comment">//    public User(String username,String password){</span>
-<span class="comment">//        this.username = username;</span>
-<span class="comment">//        this.password = password;</span>
-<span class="comment">//    }</span>
-<span class="comment">//    public User(){</span>
-<span class="comment">//</span>
-<span class="comment">//    }</span>
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ApiModel("关于实体类的描述")</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>{<br>    <span class="hljs-meta">@ApiModelProperty("关于实体类属性的描述")</span><br>    <span class="hljs-keyword">private</span> String username;<br>    <span class="hljs-meta">@ApiModelProperty("关于实体类属性的描述")</span><br>    <span class="hljs-keyword">private</span> String password;<br><span class="hljs-comment">//    public User(String username,String password){</span><br><span class="hljs-comment">//        this.username = username;</span><br><span class="hljs-comment">//        this.password = password;</span><br><span class="hljs-comment">//    }</span><br><span class="hljs-comment">//    public User(){</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//    }</span><br>}<br></code></pre></td></tr></tbody></table></figure>
 <p>新建接口</p>
-<pre><code class="highlight java"><span class="meta">@GetMapping("/hello")</span>
-    <span class="meta">@ApiOperation("描述接口方法")</span>
-    <span class="meta">@ApiImplicitParams({</span>
-<span class="meta">            @ApiImplicitParam(name="name",value="姓名",dataTypeClass = String.class,required = true)</span>
-<span class="meta">    })</span>
-    <span class="meta">@ApiResponses({</span>
-<span class="meta">            @ApiResponse(code = 200, message = "请求成功"),</span>
-<span class="meta">            @ApiResponse(code = 400, message = "请求参数没填好"),</span>
-<span class="meta">            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")</span>
-<span class="meta">    })</span>
-    <span class="function"><span class="keyword">public</span> User <span class="title">hello</span><span class="params">(<span class="meta">@RequestParam</span> String name)</span></span>{
-        <span class="keyword">return</span> <span class="keyword">new</span> User();
-    }</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping("/hello")</span><br>    <span class="hljs-meta">@ApiOperation("描述接口方法")</span><br>    <span class="hljs-meta">@ApiImplicitParams({</span><br><span class="hljs-meta">            @ApiImplicitParam(name="name",value="姓名",dataTypeClass = String.class,required = true)</span><br><span class="hljs-meta">    })</span><br>    <span class="hljs-meta">@ApiResponses({</span><br><span class="hljs-meta">            @ApiResponse(code = 200, message = "请求成功"),</span><br><span class="hljs-meta">            @ApiResponse(code = 400, message = "请求参数没填好"),</span><br><span class="hljs-meta">            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")</span><br><span class="hljs-meta">    })</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">hello</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam</span> String name)</span></span>{<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> User();<br>    }<br></code></pre></td></tr></tbody></table></figure>
 <p>效果：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301193506582.png" alt="image-20210301193506582"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210301193519108.png" alt="image-20210301193519108"></p>

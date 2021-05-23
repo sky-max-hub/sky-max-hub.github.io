@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -230,26 +230,10 @@
 <h1>Spring入门03基于注解方式的IOC</h1>
 <h2 id="1-配置环境">1 配置环境</h2>
 <p>在 bean.xml 中导入约束</p>
-<pre><code class="highlight xml"><span class="comment">&lt;!--</span>
-<span class="comment">注意：基于注解整合时，导入约束时需要多导入一个 context 名称空间下的约束。</span>
-<span class="comment">--&gt;</span>
-<span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span>
-<span class="tag"><span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span>
-<span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
-<span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span>
-<span class="tag"><span class="string">http://www.springframework.org/schema/beans/spring-beans.xsd</span></span>
-<span class="tag"><span class="string">http://www.springframework.org/schema/context</span></span>
-<span class="tag"><span class="string">http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span>
-    
-   <span class="comment">&lt;!-- 告知 spring 创建容器时要扫描的包 --&gt;</span>
-    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.itheima"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span>
-    
-<span class="tag">&lt;/<span class="name">beans</span>&gt;</span></code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--</span><br><span class="hljs-comment">注意：基于注解整合时，导入约束时需要多导入一个 context 名称空间下的约束。</span><br><span class="hljs-comment">--&gt;</span><br><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span><br><span class="hljs-tag"><span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span></span><br><span class="hljs-tag"><span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="hljs-tag"><span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans</span></span><br><span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/context</span></span><br><span class="hljs-tag"><span class="hljs-string">http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span><br>    <br>   <span class="hljs-comment">&lt;!-- 告知 spring 创建容器时要扫描的包 --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.itheima"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">context:component-scan</span>&gt;</span><br>    <br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="2-常用注解">2 常用注解</h2>
 <h3 id="2-1-用于注入对象的">2.1 用于注入对象的</h3>
-<pre><code class="highlight xml">&lt;！--相当于--&gt;
-<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">""</span>&gt;</span></code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml">&lt;！--相当于--&gt;<br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">""</span> <span class="hljs-attr">class</span>=<span class="hljs-string">""</span>&gt;</span> <br></code></pre></td></tr></tbody></table></figure>
 <h4 id="Component-：">@Component  ：</h4>
 <p>作用：把资源让 spring 来管理。相当于在 xml 中配置一个 bean。<br>
 属性：value：指定 bean 的 id。<code>如果不指定 value 属性，默认 bean 的 id 是当前类的类名。首字母小写。</code></p>
@@ -259,43 +243,14 @@
 <h4 id="Service-：一般用于业务层的注解。">@Service ：一般用于业务层的注解。</h4>
 <h4 id="Repository：-一般用于持久层的注解。">@Repository：  一般用于持久层的注解。</h4>
 <h3 id="2-2-用于注入数据的">2.2 用于注入数据的</h3>
-<pre><code class="highlight xml"><span class="comment">&lt;!--相当于--&gt;</span>
-<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">ref</span>=<span class="string">""</span>&gt;</span>
-<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span></code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--相当于--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">""</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">""</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">""</span> <span class="hljs-attr">value</span>=<span class="hljs-string">""</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <h4 id="Autowired-：">@Autowired  ：</h4>
 <p>自动按照类型注入。当使用注解注入属性时， <code>set 方法可以省略</code>。它只能注入其他 bean 类型。当有多个<br>
 类型匹配时，使用要注入的对象变量名称作为 bean 的 id，在 spring 容器查找，找到了也可以注入成功。找不到<br>
 就报错</p>
-<pre><code class="highlight java"><span class="meta">@AutoWired(required=false)</span><span class="comment">//这样指定如果找不到组件，也不会报错，默认为 null</span></code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@AutoWired(required=false)</span><span class="hljs-comment">//这样指定如果找不到组件，也不会报错，默认为 null</span><br></code></pre></td></tr></tbody></table></figure>
 <p>作用位置：构造器，参数，方法，属性</p>
-<pre><code class="highlight java"><span class="comment">//方法上</span>
-<span class="comment">//Spring 创建当前对象，就会调用该方法，完成赋值</span>
-<span class="comment">//方法使用的参数，自定义类型的值从 ioc 容器中获取</span>
-<span class="meta">@Autowired</span>
-<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCar</span><span class="params">(Car car)</span></span>{
-    <span class="keyword">this</span>.car=car;
-}
-
-<span class="comment">//构造器上</span>
-<span class="comment">//默认情况下，在ioc的容器会自动调用无参构造方法创建对象，在进行初始化赋值等操作</span>
-<span class="comment">//构造器使用的参数，自定义类型的值从 ioc 容器中获取</span>
-<span class="comment">//如果组件只有一个有参构造器，那么 @AutoWired 可以省略，还是可以自动注入</span>
-<span class="meta">@AutoWired</span>
-<span class="keyword">public</span> Boss（Car car）{
-    <span class="keyword">this</span>.car=car;
-}
-
-<span class="comment">//参数上</span>
-<span class="keyword">public</span> Boss（<span class="meta">@AutoWired</span> Car car）{
-    <span class="keyword">this</span>.car=car;
-}
-
-
-<span class="comment">//@Bean标注的方法创建对象的时候，方法参数默认从容器中获取,</span>
-<span class="meta">@Bean</span>
-<span class="function"><span class="keyword">public</span> Color <span class="title">color</span><span class="params">(Car car)</span></span>{
-    <span class="keyword">return</span> <span class="keyword">new</span> Color();
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//方法上</span><br><span class="hljs-comment">//Spring 创建当前对象，就会调用该方法，完成赋值</span><br><span class="hljs-comment">//方法使用的参数，自定义类型的值从 ioc 容器中获取</span><br><span class="hljs-meta">@Autowired</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setCar</span><span class="hljs-params">(Car car)</span></span>{<br>	<span class="hljs-keyword">this</span>.car=car;<br>}<br><br><span class="hljs-comment">//构造器上</span><br><span class="hljs-comment">//默认情况下，在ioc的容器会自动调用无参构造方法创建对象，在进行初始化赋值等操作</span><br><span class="hljs-comment">//构造器使用的参数，自定义类型的值从 ioc 容器中获取</span><br><span class="hljs-comment">//如果组件只有一个有参构造器，那么 @AutoWired 可以省略，还是可以自动注入</span><br><span class="hljs-meta">@AutoWired</span><br><span class="hljs-keyword">public</span> Boss（Car car）{<br>    <span class="hljs-keyword">this</span>.car=car;<br>}<br><br><span class="hljs-comment">//参数上</span><br><span class="hljs-keyword">public</span> Boss（<span class="hljs-meta">@AutoWired</span> Car car）{<br>    <span class="hljs-keyword">this</span>.car=car;<br>}<br><br><br><span class="hljs-comment">//@Bean标注的方法创建对象的时候，方法参数默认从容器中获取,</span><br><span class="hljs-meta">@Bean</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> Color <span class="hljs-title">color</span><span class="hljs-params">(Car car)</span></span>{<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Color();<br>}<br></code></pre></td></tr></tbody></table></figure>
 <h4 id="Qualifier-：">@Qualifier  ：</h4>
 <p>作用：在自动按照类型注入的基础之上，明确指定按照 Bean 的 id 注入。它在给字段注入时不能独立使用，必须和<code>@Autowired </code>一起使用</p>
 <p>但是给方法参数注入时，可以独立使用。<br>
@@ -306,74 +261,23 @@
 <h4 id="Value">@Value  :</h4>
 <p>作用：注入基本数据类型和 String 类型数据的<br>
 属性：value：用于指定值 ，可以作用于参数上，可以使用${}取出配置文件中的值</p>
-<pre><code class="highlight java"><span class="meta">@Bean(value = "dataSource")</span><span class="comment">// &lt;bean id="dataSource"</span>
-    <span class="meta">@Lazy(false)</span>
-    <span class="function"><span class="keyword">public</span> DataSource <span class="title">newDataSource</span><span class="params">(<span class="meta">@Value("${jdbcDriver}")</span> String driverClass,<span class="meta">@Value("${jdbcUrl}")</span> String jdbcUrl,</span></span>
-<span class="function"><span class="params"><span class="meta">@Value("${jdbcUser}")</span> String username, <span class="meta">@Value("${jdbcPassword}")</span> String password)</span> </span>{
-
-        DruidDataSource dataSource = <span class="keyword">new</span> DruidDataSource();
-        dataSource.setUrl(jdbcUrl);
-        dataSource.setDriverClassName(driverClass);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        <span class="comment">// 配置其他东西自行使用set方法设置</span>
-        <span class="keyword">return</span> dataSource;
-    }</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean(value = "dataSource")</span><span class="hljs-comment">// &lt;bean id="dataSource"</span><br>	<span class="hljs-meta">@Lazy(false)</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> DataSource <span class="hljs-title">newDataSource</span><span class="hljs-params">(<span class="hljs-meta">@Value("${jdbcDriver}")</span> String driverClass,<span class="hljs-meta">@Value("${jdbcUrl}")</span> String jdbcUrl,</span></span><br><span class="hljs-function"><span class="hljs-params"><span class="hljs-meta">@Value("${jdbcUser}")</span> String username, <span class="hljs-meta">@Value("${jdbcPassword}")</span> String password)</span> </span>{<br><br>		DruidDataSource dataSource = <span class="hljs-keyword">new</span> DruidDataSource();<br>		dataSource.setUrl(jdbcUrl);<br>		dataSource.setDriverClassName(driverClass);<br>		dataSource.setUsername(username);<br>		dataSource.setPassword(password);<br>		<span class="hljs-comment">// 配置其他东西自行使用set方法设置</span><br>		<span class="hljs-keyword">return</span> dataSource;<br>    }<br></code></pre></td></tr></tbody></table></figure>
 <h4 id="Inject">@Inject</h4>
 <p>使用前需要导入依赖 javax.inject，和 <code>@AutoWired</code> 的功能一样，但没有其他属性。属于java 规范的注解，不是spring规范的注解，所以不会支持spring的注解。</p>
-<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.inject<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.inject<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
-<span class="tag">&lt;/<span class="name">dependncy</span>&gt;</span>
-</code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.inject<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javax.inject<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependncy</span>&gt;</span><br><br></code></pre></td></tr></tbody></table></figure>
 <h4 id="使用底层组件的方法">使用底层组件的方法</h4>
 <p>自定义的组件想要使用Spring底层的一些组件（ApplicationContext，BeanFactory,…），自定义组件需实现<code>XXXAware</code>，创建对象时，会调用接口的方法注入相关的组件，（<code>XXXAware</code>的功能是通过 <code>XXXProcessor</code> 的后置处理器来返回我们需要的组件）</p>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/spring/image-20200619222247286.png" alt="image-20200619222247286" style="zoom: 80%;">
-<pre><code class="highlight java"><span class="keyword">package</span> com.hnust.domain;
-<span class="keyword">import</span> org.springframework.beans.BeansException;
-<span class="keyword">import</span> org.springframework.beans.factory.BeanNameAware;
-<span class="keyword">import</span> org.springframework.context.ApplicationContext;
-<span class="keyword">import</span> org.springframework.context.ApplicationContextAware;
-<span class="keyword">import</span> org.springframework.context.EmbeddedValueResolverAware;
-<span class="keyword">import</span> org.springframework.stereotype.Component;
-<span class="keyword">import</span> org.springframework.util.StringValueResolver;
-
-<span class="meta">@Component</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">ApplicationContextAware</span>, <span class="title">BeanNameAware</span>, <span class="title">EmbeddedValueResolverAware</span> </span>{
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBeanName</span><span class="params">(String name)</span> </span>{
-        System.out.println(<span class="string">"当前bean的名字："</span>+name);
-    }
-
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException </span>{
-        <span class="comment">//获取ioc容器</span>
-        System.out.println(applicationContext);
-    }
-
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEmbeddedValueResolver</span><span class="params">(StringValueResolver resolver)</span> </span>{
-        <span class="comment">//用于解析字符串的组件</span>
-        String str=resolver.resolveStringValue(<span class="string">"你好${os.name}"</span>);
-        System.out.println(str);
-    }
-}java
-</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hnust.domain;<br><span class="hljs-keyword">import</span> org.springframework.beans.BeansException;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.BeanNameAware;<br><span class="hljs-keyword">import</span> org.springframework.context.ApplicationContext;<br><span class="hljs-keyword">import</span> org.springframework.context.ApplicationContextAware;<br><span class="hljs-keyword">import</span> org.springframework.context.EmbeddedValueResolverAware;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><span class="hljs-keyword">import</span> org.springframework.util.StringValueResolver;<br><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ApplicationContextAware</span>, <span class="hljs-title">BeanNameAware</span>, <span class="hljs-title">EmbeddedValueResolverAware</span> </span>{<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setBeanName</span><span class="hljs-params">(String name)</span> </span>{<br>        System.out.println(<span class="hljs-string">"当前bean的名字："</span>+name);<br>    }<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setApplicationContext</span><span class="hljs-params">(ApplicationContext applicationContext)</span> <span class="hljs-keyword">throws</span> BeansException </span>{<br>        <span class="hljs-comment">//获取ioc容器</span><br>        System.out.println(applicationContext);<br>    }<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setEmbeddedValueResolver</span><span class="hljs-params">(StringValueResolver resolver)</span> </span>{<br>        <span class="hljs-comment">//用于解析字符串的组件</span><br>        String str=resolver.resolveStringValue(<span class="hljs-string">"你好${os.name}"</span>);<br>        System.out.println(str);<br>    }<br>}java<br><br></code></pre></td></tr></tbody></table></figure>
 <h3 id="2-3-用于改变作用范围的：">2.3 用于改变作用范围的：</h3>
-<pre><code class="highlight xml">&lt;！--相当于--&gt;
-<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">""</span> <span class="attr">scope</span>=<span class="string">""</span>&gt;</span></code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml">&lt;！--相当于--&gt;<br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">""</span> <span class="hljs-attr">class</span>=<span class="hljs-string">""</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">""</span>&gt;</span>  <br></code></pre></td></tr></tbody></table></figure>
 <h4 id="Scope">@Scope</h4>
 <p>作用：指定 bean 的作用范围。<br>
 属性：value：指定范围的值。<br>
 取值：<code> singleton</code> <code> prototype</code> <code>request </code> <code>session</code> <code>globalsession </code></p>
 <h4 id="Lazy">@Lazy</h4>
 <p>作用：容器启动时不创建对象，第一次使用（获取）Bean创建对象，并初始化。注意要和注入组件的注解一起用。</p>
-<pre><code class="highlight java"><span class="meta">@Bean("person")</span>
-<span class="meta">@Lazy</span>
-<span class="function"><span class="keyword">public</span> Persion <span class="title">getPersion</span><span class="params">()</span></span>{
-    <span class="keyword">return</span> <span class="keyword">new</span> Person();
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean("person")</span><br><span class="hljs-meta">@Lazy</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> Persion <span class="hljs-title">getPersion</span><span class="hljs-params">()</span></span>{<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Person();<br>}<br></code></pre></td></tr></tbody></table></figure>
 <h3 id="2-4-和生命周期相关的">2.4 和生命周期相关的</h3>
 <p>bean的生命周期：创建------初始化------销毁</p>
 <ul>
@@ -398,31 +302,13 @@
 </li>
 <li>
 <p>通过让 Bean 实现  <code>InitializingBean</code>(定义初始化逻辑)  和  <code>DisposableBean</code> (定义销毁逻辑)</p>
-<pre><code class="highlight java"><span class="keyword">package</span> domain;
-
-<span class="keyword">import</span> org.springframework.beans.factory.DisposableBean;
-<span class="keyword">import</span> org.springframework.beans.factory.InitializingBean;
-
-<span class="meta">@Component</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span>, <span class="title">DisposableBean</span> </span>{
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
-        System.out.println(<span class="string">"销毁方法"</span>);
-    }
-
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
-        System.out.println(<span class="string">"初始化方法"</span>);
-    }
-}
-</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> domain;<br><br><span class="hljs-keyword">import</span> org.springframework.beans.factory.DisposableBean;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.InitializingBean;<br><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InitializingBean</span>, <span class="hljs-title">DisposableBean</span> </span>{<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destroy</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{<br>        System.out.println(<span class="hljs-string">"销毁方法"</span>);<br>    }<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterPropertiesSet</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{<br>        System.out.println(<span class="hljs-string">"初始化方法"</span>);<br>    }<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 </li>
 <li>
 <p>使用以下的注解</p>
 </li>
 </ol>
-<pre><code class="highlight xml">&lt;！--相当于--&gt;
-<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">""</span> <span class="attr">init-method</span>=<span class="string">""</span> <span class="attr">destroy-method</span>=<span class="string">""</span>&gt;</span></code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml">&lt;！--相当于--&gt;<br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">""</span> <span class="hljs-attr">class</span>=<span class="hljs-string">""</span> <span class="hljs-attr">init-method</span>=<span class="hljs-string">""</span> <span class="hljs-attr">destroy-method</span>=<span class="hljs-string">""</span>&gt;</span>  <br></code></pre></td></tr></tbody></table></figure>
 <h4 id="PostConstruct">@PostConstruct</h4>
 <p>作用：用于指定初始化方法。直接标注在方法上，在对象创建并赋值之后调用</p>
 <h4 id="PreDestroy">@PreDestroy</h4>
@@ -430,303 +316,52 @@
 <ol start="4">
 <li>
 <p>使用<code>BeanPostProcessor</code>后置处理器（该处理器可用于识别注入数据的注解）</p>
-<pre><code class="highlight java"><span class="keyword">package</span> config;
-
-<span class="keyword">import</span> org.springframework.beans.BeansException;
-<span class="keyword">import</span> org.springframework.beans.factory.config.BeanPostProcessor;
-<span class="keyword">import</span> org.springframework.stereotype.Component;
-
-<span class="meta">@Component</span><span class="comment">//将后置处理器加入容器中，所有的组件初始化前后都会经过它</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBeanPostProcessor</span>  <span class="keyword">implements</span> <span class="title">BeanPostProcessor</span> </span>{
-    <span class="comment">/**</span>
-<span class="comment">     * </span>
-<span class="comment">     * <span class="doctag">@param</span> bean 创建的实例</span>
-<span class="comment">     * <span class="doctag">@param</span> beanName 创建的实例的名字</span>
-<span class="comment">     * <span class="doctag">@return</span> 直接返回 bean</span>
-<span class="comment">     * <span class="doctag">@throws</span> BeansException</span>
-<span class="comment">     */</span>
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> Object <span class="title">postProcessBeforeInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException </span>{
-        System.out.println(<span class="string">"创建完成之后，初始化之前调用"</span>);
-        <span class="keyword">return</span> bean;
-    }
-
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> Object <span class="title">postProcessAfterInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException </span>{
-        System.out.println(<span class="string">"初始化之后调用，销毁之前"</span>);
-        <span class="keyword">return</span> bean;
-    }
-}
-</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> config;<br><br><span class="hljs-keyword">import</span> org.springframework.beans.BeansException;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.config.BeanPostProcessor;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Component</span><span class="hljs-comment">//将后置处理器加入容器中，所有的组件初始化前后都会经过它</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyBeanPostProcessor</span>  <span class="hljs-keyword">implements</span> <span class="hljs-title">BeanPostProcessor</span> </span>{<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * </span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bean 创建的实例</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> beanName 创建的实例的名字</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 直接返回 bean</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> BeansException</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">postProcessBeforeInitialization</span><span class="hljs-params">(Object bean, String beanName)</span> <span class="hljs-keyword">throws</span> BeansException </span>{<br>        System.out.println(<span class="hljs-string">"创建完成之后，初始化之前调用"</span>);<br>        <span class="hljs-keyword">return</span> bean;<br>    }<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">postProcessAfterInitialization</span><span class="hljs-params">(Object bean, String beanName)</span> <span class="hljs-keyword">throws</span> BeansException </span>{<br>        System.out.println(<span class="hljs-string">"初始化之后调用，销毁之前"</span>);<br>        <span class="hljs-keyword">return</span> bean;<br>    }<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 </li>
 </ol>
 <h3 id="2-5-和配置相关">2.5 和配置相关</h3>
 <h4 id="Configuration">@Configuration</h4>
 <p>作用：用于指定当前类是一个 Spring 配置类， 当创建容器时会从该类上加载注解。</p>
 <p>属性：value:用于指定配置类的字节码</p>
-<pre><code class="highlight java"><span class="comment">/**</span>
-<span class="comment">* spring 的配置类，相当于 bean.xml 文件</span>
-<span class="comment">* <span class="doctag">@author</span> </span>
-<span class="comment">* <span class="doctag">@Company</span> </span>
-<span class="comment">* <span class="doctag">@Version</span> 1.0</span>
-<span class="comment">*/</span>
-<span class="meta">@Configuration</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfiguration</span> </span>{
-}
-
-<span class="comment">//注意：我们已经把配置文件用类来代替了， 但是如何配置创建容器时要扫描的包呢？请看下一个注解。</span></code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* spring 的配置类，相当于 bean.xml 文件</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> </span><br><span class="hljs-comment">* <span class="hljs-doctag">@Company</span> </span><br><span class="hljs-comment">* <span class="hljs-doctag">@Version</span> 1.0</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringConfiguration</span> </span>{<br>}<br><br><span class="hljs-comment">//注意：我们已经把配置文件用类来代替了， 但是如何配置创建容器时要扫描的包呢？请看下一个注解。</span><br></code></pre></td></tr></tbody></table></figure>
 <h4 id="ComponentScan">@ComponentScan</h4>
 <p>作用：用于指定 spring 在初始化容器时要扫描注解的包。 作用和在 spring 的 xml 配置文件中的：</p>
-<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.itheima"</span>/&gt;</span></code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.itheima"</span>/&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <p>是一样的。<br>
 属性：basePackages：用于指定要扫描的包。和该注解中的 value 属性作用一样。</p>
 <p><code>excludeFilters</code>：按照哪些规则（type属性）排除哪些组件（classes属性）</p>
 <p><code>includeFilters</code>：扫描的时候只要哪些组件，注意加入 （ useDefaultFilters = false ）</p>
-<pre><code class="highlight java"><span class="comment">/**</span>
-<span class="comment">* spring 的配置类，相当于 bean.xml 文件</span>
-<span class="comment">* <span class="doctag">@author</span> 黑马程序员</span>
-<span class="comment">* <span class="doctag">@Company</span> http://www.ithiema.com</span>
-<span class="comment">* <span class="doctag">@Version</span> 1.0</span>
-<span class="comment">*/</span>
-<span class="meta">@Configuration</span>
-<span class="meta">@ComponentScan(basePackages = {"dao","service"},excludeFilters = {</span>
-<span class="meta">        @ComponentScan.Filter(type= FilterType.ANNOTATION,classes = {Service.class}),//指定注解</span>
-<span class="meta">    @ComponentScan.Filter(type= FilterType.ASIGNABLE_TYPE,classes = {UserServiceImpl.class})，//指定类型</span>
-<span class="meta">    @ComponentScan.Filter(type= FilterType.ANNOTATION,classes = {MyFilter.class})  //指定自定义类型  </span>
-<span class="meta">})</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfiguration</span> </span>{
-}
-<span class="comment">//注意：我们已经配置好了要扫描的包，但是数据源和 JdbcTemplate 对象如何从配置文件中移除呢？请看下一个注解。</span></code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* spring 的配置类，相当于 bean.xml 文件</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> 黑马程序员</span><br><span class="hljs-comment">* <span class="hljs-doctag">@Company</span> http://www.ithiema.com</span><br><span class="hljs-comment">* <span class="hljs-doctag">@Version</span> 1.0</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@ComponentScan(basePackages = {"dao","service"},excludeFilters = {</span><br><span class="hljs-meta">        @ComponentScan.Filter(type= FilterType.ANNOTATION,classes = {Service.class}),//指定注解</span><br><span class="hljs-meta">    @ComponentScan.Filter(type= FilterType.ASIGNABLE_TYPE,classes = {UserServiceImpl.class})，//指定类型</span><br><span class="hljs-meta">    @ComponentScan.Filter(type= FilterType.ANNOTATION,classes = {MyFilter.class})  //指定自定义类型  </span><br><span class="hljs-meta">})</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringConfiguration</span> </span>{<br>}<br><span class="hljs-comment">//注意：我们已经配置好了要扫描的包，但是数据源和 JdbcTemplate 对象如何从配置文件中移除呢？请看下一个注解。</span><br></code></pre></td></tr></tbody></table></figure>
 <p>自定义类型过滤类，根据  <code>excludeFilters </code>（true为排除，false为包含），<code>includeFilters </code>反之</p>
-<pre><code class="highlight java"><span class="keyword">package</span> config;
-
-<span class="keyword">import</span> org.springframework.core.io.Resource;
-<span class="keyword">import</span> org.springframework.core.type.AnnotationMetadata;
-<span class="keyword">import</span> org.springframework.core.type.ClassMetadata;
-<span class="keyword">import</span> org.springframework.core.type.classreading.MetadataReader;
-<span class="keyword">import</span> org.springframework.core.type.classreading.MetadataReaderFactory;
-<span class="keyword">import</span> org.springframework.core.type.filter.TypeFilter;
-
-<span class="keyword">import</span> java.io.IOException;
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFilter</span>  <span class="keyword">implements</span> <span class="title">TypeFilter</span> </span>{
-    <span class="comment">/**</span>
-<span class="comment">     *</span>
-<span class="comment">     * <span class="doctag">@param</span> metadataReader  读取当前正在扫描的类的信息</span>
-<span class="comment">     * <span class="doctag">@param</span> metadataReaderFactory 可以获取到其他类的信息</span>
-<span class="comment">     * <span class="doctag">@throws</span> IOException</span>
-<span class="comment">     */</span>
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">match</span><span class="params">(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory)</span> <span class="keyword">throws</span> IOException </span>{
-        <span class="comment">//获取当前类注解的信息</span>
-        AnnotationMetadata annotationMetadata=metadataReader.getAnnotationMetadata();
-        <span class="comment">//获取当前正在扫描的类信息</span>
-        ClassMetadata classMetadata=metadataReader.getClassMetadata();
-        <span class="comment">//获取当前类资源信息（类路径）</span>
-        Resource resource=metadataReader.getResource();
-        
-        System.out.println(classMetadata.getClassName());
-        <span class="keyword">return</span> <span class="keyword">false</span>;
-    }
-}
-</code></pre>
-<pre><code class="highlight java"><span class="meta">@Configuration</span>
-<span class="meta">@ComponentScan(basePackages = {"dao","service"},includeFilters = {</span>
-<span class="meta">        @ComponentScan.Filter(type= FilterType.ANNOTATION,classes = {Service.class})</span>
-<span class="meta">},useDefaultFilters=false)</span></code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> config;<br><br><span class="hljs-keyword">import</span> org.springframework.core.io.Resource;<br><span class="hljs-keyword">import</span> org.springframework.core.type.AnnotationMetadata;<br><span class="hljs-keyword">import</span> org.springframework.core.type.ClassMetadata;<br><span class="hljs-keyword">import</span> org.springframework.core.type.classreading.MetadataReader;<br><span class="hljs-keyword">import</span> org.springframework.core.type.classreading.MetadataReaderFactory;<br><span class="hljs-keyword">import</span> org.springframework.core.type.filter.TypeFilter;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFilter</span>  <span class="hljs-keyword">implements</span> <span class="hljs-title">TypeFilter</span> </span>{<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> metadataReader  读取当前正在扫描的类的信息</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> metadataReaderFactory 可以获取到其他类的信息</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> IOException</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">match</span><span class="hljs-params">(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory)</span> <span class="hljs-keyword">throws</span> IOException </span>{<br>        <span class="hljs-comment">//获取当前类注解的信息</span><br>        AnnotationMetadata annotationMetadata=metadataReader.getAnnotationMetadata();<br>        <span class="hljs-comment">//获取当前正在扫描的类信息</span><br>        ClassMetadata classMetadata=metadataReader.getClassMetadata();<br>        <span class="hljs-comment">//获取当前类资源信息（类路径）</span><br>        Resource resource=metadataReader.getResource();<br>        <br>        System.out.println(classMetadata.getClassName());<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    }<br>}<br><br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@ComponentScan(basePackages = {"dao","service"},includeFilters = {</span><br><span class="hljs-meta">        @ComponentScan.Filter(type= FilterType.ANNOTATION,classes = {Service.class})</span><br><span class="hljs-meta">},useDefaultFilters=false)</span><br></code></pre></td></tr></tbody></table></figure>
 <h4 id="Bean">@Bean</h4>
 <p>作用：该注解只能写在方法上，表明使用此方法创建一个对象，并且放入 spring 容器。默认方法名是其 id</p>
 <p>属性：name：给当前@Bean 注解方法创建的对象指定一个名称(即 bean 的 id）</p>
-<pre><code class="highlight java"><span class="comment">/**</span>
-<span class="comment">* 连接数据库的配置类</span>
-<span class="comment">* <span class="doctag">@Version</span> 1.0</span>
-<span class="comment">*/</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcConfig</span> </span>{
-    
-<span class="comment">/**</span>
-<span class="comment">* 创建一个数据源，并存入 spring 容器中</span>
-<span class="comment">* <span class="doctag">@return</span></span>
-<span class="comment">*/</span>
-<span class="meta">@Bean(name="dataSource")</span>
-<span class="function"><span class="keyword">public</span> DataSource <span class="title">createDataSource</span><span class="params">()</span> </span>{
-<span class="keyword">try</span> {
-ComboPooledDataSource ds = <span class="keyword">new</span> ComboPooledDataSource();
-ds.setUser(<span class="string">"root"</span>);
-ds.setPassword(<span class="string">"1234"</span>);
-ds.setDriverClass(<span class="string">"com.mysql.jdbc.Driver"</span>);
-ds.setJdbcUrl(<span class="string">"jdbc:mysql:///spring_day02"</span>);
-<span class="keyword">return</span> ds;
-} <span class="keyword">catch</span> (Exception e) {
-<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);
-}
-}
-    
-<span class="comment">/**</span>
-<span class="comment">* 创建一个 DBAssit，并且也存入 spring 容器中</span>
-<span class="comment">* <span class="doctag">@param</span> dataSource</span>
-<span class="comment">* <span class="doctag">@return</span></span>
-<span class="comment">*/</span>
-<span class="meta">@Bean(name="dbAssit")</span>
-<span class="function"><span class="keyword">public</span> DBAssit <span class="title">createDBAssit</span><span class="params">(DataSource dataSource)</span> </span>{
-<span class="keyword">return</span> <span class="keyword">new</span> DBAssit(dataSource);
-}
-}
-<span class="comment">//注意:</span>
-<span class="comment">/*我们已经把数据源和 DBAssit 从配置文件中移除了，此时可以删除 bean.xml 了。</span>
-<span class="comment">但是由于没有了配置文件，创建数据源的配置又都写死在类中了。*/</span></code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 连接数据库的配置类</span><br><span class="hljs-comment">* <span class="hljs-doctag">@Version</span> 1.0</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JdbcConfig</span> </span>{<br>    <br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 创建一个数据源，并存入 spring 容器中</span><br><span class="hljs-comment">* <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Bean(name="dataSource")</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> DataSource <span class="hljs-title">createDataSource</span><span class="hljs-params">()</span> </span>{<br><span class="hljs-keyword">try</span> {<br>ComboPooledDataSource ds = <span class="hljs-keyword">new</span> ComboPooledDataSource();<br>ds.setUser(<span class="hljs-string">"root"</span>);<br>ds.setPassword(<span class="hljs-string">"1234"</span>);<br>ds.setDriverClass(<span class="hljs-string">"com.mysql.jdbc.Driver"</span>);<br>ds.setJdbcUrl(<span class="hljs-string">"jdbc:mysql:///spring_day02"</span>);<br><span class="hljs-keyword">return</span> ds;<br>} <span class="hljs-keyword">catch</span> (Exception e) {<br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);<br>}<br>}<br>    <br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 创建一个 DBAssit，并且也存入 spring 容器中</span><br><span class="hljs-comment">* <span class="hljs-doctag">@param</span> dataSource</span><br><span class="hljs-comment">* <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Bean(name="dbAssit")</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> DBAssit <span class="hljs-title">createDBAssit</span><span class="hljs-params">(DataSource dataSource)</span> </span>{<br><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DBAssit(dataSource);<br>}<br>}<br><span class="hljs-comment">//注意:</span><br><span class="hljs-comment">/*我们已经把数据源和 DBAssit 从配置文件中移除了，此时可以删除 bean.xml 了。</span><br><span class="hljs-comment">但是由于没有了配置文件，创建数据源的配置又都写死在类中了。*/</span><br></code></pre></td></tr></tbody></table></figure>
 <h4 id="Conditional">@Conditional</h4>
 <p>作用：根据条件决定是否加载注解的组件进入容器，注意要和注入组件的注解一起用。放在类上，表示该类所有注册bean的方法都会有该条件。</p>
 <p>属性：判断条件（类实现了 <code>Conditional</code>接口）</p>
-<pre><code class="highlight java"><span class="meta">@Bean</span>
-<span class="meta">@Conditional({MyCondition.class})</span>
-   <span class="function"><span class="keyword">public</span> Date <span class="title">now</span><span class="params">()</span></span>{
-       <span class="keyword">return</span> <span class="keyword">new</span> Date();
-   }</code></pre>
-<pre><code class="highlight java"><span class="keyword">package</span> config;
-<span class="keyword">import</span> org.springframework.beans.factory.BeanFactory;
-<span class="keyword">import</span> org.springframework.beans.factory.support.BeanDefinitionRegistry;
-<span class="keyword">import</span> org.springframework.context.annotation.Condition;
-<span class="keyword">import</span> org.springframework.context.annotation.ConditionContext;
-<span class="keyword">import</span> org.springframework.core.env.Environment;
-<span class="keyword">import</span> org.springframework.core.type.AnnotatedTypeMetadata;
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCondition</span> <span class="keyword">implements</span> <span class="title">Condition</span> </span>{
-    <span class="comment">/**</span>
-<span class="comment">     *</span>
-<span class="comment">     * <span class="doctag">@param</span> context 判断条件能使用的上下文环境</span>
-<span class="comment">     * <span class="doctag">@param</span> metadata 注释信息</span>
-<span class="comment">     * <span class="doctag">@return</span> true则加载，false则不加载</span>
-<span class="comment">     */</span>
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(ConditionContext context, AnnotatedTypeMetadata metadata)</span> </span>{
-        <span class="comment">//获取Ioc使用的 BeanFactory</span>
-        BeanFactory beanFactory=context.getBeanFactory();
-        <span class="comment">//获取类加载器</span>
-        ClassLoader classLoader = context.getClassLoader();
-        <span class="comment">//获取当前环境信息</span>
-        Environment environment = context.getEnvironment();
-        <span class="comment">//获取到 bean 定义的注册类</span>
-        BeanDefinitionRegistry registry = context.getRegistry();
-
-        String property = environment.getProperty(<span class="string">"os.name"</span>);
-        System.out.println(property);
-        <span class="keyword">assert</span> property != <span class="keyword">null</span>;
-        <span class="comment">//return property.contains("Windows");//根据环境来判断</span>
-        <span class="keyword">return</span> registry.containsBeanDefinition(<span class="string">"accountDaoImpl"</span>);<span class="comment">//根据是否包含某个id的组件来判断</span>
-    }
-}
-</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br><span class="hljs-meta">@Conditional({MyCondition.class})</span><br>   <span class="hljs-function"><span class="hljs-keyword">public</span> Date <span class="hljs-title">now</span><span class="hljs-params">()</span></span>{<br>       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Date();<br>   }<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> config;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.BeanFactory;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.support.BeanDefinitionRegistry;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Condition;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.ConditionContext;<br><span class="hljs-keyword">import</span> org.springframework.core.env.Environment;<br><span class="hljs-keyword">import</span> org.springframework.core.type.AnnotatedTypeMetadata;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCondition</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Condition</span> </span>{<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> context 判断条件能使用的上下文环境</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> metadata 注释信息</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> true则加载，false则不加载</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">matches</span><span class="hljs-params">(ConditionContext context, AnnotatedTypeMetadata metadata)</span> </span>{<br>        <span class="hljs-comment">//获取Ioc使用的 BeanFactory</span><br>        BeanFactory beanFactory=context.getBeanFactory();<br>        <span class="hljs-comment">//获取类加载器</span><br>        ClassLoader classLoader = context.getClassLoader();<br>        <span class="hljs-comment">//获取当前环境信息</span><br>        Environment environment = context.getEnvironment();<br>        <span class="hljs-comment">//获取到 bean 定义的注册类</span><br>        BeanDefinitionRegistry registry = context.getRegistry();<br><br>        String property = environment.getProperty(<span class="hljs-string">"os.name"</span>);<br>        System.out.println(property);<br>        <span class="hljs-keyword">assert</span> property != <span class="hljs-keyword">null</span>;<br>        <span class="hljs-comment">//return property.contains("Windows");//根据环境来判断</span><br>		<span class="hljs-keyword">return</span> registry.containsBeanDefinition(<span class="hljs-string">"accountDaoImpl"</span>);<span class="hljs-comment">//根据是否包含某个id的组件来判断</span><br>    }<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 <h4 id="PropertySource">@PropertySource</h4>
 <p>作用：用于加载.properties 文件中的配置。例如我们配置数据源时，可以把连接数据库的信息写到</p>
 <p>properties 配置文件中，就可以使用此注解指定 properties 配置文件的位置。</p>
 <p>属性：value[]：用于指定多个 properties 文件位置。如果是在类路径下，需要写上 classpath:</p>
-<pre><code class="highlight java"><span class="comment">/**</span>
-<span class="comment">* 连接数据库的配置类</span>
-<span class="comment">* <span class="doctag">@author</span> 黑马程序员</span>
-<span class="comment">* <span class="doctag">@Company</span> http://www.ithiema.com</span>
-<span class="comment">* <span class="doctag">@Version</span> 1.0</span>
-<span class="comment">*/</span>
-<span class="meta">@PropertySource("classpath:jdbc.properties")</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcConfig</span> </span>{
-<span class="meta">@Value("${jdbc.driver}")</span>
-<span class="keyword">private</span> String driver;
-<span class="meta">@Value("${jdbc.url}")</span>
-<span class="keyword">private</span> String url;
-<span class="meta">@Value("${jdbc.username}")</span>
-<span class="keyword">private</span> String username;
-<span class="meta">@Value("${jdbc.password}")</span>
-<span class="keyword">private</span> String password;
-<span class="comment">/**</span>
-<span class="comment">* 创建一个数据源，并存入 spring 容器中</span>
-<span class="comment">* <span class="doctag">@return</span></span>
-<span class="comment">*/</span>
-<span class="meta">@Bean(name="dataSource")</span>
-<span class="function"><span class="keyword">public</span> DataSource <span class="title">createDataSource</span><span class="params">()</span> </span>{
-<span class="keyword">try</span> {
-ComboPooledDataSource ds = <span class="keyword">new</span> ComboPooledDataSource();
-ds.setDriverClass(driver);
-ds.setJdbcUrl(url);
-ds.setUser(username);
-ds.setPassword(password);
-<span class="keyword">return</span> ds;
-} <span class="keyword">catch</span> (Exception e) {
-<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);
-}
-}
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 连接数据库的配置类</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> 黑马程序员</span><br><span class="hljs-comment">* <span class="hljs-doctag">@Company</span> http://www.ithiema.com</span><br><span class="hljs-comment">* <span class="hljs-doctag">@Version</span> 1.0</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@PropertySource("classpath:jdbc.properties")</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JdbcConfig</span> </span>{<br><span class="hljs-meta">@Value("${jdbc.driver}")</span><br><span class="hljs-keyword">private</span> String driver;<br><span class="hljs-meta">@Value("${jdbc.url}")</span><br><span class="hljs-keyword">private</span> String url;<br><span class="hljs-meta">@Value("${jdbc.username}")</span><br><span class="hljs-keyword">private</span> String username;<br><span class="hljs-meta">@Value("${jdbc.password}")</span><br><span class="hljs-keyword">private</span> String password;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 创建一个数据源，并存入 spring 容器中</span><br><span class="hljs-comment">* <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Bean(name="dataSource")</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> DataSource <span class="hljs-title">createDataSource</span><span class="hljs-params">()</span> </span>{<br><span class="hljs-keyword">try</span> {<br>ComboPooledDataSource ds = <span class="hljs-keyword">new</span> ComboPooledDataSource();<br>ds.setDriverClass(driver);<br>ds.setJdbcUrl(url);<br>ds.setUser(username);<br>ds.setPassword(password);<br><span class="hljs-keyword">return</span> ds;<br>} <span class="hljs-keyword">catch</span> (Exception e) {<br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);<br>}<br>}<br>}<br></code></pre></td></tr></tbody></table></figure>
 <p>配置文件中的值默认加到了环境中</p>
-<pre><code class="highlight java">ConfigurableEnvironment environment=(ConfigurableEnvironment) ac.getEnvironment();
-String property=environment.getProperty(<span class="string">"jdbc.url"</span>);</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">ConfigurableEnvironment environment=(ConfigurableEnvironment) ac.getEnvironment();<br>String property=environment.getProperty(<span class="hljs-string">"jdbc.url"</span>);<br></code></pre></td></tr></tbody></table></figure>
 <h4 id="Import">@Import</h4>
 <p>作用：用于导入其他配置类，在引入其他配置类时，可以不用再写@Configuration 注解。 当然，写上也没问<br>
 题。<br>
 属性：value[]：用于指定其他配置类的字节码。</p>
-<pre><code class="highlight java"><span class="meta">@Configuration</span>
-<span class="meta">@ComponentScan(basePackages = "com.itheima.spring")</span>
-<span class="meta">@Import({ JdbcConfig.class})</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfiguration</span> </span>{
-}
-
-
-<span class="meta">@Configuration</span>
-<span class="meta">@PropertySource("classpath:jdbc.properties")</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcConfig</span></span>{
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@ComponentScan(basePackages = "com.itheima.spring")</span><br><span class="hljs-meta">@Import({ JdbcConfig.class})</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringConfiguration</span> </span>{<br>}<br><br><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@PropertySource("classpath:jdbc.properties")</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JdbcConfig</span></span>{<br>}<br></code></pre></td></tr></tbody></table></figure>
 <p>除了直接指定类的字节码外，也可以配置导入类（实现<code> ImportSelector</code>接口）来导入</p>
-<pre><code class="highlight java"><span class="meta">@Configuration</span>
-<span class="meta">@Import({MyImportSelector.class})</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfig</span> </span>{
-}</code></pre>
-<pre><code class="highlight java"><span class="keyword">package</span> config;
-
-<span class="keyword">import</span> org.springframework.context.annotation.ImportSelector;
-<span class="keyword">import</span> org.springframework.core.type.AnnotationMetadata;
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyImportSelector</span> <span class="keyword">implements</span> <span class="title">ImportSelector</span> </span>{
-    <span class="comment">/**</span>
-<span class="comment">     * </span>
-<span class="comment">     * <span class="doctag">@param</span> importingClassMetadata 当前标注 <span class="doctag">@Import</span> 注解的类的所有信息</span>
-<span class="comment">     * <span class="doctag">@return</span> 就是要导入到容器容器中的全类名，可以返回空数组，但不要返回null</span>
-<span class="comment">     */</span>
-    <span class="meta">@Override</span>
-    <span class="keyword">public</span> String[] selectImports(AnnotationMetadata importingClassMetadata) {
-        <span class="keyword">return</span> <span class="keyword">new</span> String[]{<span class="string">"com.hnust.XXXX"</span>};
-<span class="comment">//        return new String[0];</span>
-    }
-}
-</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@Import({MyImportSelector.class})</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringConfig</span> </span>{<br>}<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> config;<br><br><span class="hljs-keyword">import</span> org.springframework.context.annotation.ImportSelector;<br><span class="hljs-keyword">import</span> org.springframework.core.type.AnnotationMetadata;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyImportSelector</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ImportSelector</span> </span>{<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * </span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> importingClassMetadata 当前标注 <span class="hljs-doctag">@Import</span> 注解的类的所有信息</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 就是要导入到容器容器中的全类名，可以返回空数组，但不要返回null</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String[] selectImports(AnnotationMetadata importingClassMetadata) {<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> String[]{<span class="hljs-string">"com.hnust.XXXX"</span>};<br><span class="hljs-comment">//        return new String[0];</span><br>    }<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 <p>配置注册类（实现<code>ImportBeanDefinitionRegistrar</code> 接口）</p>
-<pre><code class="highlight java"><span class="meta">@Configuration</span>
-<span class="meta">@Import({MyImportBeanRegistrer.class})</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfig</span> </span>{
-}</code></pre>
-<pre><code class="highlight java"><span class="keyword">package</span> config;
-
-<span class="keyword">import</span> dao.impl.AccountDaoImpl;
-<span class="keyword">import</span> org.springframework.beans.factory.config.BeanDefinition;
-<span class="keyword">import</span> org.springframework.beans.factory.support.BeanDefinitionRegistry;
-<span class="keyword">import</span> org.springframework.beans.factory.support.RootBeanDefinition;
-<span class="keyword">import</span> org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
-<span class="keyword">import</span> org.springframework.core.type.AnnotationMetadata;
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyImportBeanRegistrer</span> <span class="keyword">implements</span> <span class="title">ImportBeanDefinitionRegistrar</span> </span>{
-    <span class="comment">/**</span>
-<span class="comment">     *</span>
-<span class="comment">     * <span class="doctag">@param</span> importingClassMetadata 当前类的注解信息</span>
-<span class="comment">     * <span class="doctag">@param</span> registry BeanDefinitionRegistry 注册类，可以用于组件的注册，手动的注册组件</span>
-<span class="comment">     */</span>
-    <span class="meta">@Override</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerBeanDefinitions</span><span class="params">(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry)</span> </span>{
-        <span class="comment">//如果容器中没有该组件，就手动注册该组件    </span>
-        <span class="keyword">if</span>(!registry.containsBeanDefinition(<span class="string">"now"</span>)){
-            <span class="comment">//指定 Bean 的类型</span>
-                RootBeanDefinition rootBeanDefinition = <span class="keyword">new</span> RootBeanDefinition(AccountDaoImpl.class)
-                    <span class="comment">//注册一个Bean</span>
-                registry.registerBeanDefinition(<span class="string">"now"</span>,rootBeanDefinition);
-            }
-    }
-}
-</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@Import({MyImportBeanRegistrer.class})</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringConfig</span> </span>{<br>}<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> config;<br><br><span class="hljs-keyword">import</span> dao.impl.AccountDaoImpl;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.config.BeanDefinition;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.support.BeanDefinitionRegistry;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.support.RootBeanDefinition;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.ImportBeanDefinitionRegistrar;<br><span class="hljs-keyword">import</span> org.springframework.core.type.AnnotationMetadata;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyImportBeanRegistrer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ImportBeanDefinitionRegistrar</span> </span>{<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> importingClassMetadata 当前类的注解信息</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> registry BeanDefinitionRegistry 注册类，可以用于组件的注册，手动的注册组件</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerBeanDefinitions</span><span class="hljs-params">(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry)</span> </span>{<br>        <span class="hljs-comment">//如果容器中没有该组件，就手动注册该组件    </span><br>        <span class="hljs-keyword">if</span>(!registry.containsBeanDefinition(<span class="hljs-string">"now"</span>)){<br>            <span class="hljs-comment">//指定 Bean 的类型</span><br>                RootBeanDefinition rootBeanDefinition = <span class="hljs-keyword">new</span> RootBeanDefinition(AccountDaoImpl.class)<br>                    <span class="hljs-comment">//注册一个Bean</span><br>                registry.registerBeanDefinition(<span class="hljs-string">"now"</span>,rootBeanDefinition);<br>            }<br>    }<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 <h4 id="Primary">@Primary</h4>
 <p>和注入对象的注解一起用，用该注解的组件，其他组件要用到该类型的组件时，会优先使用它，但注意优先级比 @Qualifier 低。</p>
 <h4 id="Profile">@Profile</h4>
@@ -740,37 +375,10 @@ String property=environment.getProperty(<span class="string">"jdbc.url"</span>);
 </li>
 <li>
 <p>代码实现：注意此时舍弃原来的有参构造创建容器的方法</p>
-<pre><code class="highlight java">AnnotationConfigApplicationContext acac=<span class="keyword">new</span> AnnotationConfigApplicationContext();
-acac.getEnvironment().setActiveProfiles(<span class="string">"test"</span>,<span class="string">"dev"</span>);
-acac.register(ApplicationContext.class);
-acac.refresh();</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">AnnotationConfigApplicationContext acac=<span class="hljs-keyword">new</span> AnnotationConfigApplicationContext();<br>acac.getEnvironment().setActiveProfiles(<span class="hljs-string">"test"</span>,<span class="hljs-string">"dev"</span>);<br>acac.register(ApplicationContext.class);<br>acac.refresh();<br></code></pre></td></tr></tbody></table></figure>
 </li>
 </ol>
-<pre><code class="highlight java"><span class="meta">@Profile("test")</span>
-<span class="meta">@Configuration</span><span class="comment">//只有指定环境激活时，整个配置类才能生效</span>
-<span class="function"><span class="keyword">public</span> class <span class="title">SqlConfig</span><span class="params">()</span></span>{
-   
-    <span class="meta">@Profile("test")</span>
-    <span class="meta">@Bean("testDataSource")</span>
-    <span class="function"><span class="keyword">public</span> DataSource <span class="title">XXXtest</span><span class="params">()</span></span>{
-        ........
-        <span class="keyword">return</span> dataSource;
-    }
-
-    <span class="meta">@Profile("dev")</span>
-    <span class="meta">@Bean("developDataSource")</span>
-    <span class="function"><span class="keyword">public</span> DataSource <span class="title">XXXdevelop</span><span class="params">()</span></span>{
-        ........
-        <span class="keyword">return</span> dataSource;
-    }
-
-    <span class="meta">@Profile("pro")</span>
-    <span class="meta">@Bean("productDataSource")</span>
-    <span class="function"><span class="keyword">public</span> DataSource <span class="title">XXXproduct</span><span class="params">()</span></span>{
-        ........
-        <span class="keyword">return</span> dataSource;
-    }
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Profile("test")</span><br><span class="hljs-meta">@Configuration</span><span class="hljs-comment">//只有指定环境激活时，整个配置类才能生效</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> class <span class="hljs-title">SqlConfig</span><span class="hljs-params">()</span></span>{<br>   <br>    <span class="hljs-meta">@Profile("test")</span><br>    <span class="hljs-meta">@Bean("testDataSource")</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> DataSource <span class="hljs-title">XXXtest</span><span class="hljs-params">()</span></span>{<br>        ........<br>        <span class="hljs-keyword">return</span> dataSource;<br>    }<br><br>    <span class="hljs-meta">@Profile("dev")</span><br>    <span class="hljs-meta">@Bean("developDataSource")</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> DataSource <span class="hljs-title">XXXdevelop</span><span class="hljs-params">()</span></span>{<br>        ........<br>        <span class="hljs-keyword">return</span> dataSource;<br>    }<br><br>    <span class="hljs-meta">@Profile("pro")</span><br>    <span class="hljs-meta">@Bean("productDataSource")</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> DataSource <span class="hljs-title">XXXproduct</span><span class="hljs-params">()</span></span>{<br>        ........<br>        <span class="hljs-keyword">return</span> dataSource;<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
 <h3 id="2-6-使用注解给容器中注册组件的几种方法：">2.6 使用注解给容器中注册组件的几种方法：</h3>
 <ol>
 <li>
@@ -795,79 +403,19 @@ acac.refresh();</code></pre>
     public PersonFactoryBean personFactoryBean(){
         return new PersonFactoryBean();
     }
-<pre><code class="highlight plain">
-```java
-package config;
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs plain"><br>```java<br>package config;<br><br>import domain.Person;<br>import org.springframework.beans.factory.FactoryBean;<br><br>public class PersonFactoryBean implements FactoryBean&lt;Person&gt; {<br>    /**<br>     *<br>     * @return 返回的对象是容器中注册的组件<br>     * @throws Exception<br>     */<br>    @Override<br>    public Person getObject() throws Exception {<br>        return new Person();<br>    }<br><br>    /**<br>     *<br>     * @return 返回组件的类型<br>     */<br>    @Override<br>    public Class&lt;Person&gt; getObjectType() {<br>        return Person.class;<br>    }<br><br>    /**<br>     *<br>     * @return 是否为单例<br>     */<br>    @Override<br>    public boolean isSingleton() {<br>        return true;<br>    }<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 
-import domain.Person;
-import org.springframework.beans.factory.FactoryBean;
-
-public class PersonFactoryBean implements FactoryBean&lt;Person&gt; {
-    /**
-     *
-     * @return 返回的对象是容器中注册的组件
-     * @throws Exception
-     */
-    @Override
-    public Person getObject() throws Exception {
-        return new Person();
-    }
-
-    /**
-     *
-     * @return 返回组件的类型
-     */
-    @Override
-    public Class&lt;Person&gt; getObjectType() {
-        return Person.class;
-    }
-
-    /**
-     *
-     * @return 是否为单例
-     */
-    @Override
-    public boolean isSingleton() {
-        return true;
-    }
-}
-</code></pre>
-
-<pre><code class="highlight java">        Object bean1=ac2.getBean(<span class="string">"personFactoryBean"</span>);
-        Object bean2=ac2.getBean(<span class="string">"&amp;personFactoryBean"</span>);
-        System.out.println(bean1);
-        System.out.println(bean2);
-<span class="comment">//获取的时候直接用 id 是获取到组件对象</span>
-<span class="comment">// 用 &amp;+id 是获取到工厂对象</span></code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">		Object bean1=ac2.getBean(<span class="hljs-string">"personFactoryBean"</span>);<br>        Object bean2=ac2.getBean(<span class="hljs-string">"&amp;personFactoryBean"</span>);<br>        System.out.println(bean1);<br>        System.out.println(bean2);<br><span class="hljs-comment">//获取的时候直接用 id 是获取到组件对象</span><br><span class="hljs-comment">// 用 &amp;+id 是获取到工厂对象</span><br></code></pre></td></tr></tbody></table></figure>
 
 
 </code></pre>
 </li>
 </ol>
 <p>获取容器时需要使用 <code>AnnotationApplicationContext</code>(有@Configuration 注解的类.class)</p>
-<pre><code class="highlight java">ApplicationContext ac =<span class="keyword">new</span> AnnotationConfigApplicationContext(SpringConfiguration.class);</code></pre>
-<pre><code class="highlight java"><span class="meta">@Test</span>
-   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>{
-       String[] names=ac.getBeanDefinitionNames();
-       <span class="keyword">for</span>(String name:names){
-           System.out.println(name);
-       }
-   }</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">ApplicationContext ac =<span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(SpringConfiguration.class);<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br>   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span></span>{<br>       String[] names=ac.getBeanDefinitionNames();<br>       <span class="hljs-keyword">for</span>(String name:names){<br>           System.out.println(name);<br>       }<br>   }<br></code></pre></td></tr></tbody></table></figure>
 <p>测试结果</p>
-<pre><code class="highlight java"><span class="comment">//使用注解后容器中自动就有的对象</span>
-org.springframework.context.annotation.internalConfigurationAnnotationProcessor
-org.springframework.context.annotation.internalAutowiredAnnotationProcessor
-org.springframework.context.annotation.internalRequiredAnnotationProcessor
-org.springframework.context.event.internalEventListenerProcessor
-org.springframework.context.event.internalEventListenerFactory
-    
-<span class="comment">//配置对象</span>
-springConfig
-
-<span class="comment">//自己注入的对象    </span>
-accountDaoImpl 
-accountServiceImpl
-now</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//使用注解后容器中自动就有的对象</span><br>org.springframework.context.annotation.internalConfigurationAnnotationProcessor<br>org.springframework.context.annotation.internalAutowiredAnnotationProcessor<br>org.springframework.context.annotation.internalRequiredAnnotationProcessor<br>org.springframework.context.event.internalEventListenerProcessor<br>org.springframework.context.event.internalEventListenerFactory<br>    <br><span class="hljs-comment">//配置对象</span><br>springConfig<br><br><span class="hljs-comment">//自己注入的对象    </span><br>accountDaoImpl <br>accountServiceImpl<br>now<br></code></pre></td></tr></tbody></table></figure>
 
         </div>
 

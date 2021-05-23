@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -181,7 +181,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>255 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>256 字</span>
         </span>
     
 
@@ -229,56 +229,12 @@
 <hr>
 <h1>SpringBoot04整合Junit</h1>
 <h2 id="1-添加Junit的起步依赖">1 添加Junit的起步依赖</h2>
-<pre><code class="highlight xml"><span class="comment">&lt;!--测试的起步依赖--&gt;</span>
- 		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span>
-                <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span>
-                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.vintage<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
-                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-vintage-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
-                <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span>
-            <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span>
-        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
-<span class="comment">&lt;!--junit--&gt;</span>
-        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
-            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>
-        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
-</code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--测试的起步依赖--&gt;</span><br> 		<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.junit.vintage<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit-vintage-engine<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!--junit--&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="2-编写测试类">2 编写测试类</h2>
-<pre><code class="highlight java"><span class="keyword">package</span> com.itheima.test;
-
-<span class="keyword">import</span> com.itheima.MySpringBootApplication;
-<span class="keyword">import</span> com.itheima.domain.User;
-<span class="keyword">import</span> com.itheima.mapper.UserMapper;
-<span class="keyword">import</span> org.junit.Test;
-<span class="keyword">import</span> org.junit.runner.RunWith;
-<span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
-<span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;
-<span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;
-
-<span class="keyword">import</span> java.util.List;
-
-<span class="meta">@RunWith(SpringRunner.class)</span>
-<span class="meta">@SpringBootTest(classes = MySpringBootApplication.class)</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapperTest</span> </span>{
-
-    <span class="meta">@Autowired</span>
-    <span class="keyword">private</span> UserMapper userMapper;
-
-    <span class="meta">@Test</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>{
-        List&lt;User&gt; users = userMapper.queryUserList();
-        System.out.println(users);
-    }
-
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.itheima.test;<br><br><span class="hljs-keyword">import</span> com.itheima.MySpringBootApplication;<br><span class="hljs-keyword">import</span> com.itheima.domain.User;<br><span class="hljs-keyword">import</span> com.itheima.mapper.UserMapper;<br><span class="hljs-keyword">import</span> org.junit.Test;<br><span class="hljs-keyword">import</span> org.junit.runner.RunWith;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.boot.test.context.SpringBootTest;<br><span class="hljs-keyword">import</span> org.springframework.test.context.junit4.SpringRunner;<br><br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-meta">@RunWith(SpringRunner.class)</span><br><span class="hljs-meta">@SpringBootTest(classes = MySpringBootApplication.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MapperTest</span> </span>{<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UserMapper userMapper;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>{<br>        List&lt;User&gt; users = userMapper.queryUserList();<br>        System.out.println(users);<br>    }<br><br>}<br></code></pre></td></tr></tbody></table></figure>
 <p>其中，</p>
 <p><code>SpringRunner</code>继承自<code>SpringJUnit4ClassRunner</code>，使用哪一个Spring提供的测试测试引擎都可以</p>
-<pre><code class="highlight java"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringRunner</span> <span class="keyword">extends</span> <span class="title">SpringJUnit4ClassRunner</span> </span></code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringRunner</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SpringJUnit4ClassRunner</span> </span><br></code></pre></td></tr></tbody></table></figure>
 <p><code>@SpringBootTest</code>的属性指定的是引导类的字节码对象</p>
 <h2 id="3-控制台打印信息">3 控制台打印信息</h2>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/springboot/15.png" alt=""></p>

@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -181,7 +181,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>110 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>112 字</span>
         </span>
     
 
@@ -229,20 +229,9 @@
 <hr>
 <h1>Spring入门04Spring整合JUnit</h1>
 <p>使用@RunWith 注解替换原有运行器</p>
-<pre><code class="highlight java"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceTest</span> </span>{
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AccountServiceTest</span> </span>{<br>}<br></code></pre></td></tr></tbody></table></figure>
 <p>使用@ContextConfiguration 指定 spring 配置文件的位置</p>
-<pre><code class="highlight java"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span>
-<span class="meta">@ContextConfiguration(locations= {"classpath:bean.xml"})</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountServiceTest</span> </span>{
-}
-
-<span class="comment">/*</span>
-<span class="comment">@ContextConfiguration 注解：</span>
-<span class="comment">locations 属性： 用于指定配置文件的位置。如果是类路径下，需要用 classpath:表明</span>
-<span class="comment">classes 属性： 用于指定注解的类。当不使用 xml 配置时，需要用此属性指定注解类的位置</span>
-<span class="comment">*/</span></code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="hljs-meta">@ContextConfiguration(locations= {"classpath:bean.xml"})</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AccountServiceTest</span> </span>{<br>}<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">@ContextConfiguration 注解：</span><br><span class="hljs-comment">locations 属性： 用于指定配置文件的位置。如果是类路径下，需要用 classpath:表明</span><br><span class="hljs-comment">classes 属性： 用于指定注解的类。当不使用 xml 配置时，需要用此属性指定注解类的位置</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></tbody></table></figure>
 
         </div>
 

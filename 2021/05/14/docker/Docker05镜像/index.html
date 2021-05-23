@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -272,24 +272,11 @@
 </ol>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210514102529830.png" alt="image-20210514102529830"></p>
 <h3 id="commit镜像">commit镜像</h3>
-<pre><code class="highlight shell"><span class="meta">#</span><span class="bash">docker commit -m=<span class="string">"提交的描述信息"</span> -a=<span class="string">"作者"</span> 容器ID 目标镜像名:[tag]</span></code></pre>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">docker commit -m=<span class="hljs-string">"提交的描述信息"</span> -a=<span class="hljs-string">"作者"</span> 容器ID 目标镜像名:[tag]</span><br></code></pre></td></tr></tbody></table></figure>
 <p>参考教程：<a href="https://blog.sky123.top/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">Tomcat 部署练习</a></p>
 <p>发现：官方的默认 tomcat 的 <code>webapp文件夹</code> 并没有一些文件，需要自己手动拷贝。</p>
 <p>解决：将我们操作国的容器 <code>commit</code> 提交成一个新的镜像，我们以后就直接使用我们修改过的镜像即可。</p>
-<pre><code class="highlight sh">[root@izwz91mv6i3x6k12jjqh60z ~]<span class="comment"># docker ps</span>
-CONTAINER ID   IMAGE     COMMAND             CREATED          STATUS          PORTS                                       NAMES
-39f11d68d64d   tomcat    <span class="string">"catalina.sh run"</span>   18 minutes ago   Up 18 minutes   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02
-
-[root@izwz91mv6i3x6k12jjqh60z ~]<span class="comment"># docker commit -m="这个修改了的tomcat" -a="zhang" 39f11d68d64d modified_tomcat:1.1</span>
-sha256:57cab5f1479d5c0c6f85ba59415b8c7e9563d9907d32fc5d61a54a74945e57e7
-
-[root@izwz91mv6i3x6k12jjqh60z ~]<span class="comment"># docker images</span>
-REPOSITORY            TAG       IMAGE ID       CREATED         SIZE
-modified_tomcat       1.1       57cab5f1479d   7 seconds ago   672MB
-tomcat                latest    c0e850d7b9bb   3 weeks ago     667MB
-nginx                 latest    62d49f9bab67   4 weeks ago     133MB
-portainer/portainer   latest    580c0e4e98b0   8 weeks ago     79.1MB
-centos                latest    300e315adb2f   5 months ago    209MB</code></pre>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs sh">[root@izwz91mv6i3x6k12jjqh60z ~]<span class="hljs-comment"># docker ps</span><br>CONTAINER ID   IMAGE     COMMAND             CREATED          STATUS          PORTS                                       NAMES<br>39f11d68d64d   tomcat    <span class="hljs-string">"catalina.sh run"</span>   18 minutes ago   Up 18 minutes   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   tomcat02<br><br>[root@izwz91mv6i3x6k12jjqh60z ~]<span class="hljs-comment"># docker commit -m="这个修改了的tomcat" -a="zhang" 39f11d68d64d modified_tomcat:1.1</span><br>sha256:57cab5f1479d5c0c6f85ba59415b8c7e9563d9907d32fc5d61a54a74945e57e7<br><br>[root@izwz91mv6i3x6k12jjqh60z ~]<span class="hljs-comment"># docker images</span><br>REPOSITORY            TAG       IMAGE ID       CREATED         SIZE<br>modified_tomcat       1.1       57cab5f1479d   7 seconds ago   672MB<br>tomcat                latest    c0e850d7b9bb   3 weeks ago     667MB<br>nginx                 latest    62d49f9bab67   4 weeks ago     133MB<br>portainer/portainer   latest    580c0e4e98b0   8 weeks ago     79.1MB<br>centos                latest    300e315adb2f   5 months ago    209MB<br></code></pre></td></tr></tbody></table></figure>
 <blockquote>
 <p>总结：如果想保存当前容器的状态，可以通过 commit 来提交，获得一个镜像。</p>
 </blockquote>

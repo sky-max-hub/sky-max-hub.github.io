@@ -342,7 +342,7 @@ button {
   transition-timing-function: ease, ease, ease, ease, linear;
 }
 .btn:hover {
-  transform: scaleX(1.06) scaleY(1.06);
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 .btn:hover {
   color: var(--background-color);
@@ -358,8 +358,8 @@ button {
 }
 .markdown-body {
   font-family: "Open Sans", "PingFang SC", -apple-system, BlinkMacSystemFont, opensans, Optima, "Microsoft Yahei", sans-serif;
-  font-size: 17px;
-  line-height: 1.8rem;
+  font-size: 1.05rem;
+  line-height: 2;
   letter-spacing: 0;
   margin: 0;
   overflow-x: hidden;
@@ -459,7 +459,7 @@ button {
   line-height: 1.43;
   margin: 1.6em auto 1.2em;
   padding: 4px 10px;
-  border-left: 5px solid rgba(77,171,247,0.2);
+  border-left: 8px solid rgba(77,171,247,0.2);
 }
 .markdown-body h1 {
   font-weight: 600;
@@ -670,7 +670,7 @@ button {
 :root {
   --code-foreground: #383e44;
   --code-background: #f2f2f2;
-  --highlight-background: #fafafa;
+  --highlight-background: #eee;
   --highlight-foreground: #383e44;
   --highlight-comment: #8e908c;
   --highlight-red: #c82829;
@@ -687,7 +687,7 @@ button {
   :root {
     --code-foreground: #383e44;
     --code-background: #f2f2f2;
-    --highlight-background: #fafafa;
+    --highlight-background: #eee;
     --highlight-foreground: #383e44;
     --highlight-comment: #8e908c;
     --highlight-red: #c82829;
@@ -705,7 +705,7 @@ button {
   :root {
     --code-foreground: #e1eaef;
     --code-background: #131415;
-    --highlight-background: #131415;
+    --highlight-background: #282c34;
     --highlight-foreground: #e1eaef;
     --highlight-comment: #969896;
     --highlight-red: #c66;
@@ -722,7 +722,7 @@ button {
 .light-mode {
   --code-foreground: #383e44;
   --code-background: #f2f2f2;
-  --highlight-background: #fafafa;
+  --highlight-background: #eee;
   --highlight-foreground: #383e44;
   --highlight-comment: #8e908c;
   --highlight-red: #c82829;
@@ -738,7 +738,7 @@ button {
 .dark-mode {
   --code-foreground: #e1eaef;
   --code-background: #131415;
-  --highlight-background: #131415;
+  --highlight-background: #282c34;
   --highlight-foreground: #e1eaef;
   --highlight-comment: #969896;
   --highlight-red: #c66;
@@ -756,10 +756,11 @@ pre,
   overflow: auto;
   margin: 20px 0;
   padding: 0;
-  font-size: 0.96rem;
-  line-height: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.6rem;
   color: var(--highlight-foreground);
   background: var(--highlight-background);
+  border-radius: 5px;
 }
 pre,
 code {
@@ -1098,6 +1099,9 @@ pre .javascript .function {
   transition-delay: 0s, 0s, 0s, 0s, 0s, 0s;
   transition-duration: 0.2s, 0.2s, 0.2s, 0.2s, 0.3s, 0.2s;
   transition-timing-function: ease, ease, ease, ease, ease-out, linear;
+}
+.page-container .page-aside:hover {
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 @media (max-width: 780px) {
   .page-container .page-aside {
@@ -1443,6 +1447,9 @@ pre .javascript .function {
   padding-top: 2px;
   box-shadow: 2px 2px 5px var(--shadow-color);
 }
+.header-wrapper:hover {
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
+}
 .header-wrapper .header-content {
   position: relative;
   height: 100%;
@@ -1699,7 +1706,7 @@ pre .javascript .function {
   margin-bottom: 0;
 }
 .post-tools-container .tools-list li:hover {
-  transform: scaleX(1.06) scaleY(1.06);
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 .post-tools-container .tools-list li.page-aside-toggle {
   display: none;
@@ -1888,6 +1895,7 @@ pre .javascript .function {
   box-sizing: border-box;
   background: var(--content-background-color);
   margin-bottom: 30px;
+  box-shadow: 2px 2px 5px var(--shadow-color);
 }
 @media (max-width: 780px) {
   .page-template-container {
@@ -1898,6 +1906,9 @@ pre .javascript .function {
   .page-template-container {
     margin-bottom: 18px;
   }
+}
+.page-template-container:hover {
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 @media (max-width: 780px) {
   .page-template-container {
@@ -2020,6 +2031,10 @@ pre .javascript .function {
   border-radius: 10px;
   box-sizing: border-box;
   background: var(--content-background-color);
+  box-shadow: 2px 2px 5px var(--shadow-color);
+}
+.category-list-container:hover {
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 @media (max-width: 780px) {
   .category-list-container {
@@ -2144,6 +2159,11 @@ pre .javascript .function {
   box-sizing: border-box;
   background: var(--content-background-color);
   margin-bottom: 38px;
+  box-shadow: 2px 2px 5px var(--shadow-color);
+  transition-property: color, background, box-shadow, border-color, transform;
+  transition-delay: 0s, 0s, 0s, 0s, 0s;
+  transition-duration: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
+  transition-timing-function: ease, ease, ease, ease, linear;
 }
 @media (max-width: 780px) {
   .home-content-container .home-article-list .home-article-item {
@@ -2154,6 +2174,9 @@ pre .javascript .function {
   .home-content-container .home-article-list .home-article-item {
     margin-bottom: 22.8px;
   }
+}
+.home-content-container .home-article-list .home-article-item:hover {
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 @media (max-width: 780px) {
   .home-content-container .home-article-list .home-article-item {
@@ -2253,6 +2276,7 @@ pre .javascript .function {
   box-sizing: border-box;
   background: var(--content-background-color);
   margin-bottom: 30px;
+  box-shadow: 2px 2px 5px var(--shadow-color);
 }
 @media (max-width: 780px) {
   .archive-container {
@@ -2263,6 +2287,9 @@ pre .javascript .function {
   .archive-container {
     margin-bottom: 18px;
   }
+}
+.archive-container:hover {
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 @media (max-width: 780px) {
   .archive-container {
@@ -2282,6 +2309,7 @@ pre .javascript .function {
   box-sizing: border-box;
   background: var(--content-background-color);
   margin-bottom: 30px;
+  box-shadow: 2px 2px 5px var(--shadow-color);
 }
 @media (max-width: 780px) {
   .article-content-container {
@@ -2292,6 +2320,9 @@ pre .javascript .function {
   .article-content-container {
     margin-bottom: 18px;
   }
+}
+.article-content-container:hover {
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 @media (max-width: 780px) {
   .article-content-container {
@@ -2411,6 +2442,15 @@ pre .javascript .function {
   border-radius: 10px;
   box-sizing: border-box;
   background: var(--content-background-color);
+  box-shadow: 2px 2px 5px var(--shadow-color);
+  transition-property: color, background, box-shadow, border-color, transform;
+  transition-delay: 0s, 0s, 0s, 0s, 0s;
+  transition-duration: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
+  transition-timing-function: ease, ease, ease, ease, linear;
+}
+.article-content-container .article-nav .article-prev:hover,
+.article-content-container .article-nav .article-next:hover {
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 @media (max-width: 780px) {
   .article-content-container .article-nav .article-prev,
@@ -2492,6 +2532,7 @@ pre .javascript .function {
   box-sizing: border-box;
   background: var(--content-background-color);
   margin-bottom: 30px;
+  box-shadow: 2px 2px 5px var(--shadow-color);
 }
 @media (max-width: 780px) {
   .category-container {
@@ -2502,6 +2543,9 @@ pre .javascript .function {
   .category-container {
     margin-bottom: 18px;
   }
+}
+.category-container:hover {
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 @media (max-width: 780px) {
   .category-container {
@@ -2542,6 +2586,7 @@ pre .javascript .function {
   box-sizing: border-box;
   background: var(--content-background-color);
   margin-bottom: 30px;
+  box-shadow: 2px 2px 5px var(--shadow-color);
 }
 @media (max-width: 780px) {
   .tag-container {
@@ -2552,6 +2597,9 @@ pre .javascript .function {
   .tag-container {
     margin-bottom: 18px;
   }
+}
+.tag-container:hover {
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 @media (max-width: 780px) {
   .tag-container {
@@ -2591,6 +2639,10 @@ pre .javascript .function {
   border-radius: 10px;
   box-sizing: border-box;
   background: var(--content-background-color);
+  box-shadow: 2px 2px 5px var(--shadow-color);
+}
+.tagcloud-container:hover {
+  box-shadow: 2px 2px 8px var(--shadow-hover-color);
 }
 @media (max-width: 780px) {
   .tagcloud-container {

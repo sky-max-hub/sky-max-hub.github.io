@@ -17,7 +17,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -279,8 +279,7 @@
                     
                         Portainer
 Docker 图形化界面管理工具，提供一个后台面板供我们操作！
-docker run -d -p 8080:9000 \
---restart=always -v /var/run/docker.sock:/var/run/dock...
+12docker run -d -p 8080:9000 \--restart=always -v /var/run/docker.sock:/var/run/doc...
                     
                 </div>
 
@@ -318,6 +317,60 @@ docker run -d -p 8080:9000 \
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">
+                        Docker部署练习
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        部署Nginx
+
+搜索镜像，建议去 docker hub 搜索，可以看到帮助文档
+下载镜像
+运行测试
+配置容器内的ngnix的配置文件
+
+https://hub.docker.com/
+
+1234567891011121314151617181920...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 04 2021 00:00:00 GMT+0800">2021-05-04</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Docker/">Docker</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2021/05/04/docker/Docker02%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
                         Docker常用命令
                     </a>
@@ -326,12 +379,7 @@ docker run -d -p 8080:9000 \
                 <div class="home-article-content markdown-body">
                     
                         帮助命令：
-#显示版本
-[root@izwz91mv6i3x6k12jjqh60z ~]# docker version
-
-Client: Docker Engine - Community
- Version:           20.10.6
- ...
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364...
                     
                 </div>
 
@@ -377,8 +425,7 @@ Client: Docker Engine - Community
                 <div class="home-article-content markdown-body">
                     
                         查看防火墙状态
-[root@izwz91mv6i3x6k12jjqh60z ~]# systemctl status firewalld
-● firewalld.service - firewalld - dynamic firewall daemo...
+12345[root@izwz91mv6i3x6k12jjqh60z ~]# systemctl status firewalld● firewalld.service - firewalld - dynamic firewall d...
                     
                 </div>
 
@@ -407,60 +454,6 @@ Client: Docker Engine - Community
     </div>
 
     <a href="/2021/05/04/linux/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">
-                        Docker部署练习
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        部署Nginx
-
-搜索镜像，建议去 docker hub 搜索，可以看到帮助文档
-下载镜像
-运行测试
-配置容器内的ngnix的配置文件
-
-https://hub.docker.com/
-
-[root@izwz91mv6i3x6k12jjqh60z ~...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 04 2021 00:00:00 GMT+0800">2021-05-04</span></span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Docker/">Docker</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Linux/">Linux</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>

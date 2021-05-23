@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -422,79 +422,11 @@ OK, 我们来看下面的代码:</p>
 <p>目录结构：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20201001105136797.png" alt="image-20201001105136797"></p>
 <p>在 index.js中做如下定义：</p>
-<pre><code class="highlight js"><span class="comment">// store的index.js文件</span>
-<span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>
-<span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span>
-
-Vue.use(Vuex)
-
-<span class="keyword">const</span> modulesFiles = <span class="built_in">require</span>.context(<span class="string">'./modules'</span>, <span class="literal">true</span>, <span class="regexp">/\.js$/</span>)
-
-<span class="keyword">const</span> modules = modulesFiles.keys().reduce(<span class="function">(<span class="params">modules, modulePath</span>) =&gt;</span> {
-    <span class="comment">// set './app.js' =&gt; 'app'</span>
-    <span class="keyword">const</span> moduleName = modulePath.replace(<span class="regexp">/^\.\/(.*)\.\w+$/</span>, <span class="string">'$1'</span>)
-    <span class="keyword">const</span> value = modulesFiles(modulePath)
-    modules[moduleName] = value.default
-    <span class="keyword">return</span> modules
-}, {})
-
-
-<span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store({
-    modules
-})
-
-<span class="keyword">export</span> <span class="keyword">default</span> store
-</code></pre>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// store的index.js文件</span><br><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span><br><span class="hljs-keyword">import</span> Vuex <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span><br><br>Vue.use(Vuex)<br><br><span class="hljs-keyword">const</span> modulesFiles = <span class="hljs-built_in">require</span>.context(<span class="hljs-string">'./modules'</span>, <span class="hljs-literal">true</span>, <span class="hljs-regexp">/\.js$/</span>)<br><br><span class="hljs-keyword">const</span> modules = modulesFiles.keys().reduce(<span class="hljs-function">(<span class="hljs-params">modules, modulePath</span>) =&gt;</span> {<br>    <span class="hljs-comment">// set './app.js' =&gt; 'app'</span><br>    <span class="hljs-keyword">const</span> moduleName = modulePath.replace(<span class="hljs-regexp">/^\.\/(.*)\.\w+$/</span>, <span class="hljs-string">'$1'</span>)<br>    <span class="hljs-keyword">const</span> value = modulesFiles(modulePath)<br>    modules[moduleName] = value.default<br>    <span class="hljs-keyword">return</span> modules<br>}, {})<br><br><br><span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({<br>    modules<br>})<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store<br><br></code></pre></td></tr></tbody></table></figure>
 <p>在每个store文件中可以这样定义：</p>
-<pre><code class="highlight js"><span class="keyword">const</span> state = <span class="function">() =&gt;</span> ({
-  .......
-})
-
-<span class="keyword">const</span> getters = {
-    ......
-}
-
-<span class="keyword">const</span> mutations = { <span class="comment">// mutations改变state中的数据</span>
-  ......
-}
-
-<span class="keyword">const</span> actions = { <span class="comment">// 发送请求</span>
-  ........
-}
-
-
-<span class="keyword">export</span> <span class="keyword">default</span> {
-    namespaced: <span class="literal">true</span>,<span class="comment">//注意要开启这个</span>
-    state,
-    mutations,
-    actions,
-    getters
-}
-</code></pre>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = <span class="hljs-function">() =&gt;</span> ({<br>  .......<br>})<br><br><span class="hljs-keyword">const</span> getters = {<br>    ......<br>}<br><br><span class="hljs-keyword">const</span> mutations = { <span class="hljs-comment">// mutations改变state中的数据</span><br>  ......<br>}<br><br><span class="hljs-keyword">const</span> actions = { <span class="hljs-comment">// 发送请求</span><br>  ........<br>}<br><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {<br>    namespaced: <span class="hljs-literal">true</span>,<span class="hljs-comment">//注意要开启这个</span><br>    state,<br>    mutations,<br>    actions,<br>    getters<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 <p>这样在组件中使用的时候可以这样：</p>
-<pre><code class="highlight vue">&lt;template&gt;
-  .......
-&lt;/template&gt;
-
-&lt;script&gt;
-
-import { mapState } from 'vuex' //
-
-export default {
-  name: "login",
-  methods: {
-  },
-  computed: 
-    ...mapState({ // 这个是提取store中access.js的state的数据
-      'loginState': 'login'
-    })
-  }
-};
-&lt;/script&gt;
-&lt;style scoped&gt;
-   ....
-&lt;/style&gt;
-</code></pre>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  .......<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><br>import { mapState } from 'vuex' //<br><br>export default {<br>  name: "login",<br>  methods: {<br>  },<br>  computed: <br>    ...mapState({ // 这个是提取store中access.js的state的数据<br>      'loginState': 'login'<br>    })<br>  }<br>};<br>&lt;/script&gt;<br>&lt;style scoped&gt;<br>   ....<br>&lt;/style&gt;<br><br></code></pre></td></tr></tbody></table></figure>
         </div>
 
         

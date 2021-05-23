@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -248,84 +248,17 @@ sql 的动态参数进行映射生成最终执行的 sql 语句，最后由 myba
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528100320103.png" alt="image-20200528100320103">
 <hr>
 <h3 id="2-2-导入依赖">2.2. 导入依赖</h3>
-<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
-<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
-<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
-<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
-<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
-
-<span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
-<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
-<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
-<span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
-<span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>
-<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
-</code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.4.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.1.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br></code></pre></td></tr></tbody></table></figure>
 <h3 id="2-3-编写实体类（如：User类）持久层接口（如：UserDao-UserMapper）">2.3. 编写实体类（如：User类）持久层接口（如：UserDao/UserMapper）</h3>
 <h3 id="2-4-编写接口的映射文件">2.4. 编写接口的映射文件</h3>
 <hr>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528100817522.png" alt="image-20200528100817522">
 <hr>
-<pre><code class="highlight xml"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span>
-<span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span>
-<span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span>
-
-<span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.itheima.dao.IUserDao"</span>&gt;</span>
-<span class="comment">&lt;!-- 配置查询所有操作 --&gt;</span>
-<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"com.itheima.domain.User"</span>&gt;</span>
-select * from user
-<span class="tag">&lt;/<span class="name">select</span>&gt;</span>
-<span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">mapper</span></span><br><span class="hljs-meta">PUBLIC <span class="hljs-meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="hljs-meta"><span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"com.itheima.dao.IUserDao"</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 配置查询所有操作 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findAll"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"com.itheima.domain.User"</span>&gt;</span><br>select * from user<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <h3 id="2-5-编写核心配置文件-SqlMapConfig-xml-resources目录下">2.5. 编写核心配置文件 SqlMapConfig.xml  (resources目录下)</h3>
-<pre><code class="highlight xml"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span>
-<span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span>
-<span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span>
-<span class="tag">&lt;<span class="name">configuration</span>&gt;</span>
-<span class="comment">&lt;!-- 配置 mybatis 的环境 --&gt;</span>
-<span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"mysql"</span>&gt;</span>
-<span class="comment">&lt;!-- 配置 mysql 的环境 --&gt;</span>
-<span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"mysql"</span>&gt;</span>
-<span class="comment">&lt;!-- 配置事务的类型 --&gt;</span>
-<span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span>
-<span class="comment">&lt;!-- 配置连接数据库的信息：用的是数据源(连接池) --&gt;</span>
-<span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span>
-<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>/&gt;</span>
-<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/ee50"</span>/&gt;</span>
-<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span>
-<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"1234"</span>/&gt;</span>
-<span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span>
-<span class="tag">&lt;/<span class="name">environment</span>&gt;</span>
-<span class="tag">&lt;/<span class="name">environments</span>&gt;</span>
-<span class="comment">&lt;!-- 告知 mybatis 映射配置的位置 resource表明其在resources文件上 --&gt;</span>
-<span class="tag">&lt;<span class="name">mappers</span>&gt;</span>
-<span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/itheima/dao/IUserDao.xml"</span>/&gt;</span>
-<span class="tag">&lt;/<span class="name">mappers</span>&gt;</span>
-<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></code></pre>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">configuration</span></span><br><span class="hljs-meta">PUBLIC <span class="hljs-meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="hljs-meta"><span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 配置 mybatis 的环境 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">environments</span> <span class="hljs-attr">default</span>=<span class="hljs-string">"mysql"</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 配置 mysql 的环境 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">environment</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mysql"</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 配置事务的类型 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">transactionManager</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"JDBC"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">transactionManager</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 配置连接数据库的信息：用的是数据源(连接池) --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"POOLED"</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driver"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"com.mysql.jdbc.Driver"</span>/&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"jdbc:mysql://localhost:3306/ee50"</span>/&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"root"</span>/&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1234"</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">environment</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 告知 mybatis 映射配置的位置 resource表明其在resources文件上 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"com/itheima/dao/IUserDao.xml"</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <h2 id="3-MyBatis框架原理">3. MyBatis框架原理</h2>
-<pre><code class="highlight java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisTest</span> </span>{
-<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span><span class="keyword">throws</span> Exception </span>{
-<span class="comment">//1.读取配置文件</span>
-InputStream in = Resources.getResourceAsStream(<span class="string">"SqlMapConfig.xml"</span>);
-<span class="comment">//2.创建 SqlSessionFactory 的构建者对象</span>
-SqlSessionFactoryBuilder builder = <span class="keyword">new</span> SqlSessionFactoryBuilder();
-<span class="comment">//3.使用构建者创建工厂对象 SqlSessionFactory</span>
-SqlSessionFactory factory = builder.build(in);
-<span class="comment">//4.使用 SqlSessionFactory 生产 SqlSession 对象</span>
-SqlSession session = factory.openSession();
-<span class="comment">//5.使用 SqlSession 创建 dao 接口的代理对象</span>
-IUserDao userDao = session.getMapper(IUserDao.class);
-<span class="comment">//6.使用代理对象执行查询所有方法</span>
-List&lt;User&gt; users = userDao.findAll();
-<span class="keyword">for</span>(User user : users) {
-System.out.println(user);
-}
-<span class="comment">//7.释放资源</span>
-session.close();
-in.close();
-}
-}</code></pre>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MybatisTest</span> </span>{<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span><span class="hljs-keyword">throws</span> Exception </span>{<br><span class="hljs-comment">//1.读取配置文件</span><br>InputStream in = Resources.getResourceAsStream(<span class="hljs-string">"SqlMapConfig.xml"</span>);<br><span class="hljs-comment">//2.创建 SqlSessionFactory 的构建者对象</span><br>SqlSessionFactoryBuilder builder = <span class="hljs-keyword">new</span> SqlSessionFactoryBuilder();<br><span class="hljs-comment">//3.使用构建者创建工厂对象 SqlSessionFactory</span><br>SqlSessionFactory factory = builder.build(in);<br><span class="hljs-comment">//4.使用 SqlSessionFactory 生产 SqlSession 对象</span><br>SqlSession session = factory.openSession();<br><span class="hljs-comment">//5.使用 SqlSession 创建 dao 接口的代理对象</span><br>IUserDao userDao = session.getMapper(IUserDao.class);<br><span class="hljs-comment">//6.使用代理对象执行查询所有方法</span><br>List&lt;User&gt; users = userDao.findAll();<br><span class="hljs-keyword">for</span>(User user : users) {<br>System.out.println(user);<br>}<br><span class="hljs-comment">//7.释放资源</span><br>session.close();<br>in.close();<br>}<br>}<br></code></pre></td></tr></tbody></table></figure>
 <h3 id="3-1-构建者模式">3.1 构建者模式</h3>
 <hr>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528140047789.png" alt="image-20200528140047789"></p>

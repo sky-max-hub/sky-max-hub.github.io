@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -181,7 +181,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>876 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>884 字</span>
         </span>
     
 
@@ -232,53 +232,9 @@
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305201823730.png" alt="image-20210305201823730"></p>
 <h3 id="realtive">realtive</h3>
 <p>以<code>自身为参照物</code>移动到指定的位置，并且<code>被定位的元素会占据原有的位置</code></p>
-<pre><code class="highlight html"><span class="tag">&lt;<span class="name">style</span>&gt;</span>
-<span class="css">		<span class="selector-tag">div</span>{</span>
-<span class="css">			<span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">height</span>: <span class="number">200px</span>;</span>
-        }
-        .d1{
-<span class="css">			<span class="attribute">background-color</span>: red;</span>
-        }
-        .d2{
-<span class="css">			<span class="attribute">background-color</span>: black;</span>
-<span class="css">			<span class="attribute">position</span>: relative;</span>
-/* 			left: 200px;
-<span class="css">			<span class="attribute">top</span>: <span class="number">200px</span>; */</span>
-        }
-        .d3{
-<span class="css">			<span class="attribute">background-color</span>: aliceblue;</span>
-        }
-    <span class="tag">&lt;/<span class="name">style</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">body</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></code></pre>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">		<span class="hljs-selector-tag">div</span>{</span><br><span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br>		}<br>		.d1{<br><span class="css">			<span class="hljs-attribute">background-color</span>: red;</span><br>		}<br>		.d2{<br><span class="css">			<span class="hljs-attribute">background-color</span>: black;</span><br><span class="css">			<span class="hljs-attribute">position</span>: relative;</span><br>/* 			left: 200px;<br><span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>; */</span><br>		}<br>		.d3{<br><span class="css">			<span class="hljs-attribute">background-color</span>: aliceblue;</span><br>		}<br>	<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305203011083.png" alt="image-20210305203011083" style="zoom:50%;">
-<pre><code class="highlight html"><span class="tag">&lt;<span class="name">style</span>&gt;</span>
-<span class="css">		<span class="selector-tag">div</span>{</span>
-<span class="css">			<span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">height</span>: <span class="number">200px</span>;</span>
-        }
-        .d1{
-<span class="css">			<span class="attribute">background-color</span>: red;</span>
-        }
-        .d2{
-<span class="css">			<span class="attribute">background-color</span>: black;</span>
-<span class="css">			<span class="attribute">position</span>: relative;</span>
-/* 			left: 200px;
-<span class="css">			<span class="attribute">top</span>: <span class="number">200px</span>; */</span>
-        }
-        .d3{
-<span class="css">			<span class="attribute">background-color</span>: aliceblue;</span>
-        }
-    <span class="tag">&lt;/<span class="name">style</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">body</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></code></pre>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">		<span class="hljs-selector-tag">div</span>{</span><br><span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br>		}<br>		.d1{<br><span class="css">			<span class="hljs-attribute">background-color</span>: red;</span><br>		}<br>		.d2{<br><span class="css">			<span class="hljs-attribute">background-color</span>: black;</span><br><span class="css">			<span class="hljs-attribute">position</span>: relative;</span><br>/* 			left: 200px;<br><span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>; */</span><br>		}<br>		.d3{<br><span class="css">			<span class="hljs-attribute">background-color</span>: aliceblue;</span><br>		}<br>	<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305203041348.png" alt="image-20210305203041348" style="zoom:50%;">
 <h3 id="absolute">absolute</h3>
 <p>以其他元素作为参照物，移动指定距离，且不会占据原有的位置，关于 <code>absolute</code> 定位参考点的选择：</p>
@@ -287,158 +243,24 @@
 <li>如果元素的外层元素没有设置任何 <code>position</code> 的值，那么该元素将寻找离自己最近的设定过非默认 <code>position</code> 属性的外层元素作为参照物。</li>
 <li>如果元素的外层元素没有找到设定为非默认 <code>positon</code> 属性的外层元素，那么此时定位参考元素变为 <code>body</code> ，或者说页面</li>
 </ol>
-<pre><code class="highlight html"><span class="tag">&lt;<span class="name">style</span>&gt;</span>
-<span class="css">		<span class="selector-tag">div</span>{</span>
-<span class="css">			<span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">height</span>: <span class="number">200px</span>;</span>
-        }
-        .d1{
-<span class="css">			<span class="attribute">background-color</span>: red;</span>
-        }
-        .d2{
-<span class="css">			<span class="attribute">background-color</span>: black;</span>
-<span class="css">			<span class="attribute">position</span>: absolute;</span>
-        }
-        .d3{
-<span class="css">			<span class="attribute">background-color</span>: aliceblue;</span>
-        }
-    <span class="tag">&lt;/<span class="name">style</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">body</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></code></pre>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">		<span class="hljs-selector-tag">div</span>{</span><br><span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br>		}<br>		.d1{<br><span class="css">			<span class="hljs-attribute">background-color</span>: red;</span><br>		}<br>		.d2{<br><span class="css">			<span class="hljs-attribute">background-color</span>: black;</span><br><span class="css">			<span class="hljs-attribute">position</span>: absolute;</span><br>		}<br>		.d3{<br><span class="css">			<span class="hljs-attribute">background-color</span>: aliceblue;</span><br>		}<br>	<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305203556950.png" alt="image-20210305203556950" style="zoom:50%;">
-<pre><code class="highlight html"><span class="tag">&lt;<span class="name">style</span>&gt;</span>
-<span class="css">		<span class="selector-tag">div</span>{</span>
-<span class="css">			<span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">height</span>: <span class="number">200px</span>;</span>
-        }
-        .d1{
-<span class="css">			<span class="attribute">background-color</span>: red;</span>
-        }
-        .d2{
-<span class="css">			<span class="attribute">background-color</span>: black;</span>
-<span class="css">			<span class="attribute">position</span>: absolute;</span>
-<span class="css">			<span class="attribute">left</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">top</span>: <span class="number">200px</span>;</span>
-        }
-        .d3{
-<span class="css">			<span class="attribute">background-color</span>: aliceblue;</span>
-        }
-    <span class="tag">&lt;/<span class="name">style</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">body</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></code></pre>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">		<span class="hljs-selector-tag">div</span>{</span><br><span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br>		}<br>		.d1{<br><span class="css">			<span class="hljs-attribute">background-color</span>: red;</span><br>		}<br>		.d2{<br><span class="css">			<span class="hljs-attribute">background-color</span>: black;</span><br><span class="css">			<span class="hljs-attribute">position</span>: absolute;</span><br><span class="css">			<span class="hljs-attribute">left</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>;</span><br>		}<br>		.d3{<br><span class="css">			<span class="hljs-attribute">background-color</span>: aliceblue;</span><br>		}<br>	<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305203705689.png" alt="image-20210305203705689" style="zoom:50%;">
-<pre><code class="highlight html"><span class="tag">&lt;<span class="name">style</span>&gt;</span>
-<span class="css">	<span class="selector-tag">div</span>{</span>
-<span class="css">		<span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="css">		<span class="attribute">height</span>: <span class="number">200px</span>;</span>
-    }
-    .d1{
-<span class="css">		<span class="attribute">background-color</span>: red;</span>
-    }
-    .d2{
-<span class="css">		<span class="attribute">background-color</span>: black;</span>
-<span class="css">		<span class="attribute">position</span>: relative;</span>
-<span class="css">		<span class="attribute">width</span>: <span class="number">500px</span>;</span>
-<span class="css">		<span class="attribute">height</span>: <span class="number">500px</span>;</span>
-    }
-    .d22{
-<span class="css">		<span class="attribute">position</span>: absolute;</span>
-<span class="css">		<span class="attribute">background-color</span>: aqua;</span>
-<span class="css">		<span class="attribute">left</span>: <span class="number">100px</span>;</span>
-<span class="css">		<span class="attribute">top</span>: <span class="number">100px</span>;</span>
-    }
-    .d3{
-<span class="css">		<span class="attribute">background-color</span>: aliceblue;</span>
-    }
-<span class="tag">&lt;/<span class="name">style</span>&gt;</span>
-<span class="tag">&lt;<span class="name">body</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d2"</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d22"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-<span class="tag">&lt;/<span class="name">body</span>&gt;</span></code></pre>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">	<span class="hljs-selector-tag">div</span>{</span><br><span class="css">		<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">		<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br>	}<br>	.d1{<br><span class="css">		<span class="hljs-attribute">background-color</span>: red;</span><br>	}<br>	.d2{<br><span class="css">		<span class="hljs-attribute">background-color</span>: black;</span><br><span class="css">		<span class="hljs-attribute">position</span>: relative;</span><br><span class="css">		<span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;</span><br><span class="css">		<span class="hljs-attribute">height</span>: <span class="hljs-number">500px</span>;</span><br>	}<br>	.d22{<br><span class="css">		<span class="hljs-attribute">position</span>: absolute;</span><br><span class="css">		<span class="hljs-attribute">background-color</span>: aqua;</span><br><span class="css">		<span class="hljs-attribute">left</span>: <span class="hljs-number">100px</span>;</span><br><span class="css">		<span class="hljs-attribute">top</span>: <span class="hljs-number">100px</span>;</span><br>	}<br>	.d3{<br><span class="css">		<span class="hljs-attribute">background-color</span>: aliceblue;</span><br>	}<br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d22"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305204434371.png" alt="image-20210305204434371" style="zoom:50%;">
 <h3 id="fixed">fixed</h3>
-<pre><code class="highlight html"><span class="tag">&lt;<span class="name">style</span>&gt;</span>
-        .d1{
-<span class="css">			<span class="attribute">background-color</span>: bisque;</span>
-<span class="css">			<span class="attribute">width</span>: <span class="number">1000px</span>;</span>
-<span class="css">			<span class="attribute">height</span>: <span class="number">1000px</span>;</span>
-        }
-        .d2{
-<span class="css">			<span class="attribute">position</span>: fixed;</span>
-<span class="css">			<span class="attribute">background-color</span>: aqua;</span>
-<span class="css">			<span class="attribute">right</span>: <span class="number">0px</span>;</span>
-<span class="css">			<span class="attribute">top</span>: <span class="number">0px</span>;</span>
-<span class="css">			<span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">height</span>: <span class="number">200px</span>;</span>
-        }
-    <span class="tag">&lt;/<span class="name">style</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">body</span>&gt;</span>
-        &gt;&gt;&gt;&gt;&gt;&gt;1
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        &gt;&gt;&gt;&gt;&gt;&gt;2
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></code></pre>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br>		.d1{<br><span class="css">			<span class="hljs-attribute">background-color</span>: bisque;</span><br><span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">1000px</span>;</span><br><span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">1000px</span>;</span><br>		}<br>		.d2{<br><span class="css">			<span class="hljs-attribute">position</span>: fixed;</span><br><span class="css">			<span class="hljs-attribute">background-color</span>: aqua;</span><br><span class="css">			<span class="hljs-attribute">right</span>: <span class="hljs-number">0px</span>;</span><br><span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">0px</span>;</span><br><span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br>		}<br>	<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		&gt;&gt;&gt;&gt;&gt;&gt;1<br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		&gt;&gt;&gt;&gt;&gt;&gt;2<br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305205431227.png" alt="image-20210305205431227"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305205442554.png" alt="image-20210305205442554"></p>
 <h2 id="z-index堆叠顺序">z-index堆叠顺序</h2>
 <p>一旦修改了元素的定位方式，则元素可能会发生堆叠。可以<code>使用z-index属性来控制定位元素的出现顺序</code>。z-index仅能在定位的元素（使用了 <code>position</code> 非默认属性的元素）上生效<br>
 z-index属性：<br>
 值为数值，数值越大表示堆叠顺序越高，即离用户越近，可以设置为负值，表示离用户更远 ，一般不设置负值</p>
-<pre><code class="highlight html"><span class="tag">&lt;<span class="name">style</span>&gt;</span>
-        .d1{
-<span class="css">			<span class="attribute">background-color</span>: black;</span>
-<span class="css">			<span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">height</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">position</span>: absolute;</span>
-<span class="css">			<span class="attribute">left</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">top</span>: <span class="number">200px</span>;</span>
-        }
-        .d2{
-<span class="css">			<span class="attribute">position</span>: fixed;</span>
-<span class="css">			<span class="attribute">background-color</span>: red;</span>
-<span class="css">			<span class="attribute">left</span>: <span class="number">100px</span>;</span>
-<span class="css">			<span class="attribute">top</span>: <span class="number">100px</span>;</span>
-<span class="css">			<span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">height</span>: <span class="number">200px</span>;</span>
-        }
-    <span class="tag">&lt;/<span class="name">style</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">body</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></code></pre>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br>		.d1{<br><span class="css">			<span class="hljs-attribute">background-color</span>: black;</span><br><span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">position</span>: absolute;</span><br><span class="css">			<span class="hljs-attribute">left</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>;</span><br>		}<br>		.d2{<br><span class="css">			<span class="hljs-attribute">position</span>: fixed;</span><br><span class="css">			<span class="hljs-attribute">background-color</span>: red;</span><br><span class="css">			<span class="hljs-attribute">left</span>: <span class="hljs-number">100px</span>;</span><br><span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">100px</span>;</span><br><span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br>		}<br>	<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305210239608.png" alt="image-20210305210239608" style="zoom:50%;">
 <p>可以发现后面的<code>div</code>会覆盖前面的，如果想让前面的覆盖后面的，可以设置 <code>z-index</code>：</p>
-<pre><code class="highlight html"><span class="tag">&lt;<span class="name">style</span>&gt;</span>
-        .d1{
-<span class="css">			<span class="attribute">background-color</span>: black;</span>
-<span class="css">			<span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">height</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">position</span>: absolute;</span>
-<span class="css">			<span class="attribute">left</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">top</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">z-index</span>: <span class="number">1</span>;</span>
-        }
-        .d2{
-<span class="css">			<span class="attribute">position</span>: fixed;</span>
-<span class="css">			<span class="attribute">background-color</span>: red;</span>
-<span class="css">			<span class="attribute">left</span>: <span class="number">100px</span>;</span>
-<span class="css">			<span class="attribute">top</span>: <span class="number">100px</span>;</span>
-<span class="css">			<span class="attribute">width</span>: <span class="number">200px</span>;</span>
-<span class="css">			<span class="attribute">height</span>: <span class="number">200px</span>;</span>
-        }
-    <span class="tag">&lt;/<span class="name">style</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">body</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"d2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></code></pre>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br>		.d1{<br><span class="css">			<span class="hljs-attribute">background-color</span>: black;</span><br><span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">position</span>: absolute;</span><br><span class="css">			<span class="hljs-attribute">left</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">z-index</span>: <span class="hljs-number">1</span>;</span><br>		}<br>		.d2{<br><span class="css">			<span class="hljs-attribute">position</span>: fixed;</span><br><span class="css">			<span class="hljs-attribute">background-color</span>: red;</span><br><span class="css">			<span class="hljs-attribute">left</span>: <span class="hljs-number">100px</span>;</span><br><span class="css">			<span class="hljs-attribute">top</span>: <span class="hljs-number">100px</span>;</span><br><span class="css">			<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="css">			<span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br>		}<br>	<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></tbody></table></figure>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210305210411571.png" alt="image-20210305210411571" style="zoom:50%;">
 
         </div>
