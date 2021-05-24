@@ -154,22 +154,19 @@
                     <div class="fade-in-down-animation">
     <div class="article-content-container">
 
+        
+            <div class="article-cover">
+                <img class="cover" src=https://img.sky123.top/img/sunrise-5863751_1280.png>
+            </div>
+        
+
         <div class="article-title">
             <span class="title-hover-animation">Javascript常用字符串功能方法</span>
         </div>
 
         
             <div class="article-header">
-<!--                <div class="avatar">-->
-                    
-<!--                </div>-->
                 <div class="info">
-<!--                    <div class="author">-->
-<!--                        <span class="name"></span>-->
-<!--                        -->
-<!--                            <span class="author-label"></span>-->
-<!--                        -->
-<!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
     <!--日期-->
@@ -205,11 +202,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        <a href="/tags/Javascript/">Javascript</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/Javascript/">Javascript</a>&nbsp;
+                        | <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
                     </li>
                 
                     <li>
@@ -228,10 +225,7 @@
         
 
         <div class="article-content markdown-body">
-            <hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/sunrise-5863751_1280.png" alt=""></p>
-<hr>
-<h2 id="Javascript常用字符串功能方法">Javascript常用字符串功能方法</h2>
+            <h2 id="Javascript常用字符串功能方法">Javascript常用字符串功能方法</h2>
 <h3 id="字符串转换">字符串转换</h3>
 <p>字符串转换是最基础的要求和工作，你可以将任何类型的数据都转换为字符串，你可以用下面三种方法的任何一种：</p>
 <figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> num=<span class="number">24</span>;</span><br><span class="line"><span class="keyword">var</span> mystr=num.toString();    <span class="comment">//"24"</span></span><br></pre></td></tr></tbody></table></figure>
@@ -305,6 +299,7 @@
 <figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str=<span class="string">"aahhgggsssjjj"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeRepeat</span>(<span class="params">msg</span>)</span>{  </span><br><span class="line">    <span class="keyword">var</span> res=[];  </span><br><span class="line">    <span class="keyword">var</span> arr=msg.split(<span class="string">""</span>);  </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length;i++){  </span><br><span class="line">        <span class="keyword">if</span>(res.indexOf(arr[i])==-<span class="number">1</span>){  </span><br><span class="line">            res.push(arr[i]);  </span><br><span class="line">        }  </span><br><span class="line">    }  </span><br><span class="line">    <span class="keyword">return</span> res.join(<span class="string">""</span>);  </span><br><span class="line">}  </span><br><span class="line">removeRepeat(str);    <span class="comment">//ahgsj </span></span><br></pre></td></tr></tbody></table></figure>
 <h3 id="判断字符串中字符出现的次数">判断字符串中字符出现的次数</h3>
 <figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">/*  </span></span><br><span class="line"><span class="comment">    1.先实现字符串去重  </span></span><br><span class="line"><span class="comment">    2.然后对去重后的数组用for循环操作，分别与原始数组中各个值进行比较，如果相等则count++,循环结束将count保存在sum数组中，然后将count重置为0  </span></span><br><span class="line"><span class="comment">    3.这样一来去重后的数组中的元素在原数组中出现的次数与sum数组中的元素是一一对应的  </span></span><br><span class="line"><span class="comment">*/</span>  </span><br><span class="line"><span class="keyword">var</span> str=<span class="string">"aacccbbeeeddd"</span>;  </span><br><span class="line"><span class="keyword">var</span> sum=[];  </span><br><span class="line"><span class="keyword">var</span> res=[];  </span><br><span class="line"><span class="keyword">var</span> count=<span class="number">0</span>;  </span><br><span class="line"><span class="keyword">var</span> arr=str.split(<span class="string">""</span>);  </span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length;i++){  </span><br><span class="line">    <span class="keyword">if</span>(res.indexOf(arr[i])==-<span class="number">1</span>){  </span><br><span class="line">        res.push(arr[i]);  </span><br><span class="line">    }  </span><br><span class="line">}  </span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;res.length;i++){  </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;arr.length;j++){  </span><br><span class="line">        <span class="keyword">if</span>(arr[j]==res[i]){  </span><br><span class="line">            count++;  </span><br><span class="line">        }  </span><br><span class="line">    }  </span><br><span class="line">    sum.push(count);  </span><br><span class="line">    count=<span class="number">0</span>;  </span><br><span class="line">}  </span><br><span class="line"><span class="built_in">console</span>.log(res);    <span class="comment">//["a", "c", "b", "e", "d"]  </span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;res.length;i++){  </span><br><span class="line">    <span class="keyword">var</span> str=(sum[i]%<span class="number">2</span>==<span class="number">0</span>)?<span class="string">"偶数"</span>:<span class="string">"奇数"</span>;  </span><br><span class="line">    <span class="built_in">console</span>.log(res[i]+<span class="string">"出现了"</span>+sum[i]+<span class="string">"次"</span>);  </span><br><span class="line">    <span class="built_in">console</span>.log(res[i]+<span class="string">"出现了"</span>+str+<span class="string">"次"</span>);  </span><br><span class="line">}  </span><br></pre></td></tr></tbody></table></figure>
+
         </div>
 
         

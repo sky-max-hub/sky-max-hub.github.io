@@ -154,22 +154,19 @@
                     <div class="fade-in-down-animation">
     <div class="article-content-container">
 
+        
+            <div class="article-cover">
+                <img class="cover" src=https://img.sky123.top/img/city-438393_960_720.jpg>
+            </div>
+        
+
         <div class="article-title">
             <span class="title-hover-animation">SpringBoot03整合Mybatis</span>
         </div>
 
         
             <div class="article-header">
-<!--                <div class="avatar">-->
-                    
-<!--                </div>-->
                 <div class="info">
-<!--                    <div class="author">-->
-<!--                        <span class="name"></span>-->
-<!--                        -->
-<!--                            <span class="author-label"></span>-->
-<!--                        -->
-<!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
     <!--日期-->
@@ -181,7 +178,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>454 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>451 字</span>
         </span>
     
 
@@ -224,11 +221,7 @@
         
 
         <div class="article-content markdown-body">
-            <hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2015/03/26/09/48/chicago-690364_1280.jpg" alt=""></p>
-<hr>
-<h1>SpringBoot03整合Mybatis</h1>
-<h2 id="1-添加Mybatis的起步依赖">1 添加Mybatis的起步依赖</h2>
+            <h2 id="1-添加Mybatis的起步依赖">1 添加Mybatis的起步依赖</h2>
 <figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--mybatis起步依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 <h2 id="2-添加数据库驱动坐标">2 添加数据库驱动坐标</h2>
 <figure class="highlight xml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- MySQL连接驱动 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
@@ -391,7 +384,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">SpringBoot03整合Mybatis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B7%BB%E5%8A%A0Mybatis%E7%9A%84%E8%B5%B7%E6%AD%A5%E4%BE%9D%E8%B5%96"><span class="nav-text">1 添加Mybatis的起步依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A9%B1%E5%8A%A8%E5%9D%90%E6%A0%87"><span class="nav-text">2 添加数据库驱动坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF"><span class="nav-text">3 添加数据库连接信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%88%9B%E5%BB%BAuser%E8%A1%A8"><span class="nav-text">4 创建user表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BD%93Bean"><span class="nav-text">5 创建实体Bean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%BC%96%E5%86%99Mapper"><span class="nav-text">6 编写Mapper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E9%85%8D%E7%BD%AEMapper%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6"><span class="nav-text">7 配置Mapper映射文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%9C%A8application-properties%E4%B8%AD%E6%B7%BB%E5%8A%A0mybatis%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-text">8 在application.properties中添加mybatis的信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95Controller"><span class="nav-text">9 编写测试Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E6%B5%8B%E8%AF%95"><span class="nav-text">10 测试</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B7%BB%E5%8A%A0Mybatis%E7%9A%84%E8%B5%B7%E6%AD%A5%E4%BE%9D%E8%B5%96"><span class="nav-text">1 添加Mybatis的起步依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A9%B1%E5%8A%A8%E5%9D%90%E6%A0%87"><span class="nav-text">2 添加数据库驱动坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF"><span class="nav-text">3 添加数据库连接信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%88%9B%E5%BB%BAuser%E8%A1%A8"><span class="nav-text">4 创建user表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BD%93Bean"><span class="nav-text">5 创建实体Bean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%BC%96%E5%86%99Mapper"><span class="nav-text">6 编写Mapper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E9%85%8D%E7%BD%AEMapper%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6"><span class="nav-text">7 配置Mapper映射文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%9C%A8application-properties%E4%B8%AD%E6%B7%BB%E5%8A%A0mybatis%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-text">8 在application.properties中添加mybatis的信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95Controller"><span class="nav-text">9 编写测试Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E6%B5%8B%E8%AF%95"><span class="nav-text">10 测试</span></a></li></ol>
     </div>
 </div>
         </aside>

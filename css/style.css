@@ -273,7 +273,7 @@ body {
   padding: 0;
   color: var(--default-text-color);
   background: var(--background-color);
-  font-family: Optima-Regular, Optima, -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial;
+  font-family: "Vollkorn", Palatino, Times;
   font-weight: 400;
   font-size: 15.2px;
   line-height: 22px;
@@ -372,7 +372,6 @@ button {
   clear: both;
 }
 .markdown-body {
-  font-family: "Vollkorn", Palatino, Times;
   font-size: 1.05rem;
   line-height: 2;
   letter-spacing: 0;
@@ -413,13 +412,19 @@ button {
   position: relative;
   color: var(--mark-down-link);
 }
-.markdown-body a:hover {
+.markdown-body a:hover,
+.markdown-body a:hover .fas,
+.markdown-body a .far,
+.markdown-body a fab {
   text-decoration: underline;
-  border-bottom: 2px solid #ff3502;
+  border-color: #ff3502;
   color: #ff3502 !important;
 }
-.markdown-body a:hover::after {
-  background: var(--primary-color);
+.markdown-body a:hover::after,
+.markdown-body a:hover .fas::after,
+.markdown-body a .far::after,
+.markdown-body a fab::after {
+  background: #ff3502;
 }
 .markdown-body strong {
   padding: 0.1em;
@@ -453,103 +458,139 @@ button {
 .markdown-body ol li ol li ol li {
   list-style: upper-roman;
 }
-.markdown-body h1,
 .markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
+.markdown-body h1 {
   color: var(--default-text-color);
-  margin-bottom: 1.25rem;
-  font-weight: 700;
   letter-spacing: 1px;
   position: relative;
-  margin-top: 1rem;
   cursor: text;
-}
-.markdown-body h2,
-.markdown-body h3 {
-  margin: 2em auto 1.4em;
-  line-height: 1.4;
-  border-bottom: 1.3px solid #f22f27;
-}
-.markdown-body h2::before,
-.markdown-body h3::before {
-  content: '# ' !important;
-  color: #f22f27;
-}
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
-  line-height: 1.43;
-  margin: 1.6em auto 1.2em;
-  border-bottom: 1.5px solid #f22f27;
-}
-.markdown-body h4::before,
-.markdown-body h5::before,
-.markdown-body h6::before {
-  content: '# ' !important;
-  color: #f22f27;
-}
-.markdown-body h1 {
-  font-weight: 600;
-  text-align: center;
-  padding-bottom: 0.3em;
-  font-size: 2.2em;
-  line-height: 1.2;
-  margin: 1.2em auto 1.2em;
-}
-@media (max-width: 780px) {
-  .markdown-body h1 {
-    font-size: 1.7rem;
-  }
-}
-.markdown-body h2 {
   font-size: 1.7rem;
   font-weight: 600;
+  margin: 1.5em auto 1em;
+  line-height: 1.4;
 }
 @media (max-width: 780px) {
-  .markdown-body h2 {
+  .markdown-body h2,
+  .markdown-body h1 {
     font-size: 1.6rem;
   }
 }
+.markdown-body h2::before,
+.markdown-body h1::before {
+  content: '# ' !important;
+  color: #f22f27;
+}
+.markdown-body h2::after,
+.markdown-body h1::after {
+  content: '';
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  border-top: 1.3px solid #f22f27;
+}
 .markdown-body h3 {
+  color: var(--default-text-color);
+  letter-spacing: 1px;
+  position: relative;
+  cursor: text;
   font-size: 1.6rem;
   font-weight: 550;
+  margin: 1.5em auto 1em;
+  line-height: 1.4;
 }
 @media (max-width: 780px) {
   .markdown-body h3 {
     font-size: 1.5rem;
   }
 }
+.markdown-body h3::before {
+  content: '# ' !important;
+  color: #f22f27;
+}
+.markdown-body h3::after {
+  content: '';
+  display: block;
+  width: 95%;
+  margin-top: 2px;
+  border-top: 1.3px solid #f22f27;
+}
 .markdown-body h4 {
+  color: var(--default-text-color);
+  letter-spacing: 1px;
+  position: relative;
+  cursor: text;
   font-size: 1.5rem;
   font-weight: 550;
+  margin: 1.5em auto 1em;
+  line-height: 1.4;
 }
 @media (max-width: 780px) {
   .markdown-body h4 {
     font-size: 1.4rem;
   }
 }
+.markdown-body h4::before {
+  content: '# ' !important;
+  color: #f22f27;
+}
+.markdown-body h4::after {
+  content: '';
+  display: block;
+  width: 90%;
+  margin-top: 2px;
+  border-top: 1.3px solid #f22f27;
+}
 .markdown-body h5 {
+  color: var(--default-text-color);
+  letter-spacing: 1px;
+  position: relative;
+  cursor: text;
   font-size: 1.28rem;
   font-weight: 500;
+  margin: 1.5em auto 1em;
+  line-height: 1.4;
 }
 @media (max-width: 780px) {
   .markdown-body h5 {
     font-size: 1.18rem;
   }
 }
+.markdown-body h5::before {
+  content: '# ' !important;
+  color: #f22f27;
+}
+.markdown-body h5::after {
+  content: '';
+  display: block;
+  width: 88%;
+  margin-top: 2px;
+  border-top: 1.3px solid #f22f27;
+}
 .markdown-body h6 {
+  color: var(--default-text-color);
+  letter-spacing: 1px;
+  position: relative;
+  cursor: text;
   font-size: 1.2rem;
   font-weight: 500;
-  line-height: 1.2;
+  margin: 1.5em auto 1em;
+  line-height: 1.4;
 }
 @media (max-width: 780px) {
   .markdown-body h6 {
     font-size: 1.1rem;
-    line-height: 1.1;
   }
+}
+.markdown-body h6::before {
+  content: '# ' !important;
+  color: #f22f27;
+}
+.markdown-body h6::after {
+  content: '';
+  display: block;
+  width: 85%;
+  margin-top: 2px;
+  border-top: 1.3px solid #f22f27;
 }
 .markdown-body img {
   box-sizing: border-box;
@@ -2355,6 +2396,11 @@ pre .javascript .function {
   margin-bottom: 30px;
   box-shadow: 2px 2px 5px var(--shadow-color);
 }
+.article-content-container .article-cover .cover {
+  border-radius: 10px;
+  width: 100%;
+  max-height: 28rem;
+}
 @media (max-width: 780px) {
   .article-content-container {
     margin-bottom: 24px;
@@ -2384,19 +2430,19 @@ pre .javascript .function {
   color: var(--second-text-color);
   font-weight: 700;
   letter-spacing: 1px;
-  font-size: 2rem;
+  font-size: 2.2rem;
   display: flex;
   justify-content: center;
-  margin: 1.25rem 0 3rem 0;
+  margin: 2rem 0 3rem 0;
 }
 @media (max-width: 780px) {
   .article-content-container .article-title {
-    font-size: 1.8rem;
+    font-size: 1.98rem;
   }
 }
 @media (max-width: 500px) {
   .article-content-container .article-title {
-    font-size: 1.6rem;
+    font-size: 1.76rem;
   }
 }
 .article-content-container .article-header {

@@ -164,13 +164,9 @@
 
                 <div class="home-article-content markdown-body">
                     
-                        
-
-
-MyBatis入门05基于注解的Mybatis
-1.配置方式
+                        1.配置方式
 修改Dao,SqlMapConfig.xml,并移除Dao.xml
-public interface IUserDao {/*** 查询所有用户* @return*/Select("...
+public interface IUserDao {/*** 查询所有用户* @return*/Select("select * from user")List&lt...
                     
                 </div>
 
@@ -185,12 +181,12 @@ public interface IUserDao {/*** 查询所有用户* @return*/Select("...
                     
                         <li>
                             
-                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
+                            <a href="/tags/Mybatis%E6%A1%86%E6%9E%B6/">Mybatis框架</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/Mybatis%E6%A1%86%E6%9E%B6/">Mybatis框架</a>&nbsp;
+                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -215,13 +211,9 @@ public interface IUserDao {/*** 查询所有用户* @return*/Select("...
 
                 <div class="home-article-content markdown-body">
                     
-                        
-
-
-MyBatis入门04延迟加载和缓存功能
-1. Mybatis 延迟加载策略
+                        1. Mybatis 延迟加载策略
 延迟加载：就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也称懒加载.
-好处： 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因...
+好处： 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多zhangruwang表...
                     
                 </div>
 
@@ -236,12 +228,12 @@ MyBatis入门04延迟加载和缓存功能
                     
                         <li>
                             
-                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
+                            <a href="/tags/Mybatis%E6%A1%86%E6%9E%B6/">Mybatis框架</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/Mybatis%E6%A1%86%E6%9E%B6/">Mybatis框架</a>&nbsp;
+                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -266,13 +258,9 @@ MyBatis入门04延迟加载和缓存功能
 
                 <div class="home-article-content markdown-body">
                     
-                        
-
-
-MyBatis入门03动态SQL和多表查询
-1. 动态SQL语句
+                        1. 动态SQL语句
 1.1 动态 SQL 之if标签
-&lt;select id="findByUser" resultType="user" parameterType="user"&gt;   ...
+&lt;select id="findByUser" resultType="user" parameterType="user"&gt;    select * from user where...
                     
                 </div>
 
@@ -287,12 +275,12 @@ MyBatis入门03动态SQL和多表查询
                     
                         <li>
                             
-                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
+                            <a href="/tags/Mybatis%E6%A1%86%E6%9E%B6/">Mybatis框架</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/Mybatis%E6%A1%86%E6%9E%B6/">Mybatis框架</a>&nbsp;
+                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -317,15 +305,12 @@ MyBatis入门03动态SQL和多表查询
 
                 <div class="home-article-content markdown-body">
                     
-                        
-
-
-MyBatis入门02参数映射和结果封装和配置文件
-1. parameterType 配置参数
+                        1. parameterType 配置参数
 实体类型：全类名
 基本类型和String ：直接写类名称（首字母大写），也可以使用别名（首字母小写）
 2. Mybatis 的输出结果封装
-2.1 ...
+2.1 resultType
+实体类型：全类名，实体类中的属性名称...
                     
                 </div>
 
@@ -340,12 +325,12 @@ MyBatis入门02参数映射和结果封装和配置文件
                     
                         <li>
                             
-                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
+                            <a href="/tags/Mybatis%E6%A1%86%E6%9E%B6/">Mybatis框架</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/Mybatis%E6%A1%86%E6%9E%B6/">Mybatis框架</a>&nbsp;
+                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -370,14 +355,11 @@ MyBatis入门02参数映射和结果封装和配置文件
 
                 <div class="home-article-content markdown-body">
                     
-                        
-
-
-MyBatis入门01环境搭建和原理概述
-1. Mybatis概述
+                        1. Mybatis概述
 mybatis 是一个优秀的基于 java 的持久层框架
 
-它内部封装了 jdbc，使开发者只需要关注 sql 语句本身，而不需要花费精力去处理加载驱动、创建连接、创建 sta...
+它内部封装了 jdbc，使开发者只需要关注 sql 语句本身，而不需要花费精力去处理加载驱动、创建连接、创建 statement 等繁杂的过程。
+mybatis 通...
                     
                 </div>
 
@@ -392,12 +374,12 @@ mybatis 是一个优秀的基于 java 的持久层框架
                     
                         <li>
                             
-                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
+                            <a href="/tags/Mybatis%E6%A1%86%E6%9E%B6/">Mybatis框架</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/Mybatis%E6%A1%86%E6%9E%B6/">Mybatis框架</a>&nbsp;
+                            <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
                         </li>
                     
                 </ul>

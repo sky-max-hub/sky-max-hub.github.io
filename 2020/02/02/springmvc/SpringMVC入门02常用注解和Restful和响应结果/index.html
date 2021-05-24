@@ -154,22 +154,19 @@
                     <div class="fade-in-down-animation">
     <div class="article-content-container">
 
+        
+            <div class="article-cover">
+                <img class="cover" src=https://img.sky123.top/img/nature-3824498_1280.jpg>
+            </div>
+        
+
         <div class="article-title">
             <span class="title-hover-animation">SpringMVC入门02常用注解和Restful和响应结果</span>
         </div>
 
         
             <div class="article-header">
-<!--                <div class="avatar">-->
-                    
-<!--                </div>-->
                 <div class="info">
-<!--                    <div class="author">-->
-<!--                        <span class="name"></span>-->
-<!--                        -->
-<!--                            <span class="author-label"></span>-->
-<!--                        -->
-<!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
     <!--日期-->
@@ -224,11 +221,7 @@
         
 
         <div class="article-content markdown-body">
-            <hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2020/10/20/08/49/sunrise-5669884_1280.jpg" alt=""></p>
-<hr>
-<h1>SpringMVC入门02常用注解和Restful和响应结果</h1>
-<h2 id="1-常用注解">1. 常用注解</h2>
+            <h2 id="1-常用注解">1. 常用注解</h2>
 <h3 id="RequestParam">@RequestParam</h3>
 <p>作用：把请求中指定名称的参数给控制器中的形参赋值。<br>
 属性：<br>
@@ -527,7 +520,7 @@ restful 的示例：</p>
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">SpringMVC入门02常用注解和Restful和响应结果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><span class="nav-text">1. 常用注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RequestParam"><span class="nav-text">@RequestParam</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RequestBody"><span class="nav-text">@RequestBody</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResponseBody"><span class="nav-text">@ResponseBody</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PathVaribale"><span class="nav-text">@PathVaribale</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RequestHeader"><span class="nav-text">@RequestHeader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CookieValue"><span class="nav-text">@CookieValue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ModelAttribute"><span class="nav-text">@ModelAttribute</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SessionAttribute"><span class="nav-text">@SessionAttribute</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-REST-%E9%A3%8E%E6%A0%BC-URL"><span class="nav-text">2. REST 风格 URL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%BB%80%E4%B9%88%E6%98%AF-rest%EF%BC%9A"><span class="nav-text">2.1 什么是 rest：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-restful-%E7%9A%84%E7%89%B9%E6%80%A7%EF%BC%9A"><span class="nav-text">2.2 restful 的特性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%9F%BA%E4%BA%8E-HiddentHttpMethodFilter-%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="nav-text">2.3 基于 HiddentHttpMethodFilter 的示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E5%92%8C%E7%BB%93%E6%9E%9C%E8%A7%86%E5%9B%BE"><span class="nav-text">3. 响应数据和结果视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E8%BF%94%E5%9B%9E%E5%80%BC%E5%88%86%E7%B1%BB"><span class="nav-text">3.1 返回值分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">3.1.1 字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-void"><span class="nav-text">3.1.2 void</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-3-ModelAndView"><span class="nav-text">3.1.3 ModelAndView</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-text">3.2 转发和重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-forward-%E8%BD%AC%E5%8F%91"><span class="nav-text">3.2.1 forward 转发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-Redirect-%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-text">3.2.2 Redirect 重定向</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><span class="nav-text">1. 常用注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RequestParam"><span class="nav-text">@RequestParam</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RequestBody"><span class="nav-text">@RequestBody</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResponseBody"><span class="nav-text">@ResponseBody</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PathVaribale"><span class="nav-text">@PathVaribale</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RequestHeader"><span class="nav-text">@RequestHeader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CookieValue"><span class="nav-text">@CookieValue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ModelAttribute"><span class="nav-text">@ModelAttribute</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SessionAttribute"><span class="nav-text">@SessionAttribute</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-REST-%E9%A3%8E%E6%A0%BC-URL"><span class="nav-text">2. REST 风格 URL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%BB%80%E4%B9%88%E6%98%AF-rest%EF%BC%9A"><span class="nav-text">2.1 什么是 rest：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-restful-%E7%9A%84%E7%89%B9%E6%80%A7%EF%BC%9A"><span class="nav-text">2.2 restful 的特性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%9F%BA%E4%BA%8E-HiddentHttpMethodFilter-%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="nav-text">2.3 基于 HiddentHttpMethodFilter 的示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E5%92%8C%E7%BB%93%E6%9E%9C%E8%A7%86%E5%9B%BE"><span class="nav-text">3. 响应数据和结果视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E8%BF%94%E5%9B%9E%E5%80%BC%E5%88%86%E7%B1%BB"><span class="nav-text">3.1 返回值分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">3.1.1 字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-void"><span class="nav-text">3.1.2 void</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-3-ModelAndView"><span class="nav-text">3.1.3 ModelAndView</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-text">3.2 转发和重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-forward-%E8%BD%AC%E5%8F%91"><span class="nav-text">3.2.1 forward 转发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-Redirect-%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-text">3.2.2 Redirect 重定向</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>

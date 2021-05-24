@@ -154,22 +154,19 @@
                     <div class="fade-in-down-animation">
     <div class="article-content-container">
 
+        
+            <div class="article-cover">
+                <img class="cover" src=https://img.sky123.top/img/cat-4820202_1280.jpg>
+            </div>
+        
+
         <div class="article-title">
             <span class="title-hover-animation">SpringMVC入门01环境配置和原理</span>
         </div>
 
         
             <div class="article-header">
-<!--                <div class="avatar">-->
-                    
-<!--                </div>-->
                 <div class="info">
-<!--                    <div class="author">-->
-<!--                        <span class="name"></span>-->
-<!--                        -->
-<!--                            <span class="author-label"></span>-->
-<!--                        -->
-<!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
     <!--日期-->
@@ -224,11 +221,7 @@
         
 
         <div class="article-content markdown-body">
-            <hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2021/02/10/22/23/lake-6003746_1280.jpg" alt=""></p>
-<hr>
-<h1>SpringMVC入门01环境配置和原理</h1>
-<h2 id="1-SpringMVC概述">1. SpringMVC概述</h2>
+            <h2 id="1-SpringMVC概述">1. SpringMVC概述</h2>
 <p>SpringMVC 是一种基于 Java 的实现 <code>MVC</code> 设计模型的请求驱动类型的轻量级 Web 框架。</p>
 <ol>
 <li>
@@ -459,7 +452,7 @@ spring 配置类型转换器的机制是，将自定义的转换器注册到类�
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">SpringMVC入门01环境配置和原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-SpringMVC%E6%A6%82%E8%BF%B0"><span class="nav-text">1. SpringMVC概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SpringMVC-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">2. SpringMVC 环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%88%9B%E5%BB%BAWEB%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%BC%95%E5%85%A5%E5%BC%80%E5%8F%91%E7%9A%84jar%E5%8C%85"><span class="nav-text">2.1. 创建WEB工程，引入开发的jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E9%85%8D%E7%BD%AE%E6%A0%B8%E5%BF%83%E7%9A%84%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88%E9%85%8D%E7%BD%AEDispatcherServlet%EF%BC%89"><span class="nav-text">2.2. 配置核心的控制器（配置DispatcherServlet）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-SpringMVC%E5%8E%9F%E7%90%86"><span class="nav-text">3. SpringMVC原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E7%9A%84%E7%BB%91%E5%AE%9A"><span class="nav-text">4. 请求参数的绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%8F%82%E6%95%B0%E7%BB%91%E5%AE%9A%E6%9C%BA%E5%88%B6"><span class="nav-text">4.1 参数绑定机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-1-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BD%AC%E6%8D%A2%E5%99%A8"><span class="nav-text">4.1.1 自定义转换器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98"><span class="nav-text">4.2 请求参数乱码问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E4%BD%BF%E7%94%A8-ServletAPI-%E5%AF%B9%E8%B1%A1%E4%BD%9C%E4%B8%BA%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0"><span class="nav-text">4.3 使用 ServletAPI 对象作为方法参数</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-SpringMVC%E6%A6%82%E8%BF%B0"><span class="nav-text">1. SpringMVC概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SpringMVC-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">2. SpringMVC 环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%88%9B%E5%BB%BAWEB%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%BC%95%E5%85%A5%E5%BC%80%E5%8F%91%E7%9A%84jar%E5%8C%85"><span class="nav-text">2.1. 创建WEB工程，引入开发的jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E9%85%8D%E7%BD%AE%E6%A0%B8%E5%BF%83%E7%9A%84%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88%E9%85%8D%E7%BD%AEDispatcherServlet%EF%BC%89"><span class="nav-text">2.2. 配置核心的控制器（配置DispatcherServlet）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-SpringMVC%E5%8E%9F%E7%90%86"><span class="nav-text">3. SpringMVC原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E7%9A%84%E7%BB%91%E5%AE%9A"><span class="nav-text">4. 请求参数的绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%8F%82%E6%95%B0%E7%BB%91%E5%AE%9A%E6%9C%BA%E5%88%B6"><span class="nav-text">4.1 参数绑定机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-1-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BD%AC%E6%8D%A2%E5%99%A8"><span class="nav-text">4.1.1 自定义转换器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98"><span class="nav-text">4.2 请求参数乱码问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E4%BD%BF%E7%94%A8-ServletAPI-%E5%AF%B9%E8%B1%A1%E4%BD%9C%E4%B8%BA%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0"><span class="nav-text">4.3 使用 ServletAPI 对象作为方法参数</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>

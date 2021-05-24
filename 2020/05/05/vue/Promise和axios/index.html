@@ -154,22 +154,19 @@
                     <div class="fade-in-down-animation">
     <div class="article-content-container">
 
+        
+            <div class="article-cover">
+                <img class="cover" src=https://img.sky123.top/img/sunset-768759_1280.jpg>
+            </div>
+        
+
         <div class="article-title">
             <span class="title-hover-animation">vue学习笔记07-Promise和axios</span>
         </div>
 
         
             <div class="article-header">
-<!--                <div class="avatar">-->
-                    
-<!--                </div>-->
                 <div class="info">
-<!--                    <div class="author">-->
-<!--                        <span class="name"></span>-->
-<!--                        -->
-<!--                            <span class="author-label"></span>-->
-<!--                        -->
-<!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
     <!--日期-->
@@ -224,11 +221,7 @@
         
 
         <div class="article-content markdown-body">
-            <h1>vue学习笔记07-Promise和axios</h1>
-<hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/forest-166733_1280.jpg" alt=""></p>
-<hr>
-<h1>Promise</h1>
+            <h1>Promise</h1>
 <h2 id="什么是Promise">什么是Promise?</h2>
 <p>ES6中一个非常重要和好用的特性就是Promise。但是初次接触Promise会一脸懵逼，这TM是什么东西？</p>
 <p>看看官方或者一些文章对它的介绍和用法，也是一头雾水。</p>
@@ -544,7 +537,7 @@ JSONP如何封装呢?<br>
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">vue学习笔记07-Promise和axios</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFPromise"><span class="nav-text">什么是Promise?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E7%9A%84%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1"><span class="nav-text">网络请求的回调地狱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">Promise的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BA%8B%E4%BB%B6"><span class="nav-text">定时器的异步事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E5%BC%82%E6%AD%A5%E4%BA%8B%E4%BB%B6%E8%A7%A3%E6%9E%90"><span class="nav-text">定时器异步事件解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise%E4%B8%89%E7%A7%8D%E7%8A%B6%E6%80%81"><span class="nav-text">Promise三种状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8"><span class="nav-text">Promise链式调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8%E7%AE%80%E5%86%99"><span class="nav-text">链式调用简写</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">网络模块封装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E4%BB%80%E4%B9%88%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9D%97"><span class="nav-text">选择什么网络模块?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsonp"><span class="nav-text">jsonp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSONP%E5%B0%81%E8%A3%85"><span class="nav-text">JSONP封装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9axios"><span class="nav-text">为什么选择axios?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#axiox%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="nav-text">axiox请求方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E9%80%81get%E8%AF%B7%E6%B1%82%E6%BC%94%E7%A4%BA"><span class="nav-text">发送get请求演示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E5%B9%B6%E5%8F%91%E8%AF%B7%E6%B1%82"><span class="nav-text">发送并发请求</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9"><span class="nav-text">常见的配置选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">axios的实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">拦截器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8"><span class="nav-text">项目开发中的网络模块使用</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFPromise"><span class="nav-text">什么是Promise?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E7%9A%84%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1"><span class="nav-text">网络请求的回调地狱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">Promise的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BA%8B%E4%BB%B6"><span class="nav-text">定时器的异步事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E5%BC%82%E6%AD%A5%E4%BA%8B%E4%BB%B6%E8%A7%A3%E6%9E%90"><span class="nav-text">定时器异步事件解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise%E4%B8%89%E7%A7%8D%E7%8A%B6%E6%80%81"><span class="nav-text">Promise三种状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8"><span class="nav-text">Promise链式调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8%E7%AE%80%E5%86%99"><span class="nav-text">链式调用简写</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">网络模块封装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E4%BB%80%E4%B9%88%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9D%97"><span class="nav-text">选择什么网络模块?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsonp"><span class="nav-text">jsonp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSONP%E5%B0%81%E8%A3%85"><span class="nav-text">JSONP封装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9axios"><span class="nav-text">为什么选择axios?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#axiox%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="nav-text">axiox请求方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E9%80%81get%E8%AF%B7%E6%B1%82%E6%BC%94%E7%A4%BA"><span class="nav-text">发送get请求演示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E5%B9%B6%E5%8F%91%E8%AF%B7%E6%B1%82"><span class="nav-text">发送并发请求</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9"><span class="nav-text">常见的配置选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">axios的实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">拦截器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8"><span class="nav-text">项目开发中的网络模块使用</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>

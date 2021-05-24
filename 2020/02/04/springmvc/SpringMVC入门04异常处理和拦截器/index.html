@@ -154,22 +154,19 @@
                     <div class="fade-in-down-animation">
     <div class="article-content-container">
 
+        
+            <div class="article-cover">
+                <img class="cover" src=https://cdn.pixabay.com/photo/2015/10/30/20/13/sunrise-1014712_1280.jpg>
+            </div>
+        
+
         <div class="article-title">
             <span class="title-hover-animation">SpringMVC入门04异常处理和拦截器</span>
         </div>
 
         
             <div class="article-header">
-<!--                <div class="avatar">-->
-                    
-<!--                </div>-->
                 <div class="info">
-<!--                    <div class="author">-->
-<!--                        <span class="name"></span>-->
-<!--                        -->
-<!--                            <span class="author-label"></span>-->
-<!--                        -->
-<!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
     <!--日期-->
@@ -224,11 +221,7 @@
         
 
         <div class="article-content markdown-body">
-            <hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_1280.jpg" alt=""></p>
-<hr>
-<h1>SpringMVC入门04异常处理和拦截器</h1>
-<h2 id="1-SpringMVC-中的异常处理">1. SpringMVC 中的异常处理</h2>
+            <h2 id="1-SpringMVC-中的异常处理">1. SpringMVC 中的异常处理</h2>
 <h3 id="1-1-异常处理的思路">1.1 异常处理的思路</h3>
 <p>系统中异常包括两类：预期异常和运行时异常 <code>RuntimeException</code>，前者通过捕获异常从而获取异常信息，<br>
 后者主要通过规范代码开发、测试通过手段减少运行时异常的发生。<br>
@@ -410,7 +403,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">SpringMVC入门04异常处理和拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-SpringMVC-%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-text">1. SpringMVC 中的异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-text">1.1 异常处理的思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%AE%9E%E4%BE%8B"><span class="nav-text">1.2 异常处理实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SpringMVC-%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">2. SpringMVC 中的拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">2.1 拦截器的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-text">2.2 自定义拦截器的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E7%BB%86%E8%8A%82"><span class="nav-text">2.3 拦截器的细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E6%8B%A6%E6%88%AA%E5%99%A8%E5%AE%9E%E7%8E%B0%E7%99%BB%E9%99%86%E9%AA%8C%E8%AF%81"><span class="nav-text">2.4 拦截器实现登陆验证</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-SpringMVC-%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-text">1. SpringMVC 中的异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-text">1.1 异常处理的思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%AE%9E%E4%BE%8B"><span class="nav-text">1.2 异常处理实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SpringMVC-%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-text">2. SpringMVC 中的拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">2.1 拦截器的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-text">2.2 自定义拦截器的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E7%BB%86%E8%8A%82"><span class="nav-text">2.3 拦截器的细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E6%8B%A6%E6%88%AA%E5%99%A8%E5%AE%9E%E7%8E%B0%E7%99%BB%E9%99%86%E9%AA%8C%E8%AF%81"><span class="nav-text">2.4 拦截器实现登陆验证</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>

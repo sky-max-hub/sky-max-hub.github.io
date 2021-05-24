@@ -154,22 +154,19 @@
                     <div class="fade-in-down-animation">
     <div class="article-content-container">
 
+        
+            <div class="article-cover">
+                <img class="cover" src=https://img.sky123.top/img/river-219972_1280.jpg>
+            </div>
+        
+
         <div class="article-title">
             <span class="title-hover-animation">Spring入门02基于XML方式的IOC</span>
         </div>
 
         
             <div class="article-header">
-<!--                <div class="avatar">-->
-                    
-<!--                </div>-->
                 <div class="info">
-<!--                    <div class="author">-->
-<!--                        <span class="name"></span>-->
-<!--                        -->
-<!--                            <span class="author-label"></span>-->
-<!--                        -->
-<!--                    </div>-->
                     <div class="meta-info">
                         <div class="article-meta-info">
     <!--日期-->
@@ -205,11 +202,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Spring%E6%A1%86%E6%9E%B6/">Spring框架</a>&nbsp;
+                        <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/JavaWeb/">JavaWeb</a>&nbsp;
+                        | <a href="/tags/Spring%E6%A1%86%E6%9E%B6/">Spring框架</a>&nbsp;
                     </li>
                 
             </ul>
@@ -224,11 +221,7 @@
         
 
         <div class="article-content markdown-body">
-            <hr>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_1280.jpg" alt=""></p>
-<hr>
-<h1>Spring入门02基于XML方式的IOC</h1>
-<h2 id="1-spring-中工厂的类结构">1. spring 中工厂的类结构</h2>
+            <h2 id="1-spring-中工厂的类结构">1. spring 中工厂的类结构</h2>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/spring/image-20200530131900598.png" alt="image-20200530131900598" style="zoom: 67%;">
 <h3 id="BeanFactory-和-ApplicationContext-的区别">BeanFactory 和 ApplicationContext 的区别</h3>
 <p>BeanFactory 才是 Spring 容器中的顶层接口。ApplicationContext 是它的子接口。<br>
@@ -431,7 +424,7 @@ ioc 解耦只是降低他们的依赖关系，但不会消除。 例如：我们
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Spring入门02基于XML方式的IOC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-spring-%E4%B8%AD%E5%B7%A5%E5%8E%82%E7%9A%84%E7%B1%BB%E7%BB%93%E6%9E%84"><span class="nav-text">1. spring 中工厂的类结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BeanFactory-%E5%92%8C-ApplicationContext-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">BeanFactory 和 ApplicationContext 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ApplicationContext-%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="nav-text">ApplicationContext 接口的实现类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-IoC-%E4%B8%AD-bean-%E6%A0%87%E7%AD%BE%E5%92%8C%E6%B3%A8%E5%85%A5%E5%AF%B9%E8%B1%A1%E7%BB%86%E8%8A%82"><span class="nav-text">2 IoC 中 bean 标签和注入对象细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-bean%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">2.1 bean的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-bean-%E7%9A%84%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">2.2 bean 的作用范围和生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%AE%9E%E4%BE%8B%E5%8C%96-Bean-%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-text">2.3 实例化 Bean 的三种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Spring-%E7%9A%84%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5-%E6%B3%A8%E5%85%A5%E5%AF%B9%E8%B1%A1%E4%B8%AD%E6%88%90%E5%91%98%E9%87%8F%E7%9A%84%E5%80%BC"><span class="nav-text">2.4 Spring 的依赖注入  (注入对象中成员量的值)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">2.4.1 依赖注入的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-text">2.4.2 依赖注入的三种方式</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-spring-%E4%B8%AD%E5%B7%A5%E5%8E%82%E7%9A%84%E7%B1%BB%E7%BB%93%E6%9E%84"><span class="nav-text">1. spring 中工厂的类结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BeanFactory-%E5%92%8C-ApplicationContext-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">BeanFactory 和 ApplicationContext 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ApplicationContext-%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="nav-text">ApplicationContext 接口的实现类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-IoC-%E4%B8%AD-bean-%E6%A0%87%E7%AD%BE%E5%92%8C%E6%B3%A8%E5%85%A5%E5%AF%B9%E8%B1%A1%E7%BB%86%E8%8A%82"><span class="nav-text">2 IoC 中 bean 标签和注入对象细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-bean%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">2.1 bean的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-bean-%E7%9A%84%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">2.2 bean 的作用范围和生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%AE%9E%E4%BE%8B%E5%8C%96-Bean-%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-text">2.3 实例化 Bean 的三种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Spring-%E7%9A%84%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5-%E6%B3%A8%E5%85%A5%E5%AF%B9%E8%B1%A1%E4%B8%AD%E6%88%90%E5%91%98%E9%87%8F%E7%9A%84%E5%80%BC"><span class="nav-text">2.4 Spring 的依赖注入  (注入对象中成员量的值)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">2.4.1 依赖注入的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-text">2.4.2 依赖注入的三种方式</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
