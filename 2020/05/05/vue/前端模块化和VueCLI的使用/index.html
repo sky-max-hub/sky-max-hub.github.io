@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -159,11 +159,9 @@
                 <img class="cover" src=https://img.sky123.top/img/beach-1236581_1280.jpg>
             </div>
         
-
         <div class="article-title">
             <span class="title-hover-animation">vue学习笔记04-前端模块化和vueCli的使用</span>
         </div>
-
         
             <div class="article-header">
                 <div class="info">
@@ -316,18 +314,18 @@ CommonJS的导出：</p>
 <code>vue create my-project</code></p>
 <h2 id="VueCLI4的使用和配置">VueCLI4的使用和配置</h2>
 <p>一般喜欢用 test、preview、production分别表示测试，预览，生产三种环境。修改 package.json 文件如下</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: {</span><br><span class="line"></span><br><span class="line">    <span class="string">"serve"</span>: <span class="string">"vue-cli-service serve"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"vue-cli-service build --mode test"</span>,           <span class="comment">//测试</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"preview"</span>: <span class="string">"vue-cli-service build --mode preview"</span>,     <span class="comment">//预览</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"vue-cli-service build --mode production"</span>,    <span class="comment">//生产</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"lint"</span>: <span class="string">"vue-cli-service lint"</span></span><br><span class="line"></span><br><span class="line">},</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: {</span><br><span class="line"></span><br><span class="line">    <span class="string">"serve"</span>: <span class="string">"vue-cli-service serve"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"vue-cli-service build --mode test"</span>,           <span class="comment">//测试</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"preview"</span>: <span class="string">"vue-cli-service build --mode preview"</span>,     <span class="comment">//预览</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"vue-cli-service build --mode production"</span>,    <span class="comment">//生产</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"lint"</span>: <span class="string">"vue-cli-service lint"</span></span><br><span class="line"></span><br><span class="line">},</span><br></pre></td></tr></tbody></table></figure>
 <p><code>在项目根目录下新建 .env.test、.env.preview、 .env.production 文件，分别对应三个环境的配置文件，注意，名字要与 --mode 后面的名字分别对应</code></p>
 <p>.env.test 代码如下</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"test"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"测试环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"test"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"测试环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
 <p>.env.pre 代码如下</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"preview"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"预览环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"preview"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"预览环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
 <p>.env.prod 代码如下</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"production"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"生产环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"production"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"生产环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
 <p>ok，这样环境就配置好了，分别用以下命令来打包不同环境的包就可以了</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line">npm run test    <span class="comment">//测试</span></span><br><span class="line">npm run pre     <span class="comment">//预发布</span></span><br><span class="line">npm run prod    <span class="comment">//生产</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm run test    <span class="comment">//测试</span></span><br><span class="line">npm run pre     <span class="comment">//预发布</span></span><br><span class="line">npm run prod    <span class="comment">//生产</span></span><br></pre></td></tr></tbody></table></figure>
 <p>另外需要说明一点的是，本地环境会默认从 .env.development 文件中读取配置。所以记得有需要记得新建一个然后存放配置。我的 .env.development 代码如下</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"development"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"本地环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"development"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"本地环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
 <p>从 vue-cli3.0 开始 build 和 config 目录就取消了，如果需要修改配置，可以在项目的根目录新建一个 vue.config.js 文件来覆盖项目的配置，因为项目的配置比较多，这里就不分别介绍了，可以 <a class="link" target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/config/#vue-config-js">访问官方文档<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>

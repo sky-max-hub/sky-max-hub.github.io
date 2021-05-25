@@ -17,7 +17,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -164,7 +164,7 @@
 
                 <div class="home-article-content markdown-body">
                     
-                        &lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;beans xmlns="http://www.springframework.org/schema/beans"xmlns:xsi="http://ww...
+                        &lt;?xml version="." encoding="UTF-"?&gt;&lt;beans xmlns="http://www.springframework.org/schema/beans"xmlns:xsi="http://www.w...
                     
                 </div>
 
@@ -209,10 +209,10 @@
 
                 <div class="home-article-content markdown-body">
                     
-                        1. Spring 中的事务控制
+                        . Spring 中的事务控制
 
 JavaEE 体系进行分层开发，事务处理位于业务层， Spring 提供了分层设计业务层的事务处理解决方案。
-spring 框架为我们提供了一组事务控制的接口。具体在后面的第二小节介绍。这组接口是在spring-t...
+spring 框架为我们提供了一组事务控制的接口。具体在后面的第二小节介绍。这组接口是在spring-tx...
                     
                 </div>
 
@@ -258,8 +258,8 @@ spring 框架为我们提供了一组事务控制的接口。具体在后面的�
                 <div class="home-article-content markdown-body">
                     
                         使用@RunWith 注解替换原有运行器
-@RunWith(SpringJUnit4ClassRunner.class)public class AccountServiceTest {}
-使用@ContextConfiguration 指定 spr...
+@RunWith(SpringJUnitClassRunner.class)public class AccountServiceTest {}
+使用@ContextConfiguration 指定 spri...
                     
                 </div>
 
@@ -304,9 +304,9 @@ spring 框架为我们提供了一组事务控制的接口。具体在后面的�
 
                 <div class="home-article-content markdown-body">
                     
-                        1 配置环境
+                         配置环境
 在 bean.xml 中导入约束
-&lt;!--注意：基于注解整合时，导入约束时需要多导入一个 context 名称空间下的约束。--&gt;&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt...
+&lt;!--注意：基于注解整合时，导入约束时需要多导入一个 context 名称空间下的约束。--&gt;&lt;?xml version="." encoding="UTF-"?&gt;&lt;bea...
                     
                 </div>
 
@@ -351,11 +351,11 @@ spring 框架为我们提供了一组事务控制的接口。具体在后面的�
 
                 <div class="home-article-content markdown-body">
                     
-                        1. spring 中工厂的类结构
+                        . spring 中工厂的类结构
 
 BeanFactory 和 ApplicationContext 的区别
 BeanFactory 才是 Spring 容器中的顶层接口。ApplicationContext 是它的子接口。
-BeanFactory...
+BeanFactory ...
                     
                 </div>
 
@@ -400,11 +400,11 @@ BeanFactory...
 
                 <div class="home-article-content markdown-body">
                     
-                        1. Spring 概述
+                        . Spring 概述
 Spring 是分层的 Java SE/EE 应用 full-stack 轻量级开源框架。主要有两个模块的内容：
 
 IoC（Inverse of Control：反转控制）
-AOP（Aspect Oriented Progr...
+AOP（Aspect Oriented Progra...
                     
                 </div>
 
@@ -449,11 +449,11 @@ AOP（Aspect Oriented Progr...
 
                 <div class="home-article-content markdown-body">
                     
-                        1. SpringMVC 中的异常处理
-1.1 异常处理的思路
+                        . SpringMVC 中的异常处理
+. 异常处理的思路
 系统中异常包括两类：预期异常和运行时异常 RuntimeException，前者通过捕获异常从而获取异常信息，
 后者主要通过规范代码开发、测试通过手段减少运行时异常的发生。
-系统的 da...
+系统的 dao、 ...
                     
                 </div>
 
@@ -498,14 +498,14 @@ AOP（Aspect Oriented Progr...
 
                 <div class="home-article-content markdown-body">
                     
-                        1.1 文件上传的必要前提
+                        . 文件上传的必要前提
 
 
 form 表单的 enctype 取值必须是： multipart/form-data (默认值是:application/x-www-form-urlencoded)
 enctype:是表单请求正文的类型
 
 
-met...
+metho...
                     
                 </div>
 
@@ -550,13 +550,13 @@ met...
 
                 <div class="home-article-content markdown-body">
                     
-                        1. 常用注解
+                        . 常用注解
 @RequestParam
 作用：把请求中指定名称的参数给控制器中的形参赋值。
 属性：
 value： 请求参数中的名称。
 required：请求参数中是否必须提供此参数。 默认值： true。表示必须提供，如果不提供将报错。
-@Req...
+@Requ...
                     
                 </div>
 
@@ -601,14 +601,14 @@ required：请求参数中是否必须提供此参数。 默认值： true。表
 
                 <div class="home-article-content markdown-body">
                     
-                        1. SpringMVC概述
+                        . SpringMVC概述
 SpringMVC 是一种基于 Java 的实现 MVC 设计模型的请求驱动类型的轻量级 Web 框架。
 
 
 属于 SpringFrameWork 的后续产品，已经融合在 Spring Web Flow 里面。
 
 
-其他...
+其他 ...
                     
                 </div>
 

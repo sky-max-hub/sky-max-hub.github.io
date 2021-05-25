@@ -273,7 +273,7 @@ body {
   padding: 0;
   color: var(--default-text-color);
   background: var(--background-color);
-  font-family: "Vollkorn", Palatino, Times;
+  font-family: "Open Sans", "PingFang SC", -apple-system, BlinkMacSystemFont, opensans, Optima, "Microsoft Yahei", sans-serif;
   font-weight: 400;
   font-size: 15.2px;
   line-height: 22px;
@@ -756,9 +756,9 @@ button {
 :root {
   --code-foreground: #ff3502;
   --code-background: #f8f5ec;
-  --highlight-background: #eee;
+  --highlight-background: #fff;
   --highlight-foreground: #383e44;
-  --highlight-comment: #8e908c;
+  --highlight-comment: #af5500;
   --highlight-red: #c82829;
   --highlight-orange: #f5871f;
   --highlight-yellow: #eab700;
@@ -766,16 +766,16 @@ button {
   --highlight-aqua: #3e999f;
   --highlight-blue: #4271ae;
   --highlight-purple: #8959a8;
-  --highlight-gutter-color: #3d444b;
-  --highlight-gutter-bg-color: #f2f2f2;
+  --highlight-gutter-color: rgba(128,128,255,0.8);
+  --highlight-gutter-bg-color: #fff;
 }
 @media (prefers-color-scheme: light) {
   :root {
     --code-foreground: #ff3502;
     --code-background: #f8f5ec;
-    --highlight-background: #eee;
+    --highlight-background: #fff;
     --highlight-foreground: #383e44;
-    --highlight-comment: #8e908c;
+    --highlight-comment: #af5500;
     --highlight-red: #c82829;
     --highlight-orange: #f5871f;
     --highlight-yellow: #eab700;
@@ -783,8 +783,8 @@ button {
     --highlight-aqua: #3e999f;
     --highlight-blue: #4271ae;
     --highlight-purple: #8959a8;
-    --highlight-gutter-color: #3d444b;
-    --highlight-gutter-bg-color: #f2f2f2;
+    --highlight-gutter-color: rgba(128,128,255,0.8);
+    --highlight-gutter-bg-color: #fff;
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -808,9 +808,9 @@ button {
 .light-mode {
   --code-foreground: #ff3502;
   --code-background: #f8f5ec;
-  --highlight-background: #eee;
+  --highlight-background: #fff;
   --highlight-foreground: #383e44;
-  --highlight-comment: #8e908c;
+  --highlight-comment: #af5500;
   --highlight-red: #c82829;
   --highlight-orange: #f5871f;
   --highlight-yellow: #eab700;
@@ -818,8 +818,8 @@ button {
   --highlight-aqua: #3e999f;
   --highlight-blue: #4271ae;
   --highlight-purple: #8959a8;
-  --highlight-gutter-color: #3d444b;
-  --highlight-gutter-bg-color: #f2f2f2;
+  --highlight-gutter-color: rgba(128,128,255,0.8);
+  --highlight-gutter-bg-color: #fff;
 }
 .dark-mode {
   --code-foreground: #e1eaef;
@@ -843,14 +843,14 @@ pre,
   margin: 20px 0;
   padding: 0;
   font-size: 0.95rem;
-  line-height: 1.6rem;
+  line-height: 2rem;
   color: var(--highlight-foreground);
   background: var(--highlight-background);
   border-radius: 5px;
 }
 pre,
 code {
-  font-family: "Source Code Pro", consolas, Menlo;
+  font-family: 'Roboto Mono', 'Source Sans Pro', 'Microsoft YaHei', '微软雅黑' !important;
 }
 code {
   padding: 5px;
@@ -871,6 +871,7 @@ pre code {
 }
 .highlight {
   border-radius: 1px;
+  border: 1px solid #000;
 }
 .highlight pre {
   border: none;
@@ -906,6 +907,10 @@ pre code {
   color: var(--highlight-gutter-color);
   text-align: center;
   background-color: var(--highlight-gutter-bg-color);
+  border-right: 1px solid #af5500;
+}
+.highlight .gutter pre .line {
+  color: var(--highlight-gutter-color);
 }
 .highlight .code pre {
   width: 100%;
@@ -1029,26 +1034,10 @@ pre .javascript .function {
   transition-delay: 0s, 0s, 0s, 0s, 0s;
   transition-duration: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
   transition-timing-function: ease, ease, ease, ease, ease-in-out;
-  color: #fff;
-  right: 2px;
-  top: 2px;
-}
-.highlight-container {
-  background: #21252b;
-  border-radius: 5px;
-  padding-top: 20px;
-  margin-top: 10px;
-}
-.highlight-container::before {
-  background: #fc625d;
-  border-radius: 50%;
-  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
-  content: ' ';
-  height: 12px;
-  left: 12px;
-  margin-top: -10px;
-  position: absolute;
-  width: 12px;
+  background: var(--background-color);
+  border: 0;
+  right: 0;
+  top: 0;
 }
 .page-container {
   position: relative;
@@ -2443,6 +2432,7 @@ pre .javascript .function {
 @media (max-width: 500px) {
   .article-content-container .article-title {
     font-size: 1.76rem;
+    text-align: center;
   }
 }
 .article-content-container .article-header {

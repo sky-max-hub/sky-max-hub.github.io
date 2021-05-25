@@ -17,7 +17,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -164,9 +164,9 @@
 
                 <div class="home-article-content markdown-body">
                     
-                        1.配置方式
+                        .配置方式
 修改Dao,SqlMapConfig.xml,并移除Dao.xml
-public interface IUserDao {/*** 查询所有用户* @return*/Select("select * from user")List&lt...
+public interface IUserDao {/*** 查询所有用户* @return*/Select("select * from user")List&lt;...
                     
                 </div>
 
@@ -211,9 +211,9 @@ public interface IUserDao {/*** 查询所有用户* @return*/Select("select * fr
 
                 <div class="home-article-content markdown-body">
                     
-                        1. Mybatis 延迟加载策略
+                        . Mybatis 延迟加载策略
 延迟加载：就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也称懒加载.
-好处： 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多zhangruwang表...
+好处： 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多zhangruwang表速...
                     
                 </div>
 
@@ -258,9 +258,9 @@ public interface IUserDao {/*** 查询所有用户* @return*/Select("select * fr
 
                 <div class="home-article-content markdown-body">
                     
-                        1. 动态SQL语句
-1.1 动态 SQL 之if标签
-&lt;select id="findByUser" resultType="user" parameterType="user"&gt;    select * from user where...
+                        . 动态SQL语句
+. 动态 SQL 之if标签
+&lt;select id="findByUser" resultType="user" parameterType="user"&gt;    select * from user where = ...
                     
                 </div>
 
@@ -305,12 +305,12 @@ public interface IUserDao {/*** 查询所有用户* @return*/Select("select * fr
 
                 <div class="home-article-content markdown-body">
                     
-                        1. parameterType 配置参数
+                        . parameterType 配置参数
 实体类型：全类名
 基本类型和String ：直接写类名称（首字母大写），也可以使用别名（首字母小写）
-2. Mybatis 的输出结果封装
-2.1 resultType
-实体类型：全类名，实体类中的属性名称...
+. Mybatis 的输出结果封装
+. resultType
+实体类型：全类名，实体类中的属性名称必须和查...
                     
                 </div>
 
@@ -355,11 +355,11 @@ public interface IUserDao {/*** 查询所有用户* @return*/Select("select * fr
 
                 <div class="home-article-content markdown-body">
                     
-                        1. Mybatis概述
+                        . Mybatis概述
 mybatis 是一个优秀的基于 java 的持久层框架
 
 它内部封装了 jdbc，使开发者只需要关注 sql 语句本身，而不需要花费精力去处理加载驱动、创建连接、创建 statement 等繁杂的过程。
-mybatis 通...
+mybatis 通过...
                     
                 </div>
 
