@@ -873,6 +873,16 @@ pre code {
   border-radius: 1px;
   border: 1px solid #000;
 }
+@media (max-width: 780px) {
+  .highlight {
+    border-width: 0.2px;
+  }
+}
+@media (max-width: 500px) {
+  .highlight {
+    border-width: 0.2px;
+  }
+}
 .highlight pre {
   border: none;
   margin: 0;
@@ -911,6 +921,16 @@ pre code {
 }
 .highlight .gutter pre .line {
   color: var(--highlight-gutter-color);
+}
+@media (max-width: 780px) {
+  .highlight .gutter pre {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .highlight .gutter pre {
+    display: none;
+  }
 }
 .highlight .code pre {
   width: 100%;
@@ -1034,7 +1054,7 @@ pre .javascript .function {
   transition-delay: 0s, 0s, 0s, 0s, 0s;
   transition-duration: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
   transition-timing-function: ease, ease, ease, ease, ease-in-out;
-  background: var(--background-color);
+  background-color: rgba(0,0,0,0);
   border: 0;
   right: 0;
   top: 0;
@@ -2012,7 +2032,7 @@ pre .javascript .function {
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
-  background: url("/images/bg.svg") center center/cover no-repeat;
+  background: url("https://img.sky123.top/img/milky-way-984050_1280.jpg") center center/cover no-repeat;
   background-position-y: 76px;
 }
 @media (max-width: 780px) {

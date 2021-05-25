@@ -242,6 +242,16 @@ pre code {
   border-radius: 1px;
   border: 1px solid #000;
 }
+@media (max-width: 780px) {
+  .highlight {
+    border-width: 0.2px;
+  }
+}
+@media (max-width: 500px) {
+  .highlight {
+    border-width: 0.2px;
+  }
+}
 .highlight pre {
   border: none;
   margin: 0;
@@ -280,6 +290,16 @@ pre code {
 }
 .highlight .gutter pre .line {
   color: var(--highlight-gutter-color);
+}
+@media (max-width: 780px) {
+  .highlight .gutter pre {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .highlight .gutter pre {
+    display: none;
+  }
 }
 .highlight .code pre {
   width: 100%;
