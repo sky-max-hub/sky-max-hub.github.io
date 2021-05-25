@@ -9,7 +9,7 @@
     
     <title>
         
-            MyBatis入门04延迟加载和缓存功能 |
+            MyBatis 入门 04 延迟加载和缓存功能 |
         
         大白小怪兽
     </title>
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"https://img.sky123.top/img/milky-way-984050_1280.jpg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -160,7 +160,7 @@
             </div>
         
         <div class="article-title">
-            <span class="title-hover-animation">MyBatis入门04延迟加载和缓存功能</span>
+            <span class="title-hover-animation">MyBatis 入门 04 延迟加载和缓存功能</span>
         </div>
         
             <div class="article-header">
@@ -219,32 +219,32 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="1-Mybatis-延迟加载策略">1. Mybatis 延迟加载策略</h2>
+            <h2 id="1-Mybatis- 延迟加载策略">1. Mybatis 延迟加载策略</h2>
 <p>延迟加载：就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也称懒加载.<br>
-好处： 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多zhangruwang表速度要快。</p>
+好处： 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多 zhangruwang 表速度要快。</p>
 <p>坏处：因为只有当需要用到数据时，才会进行数据库查询，这样在大批量数据查询时，因为查询工作也要消耗时间，所以可能造成用户等待时间变长，造成用户体验下降。</p>
 <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">需先在 SqlMapConfig.xml 中配置开启功能</span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"lazyLoadingEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"aggressiveLazyLoading"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="1-1-使用-assocation-实现延迟加载">1.1 使用 assocation 实现延迟加载</h3>
+<h3 id="1-1- 使用 -assocation- 实现延迟加载">1.1 使用 assocation 实现延迟加载</h3>
 <p>查询账户信息同时查询用户信息  Account 中有 User 类</p>
 <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">AccountDao.xml</span><br><span class="line">List<span class="tag">&lt;<span class="name">Account</span>&gt;</span> findAll();</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 建立对应关系 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"account"</span> <span class="attr">id</span>=<span class="string">"accountMap"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"aid"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"uid"</span> <span class="attr">property</span>=<span class="string">"uid"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"money"</span> <span class="attr">property</span>=<span class="string">"money"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 它是用于指定从表方的引用实体属性的 --&gt;</span></span><br><span class="line">    select： 填写我们要调用的 select 映射的 id</span><br><span class="line">   column ： 填写我们要传递给 select 映射的参数</span><br><span class="line"><span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">"user"</span> <span class="attr">javaType</span>=<span class="string">"user"</span> <span class="attr">select</span>=<span class="string">"com.itheima.dao.IUserDao.findById"</span> <span class="attr">column</span>=<span class="string">"uid"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultMap</span>=<span class="string">"accountMap"</span>&gt;</span></span><br><span class="line">select * from account</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">UserDao.xml</span><br><span class="line">User findById(Integer userId);</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 根据 id 查询 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">resultType</span>=<span class="string">"user"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> &gt;</span></span><br><span class="line">select * from user where id = #{uid}</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="1-2-使用-Collection-实现延迟加载">1.2 使用 Collection 实现延迟加载</h3>
+<h3 id="1-2- 使用 -Collection- 实现延迟加载">1.2 使用 Collection 实现延迟加载</h3>
 <p>完成加载用户对象时，查询该用户所拥有的账户信息。</p>
 <p>User 中有 List<account></account></p>
 <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">UserDao.xml</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"user"</span> <span class="attr">id</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>&gt;</span><span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"username"</span> <span class="attr">property</span>=<span class="string">"username"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"address"</span> <span class="attr">property</span>=<span class="string">"address"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"sex"</span> <span class="attr">property</span>=<span class="string">"sex"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"birthday"</span> <span class="attr">property</span>=<span class="string">"birthday"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- collection 是用于建立一对多中集合属性的对应关系</span></span><br><span class="line"><span class="comment">ofType 用于指定集合元素的数据类型</span></span><br><span class="line"><span class="comment">select 是用于指定查询账户的唯一标识（账户的 dao 全限定类名加上方法名称）</span></span><br><span class="line"><span class="comment">column 是用于指定使用哪个字段的值作为条件查询</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">"accounts"</span> <span class="attr">ofType</span>=<span class="string">"account"</span></span></span><br><span class="line"><span class="tag"><span class="attr">select</span>=<span class="string">"com.itheima.dao.IAccountDao.findByUid"</span></span></span><br><span class="line"><span class="tag"><span class="attr">column</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 配置查询所有操作 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultMap</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line">select * from user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AccountDao.xml</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 根据用户 id 查询账户信息 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findByUid"</span> <span class="attr">resultType</span>=<span class="string">"account"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span>&gt;</span></span><br><span class="line">select * from account where uid = #{uid}</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-<h2 id="2-Mybatis-缓存">2. Mybatis 缓存</h2>
+<h2 id="2-Mybatis- 缓存">2. Mybatis 缓存</h2>
 <p>提供了缓存策略，通过缓存策略来减少数据库的查询次数， 从而提高性能。Mybatis 中缓存分为一级缓存，二级缓存。</p>
 <hr>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528174434282.png" alt="image-20200528174434282">
 <hr>
-<h3 id="2-1-一级缓存">2.1 一级缓存</h3>
+<h3 id="2-1- 一级缓存">2.1 一级缓存</h3>
 <p>一级缓存是 SqlSession 范围的缓存，当调用 SqlSession 的修改，添加，删除， commit()， close()等 方法时，就会清空一级缓存</p>
 <hr>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528175000842.png" alt="image-20200528175000842">
 <hr>
-<h3 id="2-2-二级缓存">2.2 二级缓存</h3>
-<p>二级缓存是 mapper 映射级别的缓存，多个 SqlSession 去操作同一个 Mapper 映射的 sql 语句，多个SqlSession 可以共用二级缓存，二级缓存是跨 SqlSession 的。</p>
+<h3 id="2-2- 二级缓存">2.2 二级缓存</h3>
+<p>二级缓存是 mapper 映射级别的缓存，多个 SqlSession 去操作同一个 Mapper 映射的 sql 语句，多个 SqlSession 可以共用二级缓存，二级缓存是跨 SqlSession 的。</p>
 <hr>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/mybatis01/image-20200528175101555.png" alt="image-20200528175101555">
 <hr>
@@ -254,7 +254,7 @@
 <p>配置相关的 Mapper 映射文件</p>
 <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span>&gt;</span>标签表示当前这个 mapper 映射将使用二级缓存，区分的标准就看 mapper 的 namespace 值。</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.itheima.dao.IUserDao"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 开启二级缓存的支持 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">cache</span>&gt;</span><span class="tag">&lt;/<span class="name">cache</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 <p>配置 statement 上面的 useCache 属性</p>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 根据 id 查询 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">resultType</span>=<span class="string">"user"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">useCache</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">select * from user where id = #{uid}</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">将 UserDao.xml 映射文件中的<span class="tag">&lt;<span class="name">select</span>&gt;</span>标签中设置 useCache=”true”代表当前这个 statement 要使用</span><br><span class="line">二级缓存，如果不使用二级缓存可以设置为 false。</span><br><span class="line">注意： 针对每次查询都需要最新的数据 sql，要设置成 useCache=false，禁用二级缓存。</span><br><span class="line">当我们在使用二级缓存时，所缓存的类一定要实现 java.io.Serializable 接口，这种就可以使用序列化方式来保存对象。</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 根据 id 查询 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">resultType</span>=<span class="string">"user"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">useCache</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">select * from user where id = #{uid}</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">将 UserDao.xml 映射文件中的 <span class="tag">&lt;<span class="name">select</span>&gt;</span> 标签中设置 useCache=”true”代表当前这个 statement 要使用 </span><br><span class="line"> 二级缓存，如果不使用二级缓存可以设置为 false。</span><br><span class="line">注意： 针对每次查询都需要最新的数据 sql，要设置成 useCache=false，禁用二级缓存。</span><br><span class="line">当我们在使用二级缓存时，所缓存的类一定要实现 java.io.Serializable 接口，这种就可以使用序列化方式来保存对象。</span><br></pre></td></tr></tbody></table></figure>
 
         </div>
 
@@ -272,7 +272,7 @@
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">MyBatis入门05基于注解的Mybatis</span>
+                                <span class="post-nav-title-item">MyBatis 入门 05 基于注解的 Mybatis</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -285,7 +285,7 @@
                            href="/2020/01/03/Mybatis/MyBatis%E5%85%A5%E9%97%A803%E5%8A%A8%E6%80%81SQL%E5%92%8C%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">MyBatis入门03动态SQL和多表查询</span>
+                                <span class="post-nav-title-item">MyBatis 入门 03 动态 SQL 和多表查询</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -394,7 +394,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Mybatis-%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5"><span class="nav-text">1. Mybatis 延迟加载策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E4%BD%BF%E7%94%A8-assocation-%E5%AE%9E%E7%8E%B0%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD"><span class="nav-text">1.1 使用 assocation 实现延迟加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E4%BD%BF%E7%94%A8-Collection-%E5%AE%9E%E7%8E%B0%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD"><span class="nav-text">1.2 使用 Collection 实现延迟加载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Mybatis-%E7%BC%93%E5%AD%98"><span class="nav-text">2. Mybatis 缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="nav-text">2.1 一级缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="nav-text">2.2 二级缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E5%BC%80%E5%90%AF%E4%B8%8E%E5%85%B3%E9%97%AD"><span class="nav-text">二级缓存的开启与关闭</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Mybatis-%20%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%AD%96%E7%95%A5"><span class="nav-text">1. Mybatis 延迟加载策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%20%E4%BD%BF%E7%94%A8%20-assocation-%20%E5%AE%9E%E7%8E%B0%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD"><span class="nav-text">1.1 使用 assocation 实现延迟加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%20%E4%BD%BF%E7%94%A8%20-Collection-%20%E5%AE%9E%E7%8E%B0%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD"><span class="nav-text">1.2 使用 Collection 实现延迟加载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Mybatis-%20%E7%BC%93%E5%AD%98"><span class="nav-text">2. Mybatis 缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%20%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="nav-text">2.1 一级缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%20%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="nav-text">2.2 二级缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E5%BC%80%E5%90%AF%E4%B8%8E%E5%85%B3%E9%97%AD"><span class="nav-text">二级缓存的开启与关闭</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
@@ -494,20 +494,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

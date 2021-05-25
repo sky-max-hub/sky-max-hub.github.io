@@ -9,7 +9,7 @@
     
     <title>
         
-            SpringBoot09文件上传下载 |
+            SpringBoot09 文件上传下载 |
         
         大白小怪兽
     </title>
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"https://img.sky123.top/img/milky-way-984050_1280.jpg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -160,7 +160,7 @@
             </div>
         
         <div class="article-title">
-            <span class="title-hover-animation">SpringBoot09文件上传下载</span>
+            <span class="title-hover-animation">SpringBoot09 文件上传下载</span>
         </div>
         
             <div class="article-header">
@@ -176,7 +176,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>379 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>380 字</span>
         </span>
     
 
@@ -219,18 +219,18 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="文件上传">文件上传</h2>
-<p>定义:<code>用户访问当前系统,将自己本地计算机中文件通过浏览器上传到当前系统所在的服务器过程中称之为文件的上传</code></p>
-<h3 id="准备上传页面">准备上传页面</h3>
-<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"路径...."</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"aa"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"上传"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	1. 表单提交方式必须是post</span></span><br><span class="line"><span class="comment">	2. 表单的enctype属性必须为multipart/form-data</span></span><br><span class="line"><span class="comment">	3. 后台接受变量名字要与文件选择name属性一致</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="编写控制器">编写控制器</h3>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping("/file")</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileController</span> </span>{</span><br><span class="line">  <span class="meta">@RequestMapping("/upload")</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">upload</span><span class="params">(MultipartFile aa, HttpServletRequest request)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">        String realPath = request.getRealPath(<span class="string">"/upload"</span>);</span><br><span class="line">        aa.transferTo(<span class="keyword">new</span> File(realPath,aa.getOriginalFilename()));<span class="comment">//文件上传</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="修改文件上传大小">修改文件上传大小</h3>
-<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#上传时出现如下异常:  上传文件的大小超出默认配置  默认10M</span></span><br><span class="line"><span class="attr">nested exception is java.lang.IllegalStateException:</span> <span class="string">org.apache.tomcat.util.http.fileupload.FileUploadBase$SizeLimitExceededException:</span> <span class="string">the</span> <span class="string">request</span> <span class="string">was</span> <span class="string">rejected</span> <span class="string">because</span> <span class="string">its</span> <span class="string">size</span> <span class="string">(38443713)</span> <span class="string">exceeds</span> <span class="string">the</span> <span class="string">configured</span> <span class="string">maximum</span> <span class="string">(10485760)</span></span><br><span class="line"><span class="comment">#修改上传文件大小:</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">http:</span></span><br><span class="line">    <span class="attr">multipart:</span></span><br><span class="line">       <span class="attr">max-request-size:</span> <span class="number">209715200</span>  <span class="comment">#用来控制文件上传大小的限制</span></span><br><span class="line">       <span class="attr">max-file-size:</span> <span class="number">209715200</span> <span class="comment">#用来指定服务端最大文件大小   </span></span><br><span class="line"></span><br><span class="line"><span class="string">spring.servlet.multipart.max-file-size=500MB</span></span><br><span class="line"><span class="string">spring.servlet.multipart.max-request-size=500MB</span></span><br></pre></td></tr></tbody></table></figure>
-<h2 id="文件下载">文件下载</h2>
-<h3 id="提供下载文件链接">提供下载文件链接</h3>
+            <h2 id="文件上传"> 文件上传 </h2>
+<p> 定义:<code> 用户访问当前系统, 将自己本地计算机中文件通过浏览器上传到当前系统所在的服务器过程中称之为文件的上传 </code></p>
+<h3 id="准备上传页面"> 准备上传页面 </h3>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">" 路径...."</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"aa"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">" 上传 "</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	1. 表单提交方式必须是 post</span></span><br><span class="line"><span class="comment">	2. 表单的 enctype 属性必须为 multipart/form-data</span></span><br><span class="line"><span class="comment">	3. 后台接受变量名字要与文件选择 name 属性一致 </span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="编写控制器"> 编写控制器 </h3>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping("/file")</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileController</span> </span>{</span><br><span class="line">  <span class="meta">@RequestMapping("/upload")</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">upload</span><span class="params">(MultipartFile aa, HttpServletRequest request)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">        String realPath = request.getRealPath(<span class="string">"/upload"</span>);</span><br><span class="line">        aa.transferTo(<span class="keyword">new</span> File(realPath,aa.getOriginalFilename()));<span class="comment">// 文件上传 </span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="修改文件上传大小"> 修改文件上传大小 </h3>
+<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 上传时出现如下异常:  上传文件的大小超出默认配置  默认 10M</span></span><br><span class="line"><span class="attr">nested exception is java.lang.IllegalStateException:</span> <span class="string">org.apache.tomcat.util.http.fileupload.FileUploadBase$SizeLimitExceededException:</span> <span class="string">the</span> <span class="string">request</span> <span class="string">was</span> <span class="string">rejected</span> <span class="string">because</span> <span class="string">its</span> <span class="string">size</span> <span class="string">(38443713)</span> <span class="string">exceeds</span> <span class="string">the</span> <span class="string">configured</span> <span class="string">maximum</span> <span class="string">(10485760)</span></span><br><span class="line"><span class="comment"># 修改上传文件大小:</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">http:</span></span><br><span class="line">    <span class="attr">multipart:</span></span><br><span class="line">       <span class="attr">max-request-size:</span> <span class="number">209715200</span>  <span class="comment"># 用来控制文件上传大小的限制 </span></span><br><span class="line">       <span class="attr">max-file-size:</span> <span class="number">209715200</span> <span class="comment"># 用来指定服务端最大文件大小   </span></span><br><span class="line"></span><br><span class="line"><span class="string">spring.servlet.multipart.max-file-size=500MB</span></span><br><span class="line"><span class="string">spring.servlet.multipart.max-request-size=500MB</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="文件下载"> 文件下载 </h2>
+<h3 id="提供下载文件链接"> 提供下载文件链接 </h3>
 <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"../file/download?fileName=corejava.txt"</span>&gt;</span>corejava.txt<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="开发控制器">开发控制器</h3>
+<h3 id="开发控制器"> 开发控制器 </h3>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping("/download")</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">(String fileName, HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        String realPath = request.getRealPath(<span class="string">"/upload"</span>);</span><br><span class="line">        FileInputStream is = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(realPath, fileName));</span><br><span class="line">        ServletOutputStream os = response.getOutputStream();</span><br><span class="line">        response.setHeader(<span class="string">"content-disposition"</span>,<span class="string">"attachment;fileName="</span>+ URLEncoder.encode(fileName,<span class="string">"UTF-8"</span>));</span><br><span class="line">        IOUtils.copy(is,os);</span><br><span class="line">        IOUtils.closeQuietly(is);</span><br><span class="line">        IOUtils.closeQuietly(os);</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
 
         </div>
@@ -249,7 +249,7 @@
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">SpringBoot10拦截器使用</span>
+                                <span class="post-nav-title-item">SpringBoot10 拦截器使用</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -262,7 +262,7 @@
                            href="/2020/04/08/springboot/SpringBoot08%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">SpringBoot08面向切面编程</span>
+                                <span class="post-nav-title-item">SpringBoot08 面向切面编程</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -371,7 +371,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-text">文件上传</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E4%B8%8A%E4%BC%A0%E9%A1%B5%E9%9D%A2"><span class="nav-text">准备上传页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">编写控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%A4%A7%E5%B0%8F"><span class="nav-text">修改文件上传大小</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="nav-text">文件下载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BE%9B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E9%93%BE%E6%8E%A5"><span class="nav-text">提供下载文件链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">开发控制器</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-text"> 文件上传 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E4%B8%8A%E4%BC%A0%E9%A1%B5%E9%9D%A2"><span class="nav-text"> 准备上传页面 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text"> 编写控制器 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%A4%A7%E5%B0%8F"><span class="nav-text"> 修改文件上传大小 </span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="nav-text"> 文件下载 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BE%9B%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E9%93%BE%E6%8E%A5"><span class="nav-text"> 提供下载文件链接 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text"> 开发控制器 </span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
@@ -471,20 +471,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@
     
     <title>
         
-            css3动画常用属性和阴影圆角 |
+            css3 动画常用属性和阴影圆角 |
         
         大白小怪兽
     </title>
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"https://img.sky123.top/img/milky-way-984050_1280.jpg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -160,7 +160,7 @@
             </div>
         
         <div class="article-title">
-            <span class="title-hover-animation">css3动画常用属性和阴影圆角</span>
+            <span class="title-hover-animation">css3 动画常用属性和阴影圆角</span>
         </div>
         
             <div class="article-header">
@@ -219,90 +219,90 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="CSS3的含义">CSS3的含义</h2>
-<p>​	<code>CSS3</code>是<code>CSS</code>（层叠样式表）技术的升级版本。<code>CSS3</code>完全向后兼容，不必改变现有的设计，浏览器将永远支持<code>CSS2</code>。<code>W3C</code>的<code>CSS3</code>规范仍在开发。但是，许多新的<code>CSS3</code>属性已在现代浏览器使用。</p>
+            <h2 id="CSS3 的含义">CSS3 的含义</h2>
+<p>​	<code>CSS3</code>是 <code>CSS</code>（层叠样式表）技术的升级版本。<code>CSS3</code> 完全向后兼容，不必改变现有的设计，浏览器将永远支持 <code>CSS2</code>。<code>W3C</code> 的<code>CSS3</code>规范仍在开发。但是，许多新的 <code>CSS3</code> 属性已在现代浏览器使用。</p>
 <h2 id="浏览器内核以及其前缀">浏览器内核以及其前缀</h2>
-<p>​	<code>CSS</code>标准中各个属性都要经历从草案到推荐的过程，<code>css3</code>中的属性进展都不一样，浏览器厂商在标准尚未明确情况下提前支持会有风险，浏览器厂商对新属性的支持情况也不同，所以会加厂商前缀加以区分。如果某个属性已经从草案变为了或接近推荐方案，并且厂商已经完全实现了推荐属性，那就不用加厂商前缀。如<code>border-radius</code>已经很成熟，不用加前缀。</p>
+<p>​	<code>CSS</code>标准中各个属性都要经历从草案到推荐的过程，<code>css3</code>中的属性进展都不一样，浏览器厂商在标准尚未明确情况下提前支持会有风险，浏览器厂商对新属性的支持情况也不同，所以会加厂商前缀加以区分。如果某个属性已经从草案变为了或接近推荐方案，并且厂商已经完全实现了推荐属性，那就不用加厂商前缀。如 <code>border-radius</code> 已经很成熟，不用加前缀。</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103253008.png" alt="image-20210306103253008"></p>
-<p>​	<code>根据不同的浏览器内核，css前缀会有不同</code>。最基本的浏览器内核有如下四种，其它的内核都是基于此四种进行再研发的。</p>
+<p>​	<code>根据不同的浏览器内核，css 前缀会有不同</code>。最基本的浏览器内核有如下四种，其它的内核都是基于此四种进行再研发的。</p>
 <ol>
 <li>
-<p><code>Gecko内核</code>      前缀为<code>-moz-</code>   火狐浏览器</p>
+<p><code>Gecko 内核</code>      前缀为<code>-moz-</code>   火狐浏览器</p>
 </li>
 <li>
-<p><code>Webkit内核</code>    前缀为<code>-webkit-</code>   也叫谷歌内核，chrome浏览器最先开发使用，safari浏览器也使用 该内核。国内很多浏览器也使用了<code>webkit内核</code>，如360极速、世界之窗、猎豹等。</p>
+<p><code>Webkit 内核</code>    前缀为<code>-webkit-</code>   也叫谷歌内核，chrome 浏览器最先开发使用，safari 浏览器也使用 该内核。国内很多浏览器也使用了<code>webkit 内核</code>，如 360 极速、世界之窗、猎豹等。</p>
 </li>
 <li>
-<p><code>Trident内核</code>    前缀为<code>-ms-</code>  也称IE内核</p>
+<p><code>Trident 内核</code>    前缀为<code>-ms-</code>  也称 IE 内核</p>
 </li>
 <li>
-<p><code>Presto内核</code>      前缀<code>-o-</code>   目前只有opera采用</p>
+<p><code>Presto 内核</code>      前缀<code>-o-</code>   目前只有 opera 采用</p>
 </li>
 </ol>
-<h3 id="圆角border-radius">圆角border-radius</h3>
+<h3 id="圆角 border-radius">圆角 border-radius</h3>
 <p>语法</p>
 <figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">border-radius</span>：value；四个角</span><br><span class="line"><span class="attribute">border-radius</span>：value value；左上右下、右上左下</span><br><span class="line"><span class="attribute">border-radius</span>：value value value value；		</span><br><span class="line">      代表设置对象左上角、右上角、右下角、左下角</span><br></pre></td></tr></tbody></table></figure>
 <img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103337192.png" alt="image-20210306103337192" style="zoom:50%;">
-<h3 id="盒阴影box-shadow">盒阴影box-shadow</h3>
+<h3 id="盒阴影 box-shadow">盒阴影 box-shadow</h3>
 <figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">语法：<span class="attribute">box-shadow</span>: h-shadow v-shadow blur spread color inset;</span><br></pre></td></tr></tbody></table></figure>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103327261.png" alt="image-20210306103327261"></p>
 <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    .shadow{</span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="css">            <span class="attribute">box-shadow</span>: <span class="number">10px</span> <span class="number">10px</span> <span class="number">5px</span> <span class="number">3px</span> darkred;</span></span><br><span class="line">        }</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shadow"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103724901.png" alt="image-20210306103724901"></p>
-<h3 id="文字阴影text-shadow">文字阴影text-shadow</h3>
+<h3 id="文字阴影 text-shadow">文字阴影 text-shadow</h3>
 <figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">语法：<span class="attribute">text-shadow</span>: h-shadow v-shadow blur color;</span><br></pre></td></tr></tbody></table></figure>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103735569.png" alt="image-20210306103735569"></p>
 <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    .text1{</span><br><span class="line"><span class="css">            <span class="attribute">font-size</span>: <span class="number">50px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">font-weight</span>: bold;</span></span><br><span class="line"><span class="css">            <span class="attribute">color</span>: palegreen;</span></span><br><span class="line"><span class="css">            <span class="attribute">text-shadow</span>: <span class="number">10px</span> -<span class="number">5px</span> <span class="number">5px</span> <span class="number">#ccc</span> ;</span></span><br><span class="line">       }</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"text1"</span>&gt;</span>学习猿地<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103747132.png" alt="image-20210306103747132"></p>
-<h2 id="CSS3-渐变">CSS3 渐变</h2>
+<h2 id="CSS3- 渐变">CSS3 渐变</h2>
 <p><a class="link" target="_blank" rel="noopener" href="https://www.runoob.com/css3/css3-gradients.html">菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
 <p>​	<code>CSS3 渐变（gradients）</code>可以让你在两个或多个指定的颜色之间显示平稳的过渡。以前，你必须使用图像来实现这些效果。现在，使用 <code>CSS3 渐变（gradients）</code>，通过代码来实现渐变可以减少请求和节约带宽。</p>
 <p><code>CSS3</code> 定义了两种类型的渐变（gradients）:</p>
 <ul>
-<li>线性渐变（Linear Gradients）: 向下/向上/向左/向右/对角方向<br>
+<li>线性渐变（Linear Gradients）: 向下 / 向上 / 向左 / 向右 / 对角方向<br>
 <code>background: linear-gradient(direction, color-stop1, color-stop2, ...);</code></li>
 <li>径向渐变（Radial Gradients）: 由它们的中心定义<br>
 <code>background: radial-gradient(center, shape， size, start-color, ..., last-color);</code><br>
 默认情况下，渐变的中心是 center（表示在中心点），渐变的形状是 ellipse（表示椭圆形），它可以是值 <code>circle</code> 或 <code>ellipse</code>。其中，circle 表示圆形，ellipse 表示椭圆形</li>
 </ul>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306103803293.png" alt="image-20210306103803293"></p>
-<h2 id="CSS3-转换Transform（2D转换）">CSS3 转换Transform（2D转换）</h2>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/aspnetjia/p/5139020.html">transform详解<i class="fas fa-external-link-alt"></i></a></p>
-<p>​	<code>CSS3</code>中的转换允许我们对元素进行旋转、缩放、移动或倾斜。它为分<code>2D转换 或 3D 转换。</code>在css2时代，如果要做一些图片转换角度，都依赖于<code>图片、Flash或JavaScript才能完成</code>。但是现在借助<code>CSS3</code>就可以轻松倾斜、缩放、移动以及翻转元素。通过<code>CSS</code>变形，可以让元素生成静态视觉效果，但也可以很容易结合<code>CSS3的transition和动画的keyframe</code>产生一些动画效果。</p>
-<h3 id="转换Transform-2D的属性">转换Transform 2D的属性</h3>
-<p>​	通常的属性包含了属性名和属性值，而CSS3的transform属性是用函数来定义的。Transform 2D函数包括了<code>translate()、scale()、rotate()和skew()。</code></p>
+<h2 id="CSS3- 转换 Transform（2D 转换）">CSS3 转换 Transform（2D 转换）</h2>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/aspnetjia/p/5139020.html">transform 详解<i class="fas fa-external-link-alt"></i></a></p>
+<p>​	<code>CSS3</code>中的转换允许我们对元素进行旋转、缩放、移动或倾斜。它为分 <code>2D 转换 或 3D 转换。</code> 在 css2 时代，如果要做一些图片转换角度，都依赖于 <code> 图片、Flash 或 JavaScript 才能完成 </code>。但是现在借助<code>CSS3</code> 就可以轻松倾斜、缩放、移动以及翻转元素。通过 <code>CSS</code> 变形，可以让元素生成静态视觉效果，但也可以很容易结合 <code>CSS3 的 transition 和动画的 keyframe</code> 产生一些动画效果。</p>
+<h3 id="转换 Transform-2D 的属性">转换 Transform 2D 的属性</h3>
+<p>​	通常的属性包含了属性名和属性值，而 CSS3 的 transform 属性是用函数来定义的。Transform 2D 函数包括了 <code>translate()、scale()、rotate() 和 skew()。</code></p>
 <p>书写格式:<br>
-<code>transform:函数名(x轴值，y轴值);</code></p>
+<code>transform: 函数名(x 轴值，y 轴值);</code></p>
 <p>转换的效果：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306104641628.png" alt="image-20210306104641628"></p>
 <ol>
 <li>
 <p><code>translate()</code><br>
-translate()方法，根据左(X轴)和顶部(Y轴)位置给定的参数，从当前元素位置移动。接受CSS的标准度量单位（px），translate(x,y)：转换，沿着X和Y轴移动元素。</p>
+translate()方法，根据左 (X 轴) 和顶部 (Y 轴) 位置给定的参数，从当前元素位置移动。接受 CSS 的标准度量单位（px），translate(x,y)：转换，沿着 X 和 Y 轴移动元素。</p>
 </li>
 <li>
 <p><code>rotate()</code><br>
-通过 rotate() 方法，元素顺时针旋转给定的角度。允许负值，元素将逆时针旋转。它以deg为单位，代表了旋转的角度。</p>
+通过 rotate() 方法，元素顺时针旋转给定的角度。允许负值，元素将逆时针旋转。它以 deg 为单位，代表了旋转的角度。</p>
 </li>
 <li>
 <p><code>scale()</code><br>
-通过值把宽和高转换为原始尺寸的n倍，接受两个参数，前面的为宽，后面的为高。可取值：默认值为1，缩小：0-1 之间的数，放大：大于1的数</p>
+通过值把宽和高转换为原始尺寸的 n 倍，接受两个参数，前面的为宽，后面的为高。可取值：默认值为 1，缩小：0-1 之间的数，放大：大于 1 的数</p>
 </li>
 <li>
 <p><code>skew()</code><br>
 根据水平轴和垂直轴翻转，接受两个或一个值，两个值时前面为水平，后面为垂直的角度 ，一个值只是水平轴的角度。此函数是指元素的倾斜角度。</p>
 </li>
 </ol>
-<h3 id="转换Transform-3D的属性">转换Transform 3D的属性</h3>
-<p>Transform 3D常用函数有：</p>
+<h3 id="转换 Transform-3D 的属性">转换 Transform 3D 的属性</h3>
+<p>Transform 3D 常用函数有：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306104709948.png" alt="image-20210306104709948"></p>
-<h2 id="CSS3-过渡Transition">CSS3 过渡Transition</h2>
-<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/afighter/p/5731293.html">transition演示<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="CSS3- 过渡 Transition">CSS3 过渡 Transition</h2>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/afighter/p/5731293.html">transition 演示<i class="fas fa-external-link-alt"></i></a></p>
 <h3 id="什么是过渡">什么是过渡</h3>
-<p>使用<code>css</code>的属性值在一段时间内平滑的过渡，比如，鼠标悬停后，背景色在<code>1s</code>内，由白色平滑的过渡到红色<br>
+<p>使用 <code>css</code> 的属性值在一段时间内平滑的过渡，比如，鼠标悬停后，背景色在 <code>1s</code> 内，由白色平滑的过渡到红色<br>
 指定四个要素：</p>
 <ul>
 <li>
-<p>过渡属性，如background、color等</p>
+<p>过渡属性，如 background、color 等</p>
 </li>
 <li>
 <p>过渡所需时间</p>
@@ -320,7 +320,7 @@ translate()方法，根据左(X轴)和顶部(Y轴)位置给定的参数，从当
 多个属性用逗号隔开，可设置过渡的属性，颜色属性。取值为数值的属性：转换属性，渐变属性，阴影属性</p>
 <h3 id="过渡时间">过渡时间</h3>
 <p><code>transition-duration: s|ms;</code><br>
-默认值为0，意味着不会有效果，所以必须设置transition-duration属性</p>
+默认值为 0，意味着不会有效果，所以必须设置 transition-duration 属性</p>
 <h3 id="过渡函数">过渡函数</h3>
 <p><code>transition-timing-function: ;</code><br>
 取值：<br>
@@ -332,24 +332,24 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
 <h3 id="过渡延迟">过渡延迟</h3>
 <p><code>transition-delay: s|ms;</code><br>
 改变元素属性值后多长时间开始执行过渡效果</p>
-<h3 id="简写属性transition">简写属性transition</h3>
-<p>transition属性是一个简写属性，用于设置四个过渡属性<br>
+<h3 id="简写属性 transition">简写属性 transition</h3>
+<p>transition 属性是一个简写属性，用于设置四个过渡属性<br>
 <code>语法：transition:property duration timing-function delay;</code></p>
 <figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#box</span>{</span><br><span class="line">     <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">     <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">     <span class="attribute">background-color</span>: <span class="number">#1fb57b</span>;</span><br><span class="line">     <span class="attribute">transition</span>: background <span class="number">4s</span> linear <span class="number">1s</span>;</span><br><span class="line"> }</span><br><span class="line"> <span class="selector-id">#box</span><span class="selector-pseudo">:hover</span>{</span><br><span class="line">     <span class="attribute">background-color</span>: red;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="CSS3-animation动画">CSS3 animation动画</h2>
+<h2 id="CSS3-animation 动画">CSS3 animation 动画</h2>
 <p><a class="link" target="_blank" rel="noopener" href="https://www.runoob.com/css3/css3-animations.html">菜鸟教程<i class="fas fa-external-link-alt"></i></a></p>
-<p>过渡属性只能模拟动画效果，animation属性可以制作类似Flash动画，通过关键帧控制动画的每一步，使元素从一种样式逐渐变化为另一种样式，实现复杂的动画效果。</p>
+<p>过渡属性只能模拟动画效果，animation 属性可以制作类似 Flash 动画，通过关键帧控制动画的每一步，使元素从一种样式逐渐变化为另一种样式，实现复杂的动画效果。</p>
 <h3 id="keyframes">@keyframes</h3>
 <p>作用：用于声明动画，指定关键帧<br>
 帧：用于分解动画动作，每个帧代表某个时间点。定义每个帧上的动作</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210306105920430.png" alt="image-20210306105920430"></p>
-<h3 id="keyframes的语法">@keyframes的语法</h3>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> name  {</span><br><span class="line">    from|0%{</span><br><span class="line">        css样式</span><br><span class="line">    }</span><br><span class="line">    percent{</span><br><span class="line">        css样式</span><br><span class="line">    }</span><br><span class="line">    to|100%{</span><br><span class="line">        css样式</span><br><span class="line">    }</span><br><span class="line"> }</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="animation属性">animation属性</h3>
-<p><code>animation</code>属性用于控制动画，调用由<code>@keyframes</code>定义的动画，设置动画属性，如时间、次数等。animation属性是一个简写属性。<br>
+<h3 id="keyframes 的语法">@keyframes 的语法</h3>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> name  {</span><br><span class="line">    from|0%{</span><br><span class="line">        css 样式</span><br><span class="line">    }</span><br><span class="line">    percent{</span><br><span class="line">        css 样式</span><br><span class="line">    }</span><br><span class="line">    to|100%{</span><br><span class="line">        css 样式</span><br><span class="line">    }</span><br><span class="line"> }</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="animation 属性">animation 属性</h3>
+<p><code>animation</code>属性用于控制动画，调用由 <code>@keyframes</code> 定义的动画，设置动画属性，如时间、次数等。animation 属性是一个简写属性。<br>
 语法为：<code>animation:name  duration timing-function delay iteration-count direction;</code></p>
 <h3 id="动画子属性">动画子属性</h3>
-<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">animation-name</span>: ;	调用动画，规定需要和keyframes的名字一致</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-duration</span>: s|ms;	动画完成一个周期所需要的时间</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-timing-function</span>: ;	规定动画的速度变化类型</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-delay</span>:s|ms ;	播放之前的延迟时间</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-iteration-count</span>: 数值|infinite;	播放次数 infinite表示无限次播放</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-direction</span>: normal|alternate;	动画播放方向,<span class="attribute">normal</span>为默认值，表示正常播放,alternate表示轮流播放，即动画会在奇数次正常播放，而在偶数次向后播放</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-fill-mode</span>: forwards;	动画停在最后一帧，默认值为<span class="attribute">none</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-play-state</span>:paused|running; 属性规定动画正在运行还是暂停，默认值为running</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">animation-name</span>: ;	调用动画，规定需要和 keyframes 的名字一致 </span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-duration</span>: s|ms;	动画完成一个周期所需要的时间</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-timing-function</span>: ;	规定动画的速度变化类型</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-delay</span>:s|ms ;	播放之前的延迟时间</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-iteration-count</span>: 数值 |infinite;	播放次数 infinite 表示无限次播放</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-direction</span>: normal|alternate;	动画播放方向,<span class="attribute">normal</span> 为默认值，表示正常播放,alternate 表示轮流播放，即动画会在奇数次正常播放，而在偶数次向后播放</span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-fill-mode</span>: forwards;	动画停在最后一帧，默认值为<span class="attribute">none</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">animation-play-state</span>:paused|running; 属性规定动画正在运行还是暂停，默认值为 running</span><br></pre></td></tr></tbody></table></figure>
 
         </div>
 
@@ -367,7 +367,7 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Position定位和z-index</span>
+                                <span class="post-nav-title-item">Position 定位和 z-index</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -380,7 +380,7 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
                            href="/2020/08/08/springboot/Swagger/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Swagger入门</span>
+                                <span class="post-nav-title-item">Swagger 入门</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -489,7 +489,7 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3%E7%9A%84%E5%90%AB%E4%B9%89"><span class="nav-text">CSS3的含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%89%8D%E7%BC%80"><span class="nav-text">浏览器内核以及其前缀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%86%E8%A7%92border-radius"><span class="nav-text">圆角border-radius</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%92%E9%98%B4%E5%BD%B1box-shadow"><span class="nav-text">盒阴影box-shadow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E9%98%B4%E5%BD%B1text-shadow"><span class="nav-text">文字阴影text-shadow</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3-%E6%B8%90%E5%8F%98"><span class="nav-text">CSS3 渐变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3-%E8%BD%AC%E6%8D%A2Transform%EF%BC%882D%E8%BD%AC%E6%8D%A2%EF%BC%89"><span class="nav-text">CSS3 转换Transform（2D转换）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2Transform-2D%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text">转换Transform 2D的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2Transform-3D%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text">转换Transform 3D的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3-%E8%BF%87%E6%B8%A1Transition"><span class="nav-text">CSS3 过渡Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%87%E6%B8%A1"><span class="nav-text">什么是过渡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E5%B1%9E%E6%80%A7"><span class="nav-text">过渡属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E6%97%B6%E9%97%B4"><span class="nav-text">过渡时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E5%87%BD%E6%95%B0"><span class="nav-text">过渡函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E5%BB%B6%E8%BF%9F"><span class="nav-text">过渡延迟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%86%99%E5%B1%9E%E6%80%A7transition"><span class="nav-text">简写属性transition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3-animation%E5%8A%A8%E7%94%BB"><span class="nav-text">CSS3 animation动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#keyframes"><span class="nav-text">@keyframes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keyframes%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="nav-text">@keyframes的语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#animation%E5%B1%9E%E6%80%A7"><span class="nav-text">animation属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E7%94%BB%E5%AD%90%E5%B1%9E%E6%80%A7"><span class="nav-text">动画子属性</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3%20%E7%9A%84%E5%90%AB%E4%B9%89"><span class="nav-text">CSS3 的含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%89%8D%E7%BC%80"><span class="nav-text">浏览器内核以及其前缀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%86%E8%A7%92%20border-radius"><span class="nav-text">圆角 border-radius</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%92%E9%98%B4%E5%BD%B1%20box-shadow"><span class="nav-text">盒阴影 box-shadow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E9%98%B4%E5%BD%B1%20text-shadow"><span class="nav-text">文字阴影 text-shadow</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3-%20%E6%B8%90%E5%8F%98"><span class="nav-text">CSS3 渐变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3-%20%E8%BD%AC%E6%8D%A2%20Transform%EF%BC%882D%20%E8%BD%AC%E6%8D%A2%EF%BC%89"><span class="nav-text">CSS3 转换 Transform（2D 转换）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%20Transform-2D%20%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text">转换 Transform 2D 的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%20Transform-3D%20%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text">转换 Transform 3D 的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3-%20%E8%BF%87%E6%B8%A1%20Transition"><span class="nav-text">CSS3 过渡 Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%87%E6%B8%A1"><span class="nav-text">什么是过渡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E5%B1%9E%E6%80%A7"><span class="nav-text">过渡属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E6%97%B6%E9%97%B4"><span class="nav-text">过渡时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E5%87%BD%E6%95%B0"><span class="nav-text">过渡函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%B8%A1%E5%BB%B6%E8%BF%9F"><span class="nav-text">过渡延迟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%86%99%E5%B1%9E%E6%80%A7%20transition"><span class="nav-text">简写属性 transition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3-animation%20%E5%8A%A8%E7%94%BB"><span class="nav-text">CSS3 animation 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#keyframes"><span class="nav-text">@keyframes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keyframes%20%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="nav-text">@keyframes 的语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#animation%20%E5%B1%9E%E6%80%A7"><span class="nav-text">animation 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E7%94%BB%E5%AD%90%E5%B1%9E%E6%80%A7"><span class="nav-text">动画子属性</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
@@ -589,20 +589,5 @@ ease-in-out：规定以慢速开始和结束，先加速后减速效果</p>
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

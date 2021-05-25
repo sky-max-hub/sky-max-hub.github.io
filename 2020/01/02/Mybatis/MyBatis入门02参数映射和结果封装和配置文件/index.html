@@ -9,7 +9,7 @@
     
     <title>
         
-            MyBatis入门02参数映射和结果封装 |
+            MyBatis 入门 02 参数映射和结果封装 |
         
         大白小怪兽
     </title>
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"https://img.sky123.top/img/milky-way-984050_1280.jpg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -160,7 +160,7 @@
             </div>
         
         <div class="article-title">
-            <span class="title-hover-animation">MyBatis入门02参数映射和结果封装</span>
+            <span class="title-hover-animation">MyBatis 入门 02 参数映射和结果封装</span>
         </div>
         
             <div class="article-header">
@@ -219,23 +219,23 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="1-parameterType-配置参数">1. parameterType 配置参数</h2>
-<p>实体类型：全类名</p>
-<p>基本类型和String ：直接写类名称（首字母大写），也可以使用别名（首字母小写）</p>
-<h2 id="2-Mybatis-的输出结果封装">2. Mybatis 的输出结果封装</h2>
+            <h2 id="1-parameterType- 配置参数">1. parameterType 配置参数 </h2>
+<p> 实体类型：全类名 </p>
+<p> 基本类型和 String ：直接写类名称（首字母大写），也可以使用别名（首字母小写）</p>
+<h2 id="2-Mybatis- 的输出结果封装">2. Mybatis 的输出结果封装 </h2>
 <h3 id="2-1-resultType">2.1 resultType</h3>
-<p>实体类型：全类名，<strong>实体类中的属性名称必须和查询语句中的列名保持一致，否则无法实现封装</strong></p>
-<p>基本类型和String ：直接写类名称（首字母大写），也可以使用别名（首字母小写）</p>
+<p> 实体类型：全类名，<strong> 实体类中的属性名称必须和查询语句中的列名保持一致，否则无法实现封装 </strong></p>
+<p> 基本类型和 String ：直接写类名称（首字母大写），也可以使用别名（首字母小写）</p>
 <h3 id="2-2-resultMap">2.2 resultMap</h3>
 <p>resultMap 标签可以建立查询的列名和实体类的属性名称不一致时建立对应关系。从而实现封装。</p>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 建立 User 实体和数据库表的对应关系</span></span><br><span class="line"><span class="comment">type 属性：指定实体类的全限定类名</span></span><br><span class="line"><span class="comment">id 属性：给定一个唯一标识，是给查询 select 标签引用用的。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"com.itheima.domain.User"</span> <span class="attr">id</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"userId"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"username"</span> <span class="attr">property</span>=<span class="string">"userName"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"sex"</span> <span class="attr">property</span>=<span class="string">"userSex"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"address"</span> <span class="attr">property</span>=<span class="string">"userAddress"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"birthday"</span> <span class="attr">property</span>=<span class="string">"userBirthday"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">id 标签：用于指定主键字段</span><br><span class="line">result 标签：用于指定非主键字段</span><br><span class="line">column 属性：用于指定数据库列名</span><br><span class="line">property 属性：用于指定实体类属性名称</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="3-SqlMapConfig-xml配置文件">3. SqlMapConfig.xml配置文件</h2>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 建立 User 实体和数据库表的对应关系 </span></span><br><span class="line"><span class="comment">type 属性：指定实体类的全限定类名 </span></span><br><span class="line"><span class="comment">id 属性：给定一个唯一标识，是给查询 select 标签引用用的。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"com.itheima.domain.User"</span> <span class="attr">id</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"userId"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"username"</span> <span class="attr">property</span>=<span class="string">"userName"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"sex"</span> <span class="attr">property</span>=<span class="string">"userSex"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"address"</span> <span class="attr">property</span>=<span class="string">"userAddress"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"birthday"</span> <span class="attr">property</span>=<span class="string">"userBirthday"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">id 标签：用于指定主键字段 </span><br><span class="line">result 标签：用于指定非主键字段 </span><br><span class="line">column 属性：用于指定数据库列名 </span><br><span class="line">property 属性：用于指定实体类属性名称 </span><br></pre></td></tr></tbody></table></figure>
+<h2 id="3-SqlMapConfig-xml 配置文件">3. SqlMapConfig.xml 配置文件 </h2>
 <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 <h3 id="3-1-typeAliases（类型别名）">3.1 typeAliases（类型别名）</h3>
-<p>在 <code>&lt;configuration&gt;&lt;/configuration&gt;</code>中配置</p>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 单个别名定义 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">"user"</span> <span class="attr">type</span>=<span class="string">"com.itheima.domain.User"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 批量别名定义，扫描整个包下的类，别名为类名（首字母大写或小写都可以） --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.itheima.domain"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"其它包"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p> 在 <code>&lt;configuration&gt;&lt;/configuration&gt;</code> 中配置 </p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 单个别名定义 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">"user"</span> <span class="attr">type</span>=<span class="string">"com.itheima.domain.User"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 批量别名定义，扫描整个包下的类，别名为类名（首字母大写或小写都可以） --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.itheima.domain"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">" 其它包 "</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 <h3 id="3-2-mappers（映射器）">3.2 mappers（映射器）</h3>
-<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 注册指定包下的所有 mapper 接口,直接写包名，注意目录结构要相同，接口名和配置文件名相同--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.hnust.dao"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 映射某个配置文件，注意目录结构要相同，接口名和配置文件名相同--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com.hnust/dao/UserDao.xml"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!--用于注解 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">"cn.hnust.UserDAO"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 注册指定包下的所有 mapper 接口, 直接写包名，注意目录结构要相同，接口名和配置文件名相同 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.hnust.dao"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 映射某个配置文件，注意目录结构要相同，接口名和配置文件名相同 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com.hnust/dao/UserDao.xml"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- 用于注解 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">"cn.hnust.UserDAO"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 
         </div>
 
@@ -253,7 +253,7 @@
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">MyBatis入门03动态SQL和多表查询</span>
+                                <span class="post-nav-title-item">MyBatis 入门 03 动态 SQL 和多表查询</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -266,7 +266,7 @@
                            href="/2020/01/01/Mybatis/MyBatis%E5%85%A5%E9%97%A801%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%92%8C%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">MyBatis入门01环境搭建和原理概述</span>
+                                <span class="post-nav-title-item">MyBatis 入门 01 环境搭建和原理概述</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -375,7 +375,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-parameterType-%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="nav-text">1. parameterType 配置参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Mybatis-%E7%9A%84%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C%E5%B0%81%E8%A3%85"><span class="nav-text">2. Mybatis 的输出结果封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-resultType"><span class="nav-text">2.1 resultType</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-resultMap"><span class="nav-text">2.2 resultMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-SqlMapConfig-xml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">3. SqlMapConfig.xml配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-typeAliases%EF%BC%88%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D%EF%BC%89"><span class="nav-text">3.1 typeAliases（类型别名）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-mappers%EF%BC%88%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%89"><span class="nav-text">3.2 mappers（映射器）</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-parameterType-%20%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="nav-text">1. parameterType 配置参数 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Mybatis-%20%E7%9A%84%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C%E5%B0%81%E8%A3%85"><span class="nav-text">2. Mybatis 的输出结果封装 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-resultType"><span class="nav-text">2.1 resultType</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-resultMap"><span class="nav-text">2.2 resultMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-SqlMapConfig-xml%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">3. SqlMapConfig.xml 配置文件 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-typeAliases%EF%BC%88%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D%EF%BC%89"><span class="nav-text">3.1 typeAliases（类型别名）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-mappers%EF%BC%88%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%89"><span class="nav-text">3.2 mappers（映射器）</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
@@ -475,20 +475,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

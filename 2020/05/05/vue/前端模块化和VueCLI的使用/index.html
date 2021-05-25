@@ -9,7 +9,7 @@
     
     <title>
         
-            vue学习笔记04-前端模块化和vueCli的使用 |
+            vue 学习笔记 04- 前端模块化和 vueCli 的使用 |
         
         大白小怪兽
     </title>
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"https://img.sky123.top/img/milky-way-984050_1280.jpg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -160,7 +160,7 @@
             </div>
         
         <div class="article-title">
-            <span class="title-hover-animation">vue学习笔记04-前端模块化和vueCli的使用</span>
+            <span class="title-hover-animation">vue 学习笔记 04- 前端模块化和 vueCli 的使用</span>
         </div>
         
             <div class="article-header">
@@ -221,111 +221,111 @@
         <div class="article-content markdown-body">
             <h1>前端模块化</h1>
 <h2 id="为什么需要模块化？">为什么需要模块化？</h2>
-<h3 id="js原生功能带来的各种问题">js原生功能带来的各种问题</h3>
-<p>在网页开发的早期，js制作作为一种脚本语言，做一些简单的表单验证或动画实现等，那个时候代码还是很少的。那个时候的代码是怎么写的呢？直接将代码写在 <code>&lt;script&gt;</code> 标签中即可。随着ajax异步请求的出现，慢慢形成了前后端的分离<br>
-客户端需要完成的事情越来越多，代码量也是与日俱增。为了应对代码量的剧增，我们通常会将代码组织在多个js文件中，进行维护。但是这种维护方式，依然不能避免一些灾难性的问题。</p>
+<h3 id="js 原生功能带来的各种问题">js 原生功能带来的各种问题</h3>
+<p>在网页开发的早期，js 制作作为一种脚本语言，做一些简单的表单验证或动画实现等，那个时候代码还是很少的。那个时候的代码是怎么写的呢？直接将代码写在 <code>&lt;script&gt;</code> 标签中即可。随着 ajax 异步请求的出现，慢慢形成了前后端的分离<br>
+客户端需要完成的事情越来越多，代码量也是与日俱增。为了应对代码量的剧增，我们通常会将代码组织在多个 js 文件中，进行维护。但是这种维护方式，依然不能避免一些灾难性的问题。</p>
 <ol>
-<li>比如<code>全局变量同名</code>问题：看下边的例子。<code>小明后来发现代码不能正常运行，去检查自己的变量，发现确实true</code><br>
-<code>最后杯具发生了，小明加班到2点还是没有找到问题出在哪里(所以，某些加班真的是无意义的)</code></li>
-<li>另外，<code>这种代码的编写方式对js文件的依赖顺序几乎是强制性的</code>。但是当js文件过多，比如有几十个的时候，弄清楚它们的顺序是一件比较同时的事情。且即使你弄清楚顺序了，也不能避免上面出现的这种尴尬问题的发生。</li>
+<li>比如 <code> 全局变量同名 </code> 问题：看下边的例子。<code>小明后来发现代码不能正常运行，去检查自己的变量，发现确实 true</code><br>
+<code>最后杯具发生了，小明加班到 2 点还是没有找到问题出在哪里(所以，某些加班真的是无意义的)</code></li>
+<li>另外，<code>这种代码的编写方式对 js 文件的依赖顺序几乎是强制性的</code>。但是当 js 文件过多，比如有几十个的时候，弄清楚它们的顺序是一件比较同时的事情。且即使你弄清楚顺序了，也不能避免上面出现的这种尴尬问题的发生。</li>
 </ol>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808122843314.png" alt="image-20200808122843314"></p>
 <h3 id="匿名函数的解决方案">匿名函数的解决方案</h3>
-<p>我们可以使用匿名函数来解决方面的重名问题。在aaa.js文件中，我们使用匿名函数</p>
+<p>我们可以使用匿名函数来解决方面的重名问题。在 aaa.js 文件中，我们使用匿名函数</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123048497.png" alt="image-20200808123048497"></p>
-<p>但是如果我们希望在main.js文件中，用到flag，应该如何处理呢？显然，另外一个文件中不容易使用，因为flag是一个局部变量。</p>
+<p>但是如果我们希望在 main.js 文件中，用到 flag，应该如何处理呢？显然，另外一个文件中不容易使用，因为 flag 是一个局部变量。</p>
 <h3 id="模块化的解决方案">模块化的解决方案</h3>
 <p>我们可以使用将需要暴露到外面的变量，使用一个模块作为出口，什么意思呢？来看下对应的代码：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123210671.png" alt="image-20200808123210671">非常简单，在匿名函数内部，定义一个对象。</p>
 <p>给对象添加各种需要暴露到外面的属性和方法(不需要暴露的直接定义即可)。</p>
 <blockquote>
-<p>最后将这个对象返回，并且在外面使用了一个MoudleA接受。接下来，我们在man.js中怎么使用呢？我们只需要使用属于自己模块的属性和方法即可。<br>
+<p>最后将这个对象返回，并且在外面使用了一个 MoudleA 接受。接下来，我们在 man.js 中怎么使用呢？我们只需要使用属于自己模块的属性和方法即可。<br>
 这就是模块最基础的封装，事实上模块的封装还有很多高级的话题：但是我们这里就是要认识一下为什么需要模块，以及模块的原始雏形。幸运的是，前端模块化开发已经有了很多既有的规范，以及对应的实现方案。</p>
 </blockquote>
 <p><code>常见的模块化规范：</code><br>
-<code>CommonJS、AMD、CMD，也有ES6的Modules</code></p>
+<code>CommonJS、AMD、CMD，也有 ES6 的 Modules</code></p>
 <h2 id="CommonJS">CommonJS</h2>
 <p><code>模块化有两个核心：导出和导入</code><br>
-CommonJS的导出：</p>
+CommonJS 的导出：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123345858.png" alt="image-20200808123345858"></p>
-<p>CommonJS的导入</p>
+<p>CommonJS 的导入</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123350759.png" alt="image-20200808123350759"></p>
-<h2 id="ES6的Modules">ES6的Modules</h2>
-<h3 id="export基本使用">export基本使用</h3>
-<p>export指令用于导出变量，比如下面的代码：</p>
+<h2 id="ES6 的 Modules">ES6 的 Modules</h2>
+<h3 id="export 基本使用">export 基本使用</h3>
+<p>export 指令用于导出变量，比如下面的代码：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123448500.png" alt="image-20200808123448500"></p>
 <p>上面的代码还有另外一种写法：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123453884.png" alt="image-20200808123453884"></p>
 <p>上面我们主要是输出变量，<code>也可以输出函数或者输出类</code><br>
 上面的代码也可以写成这种形式：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123558628.png" alt="image-20200808123558628"></p>
-<p>某些情况下，一个模块中包含某个的功能，我们并不希望给这个功能命名，而且<code>让导入者可以自己来命名</code><br>
-这个时候就可以使用export default</p>
+<p>某些情况下，一个模块中包含某个的功能，我们并不希望给这个功能命名，而且 <code> 让导入者可以自己来命名</code><br>
+这个时候就可以使用 export default</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123623210.png" alt="image-20200808123623210"></p>
-<p>我们来到main.js中，这样使用就可以了<br>
-这里的myFunc是我自己命名的，你可以根据需要命名它对应的名字</p>
+<p>我们来到 main.js 中，这样使用就可以了<br>
+这里的 myFunc 是我自己命名的，你可以根据需要命名它对应的名字</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123636533.png" alt="image-20200808123636533"></p>
-<p>另外，需要注意：<code>export default在同一个模块中，不允许同时存在多个。</code></p>
-<h3 id="import使用">import使用</h3>
-<p>我们使用export指令导出了模块对外提供的接口，下面我们就可以通过import命令来加载对应的这个模块了<br>
-首先，<code>我们需要在HTML代码中引入两个js文件，并且类型需要设置为module</code></p>
+<p>另外，需要注意：<code>export default 在同一个模块中，不允许同时存在多个。</code></p>
+<h3 id="import 使用">import 使用</h3>
+<p>我们使用 export 指令导出了模块对外提供的接口，下面我们就可以通过 import 命令来加载对应的这个模块了<br>
+首先，<code>我们需要在 HTML 代码中引入两个 js 文件，并且类型需要设置为 module</code></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123756542.png" alt="image-20200808123756542"></p>
 <p>import 指令用于导入模块中的内容，比如 main.js 的代码</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123803004.png" alt="image-20200808123803004"></p>
-<p><code>如果我们希望某个模块中所有的信息都导入，一个个导入显然有些麻烦：通过*可以导入模块中所有的export变量 但是通常情况下我们需要给*起一个别名，方便后续的使用</code></p>
+<p><code>如果我们希望某个模块中所有的信息都导入，一个个导入显然有些麻烦：通过 * 可以导入模块中所有的 export 变量 但是通常情况下我们需要给 * 起一个别名，方便后续的使用</code></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200808123807955.png" alt="image-20200808123807955"></p>
-<h1>Vue CLI相关</h1>
-<p>如果你只是简单写几个Vue的Demo程序, 那么你不需要Vue CLI。</p>
-<p>如果你在开发大型项目, 那么你需要, 并且必然需要使用Vue CLI。</p>
-<p>使用Vue.js开发大型应用时，我们需要考虑代码目录结构、项目结构和部署、热加载、代码单元测试等事情。</p>
+<h1>Vue CLI 相关</h1>
+<p>如果你只是简单写几个 Vue 的 Demo 程序, 那么你不需要 Vue CLI。</p>
+<p>如果你在开发大型项目, 那么你需要, 并且必然需要使用 Vue CLI。</p>
+<p>使用 Vue.js 开发大型应用时，我们需要考虑代码目录结构、项目结构和部署、热加载、代码单元测试等事情。</p>
 <p>如果每个项目都要手动完成这些工作，那无以效率比较低效，所以通常我们会使用一些脚手架工具来帮助完成这些事情。</p>
-<p>CLI是什么意思?<br>
-<code>CLI是Command-Line Interface,</code> 翻译为命令行界面, 但是俗称脚手架。Vue CLI是一个官方发布 vue.js 项目脚手架</p>
-<p>使用 vue-cli 可以快速搭建Vue开发环境以及对应的webpack配置</p>
-<h2 id="Vue-CLI使用前提-Node">Vue CLI使用前提 - Node</h2>
-<h3 id="安装NodeJS">安装NodeJS</h3>
+<p>CLI 是什么意思?<br>
+<code>CLI 是 Command-Line Interface,</code> 翻译为命令行界面, 但是俗称脚手架。Vue CLI 是一个官方发布 vue.js 项目脚手架</p>
+<p>使用 vue-cli 可以快速搭建 Vue 开发环境以及对应的 webpack 配置</p>
+<h2 id="Vue-CLI 使用前提 -Node">Vue CLI 使用前提 - Node</h2>
+<h3 id="安装 NodeJS">安装 NodeJS</h3>
 <p>可以直接在官方网站中下载安装.<br>
 网址: <a class="link" target="_blank" rel="noopener" href="http://nodejs.cn/download/">http://nodejs.cn/download/<i class="fas fa-external-link-alt"></i></a><br>
 检测安装的版本</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200916164951331.png" alt="image-20200916164951331"></p>
-<p>默认情况下自动安装Node和NPM</p>
-<p>Node环境要求8.9以上或者更高版本</p>
-<p>什么是NPM呢?<br>
-<code>NPM的全称是Node Package Manager。是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。后续我们会经常使用NPM来安装一些开发过程中依赖包.</code></p>
-<h3 id="cnpm安装">cnpm安装</h3>
+<p>默认情况下自动安装 Node 和 NPM</p>
+<p>Node 环境要求 8.9 以上或者更高版本</p>
+<p>什么是 NPM 呢?<br>
+<code>NPM 的全称是 Node Package Manager。是一个 NodeJS 包管理和分发工具，已经成为了非官方的发布 Node 模块（包）的标准。后续我们会经常使用 NPM 来安装一些开发过程中依赖包.</code></p>
+<h3 id="cnpm 安装">cnpm 安装</h3>
 <p>由于国内直接使用 npm 的官方镜像是非常慢的，这里推荐使用淘宝 NPM 镜像。</p>
 <p>你可以使用淘宝定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:</p>
 <p><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
 <p>这样就可以使用 cnpm 命令来安装模块了：</p>
 <p><code>cnpm install [name]</code></p>
-<h2 id="Vue-CLI使用前提-Webpack">Vue CLI使用前提 - Webpack</h2>
-<p>Vue.js官方脚手架工具就使用了webpack模板。对所有的资源会压缩等优化操作。它在开发过程中提供了一套完整的功能，能够使得我们开发过程中变得高效。Webpack的全局安装</p>
+<h2 id="Vue-CLI 使用前提 -Webpack">Vue CLI 使用前提 - Webpack</h2>
+<p>Vue.js 官方脚手架工具就使用了 webpack 模板。对所有的资源会压缩等优化操作。它在开发过程中提供了一套完整的功能，能够使得我们开发过程中变得高效。Webpack 的全局安装</p>
 <p><code>npm install webpack -g</code></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200916165156206.png" alt="image-20200916165156206"></p>
-<h2 id="Vue-CLI的使用">Vue CLI的使用</h2>
-<p>安装Vue脚手架<br>
+<h2 id="Vue-CLI 的使用">Vue CLI 的使用</h2>
+<p>安装 Vue 脚手架<br>
 <code>npm install -g @vue/cli</code></p>
-<p>注意：上面安装的是Vue CLI3的版本，如果需要想按照Vue CLI2的方式初始化项目时不可以的。</p>
+<p>注意：上面安装的是 Vue CLI3 的版本，如果需要想按照 Vue CLI2 的方式初始化项目时不可以的。</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200916165258454.png" alt="image-20200916165258454"></p>
-<p>Vue CLI2初始化项目<br>
+<p>Vue CLI2 初始化项目<br>
 <code>vue init webpack my-project</code></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20200916165316533.png" alt="image-20200916165316533"></p>
-<p>Vue CLI3初始化项目<br>
+<p>Vue CLI3 初始化项目<br>
 <code>vue create my-project</code></p>
-<h2 id="VueCLI4的使用和配置">VueCLI4的使用和配置</h2>
-<p>一般喜欢用 test、preview、production分别表示测试，预览，生产三种环境。修改 package.json 文件如下</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: {</span><br><span class="line"></span><br><span class="line">    <span class="string">"serve"</span>: <span class="string">"vue-cli-service serve"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"vue-cli-service build --mode test"</span>,           <span class="comment">//测试</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"preview"</span>: <span class="string">"vue-cli-service build --mode preview"</span>,     <span class="comment">//预览</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"vue-cli-service build --mode production"</span>,    <span class="comment">//生产</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"lint"</span>: <span class="string">"vue-cli-service lint"</span></span><br><span class="line"></span><br><span class="line">},</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="VueCLI4 的使用和配置">VueCLI4 的使用和配置</h2>
+<p>一般喜欢用 test、preview、production 分别表示测试，预览，生产三种环境。修改 package.json 文件如下</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: {</span><br><span class="line"></span><br><span class="line">    <span class="string">"serve"</span>: <span class="string">"vue-cli-service serve"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"vue-cli-service build --mode test"</span>,           <span class="comment">// 测试</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"preview"</span>: <span class="string">"vue-cli-service build --mode preview"</span>,     <span class="comment">// 预览</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"vue-cli-service build --mode production"</span>,    <span class="comment">// 生产</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"lint"</span>: <span class="string">"vue-cli-service lint"</span></span><br><span class="line"></span><br><span class="line">},</span><br></pre></td></tr></tbody></table></figure>
 <p><code>在项目根目录下新建 .env.test、.env.preview、 .env.production 文件，分别对应三个环境的配置文件，注意，名字要与 --mode 后面的名字分别对应</code></p>
 <p>.env.test 代码如下</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"test"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"测试环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"test"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">" 测试环境域名 "</span></span><br></pre></td></tr></tbody></table></figure>
 <p>.env.pre 代码如下</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"preview"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"预览环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"preview"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">" 预览环境域名 "</span></span><br></pre></td></tr></tbody></table></figure>
 <p>.env.prod 代码如下</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"production"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"生产环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"production"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">" 生产环境域名 "</span></span><br></pre></td></tr></tbody></table></figure>
 <p>ok，这样环境就配置好了，分别用以下命令来打包不同环境的包就可以了</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm run test    <span class="comment">//测试</span></span><br><span class="line">npm run pre     <span class="comment">//预发布</span></span><br><span class="line">npm run prod    <span class="comment">//生产</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm run test    <span class="comment">// 测试</span></span><br><span class="line">npm run pre     <span class="comment">// 预发布</span></span><br><span class="line">npm run prod    <span class="comment">// 生产</span></span><br></pre></td></tr></tbody></table></figure>
 <p>另外需要说明一点的是，本地环境会默认从 .env.development 文件中读取配置。所以记得有需要记得新建一个然后存放配置。我的 .env.development 代码如下</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"development"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">"本地环境域名"</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">"development"</span></span><br><span class="line">VUE_APP_BASE_URL=<span class="string">" 本地环境域名 "</span></span><br></pre></td></tr></tbody></table></figure>
 <p>从 vue-cli3.0 开始 build 和 config 目录就取消了，如果需要修改配置，可以在项目的根目录新建一个 vue.config.js 文件来覆盖项目的配置，因为项目的配置比较多，这里就不分别介绍了，可以 <a class="link" target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/config/#vue-config-js">访问官方文档<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
@@ -344,7 +344,7 @@ CommonJS的导出：</p>
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">vue学习笔记05-vue-router</span>
+                                <span class="post-nav-title-item">vue 学习笔记 05-vue-router</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -357,7 +357,7 @@ CommonJS的导出：</p>
                            href="/2020/05/05/vue/webpack/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">vue学习笔记03-webpack</span>
+                                <span class="post-nav-title-item">vue 学习笔记 03-webpack</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -466,7 +466,7 @@ CommonJS的导出：</p>
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">前端模块化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%A8%A1%E5%9D%97%E5%8C%96%EF%BC%9F"><span class="nav-text">为什么需要模块化？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#js%E5%8E%9F%E7%94%9F%E5%8A%9F%E8%83%BD%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98"><span class="nav-text">js原生功能带来的各种问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">匿名函数的解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">模块化的解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CommonJS"><span class="nav-text">CommonJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6%E7%9A%84Modules"><span class="nav-text">ES6的Modules</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#export%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">export基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#import%E4%BD%BF%E7%94%A8"><span class="nav-text">import使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Vue CLI相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-CLI%E4%BD%BF%E7%94%A8%E5%89%8D%E6%8F%90-Node"><span class="nav-text">Vue CLI使用前提 - Node</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85NodeJS"><span class="nav-text">安装NodeJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cnpm%E5%AE%89%E8%A3%85"><span class="nav-text">cnpm安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-CLI%E4%BD%BF%E7%94%A8%E5%89%8D%E6%8F%90-Webpack"><span class="nav-text">Vue CLI使用前提 - Webpack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-CLI%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">Vue CLI的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VueCLI4%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="nav-text">VueCLI4的使用和配置</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">前端模块化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%A8%A1%E5%9D%97%E5%8C%96%EF%BC%9F"><span class="nav-text">为什么需要模块化？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#js%20%E5%8E%9F%E7%94%9F%E5%8A%9F%E8%83%BD%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98"><span class="nav-text">js 原生功能带来的各种问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">匿名函数的解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">模块化的解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CommonJS"><span class="nav-text">CommonJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6%20%E7%9A%84%20Modules"><span class="nav-text">ES6 的 Modules</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#export%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">export 基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#import%20%E4%BD%BF%E7%94%A8"><span class="nav-text">import 使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Vue CLI 相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-CLI%20%E4%BD%BF%E7%94%A8%E5%89%8D%E6%8F%90%20-Node"><span class="nav-text">Vue CLI 使用前提 - Node</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%20NodeJS"><span class="nav-text">安装 NodeJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cnpm%20%E5%AE%89%E8%A3%85"><span class="nav-text">cnpm 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-CLI%20%E4%BD%BF%E7%94%A8%E5%89%8D%E6%8F%90%20-Webpack"><span class="nav-text">Vue CLI 使用前提 - Webpack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-CLI%20%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">Vue CLI 的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VueCLI4%20%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="nav-text">VueCLI4 的使用和配置</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
@@ -566,20 +566,5 @@ CommonJS的导出：</p>
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

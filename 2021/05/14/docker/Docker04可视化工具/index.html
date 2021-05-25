@@ -9,7 +9,7 @@
     
     <title>
         
-            Docker可视化工具 |
+            Docker 可视化工具 |
         
         大白小怪兽
     </title>
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"https://img.sky123.top/img/milky-way-984050_1280.jpg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -156,7 +156,7 @@
 
         
         <div class="article-title">
-            <span class="title-hover-animation">Docker可视化工具</span>
+            <span class="title-hover-animation">Docker 可视化工具</span>
         </div>
         
             <div class="article-header">
@@ -196,11 +196,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                        <a href="/tags/Docker/">Docker</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/Docker/">Docker</a>&nbsp;
+                        | <a href="/tags/Linux/">Linux</a>&nbsp;
                     </li>
                 
             </ul>
@@ -218,13 +218,13 @@
             <h2 id="Portainer">Portainer</h2>
 <p>Docker 图形化界面管理工具，提供一个后台面板供我们操作！</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 8080:9000 \</span><br><span class="line">--restart=always -v /var/run/docker.sock:/var/run/docker.sock --privileged=<span class="literal">true</span> portainer/portainer</span><br></pre></td></tr></tbody></table></figure>
-<p>访问测试：<a class="link" target="_blank" rel="noopener" href="http://ip:8080/">http://ip:8080/<i class="fas fa-external-link-alt"></i></a> (可视化面板一般不使用，测试时使用)（注意一定要先在阿里云安全组防火墙配置中开放端口）：</p>
+<p> 访问测试：<a class="link" target="_blank" rel="noopener" href="http://ip:8080/">http://ip:8080/<i class="fas fa-external-link-alt"></i></a> (可视化面板一般不使用，测试时使用)（注意一定要先在阿里云安全组防火墙配置中开放端口）：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210512111853677.png" alt="image-20210512111853677"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210512111931325.png" alt="image-20210512111931325"></p>
-<p>创建用户后可以看到：</p>
+<p> 创建用户后可以看到：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210512112815070.png" alt="image-20210512112815070"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210512112854757.png" alt="image-20210512112854757"></p>
-<h2 id="Rancher（CI-CD再用）">Rancher（CI/CD再用）</h2>
+<h2 id="Rancher（CI-CD 再用）">Rancher（CI/CD 再用）</h2>
 
         </div>
 
@@ -240,7 +240,7 @@
                            href="/2021/05/14/docker/Docker05%E9%95%9C%E5%83%8F/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Docker镜像</span>
+                                <span class="post-nav-title-item">Docker 镜像</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -349,7 +349,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Portainer"><span class="nav-text">Portainer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rancher%EF%BC%88CI-CD%E5%86%8D%E7%94%A8%EF%BC%89"><span class="nav-text">Rancher（CI&#x2F;CD再用）</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Portainer"><span class="nav-text">Portainer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rancher%EF%BC%88CI-CD%20%E5%86%8D%E7%94%A8%EF%BC%89"><span class="nav-text">Rancher（CI&#x2F;CD 再用）</span></a></li></ol>
     </div>
 </div>
         </aside>
@@ -449,20 +449,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

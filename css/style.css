@@ -2032,7 +2032,7 @@ pre .javascript .function {
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
-  background: url("https://img.sky123.top/img/milky-way-984050_1280.jpg") center center/cover no-repeat;
+  background: url("/images/bg.svg") center center/cover no-repeat;
   background-position-y: 76px;
 }
 @media (max-width: 780px) {

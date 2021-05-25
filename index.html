@@ -17,7 +17,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"https://img.sky123.top/img/milky-way-984050_1280.jpg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -220,7 +220,7 @@
 
                 <h3 class="home-article-title">
                     <a href="/2021/05/14/docker/Docker04%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/">
-                        Docker可视化工具
+                        Docker 可视化工具
                     </a>
                 </h3>
 
@@ -243,12 +243,12 @@ docker run -d -p : \--restart=always -v /var/run/docker.sock:/var/run/docker.soc
                     
                         <li>
                             
-                            <a href="/tags/Linux/">Linux</a>&nbsp;
+                            <a href="/tags/Docker/">Docker</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/Docker/">Docker</a>&nbsp;
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -267,7 +267,7 @@ docker run -d -p : \--restart=always -v /var/run/docker.sock:/var/run/docker.soc
 
                 <h3 class="home-article-title">
                     <a href="/2021/05/14/docker/Docker05%E9%95%9C%E5%83%8F/">
-                        Docker镜像
+                        Docker 镜像
                     </a>
                 </h3>
 
@@ -294,12 +294,12 @@ docker run -d -p : \--restart=always -v /var/run/docker.sock:/var/run/docker.soc
                     
                         <li>
                             
-                            <a href="/tags/Linux/">Linux</a>&nbsp;
+                            <a href="/tags/Docker/">Docker</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/Docker/">Docker</a>&nbsp;
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -317,15 +317,18 @@ docker run -d -p : \--restart=always -v /var/run/docker.sock:/var/run/docker.soc
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2021/05/04/linux/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/">
-                        Linux服务器防火墙端口配置
+                    <a href="/2021/05/04/docker/Docker01%E6%A6%82%E8%BF%B0%E5%92%8C%E5%AE%89%E8%A3%85/">
+                        Docker 概述和安装
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        查看防火墙状态
-[root@izwzmvixkjjqhz ~]# systemctl status firewalld● firewalld.service - firewalld - dynamic firewall daemon   Loaded...
+                        Docker 概述
+Docker 出现的原因
+一款产品有两个环境：开发（开发环境）和上线（运维环境）。
+环境配置和切换过于麻烦，每一台机器都要部署环境（集群 Redis,ES,Hadoop），费时费力。
+解决思路：发布一个项目 （jar+(redis...
                     
                 </div>
 
@@ -340,12 +343,58 @@ docker run -d -p : \--restart=always -v /var/run/docker.sock:/var/run/docker.soc
                     
                         <li>
                             
-                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>&nbsp;
+                            <a href="/tags/Docker/">Docker</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
                             <a href="/tags/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/05/04/docker/Docker01%E6%A6%82%E8%BF%B0%E5%92%8C%E5%AE%89%E8%A3%85/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/05/04/linux/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE/">
+                        Linux 服务器防火墙端口配置
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                         查看防火墙状态 
+[root@izwzmvixkjjqhz ~]# systemctl status firewalld● firewalld.service - firewalld - dynamic firewall daemon   Load...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 04 2021 00:00:00 GMT+0800">2021-05-04</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -364,22 +413,22 @@ docker run -d -p : \--restart=always -v /var/run/docker.sock:/var/run/docker.soc
 
                 <h3 class="home-article-title">
                     <a href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">
-                        Docker部署练习
+                        Docker 部署练习
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        部署Nginx
+                        部署 Nginx
 
 搜索镜像，建议去 docker hub 搜索，可以看到帮助文档
 下载镜像
 运行测试
-配置容器内的ngnix的配置文件
+配置容器内的 ngnix 的配置文件
 
 https://hub.docker.com/
 
-[root@izwzmvixkjjqhz ~]# docker...
+[root@izwzmvixkjjqhz ~]# doc...
                     
                 </div>
 
@@ -394,12 +443,12 @@ https://hub.docker.com/
                     
                         <li>
                             
-                            <a href="/tags/Linux/">Linux</a>&nbsp;
+                            <a href="/tags/Docker/">Docker</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/Docker/">Docker</a>&nbsp;
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -417,64 +466,15 @@ https://hub.docker.com/
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2021/05/04/docker/Docker01%E6%A6%82%E8%BF%B0%E5%92%8C%E5%AE%89%E8%A3%85/">
-                        Docker概述和安装
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        Docker概述
-Docker出现的原因
-一款产品有两个环境：开发（开发环境）和上线（运维环境）。
-环境配置和切换过于麻烦，每一台机器都要部署环境（集群Redis,ES,Hadoop），费时费力。
-解决思路：发布一个项目（jar+(redis+mys...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 04 2021 00:00:00 GMT+0800">2021-05-04</span></span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Linux/">Linux</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Docker/">Docker</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/05/04/docker/Docker01%E6%A6%82%E8%BF%B0%E5%92%8C%E5%AE%89%E8%A3%85/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
                     <a href="/2021/05/04/docker/Docker02%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-                        Docker常用命令
+                        Docker 常用命令
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
                         帮助命令：
-#显示版本[root@izwzmvixkjjqhz ~]# docker versionClient: Docker Engine - Community Version:           .. API version:       ...
+# 显示版本[root@izwzmvixkjjqhz ~]# docker versionClient: Docker Engine - Community Version:           .. API version:      ...
                     
                 </div>
 
@@ -489,12 +489,12 @@ Docker出现的原因
                     
                         <li>
                             
-                            <a href="/tags/Linux/">Linux</a>&nbsp;
+                            <a href="/tags/Docker/">Docker</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/Docker/">Docker</a>&nbsp;
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -513,14 +513,14 @@ Docker出现的原因
 
                 <h3 class="home-article-title">
                     <a href="/2021/04/22/javascript/mock/">
-                        Mock和Mock.js
+                        Mock 和 Mock.js
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        关于mock
-mock可以简单理解为假数据。在软件开发中，我们不可避免的要调用一些外部或者系统级别的接口，然而，我们在测试时，也许这些接口或环境并不存在。比如在对我们自己的模块做单元测试时，发现自己的模块依赖的别的模块或接口还没有建立好，如何测试？（...
+                        关于 mock
+mock 可以简单理解为假数据。在软件开发中，我们不可避免的要调用一些外部或者系统级别的接口，然而，我们在测试时，也许这些接口或环境并不存在。比如在对我们自己的模块做单元测试时，发现自己的模块依赖的别的模块或接口还没有建立好，如何测试...
                     
                 </div>
 
@@ -559,17 +559,17 @@ mock可以简单理解为假数据。在软件开发中，我们不可避免的�
 
                 <h3 class="home-article-title">
                     <a href="/2021/03/10/%E8%BD%AF%E4%BB%B6/powerDesigner/">
-                        PowerDesigner安装教程（含下载+汉化+破解）
+                        PowerDesigner 安装教程（含下载 + 汉化 + 破解）
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        文章转自：https://www.fujieace.com/software/powerdesigner.html
-软件版本：Sybase PowerDesigner .
-准备工作：
-下载下面三个文件：
-、安装文件 链接: https://pan.b...
+                         文章转自：https://www.fujieace.com/software/powerdesigner.html
+ 软件版本：Sybase PowerDesigner .
+ 准备工作：
+ 下载下面三个文件：
+、安装文件 链接: https://p...
                     
                 </div>
 
@@ -615,10 +615,10 @@ mock可以简单理解为假数据。在软件开发中，我们不可避免的�
                 <div class="home-article-content markdown-body">
                     
                         栅格化布局
-网格布局（Grid）是最强大的 CSS 布局方案。
-它将网页划分成一个个网格，可以任意组合不同的网格，做出各种各样的布局。以前，只能通过复杂的 CSS 框架达到的效果，现在浏览器内置了。
+网格布局 （Grid） 是最强大的 CSS 布局方案。
+它将网页划分成一个个网格，可以任意组合不同的网格，做出各种各样的布局。以前，只能通过复杂的 CSS 框架  达到的效果，现在浏览器内置了。
 
-Grid 布局与 Flex 布局有一定的相似性，...
+Grid 布局与 Flex 布局有一定的...
                     
                 </div>
 
@@ -657,15 +657,15 @@ Grid 布局与 Flex 布局有一定的相似性，...
 
                 <h3 class="home-article-title">
                     <a href="/2020/09/04/css/css%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/">
-                        media媒体查询
+                        media 媒体查询
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        Media Query响应式布局—媒体查询
-​	响应式布局是在年月份提出的一个概念，简而言之，就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这个概念是为解决移动互联网浏览而诞生的。
-​	响应式布局可以为不同终端的用户提供更加舒适的...
+                        Media Query 响应式布局—媒体查询
+​	响应式布局是在  年  月份提出的一个概念，简而言之，就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这个概念是为解决移动互联网浏览而诞生的。
+​	响应式布局可以为不同终端的用户提供...
                     
                 </div>
 
@@ -881,20 +881,5 @@ Grid 布局与 Flex 布局有一定的相似性，...
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

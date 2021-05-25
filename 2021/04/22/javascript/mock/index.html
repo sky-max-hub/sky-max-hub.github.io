@@ -9,7 +9,7 @@
     
     <title>
         
-            Mock和Mock.js |
+            Mock 和 Mock.js |
         
         大白小怪兽
     </title>
@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"https://img.sky123.top/img/milky-way-984050_1280.jpg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"left","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0">
@@ -156,7 +156,7 @@
 
         
         <div class="article-title">
-            <span class="title-hover-animation">Mock和Mock.js</span>
+            <span class="title-hover-animation">Mock 和 Mock.js</span>
         </div>
         
             <div class="article-header">
@@ -215,14 +215,14 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="关于mock">关于mock</h2>
-<p><code>mock可以简单理解为假数据</code>。在软件开发中，我们不可避免的要调用一些外部或者系统级别的接口，然而，我们在测试时，也许这些接口或环境并不存在。比如在对我们自己的模块做单元测试时，发现自己的模块依赖的别的模块或接口还没有建立好，如何测试？<code>（后端的接口还没写好，前端该怎么测试接口？前端写假数据接口，暂时替代后端）</code></p>
-<p>Mock概念应运而生，最开始在Java领域，后来各种语言或开发领域均引入该概念。</p>
-<p>Mock实际上就是一种模拟和控制外部或者系统级别对象或接口的方法。因此，我们在做测试时，尤其是单元测试或覆盖测试时，不必与真实环境交互即可完成对自己的模块业务逻辑的测试，或许自己的模块需要依赖外部环境。</p>
+            <h2 id="关于 mock">关于 mock</h2>
+<p><code>mock 可以简单理解为假数据</code>。在软件开发中，我们不可避免的要调用一些外部或者系统级别的接口，然而，我们在测试时，也许这些接口或环境并不存在。比如在对我们自己的模块做单元测试时，发现自己的模块依赖的别的模块或接口还没有建立好，如何测试？<code>（后端的接口还没写好，前端该怎么测试接口？前端写假数据接口，暂时替代后端）</code></p>
+<p>Mock 概念应运而生，最开始在 Java 领域，后来各种语言或开发领域均引入该概念。</p>
+<p>Mock 实际上就是一种模拟和控制外部或者系统级别对象或接口的方法。因此，我们在做测试时，尤其是单元测试或覆盖测试时，不必与真实环境交互即可完成对自己的模块业务逻辑的测试，或许自己的模块需要依赖外部环境。</p>
 <p><code>(这里看看即可，主要理解一下这种 mock 思想的出现解决了什么问题？)</code></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330144250709.png" alt="image-20210330144250709"></p>
 <h2 id="Mock-js">Mock.js</h2>
-<p>上面所说的 mock 是一种思想，而现在说的<code>Mock.js</code>是一门技术，是这种思想的具体实现。我们主要学的是<code>Mock.js</code>。其实此外还有许多技术可以替代它。比如 <code>easyMock，apifox..</code></p>
+<p>上面所说的 mock 是一种思想，而现在说的 <code>Mock.js</code> 是一门技术，是这种思想的具体实现。我们主要学的是<code>Mock.js</code>。其实此外还有许多技术可以替代它。比如 <code>easyMock，apifox..</code></p>
 <p>官网：<a class="link" target="_blank" rel="noopener" href="http://mockjs.com/">http://mockjs.com/<i class="fas fa-external-link-alt"></i></a></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330145423844.png" alt="image-20210330145423844"></p>
 <p>优点：</p>
@@ -236,61 +236,61 @@
 <h3 id="配置使用">配置使用</h3>
 <p>新建如下目录结构：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330155310609.png" alt="image-20210330155310609"></p>
-<p>解释：<code>decision目录</code>中的文件命名尽量和<code>api文件夹</code>里的文件对应</p>
+<p>解释：<code>decision 目录 </code> 中的文件命名尽量和 <code>api 文件夹</code> 里的文件对应</p>
 <p>在  <code>mock/index.js</code> 中写入：</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Mock <span class="keyword">from</span> <span class="string">"mockjs"</span>;</span><br><span class="line"><span class="keyword">import</span> file <span class="keyword">from</span> <span class="string">"./decision/file"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//拦截 `/api/testGet` 接口的`get方式`的请求，如果拦截到就调用 `file.testGet` 中的函数。</span></span><br><span class="line">Mock.mock(<span class="built_in">RegExp</span>(<span class="string">"/api/testGet"</span> + <span class="string">".*"</span>), <span class="string">"get"</span>, file.testGet);</span><br><span class="line"></span><br><span class="line"><span class="comment">//拦截 `/api/testGet` 接口的`post方式`的请求，如果拦截到就返回 `file.testPost` 中的对象。</span></span><br><span class="line">Mock.mock(<span class="string">"/api/testPost"</span>, <span class="string">"post"</span>, file.testPost);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Mock;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Mock <span class="keyword">from</span> <span class="string">"mockjs"</span>;</span><br><span class="line"><span class="keyword">import</span> file <span class="keyword">from</span> <span class="string">"./decision/file"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 拦截 `/api/testGet` 接口的 `get 方式 ` 的请求，如果拦截到就调用 `file.testGet` 中的函数。</span></span><br><span class="line">Mock.mock(<span class="built_in">RegExp</span>(<span class="string">"/api/testGet"</span> + <span class="string">".*"</span>), <span class="string">"get"</span>, file.testGet);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 拦截 `/api/testGet` 接口的 `post 方式 ` 的请求，如果拦截到就返回 `file.testPost` 中的对象。</span></span><br><span class="line">Mock.mock(<span class="string">"/api/testPost"</span>, <span class="string">"post"</span>, file.testPost);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Mock;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>在 <code>mock/decision/file.js</code> 中写入：</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 管理mock数据</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> {</span><br><span class="line">  <span class="function"><span class="title">testGet</span>(<span class="params">options</span>)</span> {</span><br><span class="line">    <span class="built_in">console</span>.log(options);</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">      code: <span class="number">1</span>,</span><br><span class="line">      msg: <span class="string">"GET成功"</span>,</span><br><span class="line">      data: {</span><br><span class="line">        token: <span class="string">"123456"</span>,</span><br><span class="line">        collegeId: <span class="string">"123"</span></span><br><span class="line">      }</span><br><span class="line">    };</span><br><span class="line">    <span class="comment">// 登录接口返回的数据</span></span><br><span class="line">  },</span><br><span class="line">  testPost: {</span><br><span class="line">    code: <span class="number">1</span>,</span><br><span class="line">    msg: <span class="string">"POST成功"</span>,</span><br><span class="line">    data: {</span><br><span class="line">      token: <span class="string">"123456"</span>,</span><br><span class="line">      collegeId: <span class="string">"123"</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 管理 mock 数据</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> {</span><br><span class="line">  <span class="function"><span class="title">testGet</span>(<span class="params">options</span>)</span> {</span><br><span class="line">    <span class="built_in">console</span>.log(options);</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">      code: <span class="number">1</span>,</span><br><span class="line">      msg: <span class="string">"GET 成功 "</span>,</span><br><span class="line">      data: {</span><br><span class="line">        token: <span class="string">"123456"</span>,</span><br><span class="line">        collegeId: <span class="string">"123"</span></span><br><span class="line">      }</span><br><span class="line">    };</span><br><span class="line">    <span class="comment">// 登录接口返回的数据</span></span><br><span class="line">  },</span><br><span class="line">  testPost: {</span><br><span class="line">    code: <span class="number">1</span>,</span><br><span class="line">    msg: <span class="string">"POST 成功 "</span>,</span><br><span class="line">    data: {</span><br><span class="line">      token: <span class="string">"123456"</span>,</span><br><span class="line">      collegeId: <span class="string">"123"</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 <p>在项目的 <code>main.js</code> 中引入<code>mockjs</code></p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"./mock/index.js"</span>; <span class="comment">// 使用mockjs模拟</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"./mock/index.js"</span>; <span class="comment">// 使用 mockjs 模拟</span></span><br></pre></td></tr></tbody></table></figure>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330155820989.png" alt="image-20210330155820989"></p>
 <h3 id="测试效果">测试效果</h3>
 <p><img lazyload="" src="/images/loading.svg" data-src="upload%5Cimage-20210330155908404.png" alt="image-20210330155908404"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="upload%5Cimage-20210330155919853.png" alt="image-20210330155919853"></p>
-<h2 id="Mock-js-配置的一些注意点">Mock.js 配置的一些注意点</h2>
+<h2 id="Mock-js- 配置的一些注意点">Mock.js 配置的一些注意点</h2>
 <ol>
 <li>
 <p>模拟 <code>get</code> 请求的 <code>url</code> 注意一定要正则表达式的风格：例如</p>
 <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="built_in">RegExp</span>(<span class="string">"/api/testGet"</span> + <span class="string">".*"</span>), <span class="string">"get"</span>, file.testGet);</span><br></pre></td></tr></tbody></table></figure>
-<p>这段代码的含义是，拦截 <code>/api/testGet</code> 接口的<code>get方式</code>的请求，如果拦截到就调用 <code>file.testGet</code> 函数。</p>
-<p>为什么不直接像拦截post请求那样 <code>url</code>  直接是个字符串形式的？因为 <code>get请求的url后面是带参数的！！！</code></p>
-<p>直接使用字符串mock只会拦截 <code>/api/testGet</code>，不会拦截  <code>/api/testGet?XXX=XXX&amp;XXX=XXX</code>这种形式的。</p>
+<p>这段代码的含义是，拦截 <code>/api/testGet</code> 接口的 <code>get 方式</code> 的请求，如果拦截到就调用 <code>file.testGet</code> 函数。</p>
+<p>为什么不直接像拦截 post 请求那样 <code>url</code>  直接是个字符串形式的？因为 <code>get 请求的 url 后面是带参数的！！！</code></p>
+<p>直接使用字符串 mock 只会拦截 <code>/api/testGet</code>，不会拦截  <code>/api/testGet?XXX=XXX&amp;XXX=XXX</code>这种形式的。</p>
 </li>
 <li>
 <p>从上面的使用可以看出：一个接口就要写一个 <code>Mock.mock(XXXXXXX)</code>。而我们写完这个之后最主要的就是写它返回的假数据。（<code>Mock.mock</code>函数的使用可以看一下官网的解释：<a class="link" target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Mock.mock()%EF%BC%89">https://github.com/nuysoft/Mock/wiki/Mock.mock()）<i class="fas fa-external-link-alt"></i></a></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330161517775.png" alt="image-20210330161517775"></p>
-<p>看到官网的解释可以发现，第三个参数（模拟数据）其实有两种方式：<code>function 和 template</code> 。分别对应之前写的<code>testGet和testPost</code> ：</p>
+<p>看到官网的解释可以发现，第三个参数（模拟数据）其实有两种方式：<code>function 和 template</code> 。分别对应之前写的<code>testGet 和 testPost</code> ：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330161829735.png" alt="image-20210330161829735"></p>
 <p>这两种方式都很常用。都要会使用！</p>
 </li>
 </ol>
-<h4 id="template类型">template类型</h4>
+<h4 id="template 类型">template 类型</h4>
 <p>看官网的解释：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330162015199.png" alt="image-20210330162015199"></p>
 <p>这里说明：<code>template</code> 它可以直接就是一个对象或字符串，也就是说你在写它的假数据时可以直接定义一个对象或字符串就行。比如前面写的 <code>testPost</code></p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">testPost: {</span><br><span class="line">    code: <span class="number">1</span>,</span><br><span class="line">    msg: <span class="string">"POST成功"</span>,</span><br><span class="line">    data: {</span><br><span class="line">      token: <span class="string">"123456"</span>,</span><br><span class="line">      collegeId: <span class="string">"123"</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br></pre></td></tr></tbody></table></figure>
-<p>拦截成功后直接就是返回你所写的假数据。而这种方式最好的一点是<code>它可以生成随机数据</code></p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">testPost: {</span><br><span class="line">    code: <span class="number">1</span>,</span><br><span class="line">    msg: <span class="string">"POST 成功 "</span>,</span><br><span class="line">    data: {</span><br><span class="line">      token: <span class="string">"123456"</span>,</span><br><span class="line">      collegeId: <span class="string">"123"</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br></pre></td></tr></tbody></table></figure>
+<p>拦截成功后直接就是返回你所写的假数据。而这种方式最好的一点是 <code> 它可以生成随机数据</code></p>
 <p>看到官网的：<a class="link" target="_blank" rel="noopener" href="http://mockjs.com/examples.html#String%E3%80%82%E5%8F%91%E7%8E%B0%E8%BF%99%E9%87%8C%E8%AE%B2%E4%BA%86%E5%BE%88%E5%A4%9A%E7%9A%84%E8%AF%AD%E6%B3%95%E3%80%82%E6%80%8E%E4%B9%88%E7%94%A8%EF%BC%9F%E5%81%87%E5%A6%82%E6%88%91%E6%83%B3%E6%AF%8F%E6%AC%A1%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3%E6%8B%A6%E6%88%AA%E4%B9%8B%E5%90%8E%E8%BF%94%E5%9B%9E%E7%9A%84">http://mockjs.com/examples.html#String。发现这里讲了很多的语法。怎么用？假如我想每次调用接口拦截之后返回的<i class="fas fa-external-link-alt"></i></a> <code>token 和 collegeId</code> 都是不一样的。那么可以这么写：</p>
 <p>在官网找到数据类型：这里由于两个都是字符串类型的，我选择使用 正则表达式的类型</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330163542540.png" alt="image-20210330163542540"></p>
 <p>修改为：</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">testPost: {</span><br><span class="line">    code: <span class="number">1</span>,</span><br><span class="line">    msg: <span class="string">"POST成功"</span>,</span><br><span class="line">    data: {</span><br><span class="line">      token: <span class="regexp">/[a-z][A-Z][0-9][0-9][0-9]/</span>,</span><br><span class="line">      collegeId: <span class="regexp">/[0-9][0-9][0-9][0-9]/</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">testPost: {</span><br><span class="line">    code: <span class="number">1</span>,</span><br><span class="line">    msg: <span class="string">"POST 成功 "</span>,</span><br><span class="line">    data: {</span><br><span class="line">      token: <span class="regexp">/[a-z][A-Z][0-9][0-9][0-9]/</span>,</span><br><span class="line">      collegeId: <span class="regexp">/[0-9][0-9][0-9][0-9]/</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br></pre></td></tr></tbody></table></figure>
 <p>查看效果：发现多次调用返回的都是不同的结果：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330163811844.png" alt="image-20210330163811844"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330163820152.png" alt="image-20210330163820152"></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330163834223.png" alt="image-20210330163834223"></p>
 <p>总结：使用 template 类型可以生成随机数据，使得每次调用接口时的数据都不同，但是你如果不想用随机数据的话也可以直接写死，每次返回同样的数据，这样甚至都不用去关注官网提到的那些随机数据的生成语法。不过多了解点总是好的。</p>
-<h4 id="function类型">function类型</h4>
+<h4 id="function 类型">function 类型</h4>
 <p>看官网：<a class="link" target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Mock.mock()">https://github.com/nuysoft/Mock/wiki/Mock.mock()<i class="fas fa-external-link-alt"></i></a></p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330164423839.png" alt="image-20210330164423839"></p>
-<p>这种方式就最大的好处就是可以<code>前端简单的实现增删改数据的效果</code>。就是说当你调用涉及到增删改数据的接口时，仅仅使用上面的 <code>template</code> 类型是看不到增删改的效果的。此时只能使用 <code>function</code> 类型的。返回这种类型时实际上就是调用了你所定义的函数，然后<code>将函数的返回值作为假数据</code>。比如之前写的 <code>testGet</code>:</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">testGet</span>(<span class="params">options</span>)</span> {</span><br><span class="line">    <span class="built_in">console</span>.log(options);</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">      code: <span class="number">1</span>,</span><br><span class="line">      msg: <span class="string">"GET成功"</span>,</span><br><span class="line">      data: {</span><br><span class="line">        token: <span class="string">"123456"</span>,</span><br><span class="line">        collegeId: <span class="string">"123"</span></span><br><span class="line">      }</span><br><span class="line">    };</span><br><span class="line">  },</span><br></pre></td></tr></tbody></table></figure>
+<p>这种方式就最大的好处就是可以 <code> 前端简单的实现增删改数据的效果 </code>。就是说当你调用涉及到增删改数据的接口时，仅仅使用上面的 <code>template</code> 类型是看不到增删改的效果的。此时只能使用 <code>function</code> 类型的。返回这种类型时实际上就是调用了你所定义的函数，然后<code> 将函数的返回值作为假数据</code>。比如之前写的 <code>testGet</code>:</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">testGet</span>(<span class="params">options</span>)</span> {</span><br><span class="line">    <span class="built_in">console</span>.log(options);</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">      code: <span class="number">1</span>,</span><br><span class="line">      msg: <span class="string">"GET 成功 "</span>,</span><br><span class="line">      data: {</span><br><span class="line">        token: <span class="string">"123456"</span>,</span><br><span class="line">        collegeId: <span class="string">"123"</span></span><br><span class="line">      }</span><br><span class="line">    };</span><br><span class="line">  },</span><br></pre></td></tr></tbody></table></figure>
 <p>可以发现这个函数有一个参数，打印之后发现：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330165256662.png" alt="image-20210330165256662"></p>
 <p>实际上就是你调用的接口的信息！！拿到这个你其实可以做很多事情，比如下面这个，找到之前发的出卷系统的项目的<code>mock/decision/auditJoin.js/auditJoinGet  这个函数</code>：</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210330165702842.png" alt="image-20210330165702842"></p>
-<p>在 <code>auditJoin.js</code> 中可以看到首先定义一连串的数据，然后不同的函数根据自己的<code>options</code>找到参数后进行对应的操作返回不同的数据。</p>
-<p>总结：function 类型的使用可以实现一些增删改接口数据的效果。但是使用这种方法后要想生成随机数据的话就不能使用之前 <a class="link" target="_blank" rel="noopener" href="http://mockjs.com/examples.html#String">http://mockjs.com/examples.html#String<i class="fas fa-external-link-alt"></i></a> 提到的这些语法。而要使用别的方法实现（MockRandom：<a class="link" target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Mock.Random%EF%BC%8C%E8%BF%99%E7%A7%8D%E6%96%B9%E6%B3%95%E4%B8%8D%E5%81%9A%E8%A6%81%E6%B1%82%EF%BC%8C%E8%83%BD%E7%9C%8B%E6%87%82%E7%9A%84%E4%BA%BA%E5%B0%B1%E7%94%A8%E4%B8%80%E4%B8%8B%EF%BC%8C%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E4%BA%BA%E5%B0%B1%E5%BD%93%E4%BD%9C%E6%B2%A1%E7%9C%8B%E8%BF%87%EF%BC%89%E3%80%82%E6%80%BB%E4%B9%8B%EF%BC%8C%E7%94%A8">https://github.com/nuysoft/Mock/wiki/Mock.Random，这种方法不做要求，能看懂的人就用一下，看不懂的人就当作没看过）。总之，用<i class="fas fa-external-link-alt"></i></a> <code>function</code> 类型时可以参照：<code>之前发的出卷系统的项目的mock/decision/auditJoin.js</code> 里面的写法。</p>
+<p>在 <code>auditJoin.js</code> 中可以看到首先定义一连串的数据，然后不同的函数根据自己的 <code>options</code> 找到参数后进行对应的操作返回不同的数据。</p>
+<p>总结：function 类型的使用可以实现一些增删改接口数据的效果。但是使用这种方法后要想生成随机数据的话就不能使用之前 <a class="link" target="_blank" rel="noopener" href="http://mockjs.com/examples.html#String">http://mockjs.com/examples.html#String<i class="fas fa-external-link-alt"></i></a> 提到的这些语法。而要使用别的方法实现（MockRandom：<a class="link" target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Mock.Random%EF%BC%8C%E8%BF%99%E7%A7%8D%E6%96%B9%E6%B3%95%E4%B8%8D%E5%81%9A%E8%A6%81%E6%B1%82%EF%BC%8C%E8%83%BD%E7%9C%8B%E6%87%82%E7%9A%84%E4%BA%BA%E5%B0%B1%E7%94%A8%E4%B8%80%E4%B8%8B%EF%BC%8C%E7%9C%8B%E4%B8%8D%E6%87%82%E7%9A%84%E4%BA%BA%E5%B0%B1%E5%BD%93%E4%BD%9C%E6%B2%A1%E7%9C%8B%E8%BF%87%EF%BC%89%E3%80%82%E6%80%BB%E4%B9%8B%EF%BC%8C%E7%94%A8">https://github.com/nuysoft/Mock/wiki/Mock.Random，这种方法不做要求，能看懂的人就用一下，看不懂的人就当作没看过）。总之，用 <i class="fas fa-external-link-alt"></i></a> <code>function</code> 类型时可以参照：<code> 之前发的出卷系统的项目的 mock/decision/auditJoin.js</code> 里面的写法。</p>
 <h3 id="总结">总结</h3>
 <p><code>Mock.js</code> 实际上只是在前端开发时写的一些假接口数据，之后等后端代码写好，前后端整合的时候，就需要把它注释掉了。</p>
 
@@ -310,7 +310,7 @@
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Docker常用命令</span>
+                                <span class="post-nav-title-item">Docker 常用命令</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -323,7 +323,7 @@
                            href="/2021/03/10/%E8%BD%AF%E4%BB%B6/powerDesigner/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">PowerDesigner安装教程（含下载+汉化+破解）</span>
+                                <span class="post-nav-title-item">PowerDesigner 安装教程（含下载 + 汉化 + 破解）</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -432,7 +432,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Emock"><span class="nav-text">关于mock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mock-js"><span class="nav-text">Mock.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%99%E4%B8%AA%E4%B8%9C%E8%A5%BF%E6%80%8E%E4%B9%88%E7%94%A8%E5%88%B0%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%8E%BB%EF%BC%9F"><span class="nav-text">这个东西怎么用到项目中去？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8"><span class="nav-text">配置使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%95%88%E6%9E%9C"><span class="nav-text">测试效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mock-js-%E9%85%8D%E7%BD%AE%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">Mock.js 配置的一些注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#template%E7%B1%BB%E5%9E%8B"><span class="nav-text">template类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#function%E7%B1%BB%E5%9E%8B"><span class="nav-text">function类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%20mock"><span class="nav-text">关于 mock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mock-js"><span class="nav-text">Mock.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%99%E4%B8%AA%E4%B8%9C%E8%A5%BF%E6%80%8E%E4%B9%88%E7%94%A8%E5%88%B0%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%8E%BB%EF%BC%9F"><span class="nav-text">这个东西怎么用到项目中去？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8"><span class="nav-text">配置使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%95%88%E6%9E%9C"><span class="nav-text">测试效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mock-js-%20%E9%85%8D%E7%BD%AE%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">Mock.js 配置的一些注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#template%20%E7%B1%BB%E5%9E%8B"><span class="nav-text">template 类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#function%20%E7%B1%BB%E5%9E%8B"><span class="nav-text">function 类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
@@ -532,20 +532,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
