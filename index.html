@@ -219,16 +219,214 @@
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2021/05/14/docker/Docker04%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/">
-                        Docker 可视化工具
+                    <a href="/2021/05/28/docker/Docker07dockerfile/">
+                        Dockerfile
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        Portainer
+                        Dockerfile
+什么是 DockerfIle?
+Dockerfile 就是用来  构建 Docker 镜像  的构建文件。一种命令脚本。通过这个脚本可以生成镜像，镜像是一层层的，脚本也是一个个的，每个命令都是一层。
+创建 Dockerfile
+...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri May 28 2021 00:00:00 GMT+0800">2021-05-28</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Docker/">Docker</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/05/28/docker/Docker07dockerfile/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/05/28/docker/Docker08docker%E7%BD%91%E7%BB%9C/">
+                        Docker 网络
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        Docker 网络
+Docker
+[root@izwzmvixkjjqhz ~]# ip addr# 本机回环地址 .../: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu  qdisc noqueue state UNK...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri May 28 2021 00:00:00 GMT+0800">2021-05-28</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Docker/">Docker</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/05/28/docker/Docker08docker%E7%BD%91%E7%BB%9C/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/05/27/docker/Docker06%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/">
+                        Docker 容器数据卷
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                         容器数据卷 
+ 什么是容器数据卷？
+ 问题：如果数据都在容器中，那么我们容器删除，数据就会丢失！ 需求：数据可以持久化 
+ 解决：容器之间可以有一个数据共享技术，Docker 容器中产生的数据可以同步到本地。这就是卷技术。
+ 数据卷技术：实现容器与...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu May 27 2021 00:00:00 GMT+0800">2021-05-27</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Docker/">Docker</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/05/27/docker/Docker06%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/05/15/docker/Docker05%E9%95%9C%E5%83%8F/">
+                        Docker 镜像
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        Docker 镜像
+镜像是什么？
+镜像是一种轻量级，可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含运行某个软件所需的所有内容，包括代码，运行时库，环境变量和配置文件。
+如何获得镜像
+
+从远程仓库下载
+朋友拷贝给你
+自己制作一...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat May 15 2021 00:00:00 GMT+0800">2021-05-15</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Docker/">Docker</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/05/15/docker/Docker05%E9%95%9C%E5%83%8F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/05/14/docker/Docker04%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/">
+                        Docker04 可视化工具
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        Docker 可视化工具 
+Portainer
 Docker 图形化界面管理工具，提供一个后台面板供我们操作！
-docker run -d -p : \--restart=always -v /var/run/docker.sock:/var/run/docker.sock -...
+docker run -d -p : \--restart=always -v /var/run/docker.sock:/var/run...
                     
                 </div>
 
@@ -257,57 +455,6 @@ docker run -d -p : \--restart=always -v /var/run/docker.sock:/var/run/docker.soc
     </div>
 
     <a href="/2021/05/14/docker/Docker04%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/05/14/docker/Docker05%E9%95%9C%E5%83%8F/">
-                        Docker 镜像
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        镜像是什么？
-镜像是一种轻量级，可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含运行某个软件所需的所有内容，包括代码，运行时库，环境变量和配置文件。
-如何获得镜像
-
-从远程仓库下载
-朋友拷贝给你
-自己制作一个镜像 Docker...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri May 14 2021 00:00:00 GMT+0800">2021-05-14</span></span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Docker/">Docker</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Linux/">Linux</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/05/14/docker/Docker05%E9%95%9C%E5%83%8F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -412,60 +559,6 @@ Docker 出现的原因
                 
 
                 <h3 class="home-article-title">
-                    <a href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">
-                        Docker 部署练习
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        部署 Nginx
-
-搜索镜像，建议去 docker hub 搜索，可以看到帮助文档
-下载镜像
-运行测试
-配置容器内的 ngnix 的配置文件
-
-https://hub.docker.com/
-
-[root@izwzmvixkjjqhz ~]# doc...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 04 2021 00:00:00 GMT+0800">2021-05-04</span></span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Docker/">Docker</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Linux/">Linux</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
                     <a href="/2021/05/04/docker/Docker02%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
                         Docker 常用命令
                     </a>
@@ -473,8 +566,9 @@ https://hub.docker.com/
 
                 <div class="home-article-content markdown-body">
                     
-                        帮助命令：
-# 显示版本[root@izwzmvixkjjqhz ~]# docker versionClient: Docker Engine - Community Version:           .. API version:      ...
+                        Docker 常用命令 
+ 帮助命令：
+# 显示版本 [root@izwzmvixkjjqhz ~]# docker versionClient: Docker Engine - Community Version:           .. API...
                     
                 </div>
 
@@ -503,6 +597,61 @@ https://hub.docker.com/
     </div>
 
     <a href="/2021/05/04/docker/Docker02%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">
+                        Docker 部署练习
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        Docker 练习 
+ 部署 Nginx
+
+ 搜索镜像，建议去 docker hub 搜索，可以看到帮助文档 
+ 下载镜像 
+ 运行测试 
+ 配置容器内的 ngnix 的配置文件 
+
+https://hub.docker.com/
+
+[root@iz...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 04 2021 00:00:00 GMT+0800">2021-05-04</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Docker/">Docker</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Linux/">Linux</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/05/04/docker/Docker03%E9%83%A8%E7%BD%B2%E7%BB%83%E4%B9%A0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -549,151 +698,6 @@ mock 可以简单理解为假数据。在软件开发中，我们不可避免的
     </div>
 
     <a href="/2021/04/22/javascript/mock/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/03/10/%E8%BD%AF%E4%BB%B6/powerDesigner/">
-                        PowerDesigner 安装教程（含下载 + 汉化 + 破解）
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                         文章转自：https://www.fujieace.com/software/powerdesigner.html
- 软件版本：Sybase PowerDesigner .
- 准备工作：
- 下载下面三个文件：
-、安装文件 链接: https://p...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Mar 10 2021 10:18:11 GMT+0800">2021-03-10</span></span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/powerDesigner/">powerDesigner</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/03/10/%E8%BD%AF%E4%BB%B6/powerDesigner/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/">
-                        栅格布局基本概念
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        栅格化布局
-网格布局 （Grid） 是最强大的 CSS 布局方案。
-它将网页划分成一个个网格，可以任意组合不同的网格，做出各种各样的布局。以前，只能通过复杂的 CSS 框架  达到的效果，现在浏览器内置了。
-
-Grid 布局与 Flex 布局有一定的...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Sep 04 2020 14:53:47 GMT+0800">2020-09-04</span></span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/css/">css</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/html/">html</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2020/09/04/css/%E6%A0%85%E6%A0%BC%E5%B8%83%E5%B1%80/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2020/09/04/css/css%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/">
-                        media 媒体查询
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        Media Query 响应式布局—媒体查询
-​	响应式布局是在  年  月份提出的一个概念，简而言之，就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这个概念是为解决移动互联网浏览而诞生的。
-​	响应式布局可以为不同终端的用户提供...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Sep 04 2020 14:53:47 GMT+0800">2020-09-04</span></span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/css/">css</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/html/">html</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2020/09/04/css/css%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
