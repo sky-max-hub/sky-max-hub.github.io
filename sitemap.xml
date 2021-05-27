@@ -275,14 +275,14 @@
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/2020/03/06/spring/Spring%E5%85%A5%E9%97%A806%E5%9F%BA%E4%BA%8EXML%E7%9A%84AOP%E9%85%8D%E7%BD%AE/</loc>
+    <loc>http://blog.sky123.top/2020/01/01/Mybatis/MyBatis%E5%85%A5%E9%97%A801%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%92%8C%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0/</loc>
     
     <lastmod>2021-05-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/2020/01/01/Mybatis/MyBatis%E5%85%A5%E9%97%A801%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%92%8C%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0/</loc>
+    <loc>http://blog.sky123.top/2020/03/06/spring/Spring%E5%85%A5%E9%97%A806%E5%9F%BA%E4%BA%8EXML%E7%9A%84AOP%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2021-05-24</lastmod>
     
@@ -296,14 +296,14 @@
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/2020/01/04/Mybatis/MyBatis%E5%85%A5%E9%97%A804%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E5%92%8C%E7%BC%93%E5%AD%98%E5%8A%9F%E8%83%BD/</loc>
+    <loc>http://blog.sky123.top/2020/01/05/Mybatis/MyBatis%E5%85%A5%E9%97%A805%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84Mybatis/</loc>
     
     <lastmod>2021-05-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/2020/01/05/Mybatis/MyBatis%E5%85%A5%E9%97%A805%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84Mybatis/</loc>
+    <loc>http://blog.sky123.top/2020/01/04/Mybatis/MyBatis%E5%85%A5%E9%97%A804%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E5%92%8C%E7%BC%93%E5%AD%98%E5%8A%9F%E8%83%BD/</loc>
     
     <lastmod>2021-05-24</lastmod>
     
@@ -459,6 +459,13 @@
   </url>
   
   <url>
+    <loc>http://blog.sky123.top/tags/Hexo%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2021-05-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.sky123.top/tags/css/</loc>
     <lastmod>2021-05-27</lastmod>
     <changefreq>daily</changefreq>
@@ -473,13 +480,6 @@
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/tags/Hexo%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2021-05-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.sky123.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2021-05-27</lastmod>
     <changefreq>daily</changefreq>
@@ -487,7 +487,7 @@
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/tags/vue/</loc>
+    <loc>http://blog.sky123.top/tags/Javascript/</loc>
     <lastmod>2021-05-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -495,13 +495,6 @@
   
   <url>
     <loc>http://blog.sky123.top/tags/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2021-05-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.sky123.top/tags/Javascript/</loc>
     <lastmod>2021-05-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -522,14 +515,14 @@
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/tags/SpringBoot/</loc>
+    <loc>http://blog.sky123.top/tags/Spring%E6%A1%86%E6%9E%B6/</loc>
     <lastmod>2021-05-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://blog.sky123.top/tags/Spring%E6%A1%86%E6%9E%B6/</loc>
+    <loc>http://blog.sky123.top/tags/SpringBoot/</loc>
     <lastmod>2021-05-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -551,6 +544,13 @@
   
   <url>
     <loc>http://blog.sky123.top/tags/SpringMVC%E6%A1%86%E6%9E%B6/</loc>
+    <lastmod>2021-05-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.sky123.top/tags/vue/</loc>
     <lastmod>2021-05-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
