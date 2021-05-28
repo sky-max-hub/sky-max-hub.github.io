@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="大白小怪兽">
+    
+    <title>
+        
+            Docker Compose |
+        
+        大白小怪兽
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/images/blog.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.sky123.top","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#f22f27","avatar":"/images/avatar.jpg","favicon":"/images/blog.png","article_img_align":"center","left_side_width":"240px","content_max_width":"940px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"乐于有所得，苦于无知"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                大白小怪兽
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        
+            <div class="article-cover">
+                <img class="cover" src=https://img.sky123.top/img/tulips-6233077_1280.jpg>
+            </div>
+        
+        <div class="article-title">
+            <span class="title-hover-animation">Docker Compose</span>
+        </div>
+        
+            <div class="article-header">
+                <div class="info">
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <!--日期-->
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-05-28
+    </span>
+
+    <!--字数统计-->
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.2k 字</span>
+        </span>
+    
+
+    <!--阅读时长-->
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 分钟</span>
+        </span>
+    
+
+    <!--阅读人数-->
+    
+
+    <!--分类-->
+    
+
+    <!--标签-->
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Docker/">Docker</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1>Docker Compose</h1>
+<h2 id="Docker-Compose 简介">Docker Compose 简介</h2>
+<p>Compose 是 Docker 官方的开源项目。需要手动安装，用于批量的容器编排和运行。</p>
+<p>以前：Dockerfile build run 手动操作单个容器！</p>
+<p>现在：Docker Compose 可以轻松高效地管理容器，定义多个容器。</p>
+<p>官方介绍和文档：<a class="link" target="_blank" rel="noopener" href="https://docs.docker.com/compose/">https://docs.docker.com/compose/<i class="fas fa-external-link-alt"></i></a></p>
+<blockquote>
+<p>Compose 是一个用于定义和运行多容器 Docker 应用程序的工具。使用 Compose，可以使用 YAML 文件来配置应用程序的服务。然后，使用一个命令，从配置中创建并启动所有服务。</p>
+<p>Compose 适用于所有环境：生产、暂存、开发、测试以及 CI 工作流。</p>
+</blockquote>
+<p>使用 Compose 基于三个步骤：</p>
+<ol>
+<li>使用 <code>Dockerfile</code> 定义应用程序的环境，以便可以在任何地方复制。</li>
+<li>在 <code>docker compose.yml</code> 中定义组成应用程序的服务（<code>service</code>），以便它们可以在隔离的环境中一起运行。</li>
+<li>运行 <code>docker compose up</code> 和 <a class="link" target="_blank" rel="noopener" href="https://docs.docker.com/compose/cli-command/">docker compose 命令 <i class="fas fa-external-link-alt"></i></a> 启动并运行整个应用程序。也可以使用<code>docker-compose</code> 二进制文件运行<code>docker compose up</code>。</li>
+</ol>
+<h2 id="Docker-Compose 使用">Docker Compose 使用</h2>
+<p>参考官方文档：<a class="link" target="_blank" rel="noopener" href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="安装：">安装：</h3>
+<p>安装时根据环境参考官方文档：</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210527172603824.png" alt="image-20210527172603824"></p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 官方下载源</span></span><br><span class="line">sudo curl -L <span class="string">"https://github.com/docker/compose/releases/download/1.29.2/docker-compose-<span class="subst">$(uname -s)</span>-<span class="subst">$(uname -m)</span>"</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个下载更快</span></span><br><span class="line">sudo curl -L <span class="string">"https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-compose-<span class="subst">$(uname -s)</span>-<span class="subst">$(uname -m)</span>"</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置权限</span></span><br><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 运行</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]<span class="comment"># sudo curl -L "https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose</span></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100   423  100   423    0     0    438      0 --:--:-- --:--:-- --:--:--   437</span><br><span class="line">100 16.7M  100 16.7M    0     0  8758k      0  0:00:01  0:00:01 --:--:-- 24.1M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看是否安装成功</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z /]<span class="comment"># cd usr/local/bin</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z bin]<span class="comment"># ll</span></span><br><span class="line">total 17176</span><br><span class="line">-rwxr-xr-x 1 root root 17586312 May 27 17:32 docker-compose</span><br><span class="line"></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z bin]<span class="comment"># sudo chmod +x /usr/local/bin/docker-compose</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="运行：">运行：</h3>
+<p>参考官方文档：<a class="link" target="_blank" rel="noopener" href="https://docs.docker.com/compose/gettingstarted/">https://docs.docker.com/compose/gettingstarted/<i class="fas fa-external-link-alt"></i></a></p>
+<blockquote>
+<p>官方文档介绍了一个 基于 python 和 redis 的计数器应用</p>
+</blockquote>
+<ol>
+<li>
+<p>创建目录，在目录中创建 <code>app.py</code> ：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@izwz91mv6i3x6k12jjqh60z home]<span class="comment"># mkdir composetest</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z home]<span class="comment"># cd composetest</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> redis</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">cache = redis.Redis(host=<span class="string">'redis'</span>, port=<span class="number">6379</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_hit_count</span>():</span></span><br><span class="line">    retries = <span class="number">5</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">return</span> cache.incr(<span class="string">'hits'</span>)</span><br><span class="line">        <span class="keyword">except</span> redis.exceptions.ConnectionError <span class="keyword">as</span> exc:</span><br><span class="line">            <span class="keyword">if</span> retries == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">raise</span> exc</span><br><span class="line">            retries -= <span class="number">1</span></span><br><span class="line">            time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">'/'</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span>():</span></span><br><span class="line">    count = get_hit_count()</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello World! I have been seen {} times.\n'</span>.<span class="built_in">format</span>(count)</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p>在目录中创建 <code>requirements.txt</code>:</p>
+<figure class="highlight txt"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flask</span><br><span class="line">redis</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p>在目录中创建 <code>Dockerfile</code>:</p>
+<figure class="highlight dockerfile"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># syntax=docker/dockerfile:1</span></span><br><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.7</span>-alpine</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /code</span></span><br><span class="line"><span class="keyword">ENV</span> FLASK_APP=app.py</span><br><span class="line"><span class="keyword">ENV</span> FLASK_RUN_HOST=<span class="number">0.0</span>.<span class="number">0.0</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apk add --no-cache gcc musl-dev linux-headers</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> requirements.txt requirements.txt</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> pip install -r requirements.txt</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">5000</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> . .</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"flask"</span>, <span class="string">"run"</span>]</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p>在目录中创建 <code>docker-compose.yml</code>:</p>
+<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"2.2"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">web:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"5000:5000"</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">"redis:alpine"</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p>构建和启动：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 调用命令</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z composetest]<span class="comment"># docker-compose up</span></span><br></pre></td></tr></tbody></table></figure>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210527175351764.png" alt="image-20210527175351764"></p>
+</li>
+<li>
+<p>查看效果：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]<span class="comment"># cd /home/composetest</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z composetest]<span class="comment"># curl localhost:5000</span></span><br><span class="line">Hello World! I have been seen 1 <span class="built_in">times</span>.</span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z composetest]<span class="comment"># curl localhost:5000</span></span><br><span class="line">Hello World! I have been seen 2 <span class="built_in">times</span>.</span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z composetest]<span class="comment"># curl localhost:5000</span></span><br><span class="line">Hello World! I have been seen 3 <span class="built_in">times</span>.</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<p>实例运行总结：</p>
+<ol>
+<li><code>app.py</code> 文件主要是应用</li>
+<li><code>Dockerfile</code> 将应用打包为镜像</li>
+<li><code>docker-compose.yml</code> 定义整个服务，需要的环境，web，redis 等等，一套完整的上线服务。</li>
+<li>启动 <code>compose</code> 项目，<code>docker-compose up</code></li>
+</ol>
+<h3 id="Compose- 运行过程分析：">Compose 运行过程分析：</h3>
+<ol>
+<li>
+<p>查看网络：(发现 <code>Compose</code>帮我们创建了一个 <code>composetest_default </code>的网络，同时说明，项目中的所有服务都在同一个 , 可以直接通过域名访问)</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]<span class="comment"># docker network ls</span></span><br><span class="line">NETWORK ID     NAME                  DRIVER    SCOPE</span><br><span class="line">d71469651905   bridge                bridge    <span class="built_in">local</span></span><br><span class="line">f6c38494b757   composetest_default   bridge    <span class="built_in">local</span></span><br><span class="line">4210c11fb888   host                  host      <span class="built_in">local</span></span><br><span class="line">d1ede6bb4ad9   mynet                 bridge    <span class="built_in">local</span></span><br><span class="line">15f30a8dc35d   none                  null      <span class="built_in">local</span></span><br><span class="line">42efb2e7749d   redis-net             bridge    <span class="built_in">local</span></span><br></pre></td></tr></tbody></table></figure>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210527232341763.png" alt="image-20210527232341763"></p>
+</li>
+<li>
+<p>查看运行的容器：(发现有两个容器，一个叫 <code>composetest_redis_1</code>，<code>composetest_web_1</code>)</p>
+<p>默认容器名为：<strong>文件目录名 </strong>+<strong> 服务名</strong>+<strong>num（副本数量，集群状态时，服务的数量不止一个）</strong></p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE             COMMAND                  CREATED       STATUS       PORTS                                       NAMES</span><br><span class="line">f7cb044eb25a   redis:alpine      <span class="string">"docker-entrypoint.s…"</span>   5 hours ago   Up 5 hours   6379/tcp                                    composetest_redis_1</span><br><span class="line">02e334c74331   composetest_web   <span class="string">"flask run"</span>              5 hours ago   Up 5 hours   0.0.0.0:5000-&gt;5000/tcp, :::5000-&gt;5000/tcp   composetest_web_1</span><br><span class="line">ac4c3fde1bf1   springboot-demo   <span class="string">"java -jar /app.jar …"</span>   9 days ago    Up 9 days    0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   test-demo</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p>查看镜像:（发现有个 <code>composetest_web</code> 和 <code>redis </code> 的镜像）</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@izwz91mv6i3x6k12jjqh60z ~]<span class="comment"># docker images</span></span><br><span class="line">REPOSITORY                                            TAG                IMAGE ID       CREATED         SIZE</span><br><span class="line">composetest_web                                       latest             3169d076eff0   5 hours ago     183MB</span><br><span class="line">redis                                                 5.0.9-alpine3.11   3661c84ee9d0   13 months ago   29.8MB</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<h3 id="停止：">停止：</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 调用命令</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z composetest]<span class="comment"># docker-compose down</span></span><br><span class="line">Stopping composetest_redis_1 ... <span class="keyword">done</span></span><br><span class="line">Stopping composetest_web_1   ... <span class="keyword">done</span></span><br><span class="line">Removing composetest_redis_1 ... <span class="keyword">done</span></span><br><span class="line">Removing composetest_web_1   ... <span class="keyword">done</span></span><br><span class="line">Removing network composetest_default</span><br><span class="line"><span class="comment"># 再次测试</span></span><br><span class="line">[root@izwz91mv6i3x6k12jjqh60z composetest]<span class="comment"># curl localhost:5000</span></span><br><span class="line">curl: (7) Failed to connect to ::1: No route to host</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Docker-Compose- 配置文件书写">Docker Compose 配置文件书写</h2>
+<h3 id="docker-compose-yaml 规则">docker-compose.yaml 规则</h3>
+<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一般只有三层 </span></span><br><span class="line"></span><br><span class="line"><span class="attr">version:</span> <span class="string">''</span> <span class="comment"># 版本</span></span><br><span class="line"><span class="attr">services:</span> <span class="comment"># 服务</span></span><br><span class="line">   <span class="string"> 服务一:</span> <span class="string">web</span></span><br><span class="line">      <span class="comment"># 服务配置 </span></span><br><span class="line">      <span class="string">images</span></span><br><span class="line">      <span class="string">build</span></span><br><span class="line">      <span class="string">network</span></span><br><span class="line">   <span class="string"> 服务一:</span> <span class="string">redis</span></span><br><span class="line">      <span class="string">........</span></span><br><span class="line"><span class="comment"># 其他配置：网络 / 卷 / 全局规则...</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">configs:</span></span><br></pre></td></tr></tbody></table></figure>
+<p>查看官网：<a class="link" target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/compose-file-v3/">https://docs.docker.com/compose/compose-file/compose-file-v3/<i class="fas fa-external-link-alt"></i></a></p>
+<p>可以看到两个不同版本的 <code>yml</code> 文件的写法</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://img.sky123.top/img/image-20210527234517113.png" alt="image-20210527234517113"></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/05/28/docker/Docker08docker%E7%BD%91%E7%BB%9C/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Docker 网络</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/05/28/docker/Docker07dockerfile/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Dockerfile</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">大白小怪兽</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.1</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list show">
+        <!--隐藏放大缩小字体和全屏模式-->
+        <li class="tools-item tool-font-adjust-plus flex-center" style="display: none">
+            <i class="fas fa-search-plus"></i>
+        </li>
+        <li class="tools-item tool-font-adjust-minus flex-center" style="display: none">
+            <i class="fas fa-search-minus"></i>
+        </li>
+        <li class="tools-item tool-expand-width flex-center" style="display: none">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Docker Compose</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Compose%20%E7%AE%80%E4%BB%8B"><span class="nav-text">Docker Compose 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Compose%20%E4%BD%BF%E7%94%A8"><span class="nav-text">Docker Compose 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%EF%BC%9A"><span class="nav-text">安装：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">运行：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compose-%20%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-text">Compose 运行过程分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2%EF%BC%9A"><span class="nav-text">停止：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Compose-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B9%A6%E5%86%99"><span class="nav-text">Docker Compose 配置文件书写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-compose-yaml%20%E8%A7%84%E5%88%99"><span class="nav-text">docker-compose.yaml 规则</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

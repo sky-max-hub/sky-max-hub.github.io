@@ -488,6 +488,18 @@ button {
   margin-top: 2px;
   border-top: 1.3px solid #f22f27;
 }
+@media (max-width: 780px) {
+  .markdown-body h2::after,
+  .markdown-body h1::after {
+    border-width: 0.8px;
+  }
+}
+@media (max-width: 500px) {
+  .markdown-body h2::after,
+  .markdown-body h1::after {
+    border-width: 0.8px;
+  }
+}
 .markdown-body h3 {
   color: var(--default-text-color);
   letter-spacing: 1px;
@@ -513,6 +525,16 @@ button {
   width: 95%;
   margin-top: 2px;
   border-top: 1.3px solid #f22f27;
+}
+@media (max-width: 780px) {
+  .markdown-body h3::after {
+    border-width: 0.8px;
+  }
+}
+@media (max-width: 500px) {
+  .markdown-body h3::after {
+    border-width: 0.8px;
+  }
 }
 .markdown-body h4 {
   color: var(--default-text-color);
@@ -540,6 +562,16 @@ button {
   margin-top: 2px;
   border-top: 1.3px solid #f22f27;
 }
+@media (max-width: 780px) {
+  .markdown-body h4::after {
+    border-width: 0.8px;
+  }
+}
+@media (max-width: 500px) {
+  .markdown-body h4::after {
+    border-width: 0.8px;
+  }
+}
 .markdown-body h5 {
   color: var(--default-text-color);
   letter-spacing: 1px;
@@ -566,6 +598,16 @@ button {
   margin-top: 2px;
   border-top: 1.3px solid #f22f27;
 }
+@media (max-width: 780px) {
+  .markdown-body h5::after {
+    border-width: 0.8px;
+  }
+}
+@media (max-width: 500px) {
+  .markdown-body h5::after {
+    border-width: 0.8px;
+  }
+}
 .markdown-body h6 {
   color: var(--default-text-color);
   letter-spacing: 1px;
@@ -591,6 +633,16 @@ button {
   width: 85%;
   margin-top: 2px;
   border-top: 1.3px solid #f22f27;
+}
+@media (max-width: 780px) {
+  .markdown-body h6::after {
+    border-width: 0.8px;
+  }
+}
+@media (max-width: 500px) {
+  .markdown-body h6::after {
+    border-width: 0.8px;
+  }
 }
 .markdown-body img {
   box-sizing: border-box;

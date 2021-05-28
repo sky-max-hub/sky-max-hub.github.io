@@ -109,6 +109,8 @@ keep-tablet()
   width: 100%;
   margin-top: 2px;
   border-top: 1.3px solid $mark-down-h-color;
+keep-tablet()
+keep-mobile()
 }
 .markdown-body h3 {
   color: var(--default-text-color);
@@ -131,6 +133,8 @@ keep-tablet()
   width: 95%;
   margin-top: 2px;
   border-top: 1.3px solid $mark-down-h-color;
+keep-tablet()
+keep-mobile()
 }
 .markdown-body h4 {
   color: var(--default-text-color);
@@ -153,6 +157,8 @@ keep-tablet()
   width: 90%;
   margin-top: 2px;
   border-top: 1.3px solid $mark-down-h-color;
+keep-tablet()
+keep-mobile()
 }
 .markdown-body h5 {
   color: var(--default-text-color);
@@ -175,6 +181,8 @@ keep-tablet()
   width: 88%;
   margin-top: 2px;
   border-top: 1.3px solid $mark-down-h-color;
+keep-tablet()
+keep-mobile()
 }
 .markdown-body h6 {
   color: var(--default-text-color);
@@ -197,6 +205,8 @@ keep-tablet()
   width: 85%;
   margin-top: 2px;
   border-top: 1.3px solid $mark-down-h-color;
+keep-tablet()
+keep-mobile()
 }
 .markdown-body img {
   box-sizing: border-box;
